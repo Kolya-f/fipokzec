@@ -2,7 +2,7 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Kolya-f | Створення сайтів на замовлення</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -13,52 +13,61 @@
                 <div class="logo">Kolya<span class="logo-accent">.dev</span></div>
                 <ul class="nav-links">
                     <li><a href="#services">Послуги</a></li>
-                    <li><a href="#portfolio">Портфоліо</a></li>
+                    <li><a href="#slider-section">Проєкти</a></li>
                     <li><a href="#contacts">Контакти</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
+    <!-- Hero секція -->
     <section class="hero">
         <div class="container hero-grid">
             <div class="hero-text">
                 <h1>Створюю сайти, <span class="highlight">які приносять клієнтів</span></h1>
-                <p>Сучасний дизайн, адаптивна верстка та простота в управлінні. Зробимо ваш бізнес помітним в інтернеті.</p>
+                <p>Адаптивний дизайн, сучасні анімації, слайдери реальних проєктів. Подивіться, як я вмію працювати.</p>
                 <div>
-                    <a href="#contacts" class="btn">Замовити сайт</a>
-                    <a href="#portfolio" class="btn btn-outline">Портфоліо</a>
+                    <a href="#slider-section" class="btn">Переглянути роботи</a>
+                    <a href="#contacts" class="btn btn-outline">Замовити сайт</a>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Секція послуг -->
     <section id="services">
         <div class="container">
             <h2 class="section-title">Мої послуги</h2>
-            <div class="services-grid" id="servicesGrid">
-                <!-- Сервіси будуть додані через JavaScript -->
-            </div>
+            <div class="services-grid" id="servicesGrid"></div>
         </div>
     </section>
 
-    <section id="portfolio" class="bg-light">
+    <!-- НОВА СЕКЦІЯ: Слайдер з прикладами сайтів -->
+    <section id="slider-section" class="slider-section">
         <div class="container">
-            <h2 class="section-title">Приклади робіт</h2>
-            <div class="portfolio-grid" id="portfolioGrid">
-                <!-- Портфоліо буде додано через JavaScript -->
+            <h2 class="section-title">Реальні проєкти 🚀</h2>
+            <p class="slider-subtitle">Клікайте на картки — переходьте на живі сайти. Гортайте вручну або дивіться автоматичну зміну.</p>
+            
+            <div class="slider-container">
+                <div class="slider-track" id="sliderTrack">
+                    <!-- Картки будуть додані через JavaScript -->
+                </div>
+                <button class="slider-btn prev-btn" id="prevBtn">❮</button>
+                <button class="slider-btn next-btn" id="nextBtn">❯</button>
             </div>
+            
+            <div class="slider-dots" id="sliderDots"></div>
+            <div class="slider-highlight" id="slideHighlight"></div>
         </div>
     </section>
 
+    <!-- Секція контактів -->
     <section id="contacts">
         <div class="container contacts">
             <h2>📬 Зв'язатись зі мною</h2>
             <p id="contactText"></p>
             <a href="mailto:kolyaf.web@gmail.com" class="btn btn-purple" id="emailLink">kolyaf.web@gmail.com</a>
-            <div class="social-links" id="socialLinks">
-                <!-- Соцмережі будуть додані через JavaScript -->
-            </div>
+            <div class="social-links" id="socialLinks"></div>
         </div>
     </section>
 
