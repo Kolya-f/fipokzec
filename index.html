@@ -4,243 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kolya-f | Створення сайтів на замовлення</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            background: #f5f7fc;
-            color: #1e1f2a;
-            line-height: 1.5;
-            scroll-behavior: smooth;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* Header */
-        header {
-            background: #ffffff;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #2563eb, #7c3aed);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #1e1f2a;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: #2563eb;
-        }
-
-        /* Hero */
-        .hero {
-            padding: 80px 0 60px;
-            background: linear-gradient(120deg, #f8faff 0%, #ffffff 100%);
-        }
-
-        .hero-grid {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 40px;
-        }
-
-        .hero-text {
-            flex: 1;
-        }
-
-        .hero-text h1 {
-            font-size: 3.2rem;
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 20px;
-        }
-
-        .hero-text .highlight {
-            background: linear-gradient(135deg, #2563eb, #7c3aed);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .hero-text p {
-            font-size: 1.2rem;
-            color: #4b5563;
-            margin-bottom: 32px;
-            max-width: 550px;
-        }
-
-        .btn {
-            display: inline-block;
-            background: #2563eb;
-            color: white;
-            padding: 12px 28px;
-            border-radius: 40px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.2s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background: #1d4ed8;
-            transform: scale(1.02);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 1px solid #2563eb;
-            color: #2563eb;
-            margin-left: 12px;
-        }
-
-        .btn-outline:hover {
-            background: #2563eb;
-            color: white;
-        }
-
-        /* Секції */
-        section {
-            padding: 80px 0;
-        }
-
-        .section-title {
-            font-size: 2.2rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 48px;
-        }
-
-        .services-grid, .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .service-card, .portfolio-item {
-            background: white;
-            padding: 32px 24px;
-            border-radius: 24px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.03);
-            transition: 0.2s;
-            text-align: center;
-            border: 1px solid #eef2f6;
-        }
-
-        .service-card:hover, .portfolio-item:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
-        }
-
-        .service-icon {
-            font-size: 2.8rem;
-            margin-bottom: 16px;
-        }
-
-        .price {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #2563eb;
-            margin: 16px 0 8px;
-        }
-
-        .portfolio-item {
-            text-align: left;
-        }
-
-        .portfolio-placeholder {
-            background: #eef2ff;
-            height: 160px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 16px;
-            color: #2563eb;
-            font-weight: 500;
-        }
-
-        /* Контакти */
-        .contacts {
-            background: #ffffff;
-            border-radius: 40px;
-            padding: 48px;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 32px;
-            margin-top: 24px;
-            flex-wrap: wrap;
-        }
-
-        .social-links a {
-            color: #1e1f2a;
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px 0;
-            color: #6c757d;
-            border-top: 1px solid #eef2f6;
-        }
-
-        @media (max-width: 700px) {
-            .hero-text h1 { font-size: 2.2rem; }
-            .nav-links { gap: 20px; }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <div class="container">
             <nav>
-                <div class="logo">Kolya<span style="color:#2563eb">.dev</span></div>
+                <div class="logo">Kolya<span class="logo-accent">.dev</span></div>
                 <ul class="nav-links">
                     <li><a href="#services">Послуги</a></li>
                     <li><a href="#portfolio">Портфоліо</a></li>
@@ -266,54 +36,17 @@
     <section id="services">
         <div class="container">
             <h2 class="section-title">Мої послуги</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">🌐</div>
-                    <h3>Сайт-візитка</h3>
-                    <p>3-5 сторінок, форма зв'язку, адаптивний дизайн. Ідеально для малого бізнесу.</p>
-                    <div class="price">від 3000 грн</div>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🚀</div>
-                    <h3>Лендінг</h3>
-                    <p>Односторінковий сайт для запуску продукту або акції. Висока конверсія.</p>
-                    <div class="price">від 4500 грн</div>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🏪</div>
-                    <h3>Інтернет-магазин</h3>
-                    <p>Каталог, кошик, оплата. Повноцінна платформа для продажів.</p>
-                    <div class="price">від 12000 грн</div>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">⚙️</div>
-                    <h3>Підтримка</h3>
-                    <p>Щомісячне оновлення, бекапи, технічний супровід вашого сайту.</p>
-                    <div class="price">від 1000 грн/міс</div>
-                </div>
+            <div class="services-grid" id="servicesGrid">
+                <!-- Сервіси будуть додані через JavaScript -->
             </div>
         </div>
     </section>
 
-    <section id="portfolio" style="background: #f9fafc;">
+    <section id="portfolio" class="bg-light">
         <div class="container">
             <h2 class="section-title">Приклади робіт</h2>
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <div class="portfolio-placeholder">🏢 Стоматологія</div>
-                    <h3>Сайт клініки</h3>
-                    <p>Сучасний сайт із записом онлайн, переліком послуг та галереєю.</p>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-placeholder">🌿 Beauty-бар</div>
-                    <h3>Лендінг для салону краси</h3>
-                    <p>Атмосферний дизайн, інтеграція з Instagram, форма бронювання.</p>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-placeholder">📦 Доставка квітів</div>
-                    <h3>Інтернет-магазин</h3>
-                    <p>Каталог, кошик, оплата карткою та доставка.</p>
-                </div>
+            <div class="portfolio-grid" id="portfolioGrid">
+                <!-- Портфоліо буде додано через JavaScript -->
             </div>
         </div>
     </section>
@@ -321,20 +54,20 @@
     <section id="contacts">
         <div class="container contacts">
             <h2>📬 Зв'язатись зі мною</h2>
-            <p style="margin-top: 12px; margin-bottom: 20px;">Готові до співпраці? Просто напишіть – обговоримо ваш проєкт.</p>
-            <a href="mailto:kolyaf.web@gmail.com" class="btn" style="background: #7c3aed;">kolyaf.web@gmail.com</a>
-            <div class="social-links">
-                <a href="#">Telegram</a>
-                <a href="#">Instagram</a>
-                <a href="#">GitHub</a>
+            <p id="contactText"></p>
+            <a href="mailto:kolyaf.web@gmail.com" class="btn btn-purple" id="emailLink">kolyaf.web@gmail.com</a>
+            <div class="social-links" id="socialLinks">
+                <!-- Соцмережі будуть додані через JavaScript -->
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>© 2025 Kolya-f | Створення сайтів під ключ</p>
+            <p id="footerText"></p>
         </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
