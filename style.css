@@ -108,6 +108,7 @@ nav {
     max-width: 550px;
 }
 
+/* Кнопки */
 .btn {
     display: inline-block;
     background: #2563eb;
@@ -141,7 +142,6 @@ nav {
 .btn-purple {
     background: #7c3aed;
 }
-
 .btn-purple:hover {
     background: #6d28d9;
 }
@@ -151,24 +151,25 @@ section {
     padding: 80px 0;
 }
 
-.bg-light {
-    background: #f9fafc;
-}
-
 .section-title {
     font-size: 2.2rem;
     font-weight: 700;
     text-align: center;
+    margin-bottom: 16px;
+}
+.slider-subtitle {
+    text-align: center;
+    color: #4b5563;
     margin-bottom: 48px;
 }
 
-.services-grid, .portfolio-grid {
+.services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 30px;
 }
 
-.service-card, .portfolio-item {
+.service-card {
     background: white;
     padding: 32px 24px;
     border-radius: 24px;
@@ -177,17 +178,10 @@ section {
     text-align: center;
     border: 1px solid #eef2f6;
 }
-
-.service-card:hover, .portfolio-item:hover {
+.service-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
 }
-
-.service-icon {
-    font-size: 2.8rem;
-    margin-bottom: 16px;
-}
-
+.service-icon { font-size: 2.8rem; margin-bottom: 16px; }
 .price {
     font-size: 1.8rem;
     font-weight: 700;
@@ -195,23 +189,108 @@ section {
     margin: 16px 0 8px;
 }
 
-.portfolio-item {
-    text-align: left;
+/* ========= СЛАЙДЕР ========= */
+.slider-section {
+    background: #f1f5f9;
 }
-
-.portfolio-placeholder {
-    background: #eef2ff;
-    height: 160px;
-    border-radius: 16px;
+.slider-container {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 32px;
+    box-shadow: 0 25px 40px -12px rgba(0,0,0,0.25);
+}
+.slider-track {
     display: flex;
-    align-items: center;
+    transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+}
+.slide-card {
+    flex: 0 0 100%;
+    background: white;
+    padding: 2rem;
+    border-radius: 32px;
+    text-align: center;
+}
+.slide-card img {
+    width: 100%;
+    max-height: 280px;
+    object-fit: cover;
+    border-radius: 24px;
+    margin-bottom: 1.2rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+.slide-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+.slide-link {
+    display: inline-block;
+    margin-top: 1rem;
+    background: #2563eb;
+    color: white;
+    padding: 10px 24px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.2s;
+}
+.slide-link:hover {
+    background: #1d4ed8;
+    transform: scale(1.02);
+}
+.tech-badge {
+    display: inline-block;
+    background: #eef2ff;
+    padding: 4px 12px;
+    border-radius: 40px;
+    font-size: 0.8rem;
+    margin: 8px 4px;
+}
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.6);
+    color: white;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 40px;
+    transition: 0.2s;
+    z-index: 2;
+}
+.slider-btn:hover { background: #2563eb; }
+.prev-btn { left: 16px; }
+.next-btn { right: 16px; }
+.slider-dots {
+    display: flex;
     justify-content: center;
-    margin-bottom: 16px;
+    gap: 12px;
+    margin-top: 28px;
+}
+.dot {
+    width: 12px;
+    height: 12px;
+    background: #cbd5e1;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.dot.active {
+    width: 28px;
+    background: #2563eb;
+}
+.slider-highlight {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
     color: #2563eb;
     font-weight: 500;
 }
 
-/* Контакти */
+/* Контакти + footer */
 .contacts {
     background: #ffffff;
     border-radius: 40px;
@@ -219,7 +298,6 @@ section {
     text-align: center;
     margin-top: 20px;
 }
-
 .social-links {
     display: flex;
     justify-content: center;
@@ -227,27 +305,19 @@ section {
     margin-top: 24px;
     flex-wrap: wrap;
 }
-
 .social-links a {
     color: #1e1f2a;
     text-decoration: none;
-    font-size: 1.1rem;
     font-weight: 500;
-    transition: color 0.2s;
 }
-
-.social-links a:hover {
-    color: #2563eb;
-}
-
 footer {
     text-align: center;
     padding: 40px 0;
     color: #6c757d;
     border-top: 1px solid #eef2f6;
 }
-
 @media (max-width: 700px) {
-    .hero-text h1 { font-size: 2.2rem; }
-    .nav-links { gap: 20px; }
+    .hero-text h1 { font-size: 2rem; }
+    .slider-btn { font-size: 1.2rem; padding: 6px 12px; }
+    .slide-card h3 { font-size: 1.4rem; }
 }
