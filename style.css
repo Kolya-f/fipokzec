@@ -89,7 +89,6 @@ nav {
     font-weight: 500;
     transition: all 0.2s ease;
 }
-/* Активний пункт - жовтий градієнт */
 .nav-links a.active {
     background: linear-gradient(135deg, #fbbf24, #f59e0b);
     -webkit-background-clip: text;
@@ -123,17 +122,17 @@ nav {
 .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
 .hero-image { flex: 1; }
 
-/* Термінал */
+/* Термінал - фіксована висота, скрол, курсор текст */
 .code-terminal {
     background: rgba(10, 10, 20, 0.95);
     backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 16px;
     overflow: hidden;
-    font-family: 'Courier New', monospace;
+    font-family: 'Courier New', 'Fira Code', monospace;
     font-size: 0.75rem;
     box-shadow: 0 20px 35px -10px rgba(0,0,0,0.4);
-    height: 320px;
+    height: 360px;
     display: flex;
     flex-direction: column;
 }
@@ -155,11 +154,30 @@ nav {
     color: #e2e8f0;
     overflow-y: auto;
     flex: 1;
-    font-family: 'Courier New', monospace;
+    font-family: 'Courier New', 'Fira Code', monospace;
     white-space: pre-wrap;
     word-break: break-word;
+    cursor: text;
 }
-#typingArea { font-family: 'Courier New', monospace; white-space: pre-wrap; word-break: break-word; }
+.terminal-body::-webkit-scrollbar {
+    width: 6px;
+}
+.terminal-body::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.05);
+    border-radius: 3px;
+}
+.terminal-body::-webkit-scrollbar-thumb {
+    background: rgba(139, 92, 246, 0.5);
+    border-radius: 3px;
+}
+.terminal-body::-webkit-scrollbar-thumb:hover {
+    background: #8b5cf6;
+}
+#typingArea { 
+    font-family: 'Courier New', 'Fira Code', monospace; 
+    white-space: pre-wrap; 
+    word-break: break-word;
+}
 .cursor-blink {
     display: inline-block;
     animation: blink 0.8s step-end infinite;
@@ -252,5 +270,5 @@ footer { text-align: center; padding: 40px 0; color: #64748b; border-top: 1px so
     .mobile-menu-btn { display: block; }
     .hero-text h1 { font-size: 2rem; }
     .about-grid, .contacts-grid { grid-template-columns: 1fr; }
-    .code-terminal { height: 280px; }
+    .code-terminal { height: 300px; }
 }
