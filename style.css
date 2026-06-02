@@ -35,40 +35,6 @@ body::after {
 
 .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
-/* Анімація появи меню */
-.nav-link {
-    opacity: 0;
-    transform: translateY(-20px);
-    animation: menuAppear 0.5s ease forwards;
-}
-.nav-link:nth-child(1) { animation-delay: 0s; }
-.nav-link:nth-child(2) { animation-delay: 0.1s; }
-.nav-link:nth-child(3) { animation-delay: 0.2s; }
-.nav-link:nth-child(4) { animation-delay: 0.3s; }
-.nav-link:nth-child(5) { animation-delay: 0.4s; }
-.nav-link:nth-child(6) { animation-delay: 0.5s; }
-.nav-link:nth-child(7) { animation-delay: 0.6s; }
-@keyframes menuAppear {
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Райдужне переливання при наведенні */
-.nav-link {
-    transition: all 0.3s ease;
-}
-.nav-link:hover {
-    background: linear-gradient(135deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3);
-    background-size: 400% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: rainbow 1s linear infinite;
-}
-@keyframes rainbow {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 100% 50%; }
-}
-
 /* Header */
 header {
     background: rgba(10, 10, 15, 0.85);
@@ -109,15 +75,27 @@ nav {
     text-decoration: none;
     color: #e2e8f0;
     font-weight: 500;
-    transition: 0.3s;
+    transition: all 0.2s ease;
 }
+/* Активний пункт - жовтий градієнт */
 .nav-links a.active {
     background: linear-gradient(135deg, #fbbf24, #f59e0b);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
 }
+.nav-links a:hover { color: #fbbf24; }
 .mobile-menu-btn { display: none; font-size: 1.8rem; cursor: pointer; }
+
+/* Анімація появи меню */
+.nav-link {
+    opacity: 0;
+    transform: translateY(-15px);
+    animation: menuAppear 0.4s ease forwards;
+}
+@keyframes menuAppear {
+    to { opacity: 1; transform: translateY(0); }
+}
 
 /* Hero */
 .hero { padding: 80px 0 60px; }
@@ -143,7 +121,7 @@ nav {
 .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
 .hero-image { flex: 1; }
 
-/* Термінал - фіксована висота */
+/* Термінал */
 .code-terminal {
     background: rgba(10, 10, 20, 0.95);
     backdrop-filter: blur(8px);
@@ -188,7 +166,6 @@ nav {
 }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-/* Кнопки */
 .btn {
     display: inline-block;
     background: linear-gradient(135deg, #3b82f6, #8b5cf6);
@@ -204,7 +181,6 @@ nav {
 .btn:hover { transform: scale(1.02); box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4); }
 .btn-outline { background: transparent; border: 1px solid #8b5cf6; color: #c084fc; }
 
-/* Секції */
 .section-header { text-align: center; margin-bottom: 48px; }
 .section-tag {
     display: inline-block;
@@ -249,7 +225,6 @@ nav {
     padding: 24px;
     transition: 0.3s;
 }
-.portfolio-item:hover, .review-card:hover, .faq-item:hover { transform: translateY(-6px); border-color: rgba(251, 191, 36, 0.3); }
 .portfolio-filter { display: flex; justify-content: center; gap: 16px; margin-bottom: 40px; flex-wrap: wrap; }
 .filter-btn {
     background: transparent;
