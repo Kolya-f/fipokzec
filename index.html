@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Kolya-f | Створення сайтів на замовлення</title>
+    <meta name="description" content="Професійна розробка сайтів під ключ. Сучасний дизайн, адаптивна верстка, адмін-панель. Портфоліо, ціни, відгуки.">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,56 +13,158 @@
             <nav>
                 <div class="logo">Kolya<span class="logo-accent">.dev</span></div>
                 <ul class="nav-links">
+                    <li><a href="#home">Головна</a></li>
                     <li><a href="#services">Послуги</a></li>
-                    <li><a href="#slider-section">Проєкти</a></li>
+                    <li><a href="#portfolio">Проєкти</a></li>
+                    <li><a href="#about">Про мене</a></li>
+                    <li><a href="#reviews">Відгуки</a></li>
+                    <li><a href="#faq">FAQ</a></li>
                     <li><a href="#contacts">Контакти</a></li>
                 </ul>
+                <div class="mobile-menu-btn">☰</div>
             </nav>
         </div>
     </header>
 
-    <section class="hero">
+    <!-- Головна секція (Hero) -->
+    <section id="home" class="hero">
         <div class="container hero-grid">
             <div class="hero-text">
+                <span class="hero-badge">Веб-розробник</span>
                 <h1>Створюю сайти, <span class="highlight">які приносять клієнтів</span></h1>
-                <p>Адаптивний дизайн, сучасні анімації, слайдери реальних проєктів. Подивіться, як я вмію працювати.</p>
-                <div>
-                    <a href="#slider-section" class="btn">Переглянути роботи</a>
-                    <a href="#contacts" class="btn btn-outline">Замовити сайт</a>
+                <p>Адаптивний дизайн, сучасні анімації, SEO-оптимізація та адмін-панель. Понад 20 успішних проєктів за 2 роки.</p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">20+</span>
+                        <span class="stat-label">Проєктів</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Задоволених</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Підтримка</span>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#contacts" class="btn">Замовити сайт</a>
+                    <a href="#portfolio" class="btn btn-outline">Портфоліо</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="code-decoration">
+                    <code>&lt;html&gt;<br>&nbsp;&nbsp;&lt;head&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;Ваш сайт&lt;/title&gt;<br>&nbsp;&nbsp;&lt;/head&gt;<br>&nbsp;&nbsp;&lt;body&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;Чудовий дизайн<br>&nbsp;&nbsp;&lt;/body&gt;<br>&lt;/html&gt;</code>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="services">
+    <!-- Секція Послуги (детально) -->
+    <section id="services" class="services-section">
         <div class="container">
-            <h2 class="section-title">Мої послуги</h2>
+            <div class="section-header">
+                <span class="section-tag">Що я пропоную</span>
+                <h2 class="section-title">Мої послуги</h2>
+                <p class="section-desc">Повний цикл створення сайтів — від ідеї до запуску та підтримки</p>
+            </div>
             <div class="services-grid" id="servicesGrid"></div>
         </div>
     </section>
 
-    <section id="slider-section" class="slider-section">
+    <!-- Секція Портфоліо / Проєкти (розширена) -->
+    <section id="portfolio" class="portfolio-section">
         <div class="container">
-            <h2 class="section-title">Реальні проєкти 🚀</h2>
-            <p class="slider-subtitle">Клікайте на картки — переходьте на живі сайти. Гортайте вручну або дивіться автоматичну зміну.</p>
-            
-            <div class="slider-container">
-                <div class="slider-track" id="sliderTrack"></div>
-                <button class="slider-btn prev-btn" id="prevBtn">❮</button>
-                <button class="slider-btn next-btn" id="nextBtn">❯</button>
+            <div class="section-header">
+                <span class="section-tag">Мої роботи</span>
+                <h2 class="section-title">Реальні проєкти</h2>
+                <p class="section-desc">Клікайте на картки — переходьте на живі сайти</p>
             </div>
-            
-            <div class="slider-dots" id="sliderDots"></div>
-            <div class="slider-highlight" id="slideHighlight"></div>
+            <div class="portfolio-filter">
+                <button class="filter-btn active" data-filter="all">Всі</button>
+                <button class="filter-btn" data-filter="wordpress">WordPress</button>
+                <button class="filter-btn" data-filter="landing">Лендінги</button>
+                <button class="filter-btn" data-filter="ecommerce">Інтернет-магазини</button>
+            </div>
+            <div class="portfolio-grid" id="portfolioGrid"></div>
         </div>
     </section>
 
-    <section id="contacts">
-        <div class="container contacts">
-            <h2>📬 Зв'язатись зі мною</h2>
-            <p id="contactText"></p>
-            <a href="mailto:kolyaf.web@gmail.com" class="btn btn-purple" id="emailLink">kolyaf.web@gmail.com</a>
-            <div class="social-links" id="socialLinks"></div>
+    <!-- Секція Про мене (розширена) -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <span class="section-tag">Хто я</span>
+                    <h2>Коля — веб-розробник з любов'ю до деталей</h2>
+                    <p>За 2 роки у веб-розробці я створив понад 20 сайтів для малого та середнього бізнесу. Моя мета — не просто зробити красиву картинку, а створити інструмент, який реально приносить клієнтів.</p>
+                    <p>Працюю з сучасними технологіями: HTML5, CSS3, JavaScript, WordPress, Elementor, WooCommerce. Кожен проєкт проходить тестування на швидкість та адаптивність.</p>
+                    <div class="skills">
+                        <div class="skill"><span>HTML/CSS</span><div class="skill-bar"><div style="width: 95%"></div></div></div>
+                        <div class="skill"><span>JavaScript</span><div class="skill-bar"><div style="width: 80%"></div></div></div>
+                        <div class="skill"><span>WordPress</span><div class="skill-bar"><div style="width: 90%"></div></div></div>
+                        <div class="skill"><span>Elementor</span><div class="skill-bar"><div style="width: 95%"></div></div></div>
+                    </div>
+                    <a href="#contacts" class="btn">Обговорити проєкт</a>
+                </div>
+                <div class="about-image">
+                    <div class="about-placeholder">
+                        <span>📸</span>
+                        <p>Тут буде ваше фото</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секція Відгуки -->
+    <section id="reviews" class="reviews-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Що кажуть клієнти</span>
+                <h2 class="section-title">Відгуки</h2>
+                <p class="section-desc">Думка тих, з ким я вже попрацював</p>
+            </div>
+            <div class="reviews-grid" id="reviewsGrid"></div>
+        </div>
+    </section>
+
+    <!-- Секція Часті питання (FAQ) -->
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">FAQ</span>
+                <h2 class="section-title">Часті питання</h2>
+                <p class="section-desc">Відповіді на найпопулярніші запитання</p>
+            </div>
+            <div class="faq-grid" id="faqGrid"></div>
+        </div>
+    </section>
+
+    <!-- Секція Контакти -->
+    <section id="contacts" class="contacts-section">
+        <div class="container">
+            <div class="contacts-grid">
+                <div class="contacts-info">
+                    <h2>📬 Зв'язатись зі мною</h2>
+                    <p>Готові до співпраці? Просто напишіть – обговоримо ваш проєкт.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">📧 <a href="mailto:kolyaf.web@gmail.com">kolyaf.web@gmail.com</a></div>
+                        <div class="contact-item">📞 +38 (099) 123-45-67</div>
+                        <div class="contact-item">📍 Україна, Київ</div>
+                    </div>
+                    <div class="social-links" id="socialLinks"></div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <input type="text" placeholder="Ваше ім'я" required>
+                        <input type="email" placeholder="Ваш Email" required>
+                        <input type="text" placeholder="Телефон">
+                        <textarea placeholder="Повідомлення" rows="5" required></textarea>
+                        <button type="submit" class="btn">Відправити</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </section>
 
