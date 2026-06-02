@@ -1,20 +1,139 @@
-// Бібліотека різних кодів
+// Бібліотека різнокольорових кодів (HTML, CSS, JS, React, API, JSON)
 const codeSamples = [
     {
-        title: "developer@fipokzec:~/portfolio",
-        code: `<span style="color:#fbbf24">&lt;!DOCTYPE html&gt;</span>\n<span style="color:#fbbf24">&lt;html&gt;</span>\n  <span style="color:#fbbf24">&lt;head&gt;</span>\n    <span style="color:#fbbf24">&lt;title&gt;</span><span style="color:#60a5fa">Сучасний Landing Page</span><span style="color:#fbbf24">&lt;/title&gt;</span>\n    <span style="color:#fbbf24">&lt;style&gt;</span>\n      <span style="color:#60a5fa">.hero</span> { <span style="color:#c084fc">background</span>: <span style="color:#60a5fa">linear-gradient(135deg, #667eea 0%, #764ba2 100%)</span>; }\n      <span style="color:#60a5fa">.btn</span> { <span style="color:#c084fc">transition</span>: <span style="color:#60a5fa">all 0.3s ease</span>; }\n    <span style="color:#fbbf24">&lt;/style&gt;</span>\n  <span style="color:#fbbf24">&lt;/head&gt;</span>\n  <span style="color:#fbbf24">&lt;body&gt;</span>\n    <span style="color:#fbbf24">&lt;div class="hero"&gt;</span>\n      <span style="color:#fbbf24">&lt;h1&gt;</span>Готовий до змін?<span style="color:#fbbf24">&lt;/h1&gt;</span>\n      <span style="color:#fbbf24">&lt;a href="#" class="btn"&gt;</span>Замовити зараз<span style="color:#fbbf24">&lt;/a&gt;</span>\n    <span style="color:#fbbf24">&lt;/div&gt;</span>\n  <span style="color:#fbbf24">&lt;/body&gt;</span>\n<span style="color:#fbbf24">&lt;/html&gt;</span>`
+        title: "developer@fipokzec:~/modern-website",
+        code: `<span style="color:#7c3aed; font-weight:bold">&lt;!DOCTYPE html&gt;</span>
+<span style="color:#f59e0b">&lt;html</span> <span style="color:#60a5fa">lang</span>=<span style="color:#fbbf24">"uk"</span><span style="color:#f59e0b">&gt;</span>
+  <span style="color:#f59e0b">&lt;head&gt;</span>
+    <span style="color:#f59e0b">&lt;meta</span> <span style="color:#60a5fa">charset</span>=<span style="color:#fbbf24">"UTF-8"</span><span style="color:#f59e0b">&gt;</span>
+    <span style="color:#f59e0b">&lt;title&gt;</span><span style="color:#e2e8f0">Сучасний Landing Page</span><span style="color:#f59e0b">&lt;/title&gt;</span>
+    <span style="color:#f59e0b">&lt;link</span> <span style="color:#60a5fa">href</span>=<span style="color:#fbbf24">"https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&amp;display=swap"</span> <span style="color:#60a5fa">rel</span>=<span style="color:#fbbf24">"stylesheet"</span><span style="color:#f59e0b">&gt;</span>
+  <span style="color:#f59e0b">&lt;/head&gt;</span>
+  <span style="color:#f59e0b">&lt;body&gt;</span>
+    <span style="color:#f59e0b">&lt;header&gt;</span>
+      <span style="color:#f59e0b">&lt;nav&gt;</span>
+        <span style="color:#f59e0b">&lt;div</span> <span style="color:#60a5fa">class</span>=<span style="color:#fbbf24">"logo"</span><span style="color:#f59e0b">&gt;</span>Brand<span style="color:#f59e0b">&lt;/div&gt;</span>
+      <span style="color:#f59e0b">&lt;/nav&gt;</span>
+    <span style="color:#f59e0b">&lt;/header&gt;</span>
+    <span style="color:#f59e0b">&lt;main&gt;</span>
+      <span style="color:#f59e0b">&lt;section</span> <span style="color:#60a5fa">class</span>=<span style="color:#fbbf24">"hero"</span><span style="color:#f59e0b">&gt;</span>
+        <span style="color:#f59e0b">&lt;h1&gt;</span>Готовий до змін?<span style="color:#f59e0b">&lt;/h1&gt;</span>
+        <span style="color:#f59e0b">&lt;a</span> <span style="color:#60a5fa">href</span>=<span style="color:#fbbf24">"#contact"</span> <span style="color:#60a5fa">class</span>=<span style="color:#fbbf24">"btn"</span><span style="color:#f59e0b">&gt;</span>Почати зараз<span style="color:#f59e0b">&lt;/a&gt;</span>
+      <span style="color:#f59e0b">&lt;/section&gt;</span>
+    <span style="color:#f59e0b">&lt;/main&gt;</span>
+  <span style="color:#f59e0b">&lt;/body&gt;</span>
+<span style="color:#f59e0b">&lt;/html&gt;</span>`
     },
     {
-        title: "developer@fipokzec:~/react-app",
-        code: `<span style="color:#fbbf24">import</span> React, { useState } <span style="color:#fbbf24">from</span> <span style="color:#60a5fa">'react'</span>;\n\n<span style="color:#fbbf24">const</span> <span style="color:#60a5fa">App</span> = () => {\n  <span style="color:#fbbf24">const</span> [count, setCount] = <span style="color:#60a5fa">useState</span>(<span style="color:#c084fc">0</span>);\n  \n  <span style="color:#fbbf24">return</span> (\n    <span style="color:#fbbf24">&lt;div&gt;</span>\n      <span style="color:#fbbf24">&lt;h1&gt;</span>Лічильник: {count}<span style="color:#fbbf24">&lt;/h1&gt;</span>\n      <span style="color:#fbbf24">&lt;button onClick={() => setCount(count + 1)}&gt;</span>+1<span style="color:#fbbf24">&lt;/button&gt;</span>\n    <span style="color:#fbbf24">&lt;/div&gt;</span>\n  );\n};\n\n<span style="color:#fbbf24">export default</span> App;`
+        title: "developer@fipokzec:~/react-component",
+        code: `<span style="color:#7c3aed; font-weight:bold">import</span> <span style="color:#e2e8f0">React, { useState, useEffect }</span> <span style="color:#7c3aed; font-weight:bold">from</span> <span style="color:#fbbf24">'react'</span>;
+
+<span style="color:#7c3aed; font-weight:bold">const</span> <span style="color:#60a5fa">UserCard</span> = <span style="color:#e2e8f0">({ name, email, avatar })</span> => {
+  <span style="color:#7c3aed; font-weight:bold">const</span> [isHovered, setIsHovered] = <span style="color:#60a5fa">useState</span>(<span style="color:#fbbf24">false</span>);
+  
+  <span style="color:#7c3aed; font-weight:bold">return</span> (
+    <span style="color:#f59e0b">&lt;div</span> <span style="color:#60a5fa">className</span>=<span style="color:#fbbf24">"user-card"</span>
+         <span style="color:#60a5fa">onMouseEnter</span>=<span style="color:#e2e8f0">{() => setIsHovered(true)}</span>
+         <span style="color:#60a5fa">onMouseLeave</span>=<span style="color:#e2e8f0">{() => setIsHovered(false)}</span><span style="color:#f59e0b">&gt;</span>
+      <span style="color:#f59e0b">&lt;img</span> <span style="color:#60a5fa">src</span>=<span style="color:#e2e8f0">{avatar}</span> <span style="color:#60a5fa">alt</span>=<span style="color:#e2e8f0">{name}</span> <span style="color:#60a5fa">className</span>=<span style="color:#fbbf24">"avatar"</span><span style="color:#f59e0b">&gt;</span>
+      <span style="color:#f59e0b">&lt;h3&gt;</span>{name}<span style="color:#f59e0b">&lt;/h3&gt;</span>
+      <span style="color:#f59e0b">&lt;p&gt;</span>{email}<span style="color:#f59e0b">&lt;/p&gt;</span>
+      {isHovered && <span style="color:#f59e0b">&lt;button&gt;</span>View Profile<span style="color:#f59e0b">&lt;/button&gt;</span>}
+    <span style="color:#f59e0b">&lt;/div&gt;</span>
+  );
+};
+
+<span style="color:#7c3aed; font-weight:bold">export default</span> <span style="color:#60a5fa">UserCard</span>;`
     },
     {
-        title: "developer@fipokzec:~/api-server",
-        code: `<span style="color:#fbbf24">const</span> express = <span style="color:#60a5fa">require</span>(<span style="color:#60a5fa">'express'</span>);\n<span style="color:#fbbf24">const</span> app = <span style="color:#60a5fa">express</span>();\n\napp.<span style="color:#60a5fa">get</span>(<span style="color:#60a5fa">'/api/users'</span>, <span style="color:#fbbf24">async</span> (req, res) => {\n  <span style="color:#fbbf24">try</span> {\n    <span style="color:#fbbf24">const</span> users = <span style="color:#fbbf24">await</span> <span style="color:#60a5fa">User.find</span>();\n    res.<span style="color:#60a5fa">json</span>({ success: <span style="color:#fbbf24">true</span>, data: users });\n  } <span style="color:#fbbf24">catch</span>(error) {\n    res.<span style="color:#60a5fa">status</span>(<span style="color:#c084fc">500</span>).<span style="color:#60a5fa">json</span>({ error: error.message });\n  }\n});\n\napp.<span style="color:#60a5fa">listen</span>(<span style="color:#c084fc">3000</span>, () => {\n  console.<span style="color:#60a5fa">log</span>(<span style="color:#60a5fa">'Server running on port 3000'</span>);\n});`
+        title: "developer@fipokzec:~/api-endpoint",
+        code: `<span style="color:#7c3aed; font-weight:bold">const</span> <span style="color:#60a5fa">express</span> = <span style="color:#60a5fa">require</span>(<span style="color:#fbbf24">'express'</span>);
+<span style="color:#7c3aed; font-weight:bold">const</span> <span style="color:#60a5fa">cors</span> = <span style="color:#60a5fa">require</span>(<span style="color:#fbbf24">'cors'</span>);
+<span style="color:#7c3aed; font-weight:bold">const</span> <span style="color:#60a5fa">app</span> = <span style="color:#60a5fa">express</span>();
+
+app.<span style="color:#60a5fa">use</span>(<span style="color:#60a5fa">cors</span>());
+app.<span style="color:#60a5fa">use</span>(<span style="color:#60a5fa">express</span>.<span style="color:#60a5fa">json</span>());
+
+<span style="color:#7c3aed; font-weight:bold">const</span> <span style="color:#e2e8f0">users</span> = [
+  { <span style="color:#60a5fa">id</span>: <span style="color:#fbbf24">1</span>, <span style="color:#60a5fa">name</span>: <span style="color:#fbbf24">'Олександр'</span>, <span style="color:#60a5fa">email</span>: <span style="color:#fbbf24">'o@example.com'</span> },
+  { <span style="color:#60a5fa">id</span>: <span style="color:#fbbf24">2</span>, <span style="color:#60a5fa">name</span>: <span style="color:#fbbf24">'Марія'</span>, <span style="color:#60a5fa">email</span>: <span style="color:#fbbf24">'m@example.com'</span> }
+];
+
+app.<span style="color:#60a5fa">get</span>(<span style="color:#fbbf24">'/api/users'</span>, <span style="color:#7c3aed; font-weight:bold">async</span> (req, res) => {
+  <span style="color:#7c3aed; font-weight:bold">try</span> {
+    res.<span style="color:#60a5fa">json</span>({ <span style="color:#60a5fa">success</span>: <span style="color:#7c3aed; font-weight:bold">true</span>, <span style="color:#60a5fa">data</span>: users });
+  } <span style="color:#7c3aed; font-weight:bold">catch</span>(error) {
+    res.<span style="color:#60a5fa">status</span>(<span style="color:#fbbf24">500</span>).<span style="color:#60a5fa">json</span>({ <span style="color:#60a5fa">error</span>: error.<span style="color:#60a5fa">message</span> });
+  }
+});
+
+app.<span style="color:#60a5fa">listen</span>(<span style="color:#fbbf24">3000</span>, () => {
+  console.<span style="color:#60a5fa">log</span>(<span style="color:#fbbf24">'🚀 Server running on port 3000'</span>);
+});`
     },
     {
-        title: "developer@fipokzec:~/glassmorphism",
-        code: `<span style="color:#fbbf24">&lt;style&gt;</span>\n  <span style="color:#60a5fa">.glass-card</span> {\n    <span style="color:#c084fc">background</span>: <span style="color:#60a5fa">rgba(255, 255, 255, 0.1)</span>;\n    <span style="color:#c084fc">backdrop-filter</span>: <span style="color:#60a5fa">blur(10px)</span>;\n    <span style="color:#c084fc">border-radius</span>: <span style="color:#60a5fa">24px</span>;\n    <span style="color:#c084fc">transition</span>: <span style="color:#60a5fa">transform 0.3s ease</span>;\n  }\n  <span style="color:#60a5fa">.glass-card:hover</span> {\n    <span style="color:#c084fc">transform</span>: <span style="color:#60a5fa">translateY(-10px)</span>;\n  }\n<span style="color:#fbbf24">&lt;/style&gt;</span>\n<span style="color:#fbbf24">&lt;div class="glass-card"&gt;</span>\n  <span style="color:#fbbf24">&lt;h2&gt;</span>Сучасний дизайн<span style="color:#fbbf24">&lt;/h2&gt;</span>\n  <span style="color:#fbbf24">&lt;p&gt;</span>Ефект скла та плавні анімації<span style="color:#fbbf24">&lt;/p&gt;</span>\n<span style="color:#fbbf24">&lt;/div&gt;</span>`
+        title: "developer@fipokzec:~/tailwind-config",
+        code: `<span style="color:#e2e8f0">/** @type {import('tailwindcss').Config} */</span>
+<span style="color:#7c3aed; font-weight:bold">module</span>.<span style="color:#60a5fa">exports</span> = {
+  <span style="color:#60a5fa">content</span>: [<span style="color:#fbbf24">"./src/**/*.{html,js,jsx,ts,tsx}"</span>],
+  <span style="color:#60a5fa">theme</span>: {
+    <span style="color:#60a5fa">extend</span>: {
+      <span style="color:#60a5fa">colors</span>: {
+        <span style="color:#60a5fa">primary</span>: <span style="color:#fbbf24">'#8b5cf6'</span>,
+        <span style="color:#60a5fa">secondary</span>: <span style="color:#fbbf24">'#3b82f6'</span>,
+        <span style="color:#60a5fa">dark</span>: <span style="color:#fbbf24">'#0a0a0a'</span>
+      },
+      <span style="color:#60a5fa">animation</span>: {
+        <span style="color:#60a5fa">'gradient'</span>: <span style="color:#fbbf24">'gradient 8s linear infinite'</span>
+      }
+    }
+  },
+  <span style="color:#60a5fa">plugins</span>: []
+};`
+    },
+    {
+        title: "developer@fipokzec:~/database-schema",
+        code: `<span style="color:#7c3aed; font-weight:bold">CREATE TABLE</span> <span style="color:#e2e8f0">users</span> (
+  <span style="color:#60a5fa">id</span> <span style="color:#7c3aed; font-weight:bold">SERIAL PRIMARY KEY</span>,
+  <span style="color:#60a5fa">username</span> <span style="color:#7c3aed; font-weight:bold">VARCHAR(50)</span> <span style="color:#7c3aed; font-weight:bold">UNIQUE NOT NULL</span>,
+  <span style="color:#60a5fa">email</span> <span style="color:#7c3aed; font-weight:bold">VARCHAR(100)</span> <span style="color:#7c3aed; font-weight:bold">UNIQUE NOT NULL</span>,
+  <span style="color:#60a5fa">password_hash</span> <span style="color:#7c3aed; font-weight:bold">VARCHAR(255)</span> <span style="color:#7c3aed; font-weight:bold">NOT NULL</span>,
+  <span style="color:#60a5fa">created_at</span> <span style="color:#7c3aed; font-weight:bold">TIMESTAMP DEFAULT CURRENT_TIMESTAMP</span>
+);
+
+<span style="color:#7c3aed; font-weight:bold">CREATE TABLE</span> <span style="color:#e2e8f0">projects</span> (
+  <span style="color:#60a5fa">id</span> <span style="color:#7c3aed; font-weight:bold">SERIAL PRIMARY KEY</span>,
+  <span style="color:#60a5fa">user_id</span> <span style="color:#7c3aed; font-weight:bold">INTEGER REFERENCES</span> users(id),
+  <span style="color:#60a5fa">title</span> <span style="color:#7c3aed; font-weight:bold">VARCHAR(200)</span> <span style="color:#7c3aed; font-weight:bold">NOT NULL</span>,
+  <span style="color:#60a5fa">status</span> <span style="color:#7c3aed; font-weight:bold">VARCHAR(20) DEFAULT</span> <span style="color:#fbbf24">'active'</span>
+);
+
+<span style="color:#e2e8f0">-- Додаємо індекси для швидкості</span>
+<span style="color:#7c3aed; font-weight:bold">CREATE INDEX</span> idx_users_email <span style="color:#7c3aed; font-weight:bold">ON</span> users(email);`
+    },
+    {
+        title: "developer@fipokzec:~/docker-compose",
+        code: `<span style="color:#60a5fa">version</span>: <span style="color:#fbbf24">'3.8'</span>
+<span style="color:#e2e8f0">services:</span>
+  <span style="color:#60a5fa">web</span>:
+    <span style="color:#60a5fa">build</span>: <span style="color:#e2e8f0">.</span>
+    <span style="color:#60a5fa">ports</span>:
+      - <span style="color:#fbbf24">"3000:3000"</span>
+    <span style="color:#60a5fa">environment</span>:
+      - <span style="color:#fbbf24">NODE_ENV=production</span>
+      - <span style="color:#fbbf24">DB_HOST=postgres</span>
+    <span style="color:#60a5fa">depends_on</span>:
+      - <span style="color:#e2e8f0">postgres</span>
+  <span style="color:#60a5fa">postgres</span>:
+    <span style="color:#60a5fa">image</span>: <span style="color:#fbbf24">'postgres:15'</span>
+    <span style="color:#60a5fa">environment</span>:
+      - <span style="color:#fbbf24">POSTGRES_DB=mydb</span>
+      - <span style="color:#fbbf24">POSTGRES_USER=admin</span>
+      - <span style="color:#fbbf24">POSTGRES_PASSWORD=secret</span>
+    <span style="color:#60a5fa">volumes</span>:
+      - <span style="color:#e2e8f0">postgres_data:/var/lib/postgresql/data</span>
+<span style="color:#e2e8f0">volumes:</span>
+  <span style="color:#60a5fa">postgres_data</span>:`
     }
 ];
 
@@ -28,6 +147,7 @@ let typingInterval = null;
 const typingArea = document.getElementById('typingArea');
 const cursor = document.getElementById('cursor');
 const terminalTitle = document.getElementById('terminalTitle');
+const terminalBody = document.querySelector('.terminal-body');
 
 function getNextCodeSample() {
     const sample = codeSamples[currentSampleIndex % codeSamples.length];
@@ -38,6 +158,12 @@ function getNextCodeSample() {
 function stopTyping() {
     if (typingInterval) { clearInterval(typingInterval); typingInterval = null; }
     isTyping = false;
+}
+
+function scrollToBottom() {
+    if (terminalBody) {
+        terminalBody.scrollTop = terminalBody.scrollHeight;
+    }
 }
 
 function startTypingLoop() {
@@ -56,19 +182,23 @@ function startTypingLoop() {
 function typeNextCharacter() {
     if (!isTyping) return;
     if (currentLineIndex >= currentLines.length) {
-        setTimeout(() => { startTypingLoop(); }, 4000);
+        setTimeout(() => {
+            startTypingLoop();
+        }, 4000);
         return;
     }
     const currentLine = currentLines[currentLineIndex];
     if (currentCharIndex < currentLine.length) {
         typingArea.innerHTML += currentLine[currentCharIndex];
         currentCharIndex++;
-        typingInterval = setTimeout(typeNextCharacter, 15);
+        scrollToBottom();
+        typingInterval = setTimeout(typeNextCharacter, 10);
     } else {
         typingArea.innerHTML += '\n';
         currentLineIndex++;
         currentCharIndex = 0;
-        typingInterval = setTimeout(typeNextCharacter, 30);
+        scrollToBottom();
+        typingInterval = setTimeout(typeNextCharacter, 20);
     }
 }
 
@@ -98,7 +228,8 @@ const reviews = [
 const faqItems = [
     { question: "Скільки часу займає створення сайту?", answer: "Сайт-візитка — 5-7 днів, лендінг — 7-10 днів, магазин — 14-21 день." },
     { question: "Чи можна буде самостійно редагувати сайт?", answer: "Так, я навчаю клієнтів працювати з адмін-панеллю." },
-    { question: "Яка гарантія на роботу?", answer: "Надаю гарантію 3 місяці на всі види робіт." }
+    { question: "Яка гарантія на роботу?", answer: "Надаю гарантію 3 місяці на всі види робіт." },
+    { question: "Чи робите техпідтримку після запуску?", answer: "Так, пропоную пакети техпідтримки: від щомісячних оновлень до повного адміністрування." }
 ];
 
 const socialLinks = [
@@ -190,12 +321,11 @@ function setupMobileMenu() {
     document.head.appendChild(style);
 }
 
-// Анімація меню: поява + 2 секунди райдужного переливання
+// Анімація меню
 function animateMenu() {
     const menuItems = document.querySelectorAll('.nav-link');
     const delays = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6];
     
-    // Поява кожного пункту
     menuItems.forEach((item, index) => {
         item.style.opacity = '0';
         item.style.transform = 'translateY(-15px)';
@@ -207,7 +337,6 @@ function animateMenu() {
         }, delays[index] * 1000);
     });
     
-    // Через 1.5 секунди після появи останнього пункту починаємо райдужне переливання на 2 секунди
     setTimeout(() => {
         menuItems.forEach((item, idx) => {
             setTimeout(() => {
@@ -219,7 +348,6 @@ function animateMenu() {
                 item.style.color = 'transparent';
                 item.style.animation = 'rainbowMove 2s linear forwards';
                 
-                // Через 2 секунди повертаємо білий колір
                 setTimeout(() => {
                     item.style.background = '';
                     item.style.webkitBackgroundClip = '';
@@ -232,7 +360,6 @@ function animateMenu() {
     }, 1700);
 }
 
-// Додаємо ключові кадри для райдужної анімації
 const styleRainbow = document.createElement('style');
 styleRainbow.textContent = `
     @keyframes rainbowMove {
