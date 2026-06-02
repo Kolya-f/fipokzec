@@ -190,42 +190,49 @@ function setupMobileMenu() {
     document.head.appendChild(style);
 }
 
-// Анімація меню: поява + райдужне переливання по черзі
+// Анімація меню: поява + 2 секунди райдужного переливання
 function animateMenu() {
     const menuItems = document.querySelectorAll('.nav-link');
     const delays = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6];
     
+    // Поява кожного пункту
     menuItems.forEach((item, index) => {
-        item.style.animationDelay = `${delays[index]}s`;
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(-15px)';
+        item.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+        
         setTimeout(() => {
-            item.style.animation = 'menuAppear 0.4s ease forwards';
-        }, 10);
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+        }, delays[index] * 1000);
     });
     
+    // Через 1.5 секунди після появи останнього пункту починаємо райдужне переливання на 2 секунди
     setTimeout(() => {
         menuItems.forEach((item, idx) => {
             setTimeout(() => {
-                item.style.animation = 'none';
                 item.style.transition = 'all 0.3s ease';
                 item.style.background = 'linear-gradient(135deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3)';
                 item.style.backgroundSize = '400% 100%';
                 item.style.webkitBackgroundClip = 'text';
                 item.style.backgroundClip = 'text';
                 item.style.color = 'transparent';
-                item.style.animation = 'rainbowMove 0.6s linear forwards';
+                item.style.animation = 'rainbowMove 2s linear forwards';
                 
+                // Через 2 секунди повертаємо білий колір
                 setTimeout(() => {
                     item.style.background = '';
                     item.style.webkitBackgroundClip = '';
                     item.style.backgroundClip = '';
                     item.style.color = '#e2e8f0';
                     item.style.animation = '';
-                }, 600);
+                }, 2000);
             }, idx * 100);
         });
-    }, 800);
+    }, 1700);
 }
 
+// Додаємо ключові кадри для райдужної анімації
 const styleRainbow = document.createElement('style');
 styleRainbow.textContent = `
     @keyframes rainbowMove {
@@ -239,6 +246,6 @@ document.addEventListener('DOMContentLoaded', () => {
     renderServices(); renderPortfolio(); renderReviews(); renderFAQ(); renderSocialLinks(); setCurrentYear();
     setupFilters(); setupActiveMenu(); setupMobileMenu();
     animateMenu();
-    setTimeout(() => { startTypingLoop(); }, 1500);
+    setTimeout(() => { startTypingLoop(); }, 3000);
     console.log('Сайт fipokzec.dev успішно завантажено!');
 });
