@@ -35,16 +35,33 @@ body::after {
 
 .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
+/* Анімація градієнта для логотипу та меню */
+.gradient-text {
+    background: linear-gradient(135deg, #a855f7, #3b82f6, #fbbf24, #a855f7);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientShift 2s ease infinite;
+}
+.gradient-menu {
+    background: linear-gradient(135deg, #e2e8f0, #fbbf24, #a855f7, #e2e8f0);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientShift 2s ease infinite;
+    font-weight: 600;
+}
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 /* Анімація появи елементів */
-.fade-up {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeUp 0.8s ease forwards;
-}
-.delay-1 { animation-delay: 0.2s; }
-@keyframes fadeUp {
-    to { opacity: 1; transform: translateY(0); }
-}
+.fade-up { opacity: 0; transform: translateY(30px); animation: fadeUp 0.6s ease forwards; }
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
 /* Header */
 header {
@@ -72,7 +89,7 @@ nav {
     color: transparent;
 }
 .logo-accent {
-    background: linear-gradient(135deg, #c084fc, #60a5fa);
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -89,7 +106,6 @@ nav {
     transition: 0.3s;
     position: relative;
 }
-/* Підсвічування активного пункту меню */
 .nav-links a.active {
     background: linear-gradient(135deg, #fbbf24, #f59e0b);
     -webkit-background-clip: text;
@@ -124,44 +140,40 @@ nav {
 .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
 .hero-image { flex: 1; }
 
-/* Термінал з анімацією друку коду */
+/* Термінал */
 .code-terminal {
-    background: rgba(10, 10, 20, 0.9);
+    background: rgba(10, 10, 20, 0.95);
     backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 16px;
     overflow: hidden;
     font-family: 'Courier New', monospace;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     box-shadow: 0 20px 35px -10px rgba(0,0,0,0.4);
 }
 .terminal-header {
-    background: rgba(30, 30, 45, 0.8);
-    padding: 12px 16px;
+    background: rgba(30, 30, 45, 0.9);
+    padding: 10px 16px;
     display: flex;
     align-items: center;
     gap: 8px;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 .terminal-dot { width: 12px; height: 12px; border-radius: 50%; }
 .red { background: #ff5f56; }
 .yellow { background: #ffbd2e; }
 .green { background: #27c93f; }
 .terminal-title { color: #94a3b8; font-size: 0.7rem; margin-left: 8px; }
-.terminal-body { padding: 20px; color: #e2e8f0; }
-.code-line { margin: 4px 0; white-space: nowrap; }
-.indent-1 { margin-left: 20px; }
-.indent-2 { margin-left: 40px; }
-.tag { color: #7c3aed; }
-.typing-text, .typing-line { display: inline-block; }
+.terminal-body { padding: 20px; color: #e2e8f0; min-height: 300px; }
+#typingArea { font-family: 'Courier New', monospace; white-space: pre-wrap; word-break: break-all; }
 .cursor-blink {
     display: inline-block;
-    animation: blink 1s step-end infinite;
+    animation: blink 0.8s step-end infinite;
     color: #fbbf24;
+    font-weight: bold;
 }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-/* Інші стилі */
 .btn {
     display: inline-block;
     background: linear-gradient(135deg, #3b82f6, #8b5cf6);
@@ -195,9 +207,8 @@ nav {
     padding: 24px;
     transition: 0.3s;
 }
-.service-card:hover, .portfolio-item:hover, .review-card:hover, .faq-item:hover { transform: translateY(-6px); border-color: rgba(139, 92, 246, 0.3); }
-.service-icon { font-size: 2.8rem; margin-bottom: 16px; }
-.price { font-size: 1.5rem; font-weight: 700; color: #a855f7; margin: 16px 0; }
+.service-card:hover, .portfolio-item:hover, .review-card:hover, .faq-item:hover { transform: translateY(-6px); border-color: rgba(251, 191, 36, 0.3); }
+.price { font-size: 1.5rem; font-weight: 700; color: #fbbf24; margin: 16px 0; }
 .portfolio-filter { display: flex; justify-content: center; gap: 16px; margin-bottom: 40px; flex-wrap: wrap; }
 .filter-btn {
     background: transparent;
@@ -209,19 +220,16 @@ nav {
 }
 .filter-btn.active, .filter-btn:hover { background: #fbbf24; border-color: #fbbf24; color: #0a0a0a; }
 .skills { margin: 30px 0; }
-.skill { margin-bottom: 20px; }
 .skill-bar { background: rgba(255,255,255,0.1); border-radius: 20px; height: 8px; overflow: hidden; }
-.skill-bar div { background: linear-gradient(135deg, #fbbf24, #f59e0b); height: 100%; border-radius: 20px; }
+.skill-bar div { background: linear-gradient(135deg, #fbbf24, #f59e0b); height: 100%; }
 .contacts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
 .contact-form input, .contact-form textarea { width: 100%; padding: 12px; margin-bottom: 16px; background: rgba(20,20,35,0.6); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: white; }
 .social-links { display: flex; gap: 24px; margin-top: 24px; }
 .social-links a { color: #c084fc; text-decoration: none; }
-footer { text-align: center; padding: 40px 0; color: #64748b; }
+footer { text-align: center; padding: 40px 0; color: #64748b; border-top: 1px solid rgba(255,255,255,0.05); }
 @media (max-width: 768px) {
     .nav-links { display: none; }
     .mobile-menu-btn { display: block; }
     .hero-text h1 { font-size: 2rem; }
     .about-grid, .contacts-grid { grid-template-columns: 1fr; }
-    .code-line { white-space: normal; word-break: break-all; }
-    .terminal-body { overflow-x: auto; }
 }
