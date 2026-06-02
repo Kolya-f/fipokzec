@@ -4,22 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>fipokzec | Створення сайтів на замовлення</title>
-    <meta name="description" content="Професійна розробка сайтів під ключ. Сучасний дизайн, адаптивна верстка, адмін-панель.">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <div class="container">
             <nav>
-                <div class="logo">fipokzec<span class="logo-accent">.dev</span></div>
+                <div class="logo gradient-text" data-text="fipokzec.dev">fipokzec<span class="logo-accent">.dev</span></div>
                 <ul class="nav-links">
-                    <li><a href="#home" class="nav-link">Головна</a></li>
-                    <li><a href="#services" class="nav-link">Послуги</a></li>
-                    <li><a href="#portfolio" class="nav-link">Проєкти</a></li>
-                    <li><a href="#about" class="nav-link">Про мене</a></li>
-                    <li><a href="#reviews" class="nav-link">Відгуки</a></li>
-                    <li><a href="#faq" class="nav-link">FAQ</a></li>
-                    <li><a href="#contacts" class="nav-link">Контакти</a></li>
+                    <li><a href="#home" class="nav-link gradient-menu">Головна</a></li>
+                    <li><a href="#services" class="nav-link gradient-menu">Послуги</a></li>
+                    <li><a href="#portfolio" class="nav-link gradient-menu">Проєкти</a></li>
+                    <li><a href="#about" class="nav-link gradient-menu">Про мене</a></li>
+                    <li><a href="#reviews" class="nav-link gradient-menu">Відгуки</a></li>
+                    <li><a href="#faq" class="nav-link gradient-menu">FAQ</a></li>
+                    <li><a href="#contacts" class="nav-link gradient-menu">Контакти</a></li>
                 </ul>
                 <div class="mobile-menu-btn">☰</div>
             </nav>
@@ -28,7 +27,7 @@
 
     <section id="home" class="hero">
         <div class="container hero-grid">
-            <div class="hero-text fade-up">
+            <div class="hero-text">
                 <span class="hero-badge">Веб-розробник</span>
                 <h1>Створюю сайти, <span class="highlight">які приносять клієнтів</span></h1>
                 <p>Адаптивний дизайн, сучасні анімації, SEO-оптимізація та адмін-панель. Понад 20 успішних проєктів.</p>
@@ -42,23 +41,16 @@
                     <a href="#portfolio" class="btn btn-outline">Портфоліо</a>
                 </div>
             </div>
-            <div class="hero-image fade-up delay-1">
+            <div class="hero-image">
                 <div class="code-terminal">
                     <div class="terminal-header">
                         <span class="terminal-dot red"></span>
                         <span class="terminal-dot yellow"></span>
                         <span class="terminal-dot green"></span>
-                        <span class="terminal-title">developer@fipokzec:~/portfolio</span>
+                        <span class="terminal-title" id="terminalTitle">developer@fipokzec:~/portfolio</span>
                     </div>
-                    <div class="terminal-body">
-                        <div class="code-line"><span class="tag">&lt;html&gt;</span></div>
-                        <div class="code-line indent-1"><span class="tag">&lt;head&gt;</span></div>
-                        <div class="code-line indent-2"><span class="tag">&lt;title&gt;</span><span class="typing-text" id="typingCode"></span><span class="tag">&lt;/title&gt;</span></div>
-                        <div class="code-line indent-1"><span class="tag">&lt;/head&gt;</span></div>
-                        <div class="code-line indent-1"><span class="tag">&lt;body&gt;</span></div>
-                        <div class="code-line indent-2 typing-line" id="typingBody"></div>
-                        <div class="code-line indent-1"><span class="tag">&lt;/body&gt;</span></div>
-                        <div class="code-line"><span class="tag">&lt;/html&gt;</span></div>
+                    <div class="terminal-body" id="terminalBody">
+                        <div id="typingArea"></div>
                         <div class="cursor-blink" id="cursor">█</div>
                     </div>
                 </div>
@@ -66,31 +58,12 @@
         </div>
     </section>
 
-    <section id="services" class="services-section">
-        <div class="container">
-            <div class="section-header fade-up"><span class="section-tag">Що я пропоную</span><h2 class="section-title">Мої послуги</h2><p class="section-desc">Повний цикл створення сайтів — від ідеї до запуску</p></div>
-            <div class="services-grid" id="servicesGrid"></div>
-        </div>
-    </section>
-
-    <section id="portfolio" class="portfolio-section">
-        <div class="container">
-            <div class="section-header fade-up"><span class="section-tag">Мої роботи</span><h2 class="section-title">Реальні проєкти</h2><p class="section-desc">Клікайте на картки — переходьте на живі сайти</p></div>
-            <div class="portfolio-filter"><button class="filter-btn active" data-filter="all">Всі</button><button class="filter-btn" data-filter="wordpress">WordPress</button><button class="filter-btn" data-filter="landing">Лендінги</button><button class="filter-btn" data-filter="ecommerce">Магазини</button></div>
-            <div class="portfolio-grid" id="portfolioGrid"></div>
-        </div>
-    </section>
-
-    <section id="about" class="about-section">
-        <div class="container"><div class="about-grid fade-up"><div class="about-content"><span class="section-tag">Хто я</span><h2>Коля — веб-розробник з любов'ю до деталей</h2><p>За 2 роки у веб-розробці я створив понад 20 сайтів. Моя мета — не просто зробити красиву картинку, а створити інструмент, який реально приносить клієнтів.</p><div class="skills"><div class="skill"><span>HTML/CSS</span><div class="skill-bar"><div style="width: 95%"></div></div></div><div class="skill"><span>JavaScript</span><div class="skill-bar"><div style="width: 80%"></div></div></div><div class="skill"><span>WordPress</span><div class="skill-bar"><div style="width: 90%"></div></div></div><div class="skill"><span>Elementor</span><div class="skill-bar"><div style="width: 95%"></div></div></div></div><a href="#contacts" class="btn">Обговорити проєкт</a></div><div class="about-image"><div class="about-placeholder"><span>📸</span><p>Тут буде ваше фото</p></div></div></div></div>
-    </section>
-
-    <section id="reviews" class="reviews-section"><div class="container"><div class="section-header fade-up"><span class="section-tag">Що кажуть клієнти</span><h2 class="section-title">Відгуки</h2><p class="section-desc">Думка тих, з ким я вже попрацював</p></div><div class="reviews-grid" id="reviewsGrid"></div></div></section>
-
-    <section id="faq" class="faq-section"><div class="container"><div class="section-header fade-up"><span class="section-tag">FAQ</span><h2 class="section-title">Часті питання</h2><p class="section-desc">Відповіді на найпопулярніші запитання</p></div><div class="faq-grid" id="faqGrid"></div></div></section>
-
-    <section id="contacts" class="contacts-section"><div class="container"><div class="contacts-grid fade-up"><div class="contacts-info"><h2>📬 Зв'язатись зі мною</h2><p>Готові до співпраці? Просто напишіть – обговоримо ваш проєкт.</p><div class="contact-details"><div class="contact-item">📧 <a href="mailto:kolyaf.web@gmail.com">kolyaf.web@gmail.com</a></div><div class="contact-item">📞 +38 (099) 123-45-67</div><div class="contact-item">📍 Україна, Київ</div></div><div class="social-links" id="socialLinks"></div></div><div class="contact-form"><form id="contactForm"><input type="text" placeholder="Ваше ім'я" required><input type="email" placeholder="Ваш Email" required><input type="text" placeholder="Телефон"><textarea placeholder="Повідомлення" rows="5" required></textarea><button type="submit" class="btn">Відправити</button></form></div></div></div></section>
-
+    <section id="services" class="services-section"><div class="container"><div class="section-header"><span class="section-tag">Що я пропоную</span><h2 class="section-title">Мої послуги</h2><p class="section-desc">Повний цикл створення сайтів — від ідеї до запуску</p></div><div class="services-grid" id="servicesGrid"></div></div></section>
+    <section id="portfolio" class="portfolio-section"><div class="container"><div class="section-header"><span class="section-tag">Мої роботи</span><h2 class="section-title">Реальні проєкти</h2><p class="section-desc">Клікайте на картки — переходьте на живі сайти</p></div><div class="portfolio-filter"><button class="filter-btn active" data-filter="all">Всі</button><button class="filter-btn" data-filter="wordpress">WordPress</button><button class="filter-btn" data-filter="landing">Лендінги</button><button class="filter-btn" data-filter="ecommerce">Магазини</button></div><div class="portfolio-grid" id="portfolioGrid"></div></div></section>
+    <section id="about" class="about-section"><div class="container"><div class="about-grid"><div class="about-content"><span class="section-tag">Хто я</span><h2>Коля — веб-розробник з любов'ю до деталей</h2><p>За 2 роки у веб-розробці я створив понад 20 сайтів. Моя мета — не просто зробити красиву картинку, а створити інструмент, який реально приносить клієнтів.</p><div class="skills"><div class="skill"><span>HTML/CSS</span><div class="skill-bar"><div style="width: 95%"></div></div></div><div class="skill"><span>JavaScript</span><div class="skill-bar"><div style="width: 80%"></div></div></div><div class="skill"><span>WordPress</span><div class="skill-bar"><div style="width: 90%"></div></div></div><div class="skill"><span>Elementor</span><div class="skill-bar"><div style="width: 95%"></div></div></div></div><a href="#contacts" class="btn">Обговорити проєкт</a></div><div class="about-image"><div class="about-placeholder"><span>📸</span><p>Тут буде ваше фото</p></div></div></div></div></section>
+    <section id="reviews" class="reviews-section"><div class="container"><div class="section-header"><span class="section-tag">Що кажуть клієнти</span><h2 class="section-title">Відгуки</h2><p class="section-desc">Думка тих, з ким я вже попрацював</p></div><div class="reviews-grid" id="reviewsGrid"></div></div></section>
+    <section id="faq" class="faq-section"><div class="container"><div class="section-header"><span class="section-tag">FAQ</span><h2 class="section-title">Часті питання</h2><p class="section-desc">Відповіді на найпопулярніші запитання</p></div><div class="faq-grid" id="faqGrid"></div></div></section>
+    <section id="contacts" class="contacts-section"><div class="container"><div class="contacts-grid"><div class="contacts-info"><h2>📬 Зв'язатись зі мною</h2><p>Готові до співпраці? Просто напишіть – обговоримо ваш проєкт.</p><div class="contact-details"><div class="contact-item">📧 <a href="mailto:kolyaf.web@gmail.com">kolyaf.web@gmail.com</a></div><div class="contact-item">📞 +38 (099) 123-45-67</div><div class="contact-item">📍 Україна, Київ</div></div><div class="social-links" id="socialLinks"></div></div><div class="contact-form"><form id="contactForm"><input type="text" placeholder="Ваше ім'я" required><input type="email" placeholder="Ваш Email" required><input type="text" placeholder="Телефон"><textarea placeholder="Повідомлення" rows="5" required></textarea><button type="submit" class="btn">Відправити</button></form></div></div></div></section>
     <footer><div class="container"><p id="footerText"></p></div></footer>
     <script src="script.js"></script>
 </body>
