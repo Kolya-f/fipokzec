@@ -35,33 +35,39 @@ body::after {
 
 .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
-/* Анімація градієнта для логотипу та меню */
-.gradient-text {
-    background: linear-gradient(135deg, #a855f7, #3b82f6, #fbbf24, #a855f7);
-    background-size: 300% 300%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: gradientShift 2s ease infinite;
+/* Анімація появи меню */
+.nav-link {
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: menuAppear 0.5s ease forwards;
 }
-.gradient-menu {
-    background: linear-gradient(135deg, #e2e8f0, #fbbf24, #a855f7, #e2e8f0);
-    background-size: 300% 300%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: gradientShift 2s ease infinite;
-    font-weight: 600;
-}
-@keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+.nav-link:nth-child(1) { animation-delay: 0s; }
+.nav-link:nth-child(2) { animation-delay: 0.1s; }
+.nav-link:nth-child(3) { animation-delay: 0.2s; }
+.nav-link:nth-child(4) { animation-delay: 0.3s; }
+.nav-link:nth-child(5) { animation-delay: 0.4s; }
+.nav-link:nth-child(6) { animation-delay: 0.5s; }
+.nav-link:nth-child(7) { animation-delay: 0.6s; }
+@keyframes menuAppear {
+    to { opacity: 1; transform: translateY(0); }
 }
 
-/* Анімація появи елементів */
-.fade-up { opacity: 0; transform: translateY(30px); animation: fadeUp 0.6s ease forwards; }
-@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+/* Райдужне переливання при наведенні */
+.nav-link {
+    transition: all 0.3s ease;
+}
+.nav-link:hover {
+    background: linear-gradient(135deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3);
+    background-size: 400% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: rainbow 1s linear infinite;
+}
+@keyframes rainbow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
 
 /* Header */
 header {
@@ -104,16 +110,13 @@ nav {
     color: #e2e8f0;
     font-weight: 500;
     transition: 0.3s;
-    position: relative;
 }
 .nav-links a.active {
     background: linear-gradient(135deg, #fbbf24, #f59e0b);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    text-shadow: 0 0 10px rgba(251, 191, 36, 0.3);
 }
-.nav-links a:hover { color: #fbbf24; }
 .mobile-menu-btn { display: none; font-size: 1.8rem; cursor: pointer; }
 
 /* Hero */
@@ -140,7 +143,7 @@ nav {
 .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
 .hero-image { flex: 1; }
 
-/* Термінал */
+/* Термінал - фіксована висота */
 .code-terminal {
     background: rgba(10, 10, 20, 0.95);
     backdrop-filter: blur(8px);
@@ -148,8 +151,11 @@ nav {
     border-radius: 16px;
     overflow: hidden;
     font-family: 'Courier New', monospace;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     box-shadow: 0 20px 35px -10px rgba(0,0,0,0.4);
+    height: 320px;
+    display: flex;
+    flex-direction: column;
 }
 .terminal-header {
     background: rgba(30, 30, 45, 0.9);
@@ -157,15 +163,23 @@ nav {
     display: flex;
     align-items: center;
     gap: 8px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    flex-shrink: 0;
 }
 .terminal-dot { width: 12px; height: 12px; border-radius: 50%; }
 .red { background: #ff5f56; }
 .yellow { background: #ffbd2e; }
 .green { background: #27c93f; }
 .terminal-title { color: #94a3b8; font-size: 0.7rem; margin-left: 8px; }
-.terminal-body { padding: 20px; color: #e2e8f0; min-height: 300px; }
-#typingArea { font-family: 'Courier New', monospace; white-space: pre-wrap; word-break: break-all; }
+.terminal-body {
+    padding: 16px;
+    color: #e2e8f0;
+    overflow-y: auto;
+    flex: 1;
+    font-family: 'Courier New', monospace;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+#typingArea { font-family: 'Courier New', monospace; white-space: pre-wrap; word-break: break-word; }
 .cursor-blink {
     display: inline-block;
     animation: blink 0.8s step-end infinite;
@@ -174,6 +188,7 @@ nav {
 }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
+/* Кнопки */
 .btn {
     display: inline-block;
     background: linear-gradient(135deg, #3b82f6, #8b5cf6);
@@ -183,9 +198,13 @@ nav {
     text-decoration: none;
     font-weight: 600;
     transition: 0.2s;
+    border: none;
+    cursor: pointer;
 }
 .btn:hover { transform: scale(1.02); box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4); }
 .btn-outline { background: transparent; border: 1px solid #8b5cf6; color: #c084fc; }
+
+/* Секції */
 .section-header { text-align: center; margin-bottom: 48px; }
 .section-tag {
     display: inline-block;
@@ -198,8 +217,31 @@ nav {
     margin-bottom: 16px;
 }
 .section-title { font-size: 2.2rem; font-weight: 700; background: linear-gradient(135deg, #e2e8f0, #c084fc); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.services-grid, .portfolio-grid, .reviews-grid, .faq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-.service-card, .portfolio-item, .review-card, .faq-item {
+.section-desc { color: #94a3b8; max-width: 600px; margin: 0 auto; }
+
+.services-section, .portfolio-section, .about-section, .reviews-section, .faq-section, .contacts-section { padding: 80px 0; }
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+.service-card {
+    background: rgba(20, 20, 35, 0.6);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 28px;
+    transition: 0.3s;
+}
+.service-card:hover { transform: translateY(-6px); border-color: rgba(251, 191, 36, 0.3); }
+.service-icon { font-size: 2rem; margin-bottom: 16px; color: #c084fc; }
+.price { font-size: 1.5rem; font-weight: 700; color: #fbbf24; margin: 16px 0; }
+.service-features { list-style: none; padding-left: 0; margin: 16px 0; }
+.service-features li { margin: 8px 0; color: #94a3b8; }
+
+.portfolio-grid, .reviews-grid, .faq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+.portfolio-item, .review-card, .faq-item {
     background: rgba(20, 20, 35, 0.6);
     backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -207,8 +249,7 @@ nav {
     padding: 24px;
     transition: 0.3s;
 }
-.service-card:hover, .portfolio-item:hover, .review-card:hover, .faq-item:hover { transform: translateY(-6px); border-color: rgba(251, 191, 36, 0.3); }
-.price { font-size: 1.5rem; font-weight: 700; color: #fbbf24; margin: 16px 0; }
+.portfolio-item:hover, .review-card:hover, .faq-item:hover { transform: translateY(-6px); border-color: rgba(251, 191, 36, 0.3); }
 .portfolio-filter { display: flex; justify-content: center; gap: 16px; margin-bottom: 40px; flex-wrap: wrap; }
 .filter-btn {
     background: transparent;
@@ -220,6 +261,7 @@ nav {
 }
 .filter-btn.active, .filter-btn:hover { background: #fbbf24; border-color: #fbbf24; color: #0a0a0a; }
 .skills { margin: 30px 0; }
+.skill { margin-bottom: 20px; }
 .skill-bar { background: rgba(255,255,255,0.1); border-radius: 20px; height: 8px; overflow: hidden; }
 .skill-bar div { background: linear-gradient(135deg, #fbbf24, #f59e0b); height: 100%; }
 .contacts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
@@ -227,9 +269,11 @@ nav {
 .social-links { display: flex; gap: 24px; margin-top: 24px; }
 .social-links a { color: #c084fc; text-decoration: none; }
 footer { text-align: center; padding: 40px 0; color: #64748b; border-top: 1px solid rgba(255,255,255,0.05); }
+
 @media (max-width: 768px) {
     .nav-links { display: none; }
     .mobile-menu-btn { display: block; }
     .hero-text h1 { font-size: 2rem; }
     .about-grid, .contacts-grid { grid-template-columns: 1fr; }
+    .code-terminal { height: 280px; }
 }
