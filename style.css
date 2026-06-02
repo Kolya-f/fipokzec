@@ -52,20 +52,32 @@ nav {
     flex-wrap: wrap;
     gap: 16px;
 }
+
+/* Логотип - постійне райдужне переливання */
 .logo {
     font-size: 1.8rem;
     font-weight: 700;
-    background: linear-gradient(135deg, #a855f7, #3b82f6);
+    background: linear-gradient(135deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000);
+    background-size: 400% 100%;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    animation: rainbowLogo 3s linear infinite;
 }
+@keyframes rainbowLogo {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
 .logo-accent {
-    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    background: linear-gradient(135deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000);
+    background-size: 400% 100%;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    animation: rainbowLogo 3s linear infinite;
 }
+
 .nav-links {
     display: flex;
     gap: 32px;
@@ -86,16 +98,6 @@ nav {
 }
 .nav-links a:hover { color: #fbbf24; }
 .mobile-menu-btn { display: none; font-size: 1.8rem; cursor: pointer; }
-
-/* Анімація появи меню */
-.nav-link {
-    opacity: 0;
-    transform: translateY(-15px);
-    animation: menuAppear 0.4s ease forwards;
-}
-@keyframes menuAppear {
-    to { opacity: 1; transform: translateY(0); }
-}
 
 /* Hero */
 .hero { padding: 80px 0 60px; }
