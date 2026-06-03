@@ -1,4 +1,456 @@
-// Бібліотека кодів (спрощена, без складних HTML-тегів у рядках)
+// Бібліотека різнокольорових кодів
+const codeSamples = [
+    {
+        title: "developer@fipokzec:~/modern-website",
+        lines: [
+            '<span style="color:#c084fc; font-weight:bold">&lt;!DOCTYPE html&gt;</span>',
+            '<span style="color:#fbbf24">&lt;html</span> <span style="color:#60a5fa">lang</span>=<span style="color:#4ade80">"uk"</span><span style="color:#fbbf24">&gt;</span>',
+            '  <span style="color:#fbbf24">&lt;head&gt;</span>',
+            '    <span style="color:#fbbf24">&lt;meta</span> <span style="color:#60a5fa">charset</span>=<span style="color:#4ade80">"UTF-8"</span><span style="color:#fbbf24">&gt;</span>',
+            '    <span style="color:#fbbf24">&lt;title&gt;</span><span style="color:#38bdf8">Сучасний Landing Page</span><span style="color:#fbbf24">&lt;/title&gt;</span>',
+            '    <span style="color:#c084fc; font-weight:bold">&lt;style&gt;</span>',
+            '      <span style="color:#38bdf8">*</span> { <span style="color:#c084fc">margin</span>: <span style="color:#fbbf24">0</span>; <span style="color:#c084fc">padding</span>: <span style="color:#fbbf24">0</span>; }',
+            '      <span style="color:#38bdf8">.hero</span> { <span style="color:#c084fc">background</span>: <span style="color:#4ade80">linear-gradient(135deg, #667eea 0%, #764ba2 100%)</span>; }',
+            '      <span style="color:#38bdf8">.btn</span> { <span style="color:#c084fc">transition</span>: <span style="color:#4ade80">all 0.3s ease</span>; }',
+            '      <span style="color:#38bdf8">.btn:hover</span> { <span style="color:#c084fc">transform</span>: <span style="color:#4ade80">scale(1.05)</span>; }',
+            '    <span style="color:#c084fc; font-weight:bold">&lt;/style&gt;</span>',
+            '  <span style="color:#fbbf24">&lt;/head&gt;</span>',
+            '  <span style="color:#fbbf24">&lt;body&gt;</span>',
+            '    <span style="color:#fbbf24">&lt;div</span> <span style="color:#60a5fa">class</span>=<span style="color:#4ade80">"hero"</span><span style="color:#fbbf24">&gt;</span>',
+            '      <span style="color:#fbbf24">&lt;h1&gt;</span><span style="color:#38bdf8">Готовий до змін?</span><span style="color:#fbbf24">&lt;/h1&gt;</span>',
+            '      <span style="color:#fbbf24">&lt;a</span> <span style="color:#60a5fa">href</span>=<span style="color:#4ade80">"#contact"</span> <span style="color:#60a5fa">class</span>=<span style="color:#4ade80">"btn"</span><span style="color:#fbbf24">&gt;</span><span style="color:#38bdf8">Почати зараз</span><span style="color:#fbbf24">&lt;/a&gt;</span>',
+            '    <span style="color:#fbbf24">&lt;/div&gt;</span>',
+            '  <span style="color:#fbbf24">&lt;/body&gt;</span>',
+            '<span style="color:#fbbf24">&lt;/html&gt;</span>'
+        ]
+    },
+    {
+        title: "developer@fipokzec:~/react-component",
+        lines: [
+            '<span style="color:#c084fc; font-weight:bold">import</span> <span style="color:#38bdf8">React, { useState, useEffect }</span> <span style="color:#c084fc; font-weight:bold">from</span> <span style="color:#4ade80">\'react\'</span>;',
+            '<span style="color:#c084fc; font-weight:bold">import</span> <span style="color:#38bdf8">axios</span> <span style="color:#c084fc; font-weight:bold">from</span> <span style="color:#4ade80">\'axios\'</span>;',
+            '',
+            '<span style="color:#c084fc; font-weight:bold">const</span> <span style="color:#38bdf8">UserCard</span> = <span style="color:#e2e8f0">({ name, email, avatar, onEdit })</span> => {',
+            '  <span style="color:#c084fc; font-weight:bold">const</span> [<span style="color:#38bdf8">isHovered</span>, <span style="color:#38bdf8">setIsHovered</span>] = <span style="color:#38bdf8">useState</span>(<span style="color:#fbbf24">false</span>);',
+            '  <span style="color:#c084fc; font-weight:bold">const</span> [<span style="color:#38bdf8">loading</span>, <span style="color:#38bdf8">setLoading</span>] = <span style="color:#38bdf8">useState</span>(<span style="color:#fbbf24">false</span>);',
+            '  ',
+            '  <span style="color:#c084fc; font-weight:bold">const</span> <span style="color:#38bdf8">fetchData</span> = <span style="color:#c084fc; font-weight:bold">async</span> () => {',
+            '    <span style="color:#38bdf8">setLoading</span>(<span style="color:#fbbf24">true</span>);',
+            '    <span style="color:#c084fc; font-weight:bold">try</span> {',
+            '      <span style="color:#c084fc; font-weight:bold">const</span> <span style="color:#38bdf8">res</span> = <span style="color:#c084fc; font-weight:bold">await</span> <span style="color:#38bdf8">axios</span>.<span style="color:#38bdf8">get</span>(<span style="color:#4ade80">\'/api/user\'</span>);',
+            '      <span style="color:#38bdf8">console</span>.<span style="color:#38bdf8">log</span>(<span style="color:#38bdf8">res</span>.<span style="color:#38bdf8">data</span>);',
+            '    } <span style="color:#c084fc; font-weight:bold">catch</span>(<span style="color:#38bdf8">err</span>) {',
+            '      <span style="color:#38bdf8">console</span>.<span style="color:#38bdf8">error</span>(<span style="color:#38bdf8">err</span>);',
+            '    } <span style="color:#c084fc; font-weight:bold">finally</span> {',
+            '      <span style="color:#38bdf8">setLoading</span>(<span style="color:#fbbf24">false</span>);',
+            '    }',
+            '  };',
+            '  ',
+            '  <span style="color:#c084fc; font-weight:bold">return</span> (',
+            '    <span style="color:#fbbf24">&lt;div</span>',
+            '      <span style="color:#60a5fa">className</span>=<span style="color:#4ade80">"user-card"</span>',
+            '      <span style="color:#60a5fa">onMouseEnter</span>=<span style="color:#e2e8f0">{() =&gt; setIsHovered(true)}</span>',
+            '      <span style="color:#60a5fa">onMouseLeave</span>=<span style="color:#e2e8f0">{() =&gt; setIsHovered(false)}</span>',
+            '    <span style="color:#fbbf24">&gt;</span>',
+            '      <span style="color:#fbbf24">&lt;img</span> <span style="color:#60a5fa">src</span>=<span style="color:#e2e8f0">{avatar}</span> <span style="color:#60a5fa">alt</span>=<span style="color:#e2e8f0">{name}</span> <span style="color:#60a5fa">className</span>=<span style="color:#4ade80">"avatar"</span><span style="color:#fbbf24">&gt;</span>',
+            '      <span style="color:#fbbf24">&lt;h3&gt;</span><span style="color:#e2e8f0">{name}</span><span style="color:#fbbf24">&lt;/h3&gt;</span>',
+            '      <span style="color:#fbbf24">&lt;p&gt;</span><span style="color:#e2e8f0">{email}</span><span style="color:#fbbf24">&lt;/p&gt;</span>',
+            '      {isHovered && <span style="color:#fbbf24">&lt;button</span> <span style="color:#60a5fa">onClick</span>=<span style="color:#e2e8f0">{onEdit}</span><span style="color:#fbbf24">&gt;</span><span style="color:#38bdf8">Edit Profile</span><span style="color:#fbbf24">&lt;/button&gt;</span>}',
+            '    <span style="color:#fbbf24">&lt;/div&gt;</span>',
+            '  );',
+            '};',
+            '',
+            '<span style="color:#c084fc; font-weight:bold">export default</span> <span style="color:#38bdf8">UserCard</span>;'
+        ]
+    },
+    {
+        title: "developer@fipokzec:~/api-server",
+        lines: [
+            '<span style="color:#c084fc; font-weight:bold">const</span> <span style="color:#38bdf8">express</span> = <span style="color:#38bdf8">require</span>(<span style="color:#4ade80">\'express\'</span>);',
+            '<span style="color:#c084fc; font-weight:bold">const</span> <span style="color:#38bdf8">cors</span> = <span style="color:#38bdf8">require</span>(<span style="color:#4ade80">\'cors\'</span>);',
+            '<span style="color:#c084fc; font-weight:bold">const</span> <span style="color:#38bdf8">app</span> = <span style="color:#38bdf8">express</span>();',
+            '',
+            '<span style="color:#38bdf8">app</span>.<span style="color:#38bdf8">use</span>(<span style="color:#38bdf8">cors</span>());',
+            '<span style="color:#38bdf8">app</span>.<span style="color:#38bdf8">use</span>(<span style="color:#38bdf8">express</span>.<span style="color:#38bdf8">json</span>());',
+            '',
+            '<span style="color:#c084fc; font-weight:bold">const</span> <span style="color:#38bdf8">users</span> = [',
+            '  { <span style="color:#60a5fa">id</span>: <span style="color:#fbbf24">1</span>, <span style="color:#60a5fa">name</span>: <span style="color:#4ade80">\'Олександр\'</span>, <span style="color:#60a5fa">email</span>: <span style="color:#4ade80">\'o@example.com\'</span> },',
+            '  { <span style="color:#60a5fa">id</span>: <span style="color:#fbbf24">2</span>, <span style="color:#60a5fa">name</span>: <span style="color:#4ade80">\'Марія\'</span>, <span style="color:#60a5fa">email</span>: <span style="color:#4ade80">\'m@example.com\'</span> }',
+            '];',
+            '',
+            '<span style="color:#38bdf8">app</span>.<span style="color:#38bdf8">get</span>(<span style="color:#4ade80">\'/api/users\'</span>, <span style="color:#c084fc; font-weight:bold">async</span> (req, res) => {',
+            '  <span style="color:#c084fc; font-weight:bold">try</span> {',
+            '    <span style="color:#c084fc; font-weight:bold">const</span> { <span style="color:#60a5fa">limit</span>, <span style="color:#60a5fa">offset</span> } = req.<span style="color:#38bdf8">query</span>;',
+            '    <span style="color:#c084fc; font-weight:bold">let</span> <span style="color:#38bdf8">result</span> = <span style="color:#38bdf8">users</span>;',
+            '    res.<span style="color:#38bdf8">status</span>(<span style="color:#fbbf24">200</span>).<span style="color:#38bdf8">json</span>({ <span style="color:#60a5fa">success</span>: <span style="color:#fbbf24">true</span>, <span style="color:#60a5fa">data</span>: <span style="color:#38bdf8">result</span> });',
+            '  } <span style="color:#c084fc; font-weight:bold">catch</span>(<span style="color:#38bdf8">error</span>) {',
+            '    res.<span style="color:#38bdf8">status</span>(<span style="color:#fbbf24">500</span>).<span style="color:#38bdf8">json</span>({ <span style="color:#60a5fa">error</span>: <span style="color:#38bdf8">error</span>.<span style="color:#38bdf8">message</span> });',
+            '  }',
+            '});',
+            '',
+            '<span style="color:#38bdf8">app</span>.<span style="color:#38bdf8">post</span>(<span style="color:#4ade80">\'/api/auth/login\'</span>, <span style="color:#c084fc; font-weight:bold">async</span> (req, res) => {',
+            '  <span style="color:#c084fc; font-weight:bold">const</span> { <span style="color:#60a5fa">email</span>, <span style="color:#60a5fa">password</span> } = req.<span style="color:#38bdf8">body</span>;',
+            '  <span style="color:#c084fc; font-weight:bold">if</span> (!email) <span style="color:#c084fc; font-weight:bold">return</span> res.<span style="color:#38bdf8">status</span>(<span style="color:#fbbf24">400</span>).<span style="color:#38bdf8">json</span>({ <span style="color:#60a5fa">error</span>: <span style="color:#4ade80">\'Email required\'</span> });',
+            '  res.<span style="color:#38bdf8">json</span>({ <span style="color:#60a5fa">token</span>: <span style="color:#4ade80">\'jwt_token_here\'</span> });',
+            '});',
+            '',
+            '<span style="color:#38bdf8">app</span>.<span style="color:#38bdf8">listen</span>(<span style="color:#fbbf24">3000</span>, () => {',
+            '  <span style="color:#38bdf8">console</span>.<span style="color:#38bdf8">log</span>(<span style="color:#4ade80">\'🚀 Server running on port 3000\'</span>);',
+            '});'
+        ]
+    },
+    {
+        title: "developer@fipokzec:~/tailwind-config",
+        lines: [
+            '<span style="color:#c084fc; font-weight:bold">/** @type {import(\'tailwindcss\').Config} */</span>',
+            '<span style="color:#c084fc; font-weight:bold">module</span>.<span style="color:#38bdf8">exports</span> = {',
+            '  <span style="color:#60a5fa">content</span>: [',
+            '    <span style="color:#4ade80">"./index.html"</span>,',
+            '    <span style="color:#4ade80">"./src/**/*.{js,ts,jsx,tsx}"</span>,',
+            '  ],',
+            '  <span style="color:#60a5fa">theme</span>: {',
+            '    <span style="color:#60a5fa">extend</span>: {',
+            '      <span style="color:#60a5fa">colors</span>: {',
+            '        <span style="color:#60a5fa">primary</span>: {',
+            '          <span style="color:#60a5fa">DEFAULT</span>: <span style="color:#4ade80">\'#8b5cf6\'</span>,',
+            '          <span style="color:#60a5fa">dark</span>: <span style="color:#4ade80">\'#6d28d9\'</span>,',
+            '          <span style="color:#60a5fa">light</span>: <span style="color:#4ade80">\'#a78bfa\'</span>',
+            '        },',
+            '        <span style="color:#60a5fa">secondary</span>: <span style="color:#4ade80">\'#3b82f6\'</span>,',
+            '        <span style="color:#60a5fa">accent</span>: <span style="color:#4ade80">\'#fbbf24\'</span>',
+            '      },',
+            '      <span style="color:#60a5fa">animation</span>: {',
+            '        <span style="color:#60a5fa">\'gradient\'</span>: <span style="color:#4ade80">\'gradient 8s linear infinite\'</span>,',
+            '        <span style="color:#60a5fa">\'float\'</span>: <span style="color:#4ade80">\'float 3s ease-in-out infinite\'</span>',
+            '      }',
+            '    }',
+            '  },',
+            '  <span style="color:#60a5fa">plugins</span>: []',
+            '};'
+        ]
+    },
+    {
+        title: "developer@fipokzec:~/database-schema",
+        lines: [
+            '<span style="color:#c084fc; font-weight:bold">-- Створення таблиці користувачів</span>',
+            '<span style="color:#c084fc; font-weight:bold">CREATE TABLE</span> <span style="color:#38bdf8">users</span> (',
+            '  <span style="color:#38bdf8">id</span> <span style="color:#c084fc; font-weight:bold">SERIAL PRIMARY KEY</span>,',
+            '  <span style="color:#38bdf8">username</span> <span style="color:#c084fc; font-weight:bold">VARCHAR(50) UNIQUE NOT NULL</span>,',
+            '  <span style="color:#38bdf8">email</span> <span style="color:#c084fc; font-weight:bold">VARCHAR(100) UNIQUE NOT NULL</span>,',
+            '  <span style="color:#38bdf8">password_hash</span> <span style="color:#c084fc; font-weight:bold">VARCHAR(255) NOT NULL</span>,',
+            '  <span style="color:#38bdf8">avatar_url</span> <span style="color:#c084fc; font-weight:bold">TEXT</span>,',
+            '  <span style="color:#38bdf8">is_active</span> <span style="color:#c084fc; font-weight:bold">BOOLEAN DEFAULT TRUE</span>,',
+            '  <span style="color:#38bdf8">created_at</span> <span style="color:#c084fc; font-weight:bold">TIMESTAMP DEFAULT CURRENT_TIMESTAMP</span>',
+            ');',
+            '',
+            '<span style="color:#c084fc; font-weight:bold">-- Таблиця проєктів</span>',
+            '<span style="color:#c084fc; font-weight:bold">CREATE TABLE</span> <span style="color:#38bdf8">projects</span> (',
+            '  <span style="color:#38bdf8">id</span> <span style="color:#c084fc; font-weight:bold">SERIAL PRIMARY KEY</span>,',
+            '  <span style="color:#38bdf8">user_id</span> <span style="color:#c084fc; font-weight:bold">INTEGER REFERENCES</span> users(id) <span style="color:#c084fc; font-weight:bold">ON DELETE CASCADE</span>,',
+            '  <span style="color:#38bdf8">title</span> <span style="color:#c084fc; font-weight:bold">VARCHAR(200) NOT NULL</span>,',
+            '  <span style="color:#38bdf8">status</span> <span style="color:#c084fc; font-weight:bold">VARCHAR(20) DEFAULT</span> <span style="color:#4ade80">\'active\'</span>,',
+            '  <span style="color:#38bdf8">created_at</span> <span style="color:#c084fc; font-weight:bold">TIMESTAMP DEFAULT CURRENT_TIMESTAMP</span>',
+            ');',
+            '',
+            '<span style="color:#c084fc; font-weight:bold">-- Індекси для оптимізації</span>',
+            '<span style="color:#c084fc; font-weight:bold">CREATE INDEX</span> idx_users_email <span style="color:#c084fc; font-weight:bold">ON</span> users(email);',
+            '<span style="color:#c084fc; font-weight:bold">CREATE INDEX</span> idx_projects_user_id <span style="color:#c084fc; font-weight:bold">ON</span> projects(user_id);'
+        ]
+    },
+    {
+        title: "developer@fipokzec:~/docker-compose",
+        lines: [
+            '<span style="color:#60a5fa">version</span>: <span style="color:#4ade80">\'3.8\'</span>',
+            '',
+            '<span style="color:#38bdf8">services:</span>',
+            '  <span style="color:#38bdf8">web</span>:',
+            '    <span style="color:#60a5fa">build</span>:',
+            '      <span style="color:#60a5fa">context</span>: <span style="color:#e2e8f0">.</span>',
+            '      <span style="color:#60a5fa">dockerfile</span>: <span style="color:#e2e8f0">Dockerfile</span>',
+            '    <span style="color:#60a5fa">ports</span>:',
+            '      - <span style="color:#4ade80">"3000:3000"</span>',
+            '    <span style="color:#60a5fa">environment</span>:',
+            '      - <span style="color:#4ade80">NODE_ENV=production</span>',
+            '      - <span style="color:#4ade80">DB_HOST=postgres</span>',
+            '      - <span style="color:#4ade80">DB_PASSWORD=${DB_PASS}</span>',
+            '    <span style="color:#60a5fa">depends_on</span>:',
+            '      - <span style="color:#e2e8f0">postgres</span>',
+            '      - <span style="color:#e2e8f0">redis</span>',
+            '    <span style="color:#60a5fa">volumes</span>:',
+            '      - <span style="color:#e2e8f0">./uploads:/app/uploads</span>',
+            '',
+            '  <span style="color:#38bdf8">postgres</span>:',
+            '    <span style="color:#60a5fa">image</span>: <span style="color:#4ade80">\'postgres:15-alpine\'</span>',
+            '    <span style="color:#60a5fa">environment</span>:',
+            '      - <span style="color:#4ade80">POSTGRES_DB=mydb</span>',
+            '      - <span style="color:#4ade80">POSTGRES_USER=admin</span>',
+            '      - <span style="color:#4ade80">POSTGRES_PASSWORD=secret</span>',
+            '    <span style="color:#60a5fa">volumes</span>:',
+            '      - <span style="color:#e2e8f0">postgres_data:/var/lib/postgresql/data</span>',
+            '',
+            '  <span style="color:#38bdf8">redis</span>:',
+            '    <span style="color:#60a5fa">image</span>: <span style="color:#4ade80">\'redis:7-alpine\'</span>',
+            '    <span style="color:#60a5fa">ports</span>:',
+            '      - <span style="color:#4ade80">"6379:6379"</span>',
+            '',
+            '<span style="color:#38bdf8">volumes:</span>',
+            '  <span style="color:#38bdf8">postgres_data</span>:'
+        ]
+    }
+];
+
+let currentSampleIndex = 0;
+let isTyping = false;
+let currentLineIndex = 0;
+let currentCharIndex = 0;
+let currentLines = [];
+let typingInterval = null;
+
+const typingArea = document.getElementById('typingArea');
+const cursor = document.getElementById('cursor');
+const terminalTitle = document.getElementById('terminalTitle');
+const terminalBody = document.querySelector('.terminal-body');
+
+function getNextCodeSample() {
+    const sample = codeSamples[currentSampleIndex % codeSamples.length];
+    currentSampleIndex++;
+    return sample;
+}
+
+function stopTyping() {
+    if (typingInterval) {
+        clearInterval(typingInterval);
+        typingInterval = null;
+    }
+    isTyping = false;
+}
+
+function scrollToBottom() {
+    if (terminalBody) {
+        terminalBody.scrollTop = terminalBody.scrollHeight;
+    }
+}
+
+function startTypingLoop() {
+    stopTyping();
+    const sample = getNextCodeSample();
+    if (terminalTitle) terminalTitle.innerHTML = sample.title;
+    currentLines = [...sample.lines];
+    currentLineIndex = 0;
+    currentCharIndex = 0;
+    if (typingArea) typingArea.innerHTML = '';
+    isTyping = true;
+    typeNextCharacter();
+}
+
+function typeNextCharacter() {
+    if (!isTyping) return;
+    
+    if (currentLineIndex >= currentLines.length) {
+        setTimeout(() => {
+            startTypingLoop();
+        }, 3500);
+        return;
+    }
+    
+    const currentLine = currentLines[currentLineIndex];
+    
+    if (currentCharIndex < currentLine.length) {
+        typingArea.innerHTML += currentLine[currentCharIndex];
+        currentCharIndex++;
+        scrollToBottom();
+        typingInterval = setTimeout(typeNextCharacter, 20);
+    } else {
+        typingArea.innerHTML += '\n';
+        currentLineIndex++;
+        currentCharIndex = 0;
+        scrollToBottom();
+        typingInterval = setTimeout(typeNextCharacter, 40);
+    }
+}
+
+// Послуги (без змін)
+const services = [
+    { title: "Сайт-візитка", description: "3-5 сторінок, форма зв'язку, адаптивний дизайн.", features: ["Адаптивний дизайн", "Форма зв'язку", "SEO-оптимізація"], price: "5 000 грн" },
+    { title: "Лендінг", description: "Односторінковий сайт для запуску продукту або акції.", features: ["Анімації", "Форма захоплення", "Аналітика"], price: "6 000 грн" },
+    { title: "Інтернет-магазин", description: "Каталог, кошик, оплата. Повноцінна платформа для продажів.", features: ["Каталог товарів", "Кошик та оплата", "Адмін-панель"], price: "12 000 грн" },
+    { title: "Підтримка", description: "Щомісячне оновлення, бекапи, технічний супровід.", features: ["Щомісячні оновлення", "Резервні копії", "Техпідтримка 24/7"], price: "1 000 грн/міс" },
+    { title: "Доробка сайту", description: "Додавання нових функцій, сторінок, модулів до готового сайту.", features: ["Додавання сторінок", "Нові функції", "Інтеграції"], price: "2 000 грн" },
+    { title: "Оновлення дизайну", description: "Рестайлінг, сучасний вигляд, покращення UX/UI.", features: ["Новий дизайн", "Адаптація", "Сучасні анімації"], price: "2 000 грн" }
+];
+
+const portfolioItems = [
+    { title: "Стоматологія SmileCare", imageBg: "linear-gradient(135deg, #1e3a8a, #3b82f6)", tech: ["WordPress"], link: "#", category: "wordpress" },
+    { title: "Beauty-бар LAVENDER", imageBg: "linear-gradient(135deg, #831843, #db2777)", tech: ["HTML/CSS", "JS"], link: "#", category: "landing" },
+    { title: "Інтернет-магазин квітів", imageBg: "linear-gradient(135deg, #065f46, #10b981)", tech: ["WooCommerce"], link: "#", category: "ecommerce" },
+    { title: "Фітнес-клуб Energy", imageBg: "linear-gradient(135deg, #92400e, #f59e0b)", tech: ["WordPress"], link: "#", category: "wordpress" }
+];
+
+const reviews = [
+    { text: "Коля створив для нас сайт-візитку. Все зроблено якісно, швидко та за адекватною ціною.", author: "Ірина Петренко", position: "Власниця салону краси" },
+    { text: "Дуже задоволений роботою! Інтернет-магазин працює ідеально.", author: "Олександр Коваль", position: "Підприємець" },
+    { text: "Професійний підхід, увага до деталей та відмінна підтримка.", author: "Марія Шевченко", position: "Маркетолог" }
+];
+
+const faqItems = [
+    { question: "Скільки часу займає створення сайту?", answer: "Сайт-візитка — 5-7 днів, лендінг — 7-10 днів, магазин — 14-21 день." },
+    { question: "Чи можна буде самостійно редагувати сайт?", answer: "Так, я навчаю клієнтів працювати з адмін-панеллю." },
+    { question: "Яка гарантія на роботу?", answer: "Надаю гарантію 3 місяці на всі види робіт." },
+    { question: "Чи робите техпідтримку після запуску?", answer: "Так, пропоную пакети техпідтримки: від щомісячних оновлень до повного адміністрування." }
+];
+
+const socialLinks = [
+    { name: "Telegram", url: "#" }, { name: "Instagram", url: "#" }, 
+    { name: "GitHub", url: "https://github.com/Kolya-f" }, { name: "LinkedIn", url: "#" }
+];
+
+function renderServices() {
+    const container = document.getElementById('servicesGrid');
+    if (container) container.innerHTML = services.map(s => `
+        <div class="service-card">
+            <div class="service-icon">◆</div>
+            <h3>${s.title}</h3>
+            <p>${s.description}</p>
+            <ul class="service-features">${s.features.map(f => `<li>✓ ${f}</li>`).join('')}</ul>
+            <div class="price">${s.price}</div>
+            <a href="#contacts" class="btn">Замовити</a>
+        </div>
+    `).join('');
+}
+
+function renderPortfolio(filter = "all") {
+    const container = document.getElementById('portfolioGrid');
+    if (!container) return;
+    const filtered = filter === "all" ? portfolioItems : portfolioItems.filter(i => i.category === filter);
+    container.innerHTML = filtered.map(i => `
+        <div class="portfolio-item">
+            <div class="portfolio-image" style="height:160px;background:${i.imageBg};display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:bold;color:white">${i.title.charAt(0)}</div>
+            <div class="portfolio-content">
+                <h3>${i.title}</h3>
+                <div style="display:flex;gap:8px;margin:12px 0">${i.tech.map(t => `<span style="background:rgba(251,191,36,0.2);padding:4px 12px;border-radius:40px;font-size:0.7rem">${t}</span>`).join('')}</div>
+                <a href="${i.link}" style="color:#fbbf24">Переглянути →</a>
+            </div>
+        </div>
+    `).join('');
+}
+
+function renderReviews() {
+    const container = document.getElementById('reviewsGrid');
+    if (container) container.innerHTML = reviews.map(r => `<div class="review-card"><div class="review-text">“${r.text}”</div><div class="review-author" style="color:#fbbf24;margin-top:12px">${r.author}</div><div class="review-position" style="color:#94a3b8">${r.position}</div></div>`).join('');
+}
+
+function renderFAQ() {
+    const container = document.getElementById('faqGrid');
+    if (container) container.innerHTML = faqItems.map(f => `<div class="faq-item"><div class="faq-question" style="color:#fbbf24;font-weight:700;margin-bottom:8px">❓ ${f.question}</div><div class="faq-answer" style="color:#94a3b8">${f.answer}</div></div>`).join('');
+}
+
+function renderSocialLinks() {
+    const container = document.getElementById('socialLinks');
+    if (container) container.innerHTML = socialLinks.map(l => `<a href="${l.url}" target="_blank">${l.name}</a>`).join('');
+}
+
+function setCurrentYear() {
+    const footer = document.getElementById('footerText');
+    if (footer) footer.innerHTML = `© ${new Date().getFullYear()} fipokzec.dev | Створення сайтів під ключ`;
+}
+
+function setupFilters() {
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderPortfolio(btn.dataset.filter);
+        });
+    });
+}
+
+function setupActiveMenu() {
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-link');
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            if (scrollY >= section.offsetTop - 100) current = section.getAttribute('id');
+        });
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) link.classList.add('active');
+        });
+    });
+}
+
+function setupMobileMenu() {
+    const btn = document.querySelector('.mobile-menu-btn');
+    const nav = document.querySelector('.nav-links');
+    if (btn && nav) btn.addEventListener('click', () => nav.classList.toggle('show'));
+    const style = document.createElement('style');
+    style.textContent = `.nav-links.show { display: flex !important; flex-direction: column; position: absolute; top: 80px; left: 0; right: 0; background: rgba(10,10,15,0.95); backdrop-filter: blur(12px); padding: 20px; text-align: center; } @media (max-width: 768px) { .nav-links { display: none; } }`;
+    document.head.appendChild(style);
+}
+
+function animateMenu() {
+    const menuItems = document.querySelectorAll('.nav-link');
+    const delays = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6];
+    
+    menuItems.forEach((item, index) => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(-15px)';
+        item.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+        
+        setTimeout(() => {
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+        }, delays[index] * 1000);
+    });
+    
+    setTimeout(() => {
+        menuItems.forEach((item, idx) => {
+            setTimeout(() => {
+                item.style.transition = 'all 0.3s ease';
+                item.style.background = 'linear-gradient(135deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3)';
+                item.style.backgroundSize = '400% 100%';
+                item.style.webkitBackgroundClip = 'text';
+                item.style.backgroundClip = 'text';
+                item.style.color = 'transparent';
+                item.style.animation = 'rainbowMove 2s linear forwards';
+                
+                setTimeout(() => {
+                    item.style.background = '';
+                    item.style.webkitBackgroundClip = '';
+                    item.style.backgroundClip = '';
+                    item.style.color = '#e2e8f0';
+                    item.style.animation = '';
+                }, 2000);
+            }, idx * 100);
+        });
+    }, 1700);
+}
+
+const styleRainbow = document.createElement('style');
+styleRainbow.textContent = `
+    @keyframes rainbowMove {
+        0% { background-position: 0% 50%; }
+        100% { background-position: 100% 50%; }
+    }
+`;
+document.head.appendChild(styleRainbow);
+
+document.addEventListener('DOMContentLoaded', () => {
+    renderServices(); 
+    renderPortfolio(); 
+    renderReviews(); 
+    renderFAQ(); 
+    renderSocialLinks(); 
+    setCurrentYear();
+    setupFilters(); 
+    setupActiveMenu(); 
+    setupMobileMenu();
+    animateMenu();
+    setTimeout(() => { 
+        startTypingLoop(); 
+    }, 2000);
+    console.log('Сайт fipokzec.dev успішно завантажено!');
+});// Бібліотека кодів (спрощена, без складних HTML-тегів у рядках)
 const codeSamples = [
     {
         title: "developer@fipokzec:~/website",
