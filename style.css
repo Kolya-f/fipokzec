@@ -1,4 +1,4 @@
-/* ДИНАМІЧНИЙ НЕГРІД - РАНДОМНЕ ПОЛОЖЕННЯ КАРТОК */
+/* 3D FLIP CARD СТИЛІ */
 .services-grid {
     display: flex;
     flex-direction: column;
@@ -7,109 +7,146 @@
     position: relative;
 }
 
-/* Кожна картка має унікальне положення */
-.service-card {
+/* Контейнер для 3D перевороту */
+.flip-card {
+    background: transparent;
+    width: 70%;
+    height: auto;
+    perspective: 1500px;
+    cursor: pointer;
+}
+
+/* Різна ширина для кожної картки */
+.flip-card:nth-child(1) { width: 70%; margin-left: 0; margin-right: auto; }
+.flip-card:nth-child(2) { width: 65%; margin-left: auto; margin-right: 0; }
+.flip-card:nth-child(3) { width: 70%; margin-left: 15%; margin-right: auto; }
+.flip-card:nth-child(4) { width: 60%; margin-left: auto; margin-right: 10%; }
+.flip-card:nth-child(5) { width: 75%; margin-left: 5%; margin-right: auto; }
+.flip-card:nth-child(6) { width: 68%; margin-left: auto; margin-right: 5%; }
+
+/* Внутрішній контейнер для 3D */
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    transform-style: preserve-3d;
+}
+
+/* Переворот при наведенні */
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Загальні стилі для передньої та задньої сторони */
+.flip-card-front, .flip-card-back {
+    position: relative;
+    width: 100%;
+    backface-visibility: hidden;
+    border-radius: 24px;
     background: rgba(20, 20, 35, 0.6);
     backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.08);
     padding: 28px 24px;
-    transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+}
+
+/* Передня сторона */
+.flip-card-front {
+    transform: rotateY(0deg);
+}
+
+/* Задня сторона - перевернута */
+.flip-card-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+}
+
+/* Зображення на задній стороні */
+.flip-card-back img {
+    width: 100%;
+    max-height: 180px;
+    object-fit: cover;
+    border-radius: 16px;
+    margin-bottom: 16px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.flip-card-back h4 {
+    font-size: 1.2rem;
+    color: #fbbf24;
+    margin-bottom: 8px;
+}
+
+.flip-card-back p {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    text-align: center;
+}
+
+.flip-card-back .demo-link {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 8px 20px;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    border-radius: 40px;
+    color: white;
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: 0.2s;
+}
+
+.flip-card-back .demo-link:hover {
+    transform: scale(1.05);
+}
+
+/* Різні рамки для передньої сторони кожної картки */
+.flip-card:nth-child(1) .flip-card-front { border-left: 4px solid #3b82f6; }
+.flip-card:nth-child(2) .flip-card-front { border-right: 4px solid #8b5cf6; }
+.flip-card:nth-child(3) .flip-card-front { border-top: 4px solid #fbbf24; }
+.flip-card:nth-child(4) .flip-card-front { border-bottom: 4px solid #10b981; }
+.flip-card:nth-child(5) .flip-card-front { border: 1px solid rgba(59,130,246,0.3); background: rgba(25, 25, 45, 0.8); }
+.flip-card:nth-child(6) .flip-card-front { box-shadow: 0 10px 30px -15px rgba(139,92,246,0.3); }
+
+/* Анімація появи */
+.flip-card {
     opacity: 0;
     transform: translateY(30px);
     animation: cardAppear 0.6s ease forwards;
-    width: 70%;
-    position: relative;
 }
-
-/* Різне положення для кожної картки */
-.service-card:nth-child(1) {
-    margin-left: 0;
-    margin-right: auto;
-    border-radius: 24px 24px 24px 24px;
-    border-left: 4px solid #3b82f6;
-    transform-origin: left;
-}
-.service-card:nth-child(2) {
-    margin-left: auto;
-    margin-right: 0;
-    width: 65%;
-    border-radius: 24px 24px 24px 24px;
-    border-right: 4px solid #8b5cf6;
-    transform-origin: right;
-}
-.service-card:nth-child(3) {
-    margin-left: 15%;
-    margin-right: auto;
-    width: 70%;
-    border-radius: 24px 24px 24px 24px;
-    border-top: 4px solid #fbbf24;
-    transform: rotate(-0.5deg);
-}
-.service-card:nth-child(4) {
-    margin-left: auto;
-    margin-right: 10%;
-    width: 60%;
-    border-radius: 24px 24px 24px 24px;
-    border-bottom: 4px solid #10b981;
-    transform: translateY(10px) rotate(0.5deg);
-}
-.service-card:nth-child(5) {
-    margin-left: 5%;
-    margin-right: auto;
-    width: 75%;
-    border-radius: 24px 24px 24px 24px;
-    background: rgba(25, 25, 45, 0.8);
-    border: 1px solid rgba(59,130,246,0.3);
-    transform: translateX(20px) rotate(-1deg);
-}
-.service-card:nth-child(6) {
-    margin-left: auto;
-    margin-right: 5%;
-    width: 68%;
-    border-radius: 24px 24px 24px 24px;
-    box-shadow: 0 10px 30px -15px rgba(139,92,246,0.3);
-    transform: translateY(-15px) rotate(1deg);
-}
-
-/* Анімація появи */
 @keyframes cardAppear {
-    to { opacity: 1; transform: translateY(0) rotate(0deg); }
+    to { opacity: 1; transform: translateY(0); }
 }
+.flip-card:nth-child(1) { animation-delay: 0s; }
+.flip-card:nth-child(2) { animation-delay: 0.15s; }
+.flip-card:nth-child(3) { animation-delay: 0.3s; }
+.flip-card:nth-child(4) { animation-delay: 0.45s; }
+.flip-card:nth-child(5) { animation-delay: 0.6s; }
+.flip-card:nth-child(6) { animation-delay: 0.75s; }
 
-/* Різні затримки появи */
-.service-card:nth-child(1) { animation-delay: 0s; }
-.service-card:nth-child(2) { animation-delay: 0.15s; }
-.service-card:nth-child(3) { animation-delay: 0.3s; }
-.service-card:nth-child(4) { animation-delay: 0.45s; }
-.service-card:nth-child(5) { animation-delay: 0.6s; }
-.service-card:nth-child(6) { animation-delay: 0.75s; }
+/* Hover додаткові ефекти */
+.flip-card:nth-child(1):hover .flip-card-front { border-left-color: #60a5fa; }
+.flip-card:nth-child(2):hover .flip-card-front { border-right-color: #a78bfa; }
+.flip-card:nth-child(3):hover .flip-card-front { border-top-color: #fcd34d; }
+.flip-card:nth-child(4):hover .flip-card-front { border-bottom-color: #34d399; }
 
-/* Hover ефекти */
-.service-card:nth-child(1):hover { transform: translateX(10px) scale(1.02); border-left-color: #60a5fa; }
-.service-card:nth-child(2):hover { transform: translateX(-10px) scale(1.02); border-right-color: #a78bfa; }
-.service-card:nth-child(3):hover { transform: rotate(0deg) scale(1.02); border-top-color: #fcd34d; }
-.service-card:nth-child(4):hover { transform: translateY(0) scale(1.02); border-bottom-color: #34d399; }
-.service-card:nth-child(5):hover { transform: translateX(10px) scale(1.02); background: rgba(35, 35, 60, 0.9); }
-.service-card:nth-child(6):hover { transform: translateY(-20px) scale(1.02); box-shadow: 0 25px 35px -15px rgba(139,92,246,0.4); }
-
-/* Адаптація для мобільних */
+/* Адаптація */
 @media (max-width: 768px) {
-    .service-card {
+    .flip-card {
         width: 90% !important;
         margin-left: auto !important;
         margin-right: auto !important;
-        transform: none !important;
-    }
-    .service-card:nth-child(3),
-    .service-card:nth-child(4),
-    .service-card:nth-child(5),
-    .service-card:nth-child(6) {
-        transform: none !important;
-        margin: 0 auto !important;
     }
 }
 
-.service-card h3 {
+.flip-card-front h3 {
     font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 12px;
@@ -119,7 +156,7 @@
     color: transparent;
 }
 
-.service-card p {
+.flip-card-front p {
     color: #94a3b8;
     margin-bottom: 16px;
     line-height: 1.5;
