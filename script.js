@@ -1,70 +1,103 @@
-// Бібліотека різнокольорових кодів (HTML, CSS, JS, React, API, JSON)
+// Бібліотека різнокольорових кодів (HTML, CSS, JS, React, API, JSON, SQL, Docker)
 const codeSamples = [
     {
         title: "developer@fipokzec:~/modern-website",
-        code: `<span style="color:#7c3aed; font-weight:bold">&lt;!DOCTYPE html&gt;</span>
-<span style="color:#f59e0b">&lt;html</span> <span style="color:#60a5fa">lang</span>=<span style="color:#fbbf24">"uk"</span><span style="color:#f59e0b">&gt;</span>
-  <span style="color:#f59e0b">&lt;head&gt;</span>
-    <span style="color:#f59e0b">&lt;meta</span> <span style="color:#60a5fa">charset</span>=<span style="color:#fbbf24">"UTF-8"</span><span style="color:#f59e0b">&gt;</span>
-    <span style="color:#f59e0b">&lt;title&gt;</span><span style="color:#e2e8f0">Сучасний Landing Page</span><span style="color:#f59e0b">&lt;/title&gt;</span>
-    <span style="color:#f59e0b">&lt;link</span> <span style="color:#60a5fa">href</span>=<span style="color:#fbbf24">"https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&amp;display=swap"</span> <span style="color:#60a5fa">rel</span>=<span style="color:#fbbf24">"stylesheet"</span><span style="color:#f59e0b">&gt;</span>
-  <span style="color:#f59e0b">&lt;/head&gt;</span>
-  <span style="color:#f59e0b">&lt;body&gt;</span>
-    <span style="color:#f59e0b">&lt;header&gt;</span>
-      <span style="color:#f59e0b">&lt;nav&gt;</span>
-        <span style="color:#f59e0b">&lt;div</span> <span style="color:#60a5fa">class</span>=<span style="color:#fbbf24">"logo"</span><span style="color:#f59e0b">&gt;</span>Brand<span style="color:#f59e0b">&lt;/div&gt;</span>
-      <span style="color:#f59e0b">&lt;/nav&gt;</span>
-    <span style="color:#f59e0b">&lt;/header&gt;</span>
-    <span style="color:#f59e0b">&lt;main&gt;</span>
-      <span style="color:#f59e0b">&lt;section</span> <span style="color:#60a5fa">class</span>=<span style="color:#fbbf24">"hero"</span><span style="color:#f59e0b">&gt;</span>
-        <span style="color:#f59e0b">&lt;h1&gt;</span>Готовий до змін?<span style="color:#f59e0b">&lt;/h1&gt;</span>
-        <span style="color:#f59e0b">&lt;a</span> <span style="color:#60a5fa">href</span>=<span style="color:#fbbf24">"#contact"</span> <span style="color:#60a5fa">class</span>=<span style="color:#fbbf24">"btn"</span><span style="color:#f59e0b">&gt;</span>Почати зараз<span style="color:#f59e0b">&lt;/a&gt;</span>
-      <span style="color:#f59e0b">&lt;/section&gt;</span>
-    <span style="color:#f59e0b">&lt;/main&gt;</span>
-  <span style="color:#f59e0b">&lt;/body&gt;</span>
-<span style="color:#f59e0b">&lt;/html&gt;</span>`
+        code: `<span style="color:#c084fc; font-weight:bold">&lt;!DOCTYPE html&gt;</span>
+<span style="color:#fbbf24">&lt;html</span> <span style="color:#60a5fa">lang</span>=<span style="color:#fbbf24">"uk"</span><span style="color:#fbbf24">&gt;</span>
+  <span style="color:#fbbf24">&lt;head&gt;</span>
+    <span style="color:#fbbf24">&lt;meta</span> <span style="color:#60a5fa">charset</span>=<span style="color:#fbbf24">"UTF-8"</span><span style="color:#fbbf24">&gt;</span>
+    <span style="color:#fbbf24">&lt;title&gt;</span><span style="color:#e2e8f0">Сучасний Landing Page</span><span style="color:#fbbf24">&lt;/title&gt;</span>
+    <span style="color:#fbbf24">&lt;link</span> <span style="color:#60a5fa">href</span>=<span style="color:#fbbf24">"https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&amp;display=swap"</span> <span style="color:#60a5fa">rel</span>=<span style="color:#fbbf24">"stylesheet"</span><span style="color:#fbbf24">&gt;</span>
+    <span style="color:#c084fc; font-weight:bold">&lt;style&gt;</span>
+      <span style="color:#60a5fa">*</span> { <span style="color:#c084fc">margin</span>: <span style="color:#fbbf24">0</span>; <span style="color:#c084fc">padding</span>: <span style="color:#fbbf24">0</span>; <span style="color:#c084fc">box-sizing</span>: <span style="color:#fbbf24">border-box</span>; }
+      <span style="color:#60a5fa">.hero</span> { <span style="color:#c084fc">background</span>: <span style="color:#fbbf24">linear-gradient(135deg, #667eea 0%, #764ba2 100%)</span>; }
+      <span style="color:#60a5fa">.btn</span> { <span style="color:#c084fc">transition</span>: <span style="color:#fbbf24">all 0.3s ease</span>; }
+      <span style="color:#60a5fa">.btn:hover</span> { <span style="color:#c084fc">transform</span>: <span style="color:#fbbf24">scale(1.05)</span>; }
+    <span style="color:#c084fc; font-weight:bold">&lt;/style&gt;</span>
+  <span style="color:#fbbf24">&lt;/head&gt;</span>
+  <span style="color:#fbbf24">&lt;body&gt;</span>
+    <span style="color:#fbbf24">&lt;header&gt;</span>
+      <span style="color:#fbbf24">&lt;nav&gt;</span>
+        <span style="color:#fbbf24">&lt;div</span> <span style="color:#60a5fa">class</span>=<span style="color:#fbbf24">"logo"</span><span style="color:#fbbf24">&gt;</span>Brand<span style="color:#fbbf24">&lt;/div&gt;</span>
+      <span style="color:#fbbf24">&lt;/nav&gt;</span>
+    <span style="color:#fbbf24">&lt;/header&gt;</span>
+    <span style="color:#fbbf24">&lt;main&gt;</span>
+      <span style="color:#fbbf24">&lt;section</span> <span style="color:#60a5fa">class</span>=<span style="color:#fbbf24">"hero"</span><span style="color:#fbbf24">&gt;</span>
+        <span style="color:#fbbf24">&lt;h1&gt;</span>Готовий до змін?<span style="color:#fbbf24">&lt;/h1&gt;</span>
+        <span style="color:#fbbf24">&lt;a</span> <span style="color:#60a5fa">href</span>=<span style="color:#fbbf24">"#contact"</span> <span style="color:#60a5fa">class</span>=<span style="color:#fbbf24">"btn"</span><span style="color:#fbbf24">&gt;</span>Почати зараз<span style="color:#fbbf24">&lt;/a&gt;</span>
+      <span style="color:#fbbf24">&lt;/section&gt;</span>
+    <span style="color:#fbbf24">&lt;/main&gt;</span>
+  <span style="color:#fbbf24">&lt;/body&gt;</span>
+<span style="color:#fbbf24">&lt;/html&gt;</span>`
     },
     {
         title: "developer@fipokzec:~/react-component",
-        code: `<span style="color:#7c3aed; font-weight:bold">import</span> <span style="color:#e2e8f0">React, { useState, useEffect }</span> <span style="color:#7c3aed; font-weight:bold">from</span> <span style="color:#fbbf24">'react'</span>;
+        code: `<span style="color:#c084fc; font-weight:bold">import</span> <span style="color:#e2e8f0">React, { useState, useEffect }</span> <span style="color:#c084fc; font-weight:bold">from</span> <span style="color:#fbbf24">'react'</span>;
+<span style="color:#c084fc; font-weight:bold">import</span> <span style="color:#e2e8f0">axios</span> <span style="color:#c084fc; font-weight:bold">from</span> <span style="color:#fbbf24">'axios'</span>;
 
-<span style="color:#7c3aed; font-weight:bold">const</span> <span style="color:#60a5fa">UserCard</span> = <span style="color:#e2e8f0">({ name, email, avatar })</span> => {
-  <span style="color:#7c3aed; font-weight:bold">const</span> [isHovered, setIsHovered] = <span style="color:#60a5fa">useState</span>(<span style="color:#fbbf24">false</span>);
+<span style="color:#c084fc; font-weight:bold">const</span> <span style="color:#60a5fa">UserCard</span> = <span style="color:#e2e8f0">({ name, email, avatar, onEdit })</span> => {
+  <span style="color:#c084fc; font-weight:bold">const</span> [isHovered, setIsHovered] = <span style="color:#60a5fa">useState</span>(<span style="color:#fbbf24">false</span>);
+  <span style="color:#c084fc; font-weight:bold">const</span> [loading, setLoading] = <span style="color:#60a5fa">useState</span>(<span style="color:#fbbf24">false</span>);
   
-  <span style="color:#7c3aed; font-weight:bold">return</span> (
-    <span style="color:#f59e0b">&lt;div</span> <span style="color:#60a5fa">className</span>=<span style="color:#fbbf24">"user-card"</span>
+  <span style="color:#c084fc; font-weight:bold">const</span> <span style="color:#60a5fa">fetchData</span> = <span style="color:#c084fc; font-weight:bold">async</span> () => {
+    setLoading(<span style="color:#fbbf24">true</span>);
+    <span style="color:#c084fc; font-weight:bold">try</span> {
+      <span style="color:#c084fc; font-weight:bold">const</span> res = <span style="color:#c084fc; font-weight:bold">await</span> axios.<span style="color:#60a5fa">get</span>(<span style="color:#fbbf24">'/api/user'</span>);
+      console.<span style="color:#60a5fa">log</span>(res.<span style="color:#60a5fa">data</span>);
+    } <span style="color:#c084fc; font-weight:bold">catch</span>(err) {
+      console.<span style="color:#60a5fa">error</span>(err);
+    } <span style="color:#c084fc; font-weight:bold">finally</span> {
+      setLoading(<span style="color:#fbbf24">false</span>);
+    }
+  };
+  
+  <span style="color:#c084fc; font-weight:bold">return</span> (
+    <span style="color:#fbbf24">&lt;div</span> <span style="color:#60a5fa">className</span>=<span style="color:#fbbf24">"user-card"</span>
          <span style="color:#60a5fa">onMouseEnter</span>=<span style="color:#e2e8f0">{() => setIsHovered(true)}</span>
-         <span style="color:#60a5fa">onMouseLeave</span>=<span style="color:#e2e8f0">{() => setIsHovered(false)}</span><span style="color:#f59e0b">&gt;</span>
-      <span style="color:#f59e0b">&lt;img</span> <span style="color:#60a5fa">src</span>=<span style="color:#e2e8f0">{avatar}</span> <span style="color:#60a5fa">alt</span>=<span style="color:#e2e8f0">{name}</span> <span style="color:#60a5fa">className</span>=<span style="color:#fbbf24">"avatar"</span><span style="color:#f59e0b">&gt;</span>
-      <span style="color:#f59e0b">&lt;h3&gt;</span>{name}<span style="color:#f59e0b">&lt;/h3&gt;</span>
-      <span style="color:#f59e0b">&lt;p&gt;</span>{email}<span style="color:#f59e0b">&lt;/p&gt;</span>
-      {isHovered && <span style="color:#f59e0b">&lt;button&gt;</span>View Profile<span style="color:#f59e0b">&lt;/button&gt;</span>}
-    <span style="color:#f59e0b">&lt;/div&gt;</span>
+         <span style="color:#60a5fa">onMouseLeave</span>=<span style="color:#e2e8f0">{() => setIsHovered(false)}</span><span style="color:#fbbf24">&gt;</span>
+      <span style="color:#fbbf24">&lt;img</span> <span style="color:#60a5fa">src</span>=<span style="color:#e2e8f0">{avatar}</span> <span style="color:#60a5fa">alt</span>=<span style="color:#e2e8f0">{name}</span> <span style="color:#60a5fa">className</span>=<span style="color:#fbbf24">"avatar"</span><span style="color:#fbbf24">&gt;</span>
+      <span style="color:#fbbf24">&lt;h3&gt;</span>{name}<span style="color:#fbbf24">&lt;/h3&gt;</span>
+      <span style="color:#fbbf24">&lt;p&gt;</span>{email}<span style="color:#fbbf24">&lt;/p&gt;</span>
+      {isHovered && <span style="color:#fbbf24">&lt;button</span> <span style="color:#60a5fa">onClick</span>=<span style="color:#e2e8f0">{onEdit}</span><span style="color:#fbbf24">&gt;</span>Edit Profile<span style="color:#fbbf24">&lt;/button&gt;</span>}
+    <span style="color:#fbbf24">&lt;/div&gt;</span>
   );
 };
 
-<span style="color:#7c3aed; font-weight:bold">export default</span> <span style="color:#60a5fa">UserCard</span>;`
+<span style="color:#c084fc; font-weight:bold">export default</span> <span style="color:#60a5fa">UserCard</span>;`
     },
     {
         title: "developer@fipokzec:~/api-endpoint",
-        code: `<span style="color:#7c3aed; font-weight:bold">const</span> <span style="color:#60a5fa">express</span> = <span style="color:#60a5fa">require</span>(<span style="color:#fbbf24">'express'</span>);
-<span style="color:#7c3aed; font-weight:bold">const</span> <span style="color:#60a5fa">cors</span> = <span style="color:#60a5fa">require</span>(<span style="color:#fbbf24">'cors'</span>);
-<span style="color:#7c3aed; font-weight:bold">const</span> <span style="color:#60a5fa">app</span> = <span style="color:#60a5fa">express</span>();
+        code: `<span style="color:#c084fc; font-weight:bold">const</span> <span style="color:#60a5fa">express</span> = <span style="color:#60a5fa">require</span>(<span style="color:#fbbf24">'express'</span>);
+<span style="color:#c084fc; font-weight:bold">const</span> <span style="color:#60a5fa">cors</span> = <span style="color:#60a5fa">require</span>(<span style="color:#fbbf24">'cors'</span>);
+<span style="color:#c084fc; font-weight:bold">const</span> <span style="color:#60a5fa">bcrypt</span> = <span style="color:#60a5fa">require</span>(<span style="color:#fbbf24">'bcrypt'</span>);
+<span style="color:#c084fc; font-weight:bold">const</span> <span style="color:#60a5fa">jwt</span> = <span style="color:#60a5fa">require</span>(<span style="color:#fbbf24">'jsonwebtoken'</span>);
+<span style="color:#c084fc; font-weight:bold">const</span> <span style="color:#60a5fa">app</span> = <span style="color:#60a5fa">express</span>();
 
 app.<span style="color:#60a5fa">use</span>(<span style="color:#60a5fa">cors</span>());
 app.<span style="color:#60a5fa">use</span>(<span style="color:#60a5fa">express</span>.<span style="color:#60a5fa">json</span>());
 
-<span style="color:#7c3aed; font-weight:bold">const</span> <span style="color:#e2e8f0">users</span> = [
+<span style="color:#c084fc; font-weight:bold">const</span> <span style="color:#e2e8f0">users</span> = [
   { <span style="color:#60a5fa">id</span>: <span style="color:#fbbf24">1</span>, <span style="color:#60a5fa">name</span>: <span style="color:#fbbf24">'Олександр'</span>, <span style="color:#60a5fa">email</span>: <span style="color:#fbbf24">'o@example.com'</span> },
   { <span style="color:#60a5fa">id</span>: <span style="color:#fbbf24">2</span>, <span style="color:#60a5fa">name</span>: <span style="color:#fbbf24">'Марія'</span>, <span style="color:#60a5fa">email</span>: <span style="color:#fbbf24">'m@example.com'</span> }
 ];
 
-app.<span style="color:#60a5fa">get</span>(<span style="color:#fbbf24">'/api/users'</span>, <span style="color:#7c3aed; font-weight:bold">async</span> (req, res) => {
-  <span style="color:#7c3aed; font-weight:bold">try</span> {
-    res.<span style="color:#60a5fa">json</span>({ <span style="color:#60a5fa">success</span>: <span style="color:#7c3aed; font-weight:bold">true</span>, <span style="color:#60a5fa">data</span>: users });
-  } <span style="color:#7c3aed; font-weight:bold">catch</span>(error) {
+app.<span style="color:#60a5fa">get</span>(<span style="color:#fbbf24">'/api/users'</span>, <span style="color:#c084fc; font-weight:bold">async</span> (req, res) => {
+  <span style="color:#c084fc; font-weight:bold">try</span> {
+    <span style="color:#c084fc; font-weight:bold">const</span> { limit, offset } = req.<span style="color:#60a5fa">query</span>;
+    <span style="color:#c084fc; font-weight:bold">let</span> result = users;
+    <span style="color:#c084fc; font-weight:bold">if</span> (limit) result = result.<span style="color:#60a5fa">slice</span>(<span style="color:#fbbf24">0</span>, limit);
+    res.<span style="color:#60a5fa">status</span>(<span style="color:#fbbf24">200</span>).<span style="color:#60a5fa">json</span>({ <span style="color:#60a5fa">success</span>: <span style="color:#fbbf24">true</span>, <span style="color:#60a5fa">data</span>: result, <span style="color:#60a5fa">total</span>: users.<span style="color:#60a5fa">length</span> });
+  } <span style="color:#c084fc; font-weight:bold">catch</span>(error) {
     res.<span style="color:#60a5fa">status</span>(<span style="color:#fbbf24">500</span>).<span style="color:#60a5fa">json</span>({ <span style="color:#60a5fa">error</span>: error.<span style="color:#60a5fa">message</span> });
   }
+});
+
+app.<span style="color:#60a5fa">post</span>(<span style="color:#fbbf24">'/api/auth/login'</span>, <span style="color:#c084fc; font-weight:bold">async</span> (req, res) => {
+  <span style="color:#c084fc; font-weight:bold">const</span> { email, password } = req.<span style="color:#60a5fa">body</span>;
+  <span style="color:#c084fc; font-weight:bold">const</span> user = users.<span style="color:#60a5fa">find</span>(u => u.<span style="color:#60a5fa">email</span> === email);
+  <span style="color:#c084fc; font-weight:bold">if</span> (!user) <span style="color:#c084fc; font-weight:bold">return</span> res.<span style="color:#60a5fa">status</span>(<span style="color:#fbbf24">401</span>).<span style="color:#60a5fa">json</span>({ error: <span style="color:#fbbf24">'Invalid credentials'</span> });
+  <span style="color:#c084fc; font-weight:bold">const</span> token = jwt.<span style="color:#60a5fa">sign</span>({ id: user.<span style="color:#60a5fa">id</span> }, process.<span style="color:#60a5fa">env</span>.<span style="color:#60a5fa">JWT_SECRET</span>, { expiresIn: <span style="color:#fbbf24">'1h'</span> });
+  res.<span style="color:#60a5fa">json</span>({ token });
 });
 
 app.<span style="color:#60a5fa">listen</span>(<span style="color:#fbbf24">3000</span>, () => {
@@ -73,67 +106,146 @@ app.<span style="color:#60a5fa">listen</span>(<span style="color:#fbbf24">3000</
     },
     {
         title: "developer@fipokzec:~/tailwind-config",
-        code: `<span style="color:#e2e8f0">/** @type {import('tailwindcss').Config} */</span>
-<span style="color:#7c3aed; font-weight:bold">module</span>.<span style="color:#60a5fa">exports</span> = {
-  <span style="color:#60a5fa">content</span>: [<span style="color:#fbbf24">"./src/**/*.{html,js,jsx,ts,tsx}"</span>],
+        code: `<span style="color:#c084fc; font-weight:bold">/** @type {import('tailwindcss').Config} */</span>
+<span style="color:#c084fc; font-weight:bold">module</span>.<span style="color:#60a5fa">exports</span> = {
+  <span style="color:#60a5fa">content</span>: [
+    <span style="color:#fbbf24">"./index.html"</span>,
+    <span style="color:#fbbf24">"./src/**/*.{js,ts,jsx,tsx}"</span>,
+  ],
   <span style="color:#60a5fa">theme</span>: {
     <span style="color:#60a5fa">extend</span>: {
       <span style="color:#60a5fa">colors</span>: {
-        <span style="color:#60a5fa">primary</span>: <span style="color:#fbbf24">'#8b5cf6'</span>,
+        <span style="color:#60a5fa">primary</span>: {
+          <span style="color:#60a5fa">DEFAULT</span>: <span style="color:#fbbf24">'#8b5cf6'</span>,
+          <span style="color:#60a5fa">dark</span>: <span style="color:#fbbf24">'#6d28d9'</span>,
+          <span style="color:#60a5fa">light</span>: <span style="color:#fbbf24">'#a78bfa'</span>
+        },
         <span style="color:#60a5fa">secondary</span>: <span style="color:#fbbf24">'#3b82f6'</span>,
         <span style="color:#60a5fa">dark</span>: <span style="color:#fbbf24">'#0a0a0a'</span>
       },
       <span style="color:#60a5fa">animation</span>: {
-        <span style="color:#60a5fa">'gradient'</span>: <span style="color:#fbbf24">'gradient 8s linear infinite'</span>
+        <span style="color:#60a5fa">'gradient'</span>: <span style="color:#fbbf24">'gradient 8s linear infinite'</span>,
+        <span style="color:#60a5fa">'float'</span>: <span style="color:#fbbf24">'float 3s ease-in-out infinite'</span>
+      },
+      <span style="color:#60a5fa">keyframes</span>: {
+        <span style="color:#60a5fa">float</span>: {
+          <span style="color:#fbbf24">'0%'</span>, <span style="color:#fbbf24">'100%'</span>: { <span style="color:#c084fc">transform</span>: <span style="color:#fbbf24">'translateY(0)'</span> },
+          <span style="color:#fbbf24">'50%'</span>: { <span style="color:#c084fc">transform</span>: <span style="color:#fbbf24">'translateY(-10px)'</span> }
+        }
       }
     }
   },
-  <span style="color:#60a5fa">plugins</span>: []
+  <span style="color:#60a5fa">plugins</span>: [<span style="color:#60a5fa">require</span>(<span style="color:#fbbf24">'@tailwindcss/forms'</span>)]
 };`
     },
     {
         title: "developer@fipokzec:~/database-schema",
-        code: `<span style="color:#7c3aed; font-weight:bold">CREATE TABLE</span> <span style="color:#e2e8f0">users</span> (
-  <span style="color:#60a5fa">id</span> <span style="color:#7c3aed; font-weight:bold">SERIAL PRIMARY KEY</span>,
-  <span style="color:#60a5fa">username</span> <span style="color:#7c3aed; font-weight:bold">VARCHAR(50)</span> <span style="color:#7c3aed; font-weight:bold">UNIQUE NOT NULL</span>,
-  <span style="color:#60a5fa">email</span> <span style="color:#7c3aed; font-weight:bold">VARCHAR(100)</span> <span style="color:#7c3aed; font-weight:bold">UNIQUE NOT NULL</span>,
-  <span style="color:#60a5fa">password_hash</span> <span style="color:#7c3aed; font-weight:bold">VARCHAR(255)</span> <span style="color:#7c3aed; font-weight:bold">NOT NULL</span>,
-  <span style="color:#60a5fa">created_at</span> <span style="color:#7c3aed; font-weight:bold">TIMESTAMP DEFAULT CURRENT_TIMESTAMP</span>
+        code: `<span style="color:#c084fc; font-weight:bold">-- Створення таблиці користувачів</span>
+<span style="color:#c084fc; font-weight:bold">CREATE TABLE</span> <span style="color:#e2e8f0">users</span> (
+  <span style="color:#60a5fa">id</span> <span style="color:#c084fc; font-weight:bold">SERIAL PRIMARY KEY</span>,
+  <span style="color:#60a5fa">username</span> <span style="color:#c084fc; font-weight:bold">VARCHAR(50)</span> <span style="color:#c084fc; font-weight:bold">UNIQUE NOT NULL</span>,
+  <span style="color:#60a5fa">email</span> <span style="color:#c084fc; font-weight:bold">VARCHAR(100)</span> <span style="color:#c084fc; font-weight:bold">UNIQUE NOT NULL</span>,
+  <span style="color:#60a5fa">password_hash</span> <span style="color:#c084fc; font-weight:bold">VARCHAR(255)</span> <span style="color:#c084fc; font-weight:bold">NOT NULL</span>,
+  <span style="color:#60a5fa">avatar_url</span> <span style="color:#c084fc; font-weight:bold">TEXT</span>,
+  <span style="color:#60a5fa">is_active</span> <span style="color:#c084fc; font-weight:bold">BOOLEAN DEFAULT TRUE</span>,
+  <span style="color:#60a5fa">last_login</span> <span style="color:#c084fc; font-weight:bold">TIMESTAMP</span>,
+  <span style="color:#60a5fa">created_at</span> <span style="color:#c084fc; font-weight:bold">TIMESTAMP DEFAULT CURRENT_TIMESTAMP</span>,
+  <span style="color:#60a5fa">updated_at</span> <span style="color:#c084fc; font-weight:bold">TIMESTAMP DEFAULT CURRENT_TIMESTAMP</span>
 );
 
-<span style="color:#7c3aed; font-weight:bold">CREATE TABLE</span> <span style="color:#e2e8f0">projects</span> (
-  <span style="color:#60a5fa">id</span> <span style="color:#7c3aed; font-weight:bold">SERIAL PRIMARY KEY</span>,
-  <span style="color:#60a5fa">user_id</span> <span style="color:#7c3aed; font-weight:bold">INTEGER REFERENCES</span> users(id),
-  <span style="color:#60a5fa">title</span> <span style="color:#7c3aed; font-weight:bold">VARCHAR(200)</span> <span style="color:#7c3aed; font-weight:bold">NOT NULL</span>,
-  <span style="color:#60a5fa">status</span> <span style="color:#7c3aed; font-weight:bold">VARCHAR(20) DEFAULT</span> <span style="color:#fbbf24">'active'</span>
+<span style="color:#c084fc; font-weight:bold">-- Таблиця проєктів</span>
+<span style="color:#c084fc; font-weight:bold">CREATE TABLE</span> <span style="color:#e2e8f0">projects</span> (
+  <span style="color:#60a5fa">id</span> <span style="color:#c084fc; font-weight:bold">SERIAL PRIMARY KEY</span>,
+  <span style="color:#60a5fa">user_id</span> <span style="color:#c084fc; font-weight:bold">INTEGER REFERENCES</span> users(id) <span style="color:#c084fc; font-weight:bold">ON DELETE CASCADE</span>,
+  <span style="color:#60a5fa">title</span> <span style="color:#c084fc; font-weight:bold">VARCHAR(200)</span> <span style="color:#c084fc; font-weight:bold">NOT NULL</span>,
+  <span style="color:#60a5fa">description</span> <span style="color:#c084fc; font-weight:bold">TEXT</span>,
+  <span style="color:#60a5fa">status</span> <span style="color:#c084fc; font-weight:bold">VARCHAR(20) DEFAULT</span> <span style="color:#fbbf24">'active'</span>,
+  <span style="color:#60a5fa">created_at</span> <span style="color:#c084fc; font-weight:bold">TIMESTAMP DEFAULT CURRENT_TIMESTAMP</span>
 );
 
-<span style="color:#e2e8f0">-- Додаємо індекси для швидкості</span>
-<span style="color:#7c3aed; font-weight:bold">CREATE INDEX</span> idx_users_email <span style="color:#7c3aed; font-weight:bold">ON</span> users(email);`
+<span style="color:#c084fc; font-weight:bold">-- Індекси для оптимізації запитів</span>
+<span style="color:#c084fc; font-weight:bold">CREATE INDEX</span> idx_users_email <span style="color:#c084fc; font-weight:bold">ON</span> users(email);
+<span style="color:#c084fc; font-weight:bold">CREATE INDEX</span> idx_projects_user_id <span style="color:#c084fc; font-weight:bold">ON</span> projects(user_id);`
     },
     {
         title: "developer@fipokzec:~/docker-compose",
         code: `<span style="color:#60a5fa">version</span>: <span style="color:#fbbf24">'3.8'</span>
+
 <span style="color:#e2e8f0">services:</span>
   <span style="color:#60a5fa">web</span>:
-    <span style="color:#60a5fa">build</span>: <span style="color:#e2e8f0">.</span>
+    <span style="color:#60a5fa">build</span>:
+      <span style="color:#60a5fa">context</span>: <span style="color:#e2e8f0">.</span>
+      <span style="color:#60a5fa">dockerfile</span>: <span style="color:#e2e8f0">Dockerfile</span>
     <span style="color:#60a5fa">ports</span>:
       - <span style="color:#fbbf24">"3000:3000"</span>
     <span style="color:#60a5fa">environment</span>:
       - <span style="color:#fbbf24">NODE_ENV=production</span>
       - <span style="color:#fbbf24">DB_HOST=postgres</span>
+      - <span style="color:#fbbf24">DB_PORT=5432</span>
+      - <span style="color:#fbbf24">DB_NAME=mydb</span>
+      - <span style="color:#fbbf24">DB_USER=admin</span>
+      - <span style="color:#fbbf24">DB_PASSWORD=${DB_PASS}</span>
     <span style="color:#60a5fa">depends_on</span>:
       - <span style="color:#e2e8f0">postgres</span>
+      - <span style="color:#e2e8f0">redis</span>
+    <span style="color:#60a5fa">volumes</span>:
+      - <span style="color:#e2e8f0">./uploads:/app/uploads</span>
+
   <span style="color:#60a5fa">postgres</span>:
-    <span style="color:#60a5fa">image</span>: <span style="color:#fbbf24">'postgres:15'</span>
+    <span style="color:#60a5fa">image</span>: <span style="color:#fbbf24">'postgres:15-alpine'</span>
     <span style="color:#60a5fa">environment</span>:
       - <span style="color:#fbbf24">POSTGRES_DB=mydb</span>
       - <span style="color:#fbbf24">POSTGRES_USER=admin</span>
       - <span style="color:#fbbf24">POSTGRES_PASSWORD=secret</span>
     <span style="color:#60a5fa">volumes</span>:
       - <span style="color:#e2e8f0">postgres_data:/var/lib/postgresql/data</span>
+    <span style="color:#60a5fa">healthcheck</span>:
+      <span style="color:#60a5fa">test</span>: [<span style="color:#fbbf24">"CMD-SHELL"</span>, <span style="color:#fbbf24">"pg_isready -U admin -d mydb"</span>]
+      <span style="color:#60a5fa">interval</span>: <span style="color:#fbbf24">10s</span>
+      <span style="color:#60a5fa">timeout</span>: <span style="color:#fbbf24">5s</span>
+      <span style="color:#60a5fa">retries</span>: <span style="color:#fbbf24">5</span>
+
+  <span style="color:#60a5fa">redis</span>:
+    <span style="color:#60a5fa">image</span>: <span style="color:#fbbf24">'redis:7-alpine'</span>
+    <span style="color:#60a5fa">ports</span>:
+      - <span style="color:#fbbf24">"6379:6379"</span>
+
 <span style="color:#e2e8f0">volumes:</span>
   <span style="color:#60a5fa">postgres_data</span>:`
+    },
+    {
+        title: "developer@fipokzec:~/graphql-schema",
+        code: `<span style="color:#c084fc; font-weight:bold">type</span> <span style="color:#60a5fa">User</span> {
+  <span style="color:#60a5fa">id</span>: <span style="color:#c084fc; font-weight:bold">ID!</span>
+  <span style="color:#60a5fa">username</span>: <span style="color:#c084fc; font-weight:bold">String!</span>
+  <span style="color:#60a5fa">email</span>: <span style="color:#c084fc; font-weight:bold">String!</span>
+  <span style="color:#60a5fa">avatar</span>: <span style="color:#c084fc; font-weight:bold">String</span>
+  <span style="color:#60a5fa">posts</span>: [<span style="color:#c084fc; font-weight:bold">Post!</span>]
+  <span style="color:#60a5fa">createdAt</span>: <span style="color:#c084fc; font-weight:bold">String!</span>
+}
+
+<span style="color:#c084fc; font-weight:bold">type</span> <span style="color:#60a5fa">Post</span> {
+  <span style="color:#60a5fa">id</span>: <span style="color:#c084fc; font-weight:bold">ID!</span>
+  <span style="color:#60a5fa">title</span>: <span style="color:#c084fc; font-weight:bold">String!</span>
+  <span style="color:#60a5fa">content</span>: <span style="color:#c084fc; font-weight:bold">String!</span>
+  <span style="color:#60a5fa">author</span>: <span style="color:#c084fc; font-weight:bold">User!</span>
+  <span style="color:#60a5fa">likes</span>: <span style="color:#c084fc; font-weight:bold">Int!</span>
+  <span style="color:#60a5fa">tags</span>: [<span style="color:#c084fc; font-weight:bold">String!</span>]
+}
+
+<span style="color:#c084fc; font-weight:bold">type</span> <span style="color:#60a5fa">Query</span> {
+  <span style="color:#60a5fa">user</span>(<span style="color:#60a5fa">id</span>: <span style="color:#c084fc; font-weight:bold">ID!</span>): <span style="color:#60a5fa">User</span>
+  <span style="color:#60a5fa">users</span>(<span style="color:#60a5fa">limit</span>: <span style="color:#c084fc; font-weight:bold">Int</span>, <span style="color:#60a5fa">offset</span>: <span style="color:#c084fc; font-weight:bold">Int</span>): [<span style="color:#60a5fa">User!</span>]
+  <span style="color:#60a5fa">post</span>(<span style="color:#60a5fa">id</span>: <span style="color:#c084fc; font-weight:bold">ID!</span>): <span style="color:#60a5fa">Post</span>
+  <span style="color:#60a5fa">searchPosts</span>(<span style="color:#60a5fa">query</span>: <span style="color:#c084fc; font-weight:bold">String!</span>): [<span style="color:#60a5fa">Post!</span>]
+}
+
+<span style="color:#c084fc; font-weight:bold">type</span> <span style="color:#60a5fa">Mutation</span> {
+  <span style="color:#60a5fa">createUser</span>(<span style="color:#60a5fa">username</span>: <span style="color:#c084fc; font-weight:bold">String!</span>, <span style="color:#60a5fa">email</span>: <span style="color:#c084fc; font-weight:bold">String!</span>, <span style="color:#60a5fa">password</span>: <span style="color:#c084fc; font-weight:bold">String!</span>): <span style="color:#60a5fa">User!</span>
+  <span style="color:#60a5fa">updateUser</span>(<span style="color:#60a5fa">id</span>: <span style="color:#c084fc; font-weight:bold">ID!</span>, <span style="color:#60a5fa">username</span>: <span style="color:#c084fc; font-weight:bold">String</span>, <span style="color:#60a5fa">avatar</span>: <span style="color:#c084fc; font-weight:bold">String</span>): <span style="color:#60a5fa">User!</span>
+  <span style="color:#60a5fa">deleteUser</span>(<span style="color:#60a5fa">id</span>: <span style="color:#c084fc; font-weight:bold">ID!</span>): <span style="color:#c084fc; font-weight:bold">Boolean!</span>
+  <span style="color:#60a5fa">likePost</span>(<span style="color:#60a5fa">id</span>: <span style="color:#c084fc; font-weight:bold">ID!</span>): <span style="color:#60a5fa">Post!</span>
+}`
     }
 ];
 
