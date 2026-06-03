@@ -1,250 +1,113 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap');
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-    font-family: 'Inter', system-ui, sans-serif;
-    background: #0a0a0a;
-    color: #ffffff;
-    line-height: 1.5;
-    scroll-behavior: smooth;
-    overflow-x: hidden;
-}
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 20% 50%, rgba(45, 45, 80, 0.4) 0%, rgba(10, 10, 20, 0.9) 100%);
-    z-index: -2;
-}
-body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(125deg, rgba(20, 20, 50, 0.6) 0%, rgba(60, 40, 80, 0.5) 25%, rgba(20, 30, 60, 0.7) 50%, rgba(40, 25, 70, 0.5) 75%, rgba(20, 20, 50, 0.6) 100%);
-    background-size: 200% 200%;
-    animation: gradientFlow 12s ease infinite;
-    z-index: -1;
-}
-@keyframes gradientFlow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-
-.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-
-/* Header */
-header {
-    background: rgba(10, 10, 15, 0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 0;
-    flex-wrap: wrap;
-    gap: 16px;
-}
-.logo {
-    font-size: 1.8rem;
-    font-weight: 700;
-    background: linear-gradient(135deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000);
-    background-size: 400% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: rainbowLogo 3s linear infinite;
-}
-@keyframes rainbowLogo {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 100% 50%; }
-}
-.logo-accent {
-    background: linear-gradient(135deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000);
-    background-size: 400% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: rainbowLogo 3s linear infinite;
-}
-.nav-links {
-    display: flex;
-    gap: 32px;
-    list-style: none;
-}
-.nav-links a {
-    text-decoration: none;
-    color: #e2e8f0;
-    font-weight: 500;
-    transition: all 0.2s ease;
-}
-.nav-links a.active {
-    background: linear-gradient(135deg, #fbbf24, #f59e0b);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-}
-.nav-links a:hover { color: #fbbf24; }
-.mobile-menu-btn { display: none; font-size: 1.8rem; cursor: pointer; }
-
-/* Hero */
-.hero { padding: 80px 0 60px; }
-.hero-grid { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 40px; }
-.hero-text { flex: 1; }
-.hero-badge {
-    display: inline-block;
-    background: rgba(139, 92, 246, 0.2);
-    border: 1px solid rgba(139, 92, 246, 0.3);
-    padding: 6px 14px;
-    border-radius: 40px;
-    font-size: 0.8rem;
-    color: #c084fc;
-    margin-bottom: 20px;
-}
-.hero-text h1 { font-size: 3.2rem; font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
-.highlight { background: linear-gradient(135deg, #a855f7, #3b82f6); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.hero-text p { font-size: 1.1rem; color: #94a3b8; margin-bottom: 32px; max-width: 550px; }
-.hero-stats { display: flex; gap: 32px; margin-bottom: 32px; }
-.stat { text-align: center; }
-.stat-number { font-size: 1.8rem; font-weight: 700; color: #a855f7; display: block; }
-.stat-label { font-size: 0.8rem; color: #94a3b8; }
-.hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
-.hero-image { flex: 1; }
-
-/* Термінал */
-.code-terminal {
-    background: rgba(10, 10, 20, 0.95);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 16px;
-    overflow: hidden;
-    font-family: 'Courier New', 'Fira Code', monospace;
-    font-size: 0.75rem;
-    box-shadow: 0 20px 35px -10px rgba(0,0,0,0.4);
-    height: 360px;
+/* ДИНАМІЧНИЙ НЕГРІД - РАНДОМНЕ ПОЛОЖЕННЯ КАРТОК */
+.services-grid {
     display: flex;
     flex-direction: column;
-}
-.terminal-header {
-    background: rgba(30, 30, 45, 0.9);
-    padding: 10px 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-shrink: 0;
-}
-.terminal-dot { width: 12px; height: 12px; border-radius: 50%; }
-.red { background: #ff5f56; }
-.yellow { background: #ffbd2e; }
-.green { background: #27c93f; }
-.terminal-title { color: #94a3b8; font-size: 0.7rem; margin-left: 8px; }
-.terminal-body {
-    padding: 16px;
-    color: #e2e8f0;
-    overflow-y: auto;
-    flex: 1;
-    font-family: 'Courier New', 'Fira Code', monospace;
-    white-space: pre-wrap;
-    word-break: break-word;
-    cursor: text;
-}
-.terminal-body::-webkit-scrollbar { width: 6px; }
-.terminal-body::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 3px; }
-.terminal-body::-webkit-scrollbar-thumb { background: rgba(139, 92, 246, 0.5); border-radius: 3px; }
-#typingArea { font-family: 'Courier New', monospace; white-space: pre-wrap; word-break: break-word; }
-.cursor-blink {
-    display: inline-block;
-    animation: blink 0.8s step-end infinite;
-    color: #fbbf24;
-    font-weight: bold;
-}
-@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-
-.btn {
-    display: inline-block;
-    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-    color: white;
-    padding: 12px 28px;
-    border-radius: 40px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: 0.2s;
-    border: none;
-    cursor: pointer;
-}
-.btn:hover { transform: scale(1.02); box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4); }
-.btn-outline { background: transparent; border: 1px solid #8b5cf6; color: #c084fc; }
-
-/* Секція заголовків */
-.section-header { text-align: center; margin-bottom: 48px; }
-.section-tag {
-    display: inline-block;
-    background: rgba(139, 92, 246, 0.15);
-    border: 1px solid rgba(139, 92, 246, 0.3);
-    padding: 4px 12px;
-    border-radius: 40px;
-    font-size: 0.8rem;
-    color: #c084fc;
-    margin-bottom: 16px;
-}
-.section-title { font-size: 2.2rem; font-weight: 700; background: linear-gradient(135deg, #e2e8f0, #c084fc); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.section-desc { color: #94a3b8; max-width: 600px; margin: 0 auto; }
-
-.services-section, .portfolio-section, .about-section, .reviews-section, .faq-section, .contacts-section { padding: 80px 0; }
-
-/* НОВИЙ ДИНАМІЧНИЙ GRID ДЛЯ ПОСЛУГ */
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    margin-top: 20px;
+    gap: 40px;
+    margin-top: 40px;
+    position: relative;
 }
 
-/* Різні стилі для карток */
+/* Кожна картка має унікальне положення */
 .service-card {
     background: rgba(20, 20, 35, 0.6);
     backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     padding: 28px 24px;
     transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     opacity: 0;
     transform: translateY(30px);
     animation: cardAppear 0.6s ease forwards;
+    width: 70%;
+    position: relative;
+}
+
+/* Різне положення для кожної картки */
+.service-card:nth-child(1) {
+    margin-left: 0;
+    margin-right: auto;
+    border-radius: 24px 24px 24px 24px;
+    border-left: 4px solid #3b82f6;
+    transform-origin: left;
+}
+.service-card:nth-child(2) {
+    margin-left: auto;
+    margin-right: 0;
+    width: 65%;
+    border-radius: 24px 24px 24px 24px;
+    border-right: 4px solid #8b5cf6;
+    transform-origin: right;
+}
+.service-card:nth-child(3) {
+    margin-left: 15%;
+    margin-right: auto;
+    width: 70%;
+    border-radius: 24px 24px 24px 24px;
+    border-top: 4px solid #fbbf24;
+    transform: rotate(-0.5deg);
+}
+.service-card:nth-child(4) {
+    margin-left: auto;
+    margin-right: 10%;
+    width: 60%;
+    border-radius: 24px 24px 24px 24px;
+    border-bottom: 4px solid #10b981;
+    transform: translateY(10px) rotate(0.5deg);
+}
+.service-card:nth-child(5) {
+    margin-left: 5%;
+    margin-right: auto;
+    width: 75%;
+    border-radius: 24px 24px 24px 24px;
+    background: rgba(25, 25, 45, 0.8);
+    border: 1px solid rgba(59,130,246,0.3);
+    transform: translateX(20px) rotate(-1deg);
+}
+.service-card:nth-child(6) {
+    margin-left: auto;
+    margin-right: 5%;
+    width: 68%;
+    border-radius: 24px 24px 24px 24px;
+    box-shadow: 0 10px 30px -15px rgba(139,92,246,0.3);
+    transform: translateY(-15px) rotate(1deg);
+}
+
+/* Анімація появи */
+@keyframes cardAppear {
+    to { opacity: 1; transform: translateY(0) rotate(0deg); }
 }
 
 /* Різні затримки появи */
 .service-card:nth-child(1) { animation-delay: 0s; }
-.service-card:nth-child(2) { animation-delay: 0.1s; }
-.service-card:nth-child(3) { animation-delay: 0.2s; }
-.service-card:nth-child(4) { animation-delay: 0.3s; }
-.service-card:nth-child(5) { animation-delay: 0.4s; }
-.service-card:nth-child(6) { animation-delay: 0.5s; }
+.service-card:nth-child(2) { animation-delay: 0.15s; }
+.service-card:nth-child(3) { animation-delay: 0.3s; }
+.service-card:nth-child(4) { animation-delay: 0.45s; }
+.service-card:nth-child(5) { animation-delay: 0.6s; }
+.service-card:nth-child(6) { animation-delay: 0.75s; }
 
-@keyframes cardAppear {
-    to { opacity: 1; transform: translateY(0); }
+/* Hover ефекти */
+.service-card:nth-child(1):hover { transform: translateX(10px) scale(1.02); border-left-color: #60a5fa; }
+.service-card:nth-child(2):hover { transform: translateX(-10px) scale(1.02); border-right-color: #a78bfa; }
+.service-card:nth-child(3):hover { transform: rotate(0deg) scale(1.02); border-top-color: #fcd34d; }
+.service-card:nth-child(4):hover { transform: translateY(0) scale(1.02); border-bottom-color: #34d399; }
+.service-card:nth-child(5):hover { transform: translateX(10px) scale(1.02); background: rgba(35, 35, 60, 0.9); }
+.service-card:nth-child(6):hover { transform: translateY(-20px) scale(1.02); box-shadow: 0 25px 35px -15px rgba(139,92,246,0.4); }
+
+/* Адаптація для мобільних */
+@media (max-width: 768px) {
+    .service-card {
+        width: 90% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        transform: none !important;
+    }
+    .service-card:nth-child(3),
+    .service-card:nth-child(4),
+    .service-card:nth-child(5),
+    .service-card:nth-child(6) {
+        transform: none !important;
+        margin: 0 auto !important;
+    }
 }
-
-/* Унікальні стилі для кожної картки */
-.service-card:nth-child(1) { border-radius: 24px 24px 24px 24px; border-top: 3px solid #3b82f6; }
-.service-card:nth-child(2) { border-radius: 24px 24px 24px 24px; border-right: 3px solid #8b5cf6; }
-.service-card:nth-child(3) { border-radius: 24px 24px 24px 24px; border-bottom: 3px solid #fbbf24; }
-.service-card:nth-child(4) { border-radius: 24px 24px 24px 24px; border-left: 3px solid #10b981; }
-.service-card:nth-child(5) { border-radius: 24px 24px 24px 24px; background: rgba(25, 25, 45, 0.8); border: 1px solid rgba(59,130,246,0.3); }
-.service-card:nth-child(6) { border-radius: 24px 24px 24px 24px; background: rgba(20, 20, 35, 0.7); box-shadow: 0 10px 30px -15px rgba(139,92,246,0.3); }
-
-/* Hover ефекти для кожної картки (різні) */
-.service-card:nth-child(1):hover { transform: translateY(-8px) scale(1.02); border-top-color: #60a5fa; box-shadow: 0 20px 30px -12px rgba(59,130,246,0.2); }
-.service-card:nth-child(2):hover { transform: translateY(-5px) translateX(3px) scale(1.01); border-right-color: #a78bfa; }
-.service-card:nth-child(3):hover { transform: translateY(-10px) scale(1.01); border-bottom-color: #fcd34d; }
-.service-card:nth-child(4):hover { transform: translateX(5px) scale(1.01); border-left-color: #34d399; }
-.service-card:nth-child(5):hover { transform: translateY(-6px) rotate(0.5deg); background: rgba(35, 35, 60, 0.9); }
-.service-card:nth-child(6):hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 25px 35px -15px rgba(139,92,246,0.4); }
 
 .service-card h3 {
     font-size: 1.5rem;
@@ -291,43 +154,4 @@ nav {
     background-clip: text;
     color: transparent;
     margin: 20px 0 16px;
-}
-
-/* Портфоліо та інші секції */
-.portfolio-grid, .reviews-grid, .faq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-.portfolio-item, .review-card, .faq-item {
-    background: rgba(20, 20, 35, 0.6);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 24px;
-    padding: 24px;
-    transition: 0.3s;
-}
-.portfolio-filter { display: flex; justify-content: center; gap: 16px; margin-bottom: 40px; flex-wrap: wrap; }
-.filter-btn {
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.2);
-    padding: 8px 20px;
-    border-radius: 40px;
-    color: #e2e8f0;
-    cursor: pointer;
-}
-.filter-btn.active, .filter-btn:hover { background: #fbbf24; border-color: #fbbf24; color: #0a0a0a; }
-.skills { margin: 30px 0; }
-.skill { margin-bottom: 20px; }
-.skill-bar { background: rgba(255,255,255,0.1); border-radius: 20px; height: 8px; overflow: hidden; }
-.skill-bar div { background: linear-gradient(135deg, #fbbf24, #f59e0b); height: 100%; }
-.contacts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
-.contact-form input, .contact-form textarea { width: 100%; padding: 12px; margin-bottom: 16px; background: rgba(20,20,35,0.6); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: white; }
-.social-links { display: flex; gap: 24px; margin-top: 24px; }
-.social-links a { color: #c084fc; text-decoration: none; }
-footer { text-align: center; padding: 40px 0; color: #64748b; border-top: 1px solid rgba(255,255,255,0.05); }
-
-@media (max-width: 768px) {
-    .nav-links { display: none; }
-    .mobile-menu-btn { display: block; }
-    .hero-text h1 { font-size: 2rem; }
-    .about-grid, .contacts-grid { grid-template-columns: 1fr; }
-    .code-terminal { height: 300px; }
-    .services-grid { grid-template-columns: 1fr; gap: 20px; }
 }
