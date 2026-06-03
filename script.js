@@ -1,4 +1,4 @@
-// Бібліотека різнокольорових кодів (та сама, що була)
+// Бібліотека кодів для терміналу (та сама)
 const codeSamples = [
     {
         title: "developer@fipokzec:~/modern-website",
@@ -104,14 +104,62 @@ function typeNextCharacter() {
     }
 }
 
-// ОНОВЛЕНІ ПОСЛУГИ (без стікерів, з кращими описами)
+// ОНОВЛЕНІ ПОСЛУГИ З ЗОБРАЖЕННЯМИ НА ЗВОРОТІ
 const services = [
-    { title: "Сайт-візитка", description: "3-5 сторінок, форма зв'язку, адаптивний дизайн. Ідеально для малого бізнесу.", features: ["Адаптивний дизайн", "Форма зв'язку", "SEO-оптимізація", "Карта Google"], price: "5 000 грн" },
-    { title: "Лендінг", description: "Односторінковий сайт для запуску продукту або акції. Висока конверсія.", features: ["Анімації", "Форма захоплення", "Інтеграція з CRM", "Аналітика"], price: "6 000 грн" },
-    { title: "Інтернет-магазин", description: "Каталог, кошик, оплата. Повноцінна платформа для продажів.", features: ["Каталог товарів", "Кошик та оплата", "Адмін-панель", "Звіти"], price: "12 000 грн" },
-    { title: "Підтримка", description: "Щомісячне оновлення, бекапи, технічний супровід вашого сайту.", features: ["Щомісячні оновлення", "Резервні копії", "Техпідтримка 24/7", "Безпека"], price: "1 000 грн/міс" },
-    { title: "Доробка сайту", description: "Додавання нових функцій, сторінок, модулів до готового сайту.", features: ["Додавання сторінок", "Нові функції", "Інтеграції", "Оптимізація"], price: "2 000 грн" },
-    { title: "Оновлення дизайну", description: "Рестайлінг, сучасний вигляд, покращення UX/UI вашого сайту.", features: ["Новий дизайн", "Адаптація", "Покращення навігації", "Сучасні анімації"], price: "2 000 грн" }
+    { 
+        title: "Сайт-візитка", 
+        description: "3-5 сторінок, форма зв'язку, адаптивний дизайн. Ідеально для малого бізнесу.", 
+        features: ["Адаптивний дизайн", "Форма зв'язку", "SEO-оптимізація", "Карта Google"], 
+        price: "5 000 грн",
+        img: "https://placehold.co/600x400/1e3a8a/ffffff?text=Сайт-візитка+Стоматологія",
+        demoLink: "#",
+        projectName: "SmileCare Dental"
+    },
+    { 
+        title: "Лендінг", 
+        description: "Односторінковий сайт для запуску продукту або акції. Висока конверсія.", 
+        features: ["Анімації", "Форма захоплення", "Інтеграція з CRM", "Аналітика"], 
+        price: "6 000 грн",
+        img: "https://placehold.co/600x400/831843/ffffff?text=Лендінг+Beauty-бар",
+        demoLink: "#",
+        projectName: "LAVENDER Beauty"
+    },
+    { 
+        title: "Інтернет-магазин", 
+        description: "Каталог, кошик, оплата. Повноцінна платформа для продажів.", 
+        features: ["Каталог товарів", "Кошик та оплата", "Адмін-панель", "Звіти"], 
+        price: "12 000 грн",
+        img: "https://placehold.co/600x400/065f46/ffffff?text=Магазин+квітів",
+        demoLink: "#",
+        projectName: "FlowerShop"
+    },
+    { 
+        title: "Підтримка", 
+        description: "Щомісячне оновлення, бекапи, технічний супровід вашого сайту.", 
+        features: ["Щомісячні оновлення", "Резервні копії", "Техпідтримка 24/7", "Безпека"], 
+        price: "1 000 грн/міс",
+        img: "https://placehold.co/600x400/92400e/ffffff?text=Техпідтримка+24/7",
+        demoLink: "#",
+        projectName: "IT Support"
+    },
+    { 
+        title: "Доробка сайту", 
+        description: "Додавання нових функцій, сторінок, модулів до готового сайту.", 
+        features: ["Додавання сторінок", "Нові функції", "Інтеграції", "Оптимізація"], 
+        price: "2 000 грн",
+        img: "https://placehold.co/600x400/1e1e3a/ffffff?text=Доробка+сайту",
+        demoLink: "#",
+        projectName: "Site Upgrade"
+    },
+    { 
+        title: "Оновлення дизайну", 
+        description: "Рестайлінг, сучасний вигляд, покращення UX/UI вашого сайту.", 
+        features: ["Новий дизайн", "Адаптація", "Покращення навігації", "Сучасні анімації"], 
+        price: "2 000 грн",
+        img: "https://placehold.co/600x400/4c1d95/ffffff?text=Новий+дизайн",
+        demoLink: "#",
+        projectName: "Redesign Project"
+    }
 ];
 
 const portfolioItems = [
@@ -142,14 +190,24 @@ const socialLinks = [
 function renderServices() {
     const container = document.getElementById('servicesGrid');
     if (container) container.innerHTML = services.map(s => `
-        <div class="service-card">
-            <h3>${s.title}</h3>
-            <p>${s.description}</p>
-            <ul class="service-features">
-                ${s.features.map(f => `<li>${f}</li>`).join('')}
-            </ul>
-            <div class="price">${s.price}</div>
-            <a href="#contacts" class="btn">Замовити</a>
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <h3>${s.title}</h3>
+                    <p>${s.description}</p>
+                    <ul class="service-features">
+                        ${s.features.map(f => `<li>${f}</li>`).join('')}
+                    </ul>
+                    <div class="price">${s.price}</div>
+                    <a href="#contacts" class="btn">Замовити</a>
+                </div>
+                <div class="flip-card-back">
+                    <img src="${s.img}" alt="${s.title}">
+                    <h4>${s.projectName}</h4>
+                    <p>Реальний проєкт • ${s.title}</p>
+                    <a href="${s.demoLink}" class="demo-link" target="_blank">Переглянути демо →</a>
+                </div>
+            </div>
         </div>
     `).join('');
 }
