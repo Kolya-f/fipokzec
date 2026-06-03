@@ -52,8 +52,6 @@ nav {
     flex-wrap: wrap;
     gap: 16px;
 }
-
-/* Логотип - постійне райдужне переливання */
 .logo {
     font-size: 1.8rem;
     font-weight: 700;
@@ -68,7 +66,6 @@ nav {
     0% { background-position: 0% 50%; }
     100% { background-position: 100% 50%; }
 }
-
 .logo-accent {
     background: linear-gradient(135deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000);
     background-size: 400% 100%;
@@ -77,7 +74,6 @@ nav {
     color: transparent;
     animation: rainbowLogo 3s linear infinite;
 }
-
 .nav-links {
     display: flex;
     gap: 32px;
@@ -122,7 +118,7 @@ nav {
 .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
 .hero-image { flex: 1; }
 
-/* Термінал - фіксована висота, скрол, курсор текст */
+/* Термінал */
 .code-terminal {
     background: rgba(10, 10, 20, 0.95);
     backdrop-filter: blur(8px);
@@ -159,25 +155,10 @@ nav {
     word-break: break-word;
     cursor: text;
 }
-.terminal-body::-webkit-scrollbar {
-    width: 6px;
-}
-.terminal-body::-webkit-scrollbar-track {
-    background: rgba(255,255,255,0.05);
-    border-radius: 3px;
-}
-.terminal-body::-webkit-scrollbar-thumb {
-    background: rgba(139, 92, 246, 0.5);
-    border-radius: 3px;
-}
-.terminal-body::-webkit-scrollbar-thumb:hover {
-    background: #8b5cf6;
-}
-#typingArea { 
-    font-family: 'Courier New', 'Fira Code', monospace; 
-    white-space: pre-wrap; 
-    word-break: break-word;
-}
+.terminal-body::-webkit-scrollbar { width: 6px; }
+.terminal-body::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 3px; }
+.terminal-body::-webkit-scrollbar-thumb { background: rgba(139, 92, 246, 0.5); border-radius: 3px; }
+#typingArea { font-family: 'Courier New', monospace; white-space: pre-wrap; word-break: break-word; }
 .cursor-blink {
     display: inline-block;
     animation: blink 0.8s step-end infinite;
@@ -201,6 +182,7 @@ nav {
 .btn:hover { transform: scale(1.02); box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4); }
 .btn-outline { background: transparent; border: 1px solid #8b5cf6; color: #c084fc; }
 
+/* Секція заголовків */
 .section-header { text-align: center; margin-bottom: 48px; }
 .section-tag {
     display: inline-block;
@@ -217,25 +199,101 @@ nav {
 
 .services-section, .portfolio-section, .about-section, .reviews-section, .faq-section, .contacts-section { padding: 80px 0; }
 
+/* НОВИЙ ДИНАМІЧНИЙ GRID ДЛЯ ПОСЛУГ */
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
+    margin-top: 20px;
 }
+
+/* Різні стилі для карток */
 .service-card {
     background: rgba(20, 20, 35, 0.6);
     backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 24px;
-    padding: 28px;
-    transition: 0.3s;
+    padding: 28px 24px;
+    transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    opacity: 0;
+    transform: translateY(30px);
+    animation: cardAppear 0.6s ease forwards;
 }
-.service-card:hover { transform: translateY(-6px); border-color: rgba(251, 191, 36, 0.3); }
-.service-icon { font-size: 2rem; margin-bottom: 16px; color: #c084fc; }
-.price { font-size: 1.5rem; font-weight: 700; color: #fbbf24; margin: 16px 0; }
-.service-features { list-style: none; padding-left: 0; margin: 16px 0; }
-.service-features li { margin: 8px 0; color: #94a3b8; }
 
+/* Різні затримки появи */
+.service-card:nth-child(1) { animation-delay: 0s; }
+.service-card:nth-child(2) { animation-delay: 0.1s; }
+.service-card:nth-child(3) { animation-delay: 0.2s; }
+.service-card:nth-child(4) { animation-delay: 0.3s; }
+.service-card:nth-child(5) { animation-delay: 0.4s; }
+.service-card:nth-child(6) { animation-delay: 0.5s; }
+
+@keyframes cardAppear {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Унікальні стилі для кожної картки */
+.service-card:nth-child(1) { border-radius: 24px 24px 24px 24px; border-top: 3px solid #3b82f6; }
+.service-card:nth-child(2) { border-radius: 24px 24px 24px 24px; border-right: 3px solid #8b5cf6; }
+.service-card:nth-child(3) { border-radius: 24px 24px 24px 24px; border-bottom: 3px solid #fbbf24; }
+.service-card:nth-child(4) { border-radius: 24px 24px 24px 24px; border-left: 3px solid #10b981; }
+.service-card:nth-child(5) { border-radius: 24px 24px 24px 24px; background: rgba(25, 25, 45, 0.8); border: 1px solid rgba(59,130,246,0.3); }
+.service-card:nth-child(6) { border-radius: 24px 24px 24px 24px; background: rgba(20, 20, 35, 0.7); box-shadow: 0 10px 30px -15px rgba(139,92,246,0.3); }
+
+/* Hover ефекти для кожної картки (різні) */
+.service-card:nth-child(1):hover { transform: translateY(-8px) scale(1.02); border-top-color: #60a5fa; box-shadow: 0 20px 30px -12px rgba(59,130,246,0.2); }
+.service-card:nth-child(2):hover { transform: translateY(-5px) translateX(3px) scale(1.01); border-right-color: #a78bfa; }
+.service-card:nth-child(3):hover { transform: translateY(-10px) scale(1.01); border-bottom-color: #fcd34d; }
+.service-card:nth-child(4):hover { transform: translateX(5px) scale(1.01); border-left-color: #34d399; }
+.service-card:nth-child(5):hover { transform: translateY(-6px) rotate(0.5deg); background: rgba(35, 35, 60, 0.9); }
+.service-card:nth-child(6):hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 25px 35px -15px rgba(139,92,246,0.4); }
+
+.service-card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, #e2e8f0, #c084fc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.service-card p {
+    color: #94a3b8;
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+.service-features {
+    list-style: none;
+    padding-left: 0;
+    margin: 20px 0;
+}
+
+.service-features li {
+    margin: 10px 0;
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.service-features li::before {
+    content: "▹";
+    color: #fbbf24;
+    font-size: 0.8rem;
+}
+
+.price {
+    font-size: 1.6rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin: 20px 0 16px;
+}
+
+/* Портфоліо та інші секції */
 .portfolio-grid, .reviews-grid, .faq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
 .portfolio-item, .review-card, .faq-item {
     background: rgba(20, 20, 35, 0.6);
@@ -271,4 +329,5 @@ footer { text-align: center; padding: 40px 0; color: #64748b; border-top: 1px so
     .hero-text h1 { font-size: 2rem; }
     .about-grid, .contacts-grid { grid-template-columns: 1fr; }
     .code-terminal { height: 300px; }
+    .services-grid { grid-template-columns: 1fr; gap: 20px; }
 }
