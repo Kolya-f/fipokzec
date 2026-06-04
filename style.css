@@ -631,7 +631,25 @@ nav {
 
 
 
-
+/* Кнопка для ручного відкриття відео */
+.watch-video-btn {
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 40px;
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 12px;
+    width: 100%;
+    text-align: center;
+}
+.watch-video-btn:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+}
 
 
 
