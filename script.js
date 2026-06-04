@@ -195,7 +195,7 @@ function renderServices() {
             // Якщо це картка з відео (Сайт-візитка)
             if (s.videoId) {
                 return `
-                    <div class="flip-card">
+                    <div class="flip-card" data-video-id="${s.videoId}">
                         <div class="flip-card-inner">
                             <div class="flip-card-front">
                                 <h3>${s.title}</h3>
@@ -205,12 +205,15 @@ function renderServices() {
                                 <a href="#contacts" class="btn">Замовити</a>
                             </div>
                             <div class="flip-card-back">
-                                <div class="video-container" data-video-id="${s.videoId}">
+                                <div class="video-container">
                                     <img src="${s.poster}" alt="video preview" style="width:100%; border-radius:16px;">
-                                    <button class="expand-btn">⛶ На весь екран</button>
+                                    <div class="play-overlay">
+                                        <div class="play-icon">▶</div>
+                                        <span>Автовідтворення за 1 секунду...</span>
+                                    </div>
                                 </div>
                                 <h4 style="margin-top: 12px;">${s.projectName}</h4>
-                                <p style="font-size:0.8rem;">Натисніть на кнопку для перегляду</p>
+                                <p style="font-size:0.8rem;">Очікуйте, відео розгорнеться автоматично</p>
                             </div>
                         </div>
                     </div>
@@ -240,39 +243,120 @@ function renderServices() {
         }).join('');
     }
 
-    // Додаємо обробники подій для відео-контейнерів
-    document.querySelectorAll('.video-container').forEach(container => {
-        const expandBtn = container.querySelector('.expand-btn');
-        const videoId = container.dataset.videoId;
+    // Додаємо обробники для автоматичного відкриття відео
+    document.querySelectorAll('.flip-card[data-video-id]').forEach(card => {
+        const videoId = card.dataset.videoId;
+        let autoPlayTimeout = null;
+        let isVideoOpened = false;
+
+        // Слідкуємо за переворотом картки
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName === 'class') {
+                    const isFlipped = card.classList.contains('hover') || card.querySelector('.flip-card-inner')?.style.transform?.includes('180deg');
+                    
+                    // Якщо картка перевернута і відео ще не відкрито
+                    if (card.matches(':hover') && !isVideoOpened) {
+                        if (!autoPlayTimeout) {
+                            autoPlayTimeout = setTimeout(() => {
+                                if (card.matches(':hover')) {
+                                    isVideoOpened = true;
+                                    openFullscreenVideo(videoId);
+                                }
+                                autoPlayTimeout = null;
+                            }, 1000);
+                        }
+                    } else {
+                        if (autoPlayTimeout) {
+                            clearTimeout(autoPlayTimeout);
+                            autoPlayTimeout = null;
+                        }
+                    }
+                }
+            });
+        });
+
+        observer.observe(card, { attributes: true });
         
-        expandBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            
-            let modal = document.querySelector('.fullscreen-modal');
-            if (!modal) {
-                modal = document.createElement('div');
-                modal.className = 'fullscreen-modal';
-                modal.innerHTML = `
-                    <span class="close-modal">&times;</span>
-                    <iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" allow="autoplay; fullscreen"></iframe>
-                `;
-                document.body.appendChild(modal);
-                
-                modal.querySelector('.close-modal').addEventListener('click', () => {
-                    modal.classList.remove('active');
-                    setTimeout(() => {
-                        modal.style.display = 'none';
-                        modal.querySelector('iframe').src = '';
-                    }, 300);
-                });
+        // Також стежимо за наведенням миші
+        card.addEventListener('mouseenter', () => {
+            if (!isVideoOpened && !autoPlayTimeout) {
+                autoPlayTimeout = setTimeout(() => {
+                    if (card.matches(':hover')) {
+                        isVideoOpened = true;
+                        openFullscreenVideo(videoId);
+                    }
+                    autoPlayTimeout = null;
+                }, 1000);
             }
-            
-            modal.style.display = 'flex';
-            setTimeout(() => {
-                modal.classList.add('active');
-            }, 10);
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            if (autoPlayTimeout) {
+                clearTimeout(autoPlayTimeout);
+                autoPlayTimeout = null;
+            }
         });
     });
+}
+
+// Функція для відкриття відео на весь екран з ефектом
+function openFullscreenVideo(videoId) {
+    // Перевіряємо, чи вже існує модальне вікно
+    let modal = document.querySelector('.fullscreen-modal');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.className = 'fullscreen-modal';
+        modal.innerHTML = `
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0" allow="autoplay; fullscreen; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+        
+        modal.querySelector('.close-modal').addEventListener('click', () => {
+            closeFullscreenVideo(modal);
+        });
+        
+        // Закриття по кліку на фон
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeFullscreenVideo(modal);
+            }
+        });
+        
+        // Закриття по Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeFullscreenVideo(modal);
+            }
+        });
+    }
+    
+    // Оновлюємо iframe при повторному відкритті
+    const iframe = modal.querySelector('iframe');
+    if (iframe) {
+        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0`;
+    }
+    
+    modal.style.display = 'flex';
+    setTimeout(() => {
+        modal.classList.add('active');
+    }, 10);
+}
+
+function closeFullscreenVideo(modal) {
+    modal.classList.remove('active');
+    setTimeout(() => {
+        modal.style.display = 'none';
+        const iframe = modal.querySelector('iframe');
+        if (iframe) {
+            iframe.src = '';
+        }
+    }, 400);
 }
 
 function renderPortfolio(filter = "all") {
