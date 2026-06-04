@@ -205,15 +205,10 @@ function renderServices() {
                                 <a href="#contacts" class="btn">Замовити</a>
                             </div>
                             <div class="flip-card-back">
-                                <div class="video-container">
-                                    <img src="${s.poster}" alt="video preview" style="width:100%; border-radius:16px;">
-                                    <div class="play-overlay">
-                                        <div class="play-icon">▶</div>
-                                        <span>Автовідтворення за 1 секунду...</span>
-                                    </div>
-                                </div>
-                                <h4 style="margin-top: 12px;">${s.projectName}</h4>
-                                <p style="font-size:0.8rem;">Очікуйте, відео розгорнеться автоматично</p>
+                                <img src="${s.poster}" alt="video preview" style="width:100%; border-radius:16px; margin-bottom:16px;">
+                                <h4>${s.projectName}</h4>
+                                <p style="font-size:0.8rem; margin-bottom:12px;">Огляд сучасного дизайну</p>
+                                <button class="watch-video-btn" data-video-id="${s.videoId}">🎬 Дивитись відео</button>
                             </div>
                         </div>
                     </div>
@@ -243,19 +238,15 @@ function renderServices() {
         }).join('');
     }
 
-    // Додаємо обробники для автоматичного відкриття відео
+    // ========== АВТОМАТИЧНЕ ВІДКРИТТЯ (як було) ==========
     document.querySelectorAll('.flip-card[data-video-id]').forEach(card => {
         const videoId = card.dataset.videoId;
         let autoPlayTimeout = null;
         let isVideoOpened = false;
 
-        // Слідкуємо за переворотом картки
         const observer = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
                 if (mutation.attributeName === 'class') {
-                    const isFlipped = card.classList.contains('hover') || card.querySelector('.flip-card-inner')?.style.transform?.includes('180deg');
-                    
-                    // Якщо картка перевернута і відео ще не відкрито
                     if (card.matches(':hover') && !isVideoOpened) {
                         if (!autoPlayTimeout) {
                             autoPlayTimeout = setTimeout(() => {
@@ -278,7 +269,6 @@ function renderServices() {
 
         observer.observe(card, { attributes: true });
         
-        // Також стежимо за наведенням миші
         card.addEventListener('mouseenter', () => {
             if (!isVideoOpened && !autoPlayTimeout) {
                 autoPlayTimeout = setTimeout(() => {
@@ -298,24 +288,19 @@ function renderServices() {
             }
         });
     });
+
+    // ========== НОВА КНОПКА ДЛЯ РУЧНОГО ВІДКРИТТЯ ==========
+    document.querySelectorAll('.watch-video-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation(); // щоб не тригерило автоматичне відкриття
+            const videoId = btn.dataset.videoId;
+            openFullscreenVideo(videoId);
+        });
+    });
 }
 
-// Функція для відкриття відео на весь екран з афігенним ефектом
+// Функція для відкриття відео на весь екран
 function openFullscreenVideo(videoId) {
-    // Показуємо сповіщення
-    let notification = document.querySelector('.video-notification');
-    if (!notification) {
-        notification = document.createElement('div');
-        notification.className = 'video-notification';
-        notification.innerHTML = '🎬 Відео готове до перегляду!';
-        document.body.appendChild(notification);
-    }
-    notification.classList.add('show');
-    setTimeout(() => {
-        notification.classList.remove('show');
-    }, 2000);
-    
-    // Створюємо модальне вікно
     let modal = document.querySelector('.fullscreen-modal');
     if (!modal) {
         modal = document.createElement('div');
@@ -324,7 +309,7 @@ function openFullscreenVideo(videoId) {
             <div class="modal-content">
                 <span class="close-modal">&times;</span>
                 <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&playsinline=1" allow="autoplay; fullscreen; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&playsinline=1" allow="autoplay; fullscreen; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
         `;
@@ -349,13 +334,24 @@ function openFullscreenVideo(videoId) {
     
     const iframe = modal.querySelector('iframe');
     if (iframe) {
-        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&playsinline=1`;
+        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&playsinline=1`;
     }
     
     modal.style.display = 'flex';
     setTimeout(() => {
         modal.classList.add('active');
     }, 10);
+}
+
+function closeFullscreenVideo(modal) {
+    modal.classList.remove('active');
+    setTimeout(() => {
+        modal.style.display = 'none';
+        const iframe = modal.querySelector('iframe');
+        if (iframe) {
+            iframe.src = '';
+        }
+    }, 400);
 }
 
 function closeFullscreenVideo(modal) {
