@@ -104,16 +104,17 @@ function typeNextCharacter() {
     }
 }
 
-// ОНОВЛЕНІ ПОСЛУГИ З ЗОБРАЖЕННЯМИ НА ЗВОРОТІ
+// ОНОВЛЕНІ ПОСЛУГИ З ВІДЕО НА ЗВОРОТІ ПЕРШОЇ КАРТКИ
 const services = [
     { 
         title: "Сайт-візитка", 
         description: "3-5 сторінок, форма зв'язку, адаптивний дизайн. Ідеально для малого бізнесу.", 
         features: ["Адаптивний дизайн", "Форма зв'язку", "SEO-оптимізація", "Карта Google"], 
         price: "5 000 грн",
-        img: "https://placehold.co/600x400/1e3a8a/ffffff?text=Сайт-візитка+Стоматологія",
-        demoLink: "#",
-        projectName: "SmileCare Dental"
+        videoId: "GdPDcg2AvQc",
+        poster: "https://img.youtube.com/vi/GdPDcg2AvQc/hqdefault.jpg",
+        demoLink: "https://youtu.be/GdPDcg2AvQc",
+        projectName: "Огляд сучасного сайту-візитки"
     },
     { 
         title: "Лендінг", 
@@ -189,27 +190,89 @@ const socialLinks = [
 
 function renderServices() {
     const container = document.getElementById('servicesGrid');
-    if (container) container.innerHTML = services.map(s => `
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <h3>${s.title}</h3>
-                    <p>${s.description}</p>
-                    <ul class="service-features">
-                        ${s.features.map(f => `<li>${f}</li>`).join('')}
-                    </ul>
-                    <div class="price">${s.price}</div>
-                    <a href="#contacts" class="btn">Замовити</a>
-                </div>
-                <div class="flip-card-back">
-                    <img src="${s.img}" alt="${s.title}">
-                    <h4>${s.projectName}</h4>
-                    <p>Реальний проєкт • ${s.title}</p>
-                    <a href="${s.demoLink}" class="demo-link" target="_blank">Переглянути демо →</a>
-                </div>
-            </div>
-        </div>
-    `).join('');
+    if (container) {
+        container.innerHTML = services.map(s => {
+            // Якщо це картка з відео (Сайт-візитка)
+            if (s.videoId) {
+                return `
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <h3>${s.title}</h3>
+                                <p>${s.description}</p>
+                                <ul class="service-features">${s.features.map(f => `<li>${f}</li>`).join('')}</ul>
+                                <div class="price">${s.price}</div>
+                                <a href="#contacts" class="btn">Замовити</a>
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="video-container" data-video-id="${s.videoId}">
+                                    <img src="${s.poster}" alt="video preview" style="width:100%; border-radius:16px;">
+                                    <button class="expand-btn">⛶ На весь екран</button>
+                                </div>
+                                <h4 style="margin-top: 12px;">${s.projectName}</h4>
+                                <p style="font-size:0.8rem;">Натисніть на кнопку для перегляду</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                // Звичайна картка без відео
+                return `
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <h3>${s.title}</h3>
+                                <p>${s.description}</p>
+                                <ul class="service-features">${s.features.map(f => `<li>${f}</li>`).join('')}</ul>
+                                <div class="price">${s.price}</div>
+                                <a href="#contacts" class="btn">Замовити</a>
+                            </div>
+                            <div class="flip-card-back">
+                                <img src="${s.img}" alt="${s.title}" style="width:100%; border-radius:16px; margin-bottom:16px;">
+                                <h4>${s.projectName}</h4>
+                                <p>Реальний проєкт • ${s.title}</p>
+                                <a href="${s.demoLink}" class="demo-link" target="_blank">Переглянути демо →</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+        }).join('');
+    }
+
+    // Додаємо обробники подій для відео-контейнерів
+    document.querySelectorAll('.video-container').forEach(container => {
+        const expandBtn = container.querySelector('.expand-btn');
+        const videoId = container.dataset.videoId;
+        
+        expandBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            
+            let modal = document.querySelector('.fullscreen-modal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.className = 'fullscreen-modal';
+                modal.innerHTML = `
+                    <span class="close-modal">&times;</span>
+                    <iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" allow="autoplay; fullscreen"></iframe>
+                `;
+                document.body.appendChild(modal);
+                
+                modal.querySelector('.close-modal').addEventListener('click', () => {
+                    modal.classList.remove('active');
+                    setTimeout(() => {
+                        modal.style.display = 'none';
+                        modal.querySelector('iframe').src = '';
+                    }, 300);
+                });
+            }
+            
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                modal.classList.add('active');
+            }, 10);
+        });
+    });
 }
 
 function renderPortfolio(filter = "all") {
@@ -221,8 +284,8 @@ function renderPortfolio(filter = "all") {
             <div class="portfolio-image" style="height:160px;background:${i.imageBg};display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:bold;color:white">${i.title.charAt(0)}</div>
             <div class="portfolio-content">
                 <h3>${i.title}</h3>
-                <div style="display:flex;gap:8px;margin:12px 0">${i.tech.map(t => `<span style="background:rgba(251,191,36,0.2);padding:4px 12px;border-radius:40px;font-size:0.7rem">${t}</span>`).join('')}</div>
-                <a href="${i.link}" style="color:#fbbf24">Переглянути →</a>
+                <div class="portfolio-tech">${i.tech.map(t => `<span>${t}</span>`).join('')}</div>
+                <a href="${i.link}" class="portfolio-link">Переглянути →</a>
             </div>
         </div>
     `).join('');
@@ -230,12 +293,12 @@ function renderPortfolio(filter = "all") {
 
 function renderReviews() {
     const container = document.getElementById('reviewsGrid');
-    if (container) container.innerHTML = reviews.map(r => `<div class="review-card"><div class="review-text">“${r.text}”</div><div class="review-author" style="color:#fbbf24;margin-top:12px">${r.author}</div><div class="review-position" style="color:#94a3b8">${r.position}</div></div>`).join('');
+    if (container) container.innerHTML = reviews.map(r => `<div class="review-card"><div class="review-text">“${r.text}”</div><div class="review-author">${r.author}</div><div class="review-position">${r.position}</div></div>`).join('');
 }
 
 function renderFAQ() {
     const container = document.getElementById('faqGrid');
-    if (container) container.innerHTML = faqItems.map(f => `<div class="faq-item"><div class="faq-question" style="color:#fbbf24;font-weight:700;margin-bottom:8px">❓ ${f.question}</div><div class="faq-answer" style="color:#94a3b8">${f.answer}</div></div>`).join('');
+    if (container) container.innerHTML = faqItems.map(f => `<div class="faq-item"><div class="faq-question">❓ ${f.question}</div><div class="faq-answer">${f.answer}</div></div>`).join('');
 }
 
 function renderSocialLinks() {
