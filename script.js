@@ -1,4 +1,4 @@
-// Бібліотека кодів для терміналу (та сама)
+// Бібліотека кодів для терміналу
 const codeSamples = [
     {
         title: "developer@fipokzec:~/modern-website",
