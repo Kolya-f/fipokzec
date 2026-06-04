@@ -104,62 +104,73 @@ function typeNextCharacter() {
     }
 }
 
-// ОНОВЛЕНІ ПОСЛУГИ З ВІДЕО НА ЗВОРОТІ ПЕРШОЇ КАРТКИ
+// ========== ОНОВЛЕНІ ПОСЛУГИ З ВІДЕО ТА УНІКАЛЬНИМИ ЕФЕКТАМИ ==========
 const services = [
     { 
         title: "Сайт-візитка", 
         description: "3-5 сторінок, форма зв'язку, адаптивний дизайн. Ідеально для малого бізнесу.", 
         features: ["Адаптивний дизайн", "Форма зв'язку", "SEO-оптимізація", "Карта Google"], 
         price: "5 000 грн",
-        videoId: "GdPDcg2AvQc",
-        poster: "https://img.youtube.com/vi/GdPDcg2AvQc/hqdefault.jpg",
-        demoLink: "https://youtu.be/GdPDcg2AvQc",
-        projectName: "Огляд сучасного сайту-візитки"
+        videoId: "MuHXReJ6Ics",
+        poster: "https://img.youtube.com/vi/MuHXReJ6Ics/hqdefault.jpg",
+        demoLink: "https://youtu.be/MuHXReJ6Ics",
+        projectName: "Сучасний сайт-візитка",
+        effect: "slide-from-right"
     },
     { 
         title: "Лендінг", 
         description: "Односторінковий сайт для запуску продукту або акції. Висока конверсія.", 
         features: ["Анімації", "Форма захоплення", "Інтеграція з CRM", "Аналітика"], 
         price: "6 000 грн",
-        img: "https://placehold.co/600x400/831843/ffffff?text=Лендінг+Beauty-бар",
-        demoLink: "#",
-        projectName: "LAVENDER Beauty"
+        videoId: "T9JMvOT_Ktc",
+        poster: "https://img.youtube.com/vi/T9JMvOT_Ktc/hqdefault.jpg",
+        demoLink: "https://youtu.be/T9JMvOT_Ktc",
+        projectName: "Продаючий лендінг",
+        effect: "scale-up"
     },
     { 
         title: "Інтернет-магазин", 
         description: "Каталог, кошик, оплата. Повноцінна платформа для продажів.", 
         features: ["Каталог товарів", "Кошик та оплата", "Адмін-панель", "Звіти"], 
         price: "12 000 грн",
-        img: "https://placehold.co/600x400/065f46/ffffff?text=Магазин+квітів",
-        demoLink: "#",
-        projectName: "FlowerShop"
+        videoId: "dxgCHMGTpts",
+        poster: "https://img.youtube.com/vi/dxgCHMGTpts/hqdefault.jpg",
+        demoLink: "https://youtu.be/dxgCHMGTpts",
+        projectName: "Повноцінний магазин",
+        effect: "bounce"
     },
     { 
         title: "Підтримка", 
         description: "Щомісячне оновлення, бекапи, технічний супровід вашого сайту.", 
         features: ["Щомісячні оновлення", "Резервні копії", "Техпідтримка 24/7", "Безпека"], 
         price: "1 000 грн/міс",
-        img: "https://placehold.co/600x400/92400e/ffffff?text=Техпідтримка+24/7",
-        demoLink: "#",
-        projectName: "IT Support"
+        videoId: "hs1JR-CL7og",
+        poster: "https://img.youtube.com/vi/hs1JR-CL7og/hqdefault.jpg",
+        demoLink: "https://youtu.be/hs1JR-CL7og",
+        projectName: "Техпідтримка 24/7",
+        effect: "wave"
     },
     { 
         title: "Доробка сайту", 
         description: "Додавання нових функцій, сторінок, модулів до готового сайту.", 
         features: ["Додавання сторінок", "Нові функції", "Інтеграції", "Оптимізація"], 
         price: "2 000 грн",
-        img: "https://placehold.co/600x400/1e1e3a/ffffff?text=Доробка+сайту",
-        demoLink: "#",
-        projectName: "Site Upgrade"
+        videoId: "-URdmYBsD9A",
+        poster: "https://img.youtube.com/vi/-URdmYBsD9A/hqdefault.jpg",
+        demoLink: "https://youtu.be/-URdmYBsD9A",
+        projectName: "Модернізація сайту",
+        effect: "slide-from-left"
     },
     { 
         title: "Оновлення дизайну", 
         description: "Рестайлінг, сучасний вигляд, покращення UX/UI вашого сайту.", 
         features: ["Новий дизайн", "Адаптація", "Покращення навігації", "Сучасні анімації"], 
         price: "2 000 грн",
-        img: "https://placehold.co/600x400/4c1d95/ffffff?text=Новий+дизайн",
-        demoLink: "#",
-        projectName: "Redesign Project"
+        videoId: "fVffOI0uHLQ",
+        poster: "https://img.youtube.com/vi/fVffOI0uHLQ/hqdefault.jpg",
+        demoLink: "https://youtu.be/fVffOI0uHLQ",
+        projectName: "Сучасний редизайн",
+        effect: "drop"
     }
 ];
 
@@ -191,82 +202,55 @@ const socialLinks = [
 function renderServices() {
     const container = document.getElementById('servicesGrid');
     if (container) {
-        container.innerHTML = services.map(s => {
-            // Якщо це картка з відео (Сайт-візитка)
-            if (s.videoId) {
-                return `
-                    <div class="flip-card" data-video-id="${s.videoId}">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <h3>${s.title}</h3>
-                                <p>${s.description}</p>
-                                <ul class="service-features">${s.features.map(f => `<li>${f}</li>`).join('')}</ul>
-                                <div class="price">${s.price}</div>
-                                <a href="#contacts" class="btn">Замовити</a>
-                            </div>
-                            <div class="flip-card-back">
-                                <img src="${s.poster}" alt="video preview" style="width:100%; border-radius:16px; margin-bottom:16px;">
-                                <h4>${s.projectName}</h4>
-                                <p style="font-size:0.8rem; margin-bottom:12px;">Огляд сучасного дизайну</p>
-                                <button class="watch-video-btn" data-video-id="${s.videoId}">🎬 Дивитись відео</button>
-                            </div>
+        container.innerHTML = services.map((s, index) => {
+            // Унікальний ефект для кожної картки
+            const effectClass = `flip-card-effect-${index + 1} ${s.effect}`;
+            return `
+                <div class="flip-card ${effectClass}" data-video-id="${s.videoId}" data-effect="${s.effect}">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3>${s.title}</h3>
+                            <p>${s.description}</p>
+                            <ul class="service-features">${s.features.map(f => `<li>${f}</li>`).join('')}</ul>
+                            <div class="price">${s.price}</div>
+                            <a href="#contacts" class="btn">Замовити</a>
+                        </div>
+                        <div class="flip-card-back">
+                            <img src="${s.poster}" alt="${s.title}" style="width:100%; border-radius:16px; margin-bottom:16px;">
+                            <h4>${s.projectName}</h4>
+                            <p style="font-size:0.8rem; margin-bottom:12px;">🎬 Відео-огляд проєкту</p>
+                            <button class="watch-video-btn" data-video-id="${s.videoId}">🎬 Дивитись відео</button>
                         </div>
                     </div>
-                `;
-            } else {
-                // Звичайна картка без відео
-                return `
-                    <div class="flip-card">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <h3>${s.title}</h3>
-                                <p>${s.description}</p>
-                                <ul class="service-features">${s.features.map(f => `<li>${f}</li>`).join('')}</ul>
-                                <div class="price">${s.price}</div>
-                                <a href="#contacts" class="btn">Замовити</a>
-                            </div>
-                            <div class="flip-card-back">
-                                <img src="${s.img}" alt="${s.title}" style="width:100%; border-radius:16px; margin-bottom:16px;">
-                                <h4>${s.projectName}</h4>
-                                <p>Реальний проєкт • ${s.title}</p>
-                                <a href="${s.demoLink}" class="demo-link" target="_blank">Переглянути демо →</a>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }
+                </div>
+            `;
         }).join('');
     }
 
-    // ========== АВТОМАТИЧНЕ ВІДКРИТТЯ (як було) ==========
+    // Автоматичне відкриття при наведенні (як було)
     document.querySelectorAll('.flip-card[data-video-id]').forEach(card => {
         const videoId = card.dataset.videoId;
         let autoPlayTimeout = null;
         let isVideoOpened = false;
 
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                if (mutation.attributeName === 'class') {
-                    if (card.matches(':hover') && !isVideoOpened) {
-                        if (!autoPlayTimeout) {
-                            autoPlayTimeout = setTimeout(() => {
-                                if (card.matches(':hover')) {
-                                    isVideoOpened = true;
-                                    openFullscreenVideo(videoId);
-                                }
-                                autoPlayTimeout = null;
-                            }, 1000);
+        const observer = new MutationObserver(() => {
+            if (card.matches(':hover') && !isVideoOpened) {
+                if (!autoPlayTimeout) {
+                    autoPlayTimeout = setTimeout(() => {
+                        if (card.matches(':hover')) {
+                            isVideoOpened = true;
+                            openFullscreenVideo(videoId);
                         }
-                    } else {
-                        if (autoPlayTimeout) {
-                            clearTimeout(autoPlayTimeout);
-                            autoPlayTimeout = null;
-                        }
-                    }
+                        autoPlayTimeout = null;
+                    }, 1000);
                 }
-            });
+            } else {
+                if (autoPlayTimeout) {
+                    clearTimeout(autoPlayTimeout);
+                    autoPlayTimeout = null;
+                }
+            }
         });
-
         observer.observe(card, { attributes: true });
         
         card.addEventListener('mouseenter', () => {
@@ -289,17 +273,16 @@ function renderServices() {
         });
     });
 
-    // ========== НОВА КНОПКА ДЛЯ РУЧНОГО ВІДКРИТТЯ ==========
+    // Кнопки ручного відкриття
     document.querySelectorAll('.watch-video-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
-            e.stopPropagation(); // щоб не тригерило автоматичне відкриття
+            e.stopPropagation();
             const videoId = btn.dataset.videoId;
             openFullscreenVideo(videoId);
         });
     });
 }
 
-// Функція для відкриття відео на весь екран
 function openFullscreenVideo(videoId) {
     let modal = document.querySelector('.fullscreen-modal');
     if (!modal) {
@@ -341,28 +324,6 @@ function openFullscreenVideo(videoId) {
     setTimeout(() => {
         modal.classList.add('active');
     }, 10);
-}
-
-function closeFullscreenVideo(modal) {
-    modal.classList.remove('active');
-    setTimeout(() => {
-        modal.style.display = 'none';
-        const iframe = modal.querySelector('iframe');
-        if (iframe) {
-            iframe.src = '';
-        }
-    }, 400);
-}
-
-function closeFullscreenVideo(modal) {
-    modal.classList.remove('active');
-    setTimeout(() => {
-        modal.style.display = 'none';
-        const iframe = modal.querySelector('iframe');
-        if (iframe) {
-            iframe.src = '';
-        }
-    }, 500);
 }
 
 function closeFullscreenVideo(modal) {
@@ -483,6 +444,83 @@ function animateMenu() {
 const styleRainbow = document.createElement('style');
 styleRainbow.textContent = `@keyframes rainbowMove { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }`;
 document.head.appendChild(styleRainbow);
+
+// ========== ДОДАЄМО РІЗНІ ЕФЕКТИ ЗАВАНТАЖЕННЯ ДЛЯ КАРТОК ==========
+const effectStyles = document.createElement('style');
+effectStyles.textContent = `
+    /* Ефект 1: Виліт справа */
+    .flip-card.slide-from-right {
+        animation: slideFromRight 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+    }
+    @keyframes slideFromRight {
+        0% { opacity: 0; transform: translateX(100px) rotate(5deg); }
+        100% { opacity: 1; transform: translateX(0) rotate(0deg); }
+    }
+    
+    /* Ефект 2: Збільшення */
+    .flip-card.scale-up {
+        animation: scaleUp 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+    }
+    @keyframes scaleUp {
+        0% { opacity: 0; transform: scale(0.3) rotate(-5deg); }
+        80% { transform: scale(1.02); }
+        100% { opacity: 1; transform: scale(1) rotate(0deg); }
+    }
+    
+    /* Ефект 3: Підстрибування */
+    .flip-card.bounce {
+        animation: bounce 0.8s ease forwards;
+    }
+    @keyframes bounce {
+        0% { opacity: 0; transform: translateY(100px) rotate(10deg); }
+        60% { transform: translateY(-15px) rotate(-2deg); }
+        80% { transform: translateY(5px) rotate(1deg); }
+        100% { opacity: 1; transform: translateY(0) rotate(0deg); }
+    }
+    
+    /* Ефект 4: Хвиля */
+    .flip-card.wave {
+        animation: wave 0.7s ease forwards;
+    }
+    @keyframes wave {
+        0% { opacity: 0; transform: translateX(-50px) rotate(-10deg); }
+        50% { transform: translateX(20px) rotate(5deg); }
+        100% { opacity: 1; transform: translateX(0) rotate(0deg); }
+    }
+    
+    /* Ефект 5: Виліт зліва */
+    .flip-card.slide-from-left {
+        animation: slideFromLeft 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+    }
+    @keyframes slideFromLeft {
+        0% { opacity: 0; transform: translateX(-100px) rotate(-5deg); }
+        100% { opacity: 1; transform: translateX(0) rotate(0deg); }
+    }
+    
+    /* Ефект 6: Падіння */
+    .flip-card.drop {
+        animation: drop 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+    }
+    @keyframes drop {
+        0% { opacity: 0; transform: translateY(-80px) rotate(-8deg); }
+        70% { transform: translateY(10px) rotate(3deg); }
+        100% { opacity: 1; transform: translateY(0) rotate(0deg); }
+    }
+    
+    /* Затримки для кожної картки */
+    .flip-card:nth-child(1) { animation-delay: 0s; }
+    .flip-card:nth-child(2) { animation-delay: 0.1s; }
+    .flip-card:nth-child(3) { animation-delay: 0.2s; }
+    .flip-card:nth-child(4) { animation-delay: 0.3s; }
+    .flip-card:nth-child(5) { animation-delay: 0.4s; }
+    .flip-card:nth-child(6) { animation-delay: 0.5s; }
+    
+    /* Приховуємо картки до появи анімації */
+    .flip-card {
+        opacity: 0;
+    }
+`;
+document.head.appendChild(effectStyles);
 
 document.addEventListener('DOMContentLoaded', () => {
     renderServices(); 
