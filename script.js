@@ -300,9 +300,22 @@ function renderServices() {
     });
 }
 
-// Функція для відкриття відео на весь екран з ефектом
+// Функція для відкриття відео на весь екран з афігенним ефектом
 function openFullscreenVideo(videoId) {
-    // Перевіряємо, чи вже існує модальне вікно
+    // Показуємо сповіщення
+    let notification = document.querySelector('.video-notification');
+    if (!notification) {
+        notification = document.createElement('div');
+        notification.className = 'video-notification';
+        notification.innerHTML = '🎬 Відео готове до перегляду!';
+        document.body.appendChild(notification);
+    }
+    notification.classList.add('show');
+    setTimeout(() => {
+        notification.classList.remove('show');
+    }, 2000);
+    
+    // Створюємо модальне вікно
     let modal = document.querySelector('.fullscreen-modal');
     if (!modal) {
         modal = document.createElement('div');
@@ -311,7 +324,7 @@ function openFullscreenVideo(videoId) {
             <div class="modal-content">
                 <span class="close-modal">&times;</span>
                 <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0" allow="autoplay; fullscreen; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&playsinline=1" allow="autoplay; fullscreen; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
         `;
@@ -321,14 +334,12 @@ function openFullscreenVideo(videoId) {
             closeFullscreenVideo(modal);
         });
         
-        // Закриття по кліку на фон
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
                 closeFullscreenVideo(modal);
             }
         });
         
-        // Закриття по Escape
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && modal.classList.contains('active')) {
                 closeFullscreenVideo(modal);
@@ -336,16 +347,26 @@ function openFullscreenVideo(videoId) {
         });
     }
     
-    // Оновлюємо iframe при повторному відкритті
     const iframe = modal.querySelector('iframe');
     if (iframe) {
-        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0`;
+        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&playsinline=1`;
     }
     
     modal.style.display = 'flex';
     setTimeout(() => {
         modal.classList.add('active');
     }, 10);
+}
+
+function closeFullscreenVideo(modal) {
+    modal.classList.remove('active');
+    setTimeout(() => {
+        modal.style.display = 'none';
+        const iframe = modal.querySelector('iframe');
+        if (iframe) {
+            iframe.src = '';
+        }
+    }, 500);
 }
 
 function closeFullscreenVideo(modal) {
