@@ -606,6 +606,38 @@ nav {
 .faq-question { color: #fbbf24; font-weight: 700; margin-bottom: 12px; }
 .faq-answer { color: #94a3b8; }
 
+
+
+
+/* Кнопка для ручного відкриття відео */
+.watch-video-btn {
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    border: none;
+    padding: 10px 24px;
+    border-radius: 40px;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 8px;
+    width: 100%;
+    text-align: center;
+}
+.watch-video-btn:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+}
+
+
+
+
+
+
+
+
+
+
 /* Контакти */
 .contacts-grid {
     display: grid;
