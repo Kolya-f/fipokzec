@@ -1,4 +1,213 @@
-/* 3D FLIP CARD СТИЛІ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: #0a0a0a;
+    color: #ffffff;
+    line-height: 1.5;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 50%, rgba(45, 45, 80, 0.4) 0%, rgba(10, 10, 20, 0.9) 100%);
+    z-index: -2;
+}
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(125deg, rgba(20, 20, 50, 0.6) 0%, rgba(60, 40, 80, 0.5) 25%, rgba(20, 30, 60, 0.7) 50%, rgba(40, 25, 70, 0.5) 75%, rgba(20, 20, 50, 0.6) 100%);
+    background-size: 200% 200%;
+    animation: gradientFlow 12s ease infinite;
+    z-index: -1;
+}
+@keyframes gradientFlow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* Header */
+header {
+    background: rgba(10, 10, 15, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000);
+    background-size: 400% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: rainbowLogo 3s linear infinite;
+}
+@keyframes rainbowLogo {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+.logo-accent {
+    background: linear-gradient(135deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000);
+    background-size: 400% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: rainbowLogo 3s linear infinite;
+}
+.nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+}
+.nav-links a {
+    text-decoration: none;
+    color: #e2e8f0;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+.nav-links a.active {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.nav-links a:hover { color: #fbbf24; }
+.mobile-menu-btn { display: none; font-size: 1.8rem; cursor: pointer; }
+
+/* Hero */
+.hero { padding: 80px 0 60px; }
+.hero-grid { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 40px; }
+.hero-text { flex: 1; }
+.hero-badge {
+    display: inline-block;
+    background: rgba(139, 92, 246, 0.2);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    padding: 6px 14px;
+    border-radius: 40px;
+    font-size: 0.8rem;
+    color: #c084fc;
+    margin-bottom: 20px;
+}
+.hero-text h1 { font-size: 3.2rem; font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
+.highlight { background: linear-gradient(135deg, #a855f7, #3b82f6); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero-text p { font-size: 1.1rem; color: #94a3b8; margin-bottom: 32px; max-width: 550px; }
+.hero-stats { display: flex; gap: 32px; margin-bottom: 32px; }
+.stat { text-align: center; }
+.stat-number { font-size: 1.8rem; font-weight: 700; color: #a855f7; display: block; }
+.stat-label { font-size: 0.8rem; color: #94a3b8; }
+.hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+.hero-image { flex: 1; }
+
+/* Термінал */
+.code-terminal {
+    background: rgba(10, 10, 20, 0.95);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    overflow: hidden;
+    font-family: 'Courier New', 'Fira Code', monospace;
+    font-size: 0.75rem;
+    box-shadow: 0 20px 35px -10px rgba(0,0,0,0.4);
+    height: 360px;
+    display: flex;
+    flex-direction: column;
+}
+.terminal-header {
+    background: rgba(30, 30, 45, 0.9);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+.terminal-dot { width: 12px; height: 12px; border-radius: 50%; }
+.red { background: #ff5f56; }
+.yellow { background: #ffbd2e; }
+.green { background: #27c93f; }
+.terminal-title { color: #94a3b8; font-size: 0.7rem; margin-left: 8px; }
+.terminal-body {
+    padding: 16px;
+    color: #e2e8f0;
+    overflow-y: auto;
+    flex: 1;
+    font-family: 'Courier New', 'Fira Code', monospace;
+    white-space: pre-wrap;
+    word-break: break-word;
+    cursor: text;
+}
+.terminal-body::-webkit-scrollbar { width: 6px; }
+.terminal-body::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 3px; }
+.terminal-body::-webkit-scrollbar-thumb { background: rgba(139, 92, 246, 0.5); border-radius: 3px; }
+#typingArea { font-family: 'Courier New', monospace; white-space: pre-wrap; word-break: break-word; }
+.cursor-blink {
+    display: inline-block;
+    animation: blink 0.8s step-end infinite;
+    color: #fbbf24;
+    font-weight: bold;
+}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+/* Кнопки */
+.btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    color: white;
+    padding: 12px 28px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.2s;
+    border: none;
+    cursor: pointer;
+}
+.btn:hover { transform: scale(1.02); box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4); }
+.btn-outline { background: transparent; border: 1px solid #8b5cf6; color: #c084fc; }
+
+/* Секція заголовків */
+.section-header { text-align: center; margin-bottom: 48px; }
+.section-tag {
+    display: inline-block;
+    background: rgba(139, 92, 246, 0.15);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    padding: 4px 12px;
+    border-radius: 40px;
+    font-size: 0.8rem;
+    color: #c084fc;
+    margin-bottom: 16px;
+}
+.section-title { 
+    font-size: 2.2rem; 
+    font-weight: 700; 
+    background: linear-gradient(135deg, #e2e8f0, #c084fc); 
+    -webkit-background-clip: text; 
+    background-clip: text; 
+    color: transparent; 
+}
+.section-desc { color: #94a3b8; max-width: 600px; margin: 0 auto; }
+
+.services-section, .portfolio-section, .about-section, .reviews-section, .faq-section, .contacts-section { padding: 80px 0; }
+
+/* 3D FLIP CARD СТИЛІ ДЛЯ ПОСЛУГ */
 .services-grid {
     display: flex;
     flex-direction: column;
@@ -6,8 +215,6 @@
     margin-top: 40px;
     position: relative;
 }
-
-/* Контейнер для 3D перевороту */
 .flip-card {
     background: transparent;
     width: 70%;
@@ -15,16 +222,12 @@
     perspective: 1500px;
     cursor: pointer;
 }
-
-/* Різна ширина для кожної картки */
 .flip-card:nth-child(1) { width: 70%; margin-left: 0; margin-right: auto; }
 .flip-card:nth-child(2) { width: 65%; margin-left: auto; margin-right: 0; }
 .flip-card:nth-child(3) { width: 70%; margin-left: 15%; margin-right: auto; }
 .flip-card:nth-child(4) { width: 60%; margin-left: auto; margin-right: 10%; }
 .flip-card:nth-child(5) { width: 75%; margin-left: 5%; margin-right: auto; }
 .flip-card:nth-child(6) { width: 68%; margin-left: auto; margin-right: 5%; }
-
-/* Внутрішній контейнер для 3D */
 .flip-card-inner {
     position: relative;
     width: 100%;
@@ -32,13 +235,7 @@
     transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     transform-style: preserve-3d;
 }
-
-/* Переворот при наведенні */
-.flip-card:hover .flip-card-inner {
-    transform: rotateY(180deg);
-}
-
-/* Загальні стилі для передньої та задньої сторони */
+.flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
 .flip-card-front, .flip-card-back {
     position: relative;
     width: 100%;
@@ -49,13 +246,7 @@
     border: 1px solid rgba(255, 255, 255, 0.08);
     padding: 28px 24px;
 }
-
-/* Передня сторона */
-.flip-card-front {
-    transform: rotateY(0deg);
-}
-
-/* Задня сторона - перевернута */
+.flip-card-front { transform: rotateY(0deg); }
 .flip-card-back {
     position: absolute;
     top: 0;
@@ -68,8 +259,6 @@
     padding: 20px;
     background: linear-gradient(135deg, #1a1a2e, #16213e);
 }
-
-/* Зображення на задній стороні */
 .flip-card-back img {
     width: 100%;
     max-height: 180px;
@@ -78,19 +267,8 @@
     margin-bottom: 16px;
     border: 1px solid rgba(255,255,255,0.1);
 }
-
-.flip-card-back h4 {
-    font-size: 1.2rem;
-    color: #fbbf24;
-    margin-bottom: 8px;
-}
-
-.flip-card-back p {
-    font-size: 0.85rem;
-    color: #94a3b8;
-    text-align: center;
-}
-
+.flip-card-back h4 { font-size: 1.2rem; color: #fbbf24; margin-bottom: 8px; }
+.flip-card-back p { font-size: 0.85rem; color: #94a3b8; text-align: center; }
 .flip-card-back .demo-link {
     display: inline-block;
     margin-top: 12px;
@@ -102,50 +280,32 @@
     font-size: 0.8rem;
     transition: 0.2s;
 }
-
-.flip-card-back .demo-link:hover {
-    transform: scale(1.05);
-}
-
-/* Різні рамки для передньої сторони кожної картки */
+.flip-card-back .demo-link:hover { transform: scale(1.05); }
 .flip-card:nth-child(1) .flip-card-front { border-left: 4px solid #3b82f6; }
 .flip-card:nth-child(2) .flip-card-front { border-right: 4px solid #8b5cf6; }
 .flip-card:nth-child(3) .flip-card-front { border-top: 4px solid #fbbf24; }
 .flip-card:nth-child(4) .flip-card-front { border-bottom: 4px solid #10b981; }
 .flip-card:nth-child(5) .flip-card-front { border: 1px solid rgba(59,130,246,0.3); background: rgba(25, 25, 45, 0.8); }
 .flip-card:nth-child(6) .flip-card-front { box-shadow: 0 10px 30px -15px rgba(139,92,246,0.3); }
-
-/* Анімація появи */
 .flip-card {
     opacity: 0;
     transform: translateY(30px);
     animation: cardAppear 0.6s ease forwards;
 }
-@keyframes cardAppear {
-    to { opacity: 1; transform: translateY(0); }
-}
+@keyframes cardAppear { to { opacity: 1; transform: translateY(0); } }
 .flip-card:nth-child(1) { animation-delay: 0s; }
 .flip-card:nth-child(2) { animation-delay: 0.15s; }
 .flip-card:nth-child(3) { animation-delay: 0.3s; }
 .flip-card:nth-child(4) { animation-delay: 0.45s; }
 .flip-card:nth-child(5) { animation-delay: 0.6s; }
 .flip-card:nth-child(6) { animation-delay: 0.75s; }
-
-/* Hover додаткові ефекти */
 .flip-card:nth-child(1):hover .flip-card-front { border-left-color: #60a5fa; }
 .flip-card:nth-child(2):hover .flip-card-front { border-right-color: #a78bfa; }
 .flip-card:nth-child(3):hover .flip-card-front { border-top-color: #fcd34d; }
 .flip-card:nth-child(4):hover .flip-card-front { border-bottom-color: #34d399; }
-
-/* Адаптація */
 @media (max-width: 768px) {
-    .flip-card {
-        width: 90% !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-    }
+    .flip-card { width: 90% !important; margin-left: auto !important; margin-right: auto !important; }
 }
-
 .flip-card-front h3 {
     font-size: 1.5rem;
     font-weight: 700;
@@ -155,34 +315,10 @@
     background-clip: text;
     color: transparent;
 }
-
-.flip-card-front p {
-    color: #94a3b8;
-    margin-bottom: 16px;
-    line-height: 1.5;
-}
-
-.service-features {
-    list-style: none;
-    padding-left: 0;
-    margin: 20px 0;
-}
-
-.service-features li {
-    margin: 10px 0;
-    color: #cbd5e1;
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.service-features li::before {
-    content: "▹";
-    color: #fbbf24;
-    font-size: 0.8rem;
-}
-
+.flip-card-front p { color: #94a3b8; margin-bottom: 16px; line-height: 1.5; }
+.service-features { list-style: none; padding-left: 0; margin: 20px 0; }
+.service-features li { margin: 10px 0; color: #cbd5e1; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
+.service-features li::before { content: "▹"; color: #fbbf24; font-size: 0.8rem; }
 .price {
     font-size: 1.6rem;
     font-weight: 700;
@@ -191,4 +327,265 @@
     background-clip: text;
     color: transparent;
     margin: 20px 0 16px;
+}
+
+/* ========== ПОРТФОЛІО ========== */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+.portfolio-item {
+    background: rgba(20, 20, 35, 0.6);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.portfolio-item:hover {
+    transform: translateY(-8px);
+    border-color: rgba(251, 191, 36, 0.3);
+    box-shadow: 0 20px 30px -12px rgba(0,0,0,0.3);
+}
+.portfolio-image {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+}
+.portfolio-content { padding: 24px; }
+.portfolio-content h3 { 
+    font-size: 1.3rem; 
+    margin-bottom: 8px; 
+    color: #e2e8f0;
+}
+.portfolio-content p { color: #94a3b8; margin-bottom: 16px; font-size: 0.9rem; }
+.portfolio-tech { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+.portfolio-tech span {
+    background: rgba(139, 92, 246, 0.2);
+    padding: 4px 12px;
+    border-radius: 40px;
+    font-size: 0.7rem;
+    color: #c084fc;
+}
+.portfolio-link {
+    color: #fbbf24;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.2s;
+}
+.portfolio-link:hover { color: #f59e0b; }
+.portfolio-filter {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+}
+.filter-btn {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 10px 24px;
+    border-radius: 40px;
+    color: #e2e8f0;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+}
+.filter-btn.active, .filter-btn:hover {
+    background: #fbbf24;
+    border-color: #fbbf24;
+    color: #0a0a0a;
+}
+
+/* ========== ПРО МЕНЕ ========== */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+.about-content p {
+    color: #94a3b8;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+.skills { margin: 30px 0; }
+.skill { margin-bottom: 20px; }
+.skill span { display: block; margin-bottom: 8px; color: #e2e8f0; }
+.skill-bar {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    height: 8px;
+    overflow: hidden;
+}
+.skill-bar div {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    height: 100%;
+    border-radius: 20px;
+}
+.about-placeholder {
+    background: rgba(20, 20, 35, 0.6);
+    backdrop-filter: blur(8px);
+    border-radius: 24px;
+    border: 1px solid rgba(255,255,255,0.08);
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    font-size: 4rem;
+}
+.about-placeholder p { color: #94a3b8; font-size: 1rem; }
+
+/* ========== ВІДГУКИ ========== */
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+.review-card {
+    background: rgba(20, 20, 35, 0.6);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 28px;
+    transition: all 0.3s ease;
+}
+.review-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(251, 191, 36, 0.3);
+}
+.review-text {
+    font-style: italic;
+    color: #e2e8f0;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+.review-author {
+    font-weight: 600;
+    color: #fbbf24;
+    margin-top: 12px;
+}
+.review-position {
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
+/* ========== FAQ ========== */
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 24px;
+}
+.faq-item {
+    background: rgba(20, 20, 35, 0.6);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 24px;
+    transition: all 0.3s ease;
+}
+.faq-item:hover {
+    transform: translateY(-3px);
+    border-color: rgba(251, 191, 36, 0.3);
+}
+.faq-question {
+    font-weight: 700;
+    color: #fbbf24;
+    margin-bottom: 12px;
+    font-size: 1rem;
+}
+.faq-answer {
+    color: #94a3b8;
+    line-height: 1.5;
+    font-size: 0.9rem;
+}
+
+/* ========== КОНТАКТИ ========== */
+.contacts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+}
+.contacts-info h2 {
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #e2e8f0, #c084fc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.contacts-info p { color: #94a3b8; margin-bottom: 24px; }
+.contact-details { margin: 24px 0; }
+.contact-item {
+    margin: 16px 0;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.contact-item a {
+    color: #c084fc;
+    text-decoration: none;
+    transition: 0.2s;
+}
+.contact-item a:hover { color: #fbbf24; }
+.social-links {
+    display: flex;
+    gap: 24px;
+    margin-top: 24px;
+}
+.social-links a {
+    color: #c084fc;
+    text-decoration: none;
+    transition: 0.2s;
+}
+.social-links a:hover { color: #fbbf24; }
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+    background: rgba(20, 20, 35, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    color: white;
+    font-family: inherit;
+    transition: 0.2s;
+}
+.contact-form input:focus, .contact-form textarea:focus {
+    outline: none;
+    border-color: #8b5cf6;
+}
+.contact-form input::placeholder, .contact-form textarea::placeholder {
+    color: #64748b;
+}
+
+/* ========== FOOTER ========== */
+footer {
+    text-align: center;
+    padding: 40px 0;
+    color: #64748b;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ========== АДАПТАЦІЯ ========== */
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .mobile-menu-btn { display: block; }
+    .hero-text h1 { font-size: 2rem; }
+    .about-grid, .contacts-grid { grid-template-columns: 1fr; }
+    .code-terminal { height: 300px; }
+    .services-grid { gap: 30px; }
+    .portfolio-grid, .reviews-grid, .faq-grid { grid-template-columns: 1fr; }
+    .section-title { font-size: 1.8rem; }
+    .hero-stats { justify-content: center; }
+    .hero-buttons { justify-content: center; }
+    .hero-text { text-align: center; }
+    .hero-text p { margin-left: auto; margin-right: auto; }
 }
