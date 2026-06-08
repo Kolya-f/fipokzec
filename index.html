@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>fipokzec | Створення сайтів на замовлення</title>
     <style>
-        /* ВЕСЬ ТВІЙ CSS З МОЇМИ ВИПРАВЛЕННЯМИ */
+        /* ВЕСЬ ТВІЙ CSS */
         @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap');
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -228,6 +228,13 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .process-step.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         .process-step:hover {
             transform: translateY(-8px);
@@ -247,16 +254,23 @@
         .process-step h3 { font-size: 1.3rem; margin-bottom: 10px; color: #e2e8f0; }
         .process-step p { color: #94a3b8; font-size: 0.85rem; line-height: 1.5; }
 
-        /* СПЕЦІАЛЬНИЙ СТИЛЬ ДЛЯ БЛОКУ З АНІМАЦІЄЮ БРІФУ (ЗАМІСТЬ ПЕРШОГО ЕТАПУ) */
-        .process-step-brief {
+        /* СПЕЦІАЛЬНИЙ СТИЛЬ ДЛЯ БЛОКІВ З АНІМАЦІЄЮ */
+        .process-step-animation {
             background: transparent;
             border: none;
             padding: 0;
             flex: 2;
-            min-width: 320px;
+            min-width: 340px;
             cursor: default;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
-        .process-step-brief:hover {
+        .process-step-animation.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .process-step-animation:hover {
             transform: none;
             box-shadow: none;
         }
@@ -396,7 +410,7 @@
             .code-terminal { height: 300px; }
             .flip-card { width: 90% !important; margin: 0 auto !important; }
             .process-steps { flex-direction: column; }
-            .process-step-brief { min-width: auto; }
+            .process-step-animation { min-width: auto; }
         }
 
         /* Модальне вікно для відео */
@@ -450,6 +464,84 @@
         }
         .fullscreen-modal.active .close-modal { opacity: 1; }
         .close-modal:hover { background: #fbbf24; color: #0a0a0a; transform: rotate(90deg); }
+
+        /* pulse анімація */
+        @keyframes pulseAnim {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        /* СТИЛІ ДЛЯ АНІМАЦІЙ ЕТАПІВ */
+        .anim-wrap { font-family: 'Inter', system-ui, sans-serif; display: flex; flex-direction: column; gap: 24px; padding: 16px 0; width: 100%; }
+        .anim-box { background: linear-gradient(135deg,#0a0a0f,#0d0d14); border-radius: 24px; padding: 20px; border: 1px solid rgba(127,119,221,0.3); box-shadow: 0 20px 40px -15px rgba(0,0,0,0.5); width: 100%; }
+        .anim-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .anim-badge { display: flex; align-items: center; gap: 8px; font-size: 10px; color: #7F77DD; }
+        .dot-pulse { width: 8px; height: 8px; background: #7F77DD; border-radius: 50%; animation: pulseAnim 1.2s infinite; }
+        .anim-timer { font-size: 10px; color: #555; font-family: monospace; }
+        .divider { height: 1px; background: linear-gradient(90deg,transparent,#7F77DD,transparent); margin-bottom: 15px; }
+        .anim-title { font-size: 17px; margin-bottom: 14px; background: linear-gradient(135deg,#fff,#9f97ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .progress-bar { height: 2px; background: rgba(255,255,255,0.05); border-radius: 99px; margin-top: 12px; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg,#534AB7,#9f97ff); border-radius: 99px; width: 0%; transition: width 0.3s; }
+        .status-pill { font-size: 9px; padding: 2px 10px; border-radius: 99px; display: flex; align-items: center; gap: 5px; opacity: 0; transition: opacity 0.5s; }
+        .status-green { background: rgba(58,109,17,0.2); border: 1px solid rgba(99,153,34,0.3); color: #7fc44a; }
+        .status-blue { background: rgba(59,130,246,0.15); border: 1px solid rgba(99,152,246,0.3); color: #60a5fa; }
+        .status-amber { background: rgba(251,191,36,0.15); border: 1px solid rgba(251,191,36,0.3); color: #fbbf24; }
+        .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+        .mini-field { background: rgba(255,255,255,0.03); border: 1px solid rgba(127,119,221,0.2); border-radius: 10px; padding: 8px; }
+        .field-label { font-size: 8px; color: #534AB7; margin-bottom: 3px; }
+        .field-val { font-size: 11px; color: #ccc; min-height: 14px; }
+        .section-label { font-size: 8px; color: #444; margin: 10px 0 6px; }
+        .check-row { display: flex; align-items: center; gap: 8px; font-size: 11px; color: #666; margin-bottom: 5px; opacity: 0; transform: translateX(-5px); transition: all 0.35s; }
+        .check-box { width: 14px; height: 14px; border: 1px solid rgba(127,119,221,0.3); border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 9px; flex-shrink: 0; }
+        .bar-row { margin-bottom: 8px; }
+        .bar-top { display: flex; justify-content: space-between; margin-bottom: 3px; }
+        .bar-name { font-size: 10px; color: #555; }
+        .bar-pct { font-size: 10px; color: #7F77DD; }
+        .bar-track { height: 2px; background: rgba(255,255,255,0.05); border-radius: 99px; }
+        .bar-fill { height: 100%; background: linear-gradient(90deg,#534AB7,#9f97ff); border-radius: 99px; width: 0%; transition: width 1.2s cubic-bezier(0.4,0,0.2,1); }
+        .foot { margin-top: 14px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center; }
+        .ava { width: 22px; height: 22px; background: rgba(127,119,221,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; color: #9f97ff; }
+        .ava-row { display: flex; align-items: center; gap: 6px; }
+        .ava-name { font-size: 10px; color: #555; }
+
+        /* FIGMA specific */
+        .figma-canvas { position: relative; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; height: 100px; margin-bottom: 10px; overflow: hidden; }
+        .figma-frame { position: absolute; border: 1px solid rgba(127,119,221,0.5); border-radius: 6px; background: rgba(127,119,221,0.05); }
+        .figma-block { position: absolute; border-radius: 3px; }
+        .figma-cursor { position: absolute; width: 16px; height: 16px; pointer-events: none; transition: left 0.8s cubic-bezier(0.4,0,0.2,1), top 0.8s cubic-bezier(0.4,0,0.2,1); }
+        .figma-cursor svg { width: 16px; height: 16px; }
+        .figma-layers { display: flex; flex-direction: column; gap: 4px; }
+        .layer-item { display: flex; align-items: center; gap: 8px; font-size: 10px; padding: 4px 8px; border-radius: 6px; opacity: 0; transition: all 0.4s; }
+        .layer-icon { font-size: 10px; }
+
+        /* CODE specific */
+        .code-editor { background: rgba(10,10,20,0.8); border-radius: 12px; padding: 12px; font-family: 'Courier New', monospace; font-size: 10px; line-height: 1.6; color: #e2e8f0; margin-bottom: 10px; min-height: 90px; border: 1px solid rgba(255,255,255,0.06); }
+        .code-line { white-space: pre; display: block; opacity: 0; animation: fadeCodeLine 0.2s forwards; }
+        @keyframes fadeCodeLine { to { opacity: 1; } }
+        .c-purple { color: #c084fc; }
+        .c-yellow { color: #fbbf24; }
+        .c-blue { color: #38bdf8; }
+        .c-green { color: #4ade80; }
+        .c-gray { color: #94a3b8; }
+        .device-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 10px; }
+        .device-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(127,119,221,0.15); border-radius: 8px; padding: 8px; text-align: center; }
+        .device-icon { font-size: 18px; margin-bottom: 3px; }
+        .device-name { font-size: 9px; color: #555; }
+        .device-status { font-size: 9px; margin-top: 2px; }
+
+        /* LAUNCH specific */
+        .launch-checklist { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
+        .launch-item { display: flex; align-items: center; gap: 8px; font-size: 11px; color: #666; padding: 5px 8px; border-radius: 8px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); opacity: 0; transition: all 0.4s; }
+        .launch-icon { font-size: 12px; flex-shrink: 0; }
+        .launch-score { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 10px; }
+        .score-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(127,119,221,0.15); border-radius: 10px; padding: 8px; text-align: center; }
+        .score-num { font-size: 20px; font-weight: 700; background: linear-gradient(135deg,#fbbf24,#f59e0b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .score-label { font-size: 9px; color: #555; }
+        .deploy-log { background: rgba(10,10,20,0.8); border-radius: 10px; padding: 10px; font-family: 'Courier New', monospace; font-size: 9px; color: #94a3b8; min-height: 60px; margin-bottom: 10px; border: 1px solid rgba(255,255,255,0.05); }
+        .log-line { display: block; margin-bottom: 2px; opacity: 0; animation: fadeCodeLine 0.2s forwards; }
+        .log-ok { color: #4ade80; }
+        .log-warn { color: #fbbf24; }
+        .log-info { color: #60a5fa; }
     </style>
 </head>
 <body>
@@ -515,7 +607,7 @@
         </div>
     </section>
 
-    <!-- СЕКЦІЯ ЕТАПІВ - ПЕРШИЙ ЕТАП ЗАМІНЕНО НА АНІМАЦІЮ БРІФУ -->
+    <!-- СЕКЦІЯ ЕТАПІВ - ВСІ 5 ЕТАПІВ З АНІМАЦІЄЮ ПРИ СКРОЛІ -->
     <section id="process" class="process-section">
         <div class="container">
             <div class="section-header">
@@ -525,39 +617,24 @@
             </div>
             
             <div class="process-steps">
-                <!-- ЕТАП 1: АНІМАЦІЯ БРІФУ (замість текстового блоку) -->
-                <div class="process-step-brief" id="briefContainer"></div>
+                <!-- ЕТАП 1: АНІМАЦІЯ БРІФУ -->
+                <div class="process-step-animation" id="briefContainer"></div>
                 
-                <!-- ЕТАП 2 -->
-                <div class="process-step">
-                    <div class="step-number">02</div>
-                    <div class="step-icon">🎨</div>
-                    <h3>Прототип та дизайн</h3>
-                    <p>Створюю макет у Figma, узгоджую візуальну концепцію та структуру.</p>
-                </div>
+                <!-- ЕТАП 2: АНІМАЦІЯ FIGMA -->
+                <div class="process-step-animation" id="figmaContainer"></div>
                 
-                <!-- ЕТАП 3 -->
-                <div class="process-step">
-                    <div class="step-number">03</div>
-                    <div class="step-icon">💻</div>
-                    <h3>Верстка та розробка</h3>
-                    <p>Адаптивна верстка, анімації, інтеграція з CMS або чистий код.</p>
-                </div>
+                <!-- ЕТАП 3: АНІМАЦІЯ КОДУ -->
+                <div class="process-step-animation" id="codeContainer"></div>
                 
-                <!-- ЕТАП 4 -->
-                <div class="process-step">
-                    <div class="step-number">04</div>
-                    <div class="step-icon">🚀</div>
-                    <h3>Тестування та запуск</h3>
-                    <p>Перевіряю швидкість, баги, SEO — публікую сайт на хостингу.</p>
-                </div>
+                <!-- ЕТАП 4: АНІМАЦІЯ ЗАПУСКУ -->
+                <div class="process-step-animation" id="launchContainer"></div>
                 
-                <!-- ЕТАП 5 -->
-                <div class="process-step">
+                <!-- ЕТАП 5: ПІДТРИМКА (звичайний текстовий блок) -->
+                <div class="process-step" id="step5">
                     <div class="step-number">05</div>
                     <div class="step-icon">🛠️</div>
                     <h3>Підтримка та навчання</h3>
-                    <p>Навчаю працювати з адмін-панеллю, надаю техпідтримку.</p>
+                    <p>Навчаю працювати з адмін-панеллю, надаю техпідтримку 24/7.</p>
                 </div>
             </div>
         </div>
@@ -568,7 +645,7 @@
             <div class="about-grid">
                 <div class="about-content">
                     <span class="section-tag">Хто я</span>
-                    <h2>Коля — веб-розробник з любов'ю до деталей</h2>
+                    <h2>fipokzec — веб-розробник з любов'ю до деталей</h2>
                     <p>За 2 роки у веб-розробці я створив понад 20 сайтів. Моя мета — не просто зробити красиву картинку, а створити інструмент, який реально приносить клієнтів.</p>
                     <div class="skills">
                         <div class="skill"><span>HTML/CSS</span><div class="skill-bar"><div style="width: 95%"></div></div></div>
@@ -614,7 +691,7 @@
                     <h2>📬 Зв'язатись зі мною</h2>
                     <p>Готові до співпраці? Просто напишіть – обговоримо ваш проєкт.</p>
                     <div class="contact-details">
-                        <div class="contact-item">📧 <a href="mailto:kolyaf.web@gmail.com">kolyaf.web@gmail.com</a></div>
+                        <div class="contact-item">📧 <a href="mailto:kolyaf.web@gmail.com">fipokzec@dev.com</a></div>
                         <div class="contact-item">📞 +38 (099) 123-45-67</div>
                         <div class="contact-item">📍 Україна, Київ</div>
                     </div>
@@ -651,7 +728,7 @@
         ];
 
         const reviews = [
-            { text: "Коля створив для нас сайт-візитку. Все зроблено якісно.", author: "Ірина Петренко", position: "Власниця салону краси" },
+            { text: "fipokzec створив для нас сайт-візитку. Все зроблено якісно.", author: "Ірина Петренко", position: "Власниця салону краси" },
             { text: "Дуже задоволений роботою! Інтернет-магазин працює ідеально.", author: "Олександр Коваль", position: "Підприємець" },
             { text: "Професійний підхід, увага до деталей.", author: "Марія Шевченко", position: "Маркетолог" }
         ];
@@ -774,15 +851,16 @@
         }
         setTimeout(startTyping, 1000);
 
-        // АНІМАЦІЯ БРІФУ (ВСТАВЛЯЄМО В #briefContainer)
+        // АНІМАЦІЯ БРІФУ
+        let briefAnimationStarted = false;
         document.getElementById('briefContainer').innerHTML = `
             <div style="background:linear-gradient(135deg,#0a0a0f,#0d0d14); border-radius:24px; padding:20px; border:1px solid rgba(127,119,221,0.3); box-shadow:0 20px 40px -15px rgba(0,0,0,0.5);">
                 <div style="display:flex; justify-content:space-between; margin-bottom:15px;">
-                    <div style="display:flex; align-items:center; gap:8px;"><span style="width:8px; height:8px; background:#7F77DD; border-radius:50%; animation:pulse 1.2s infinite;"></span><span style="font-size:10px; color:#7F77DD;">БРИФУВАННЯ</span></div>
+                    <div style="display:flex; align-items:center; gap:8px;"><span style="width:8px; height:8px; background:#7F77DD; border-radius:50%; animation:pulseAnim 1.2s infinite;"></span><span style="font-size:10px; color:#7F77DD;">БРИФУВАННЯ</span></div>
                     <div style="font-size:10px; color:#555;" id="briefTimerAnim">00:00:00</div>
                 </div>
                 <div style="height:1px; background:linear-gradient(90deg,transparent,#7F77DD,transparent); margin-bottom:15px;"></div>
-                <h3 style="font-size:18px; margin-bottom:15px; background:linear-gradient(135deg,#fff,#9f97ff); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">📋 Бриф на розробку сайту</h3>
+                <div style="font-size:17px; margin-bottom:14px; background:linear-gradient(135deg,#fff,#9f97ff); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">📋 Бриф на розробку сайту</div>
                 <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px;">
                     <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(127,119,221,0.2); border-radius:10px; padding:8px;"><div style="font-size:8px; color:#534AB7;">НАЗВА ПРОЄКТУ</div><div style="font-size:11px; color:#ccc;" id="briefField1"></div></div>
                     <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(127,119,221,0.2); border-radius:10px; padding:8px;"><div style="font-size:8px; color:#534AB7;">ТИП САЙТУ</div><div style="font-size:11px; color:#ccc;" id="briefField2"></div></div>
@@ -794,23 +872,20 @@
                 <div style="font-size:8px; color:#444; margin:10px 0 6px;">ПРІОРИТЕТ ФУНКЦІЙ</div>
                 <div id="briefBars"></div>
                 <div style="margin-top:15px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.05); display:flex; justify-content:space-between; align-items:center;">
-                    <div style="display:flex; align-items:center; gap:6px;"><div style="width:22px; height:22px; background:rgba(127,119,221,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:9px;">МД</div><span style="font-size:10px; color:#555;">Менеджер: Дмитро</span></div>
-                    <div id="briefStatus" style="font-size:9px; padding:2px 10px; border-radius:99px; background:rgba(58,109,17,0.2); border:1px solid rgba(99,153,34,0.3); color:#7fc44a; display:flex; align-items:center; gap:5px; opacity:0;"><span style="width:4px; height:4px; background:#7fc44a; border-radius:50%; animation:pulse 1.2s infinite;"></span>Бриф заповнено</div>
+                    <div style="display:flex; align-items:center; gap:6px;"><div style="width:22px; height:22px; background:rgba(127,119,221,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:9px;">FP</div><span style="font-size:10px; color:#555;">Менеджер: fipokzec</span></div>
+                    <div id="briefStatus" style="font-size:9px; padding:2px 10px; border-radius:99px; background:rgba(58,109,17,0.2); border:1px solid rgba(99,153,34,0.3); color:#7fc44a; display:flex; align-items:center; gap:5px; opacity:0;"><span style="width:4px; height:4px; background:#7fc44a; border-radius:50%; animation:pulseAnim 1.2s infinite;"></span>Бриф заповнено</div>
                 </div>
                 <div style="position:relative; margin-top:12px;"><div style="height:2px; background:rgba(255,255,255,0.05); border-radius:99px;"><div id="briefProgress" style="width:0%; height:100%; background:linear-gradient(90deg,#534AB7,#9f97ff); border-radius:99px;"></div></div></div>
             </div>
-            <style>@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }</style>
         `;
         
-        // Запуск анімації бріфу
-        setTimeout(() => {
+        function startBriefAnimation() {
+            if (briefAnimationStarted) return;
+            briefAnimationStarted = true;
+            
             const fields = ['Fipokzec Web Studio', 'Сайт-візитка + Портфоліо', 'Малий бізнес, фрілансери, 25–45 років', 'Залучення клієнтів через органічний пошук'];
             const checks = ['Мінімалістичний стиль', 'Темна кольорова схема', 'Анімації та плавні переходи', 'Адаптивний дизайн'];
-            const bars = [
-                { name: 'UX / Зручність', target: 92 },
-                { name: 'Швидкість завантаження', target: 80 },
-                { name: 'SEO-оптимізація', target: 65 }
-            ];
+            const bars = [{ name: 'UX / Зручність', target: 92 }, { name: 'Швидкість завантаження', target: 80 }, { name: 'SEO-оптимізація', target: 65 }];
             
             let delay = 500;
             fields.forEach((text, i) => {
@@ -819,10 +894,7 @@
                     if (el) {
                         let chars = text.split('');
                         let j = 0;
-                        let iv = setInterval(() => {
-                            if (el) el.textContent += chars[j++];
-                            if (j >= chars.length) clearInterval(iv);
-                        }, 40);
+                        let iv = setInterval(() => { if (el) el.textContent += chars[j++]; if (j >= chars.length) clearInterval(iv); }, 40);
                     }
                 }, delay);
                 delay += 800;
@@ -842,17 +914,7 @@
                             ch.style.transform = 'translateX(0)';
                             setTimeout(() => {
                                 let box = ch.querySelector('div');
-                                if (box) {
-                                    box.style.background = 'rgba(127,119,221,0.2)';
-                                    box.style.borderColor = '#7F77DD';
-                                    box.innerHTML = '✓';
-                                    box.style.display = 'flex';
-                                    box.style.alignItems = 'center';
-                                    box.style.justifyContent = 'center';
-                                    box.style.fontSize = '9px';
-                                    box.style.color = '#9f97ff';
-                                    ch.style.color = '#888';
-                                }
+                                if (box) { box.style.background = 'rgba(127,119,221,0.2)'; box.style.borderColor = '#7F77DD'; box.innerHTML = '✓'; box.style.display = 'flex'; box.style.alignItems = 'center'; box.style.justifyContent = 'center'; box.style.fontSize = '9px'; box.style.color = '#9f97ff'; ch.style.color = '#888'; }
                             }, 300);
                         }
                     }, 1700 + i * 350);
@@ -871,22 +933,15 @@
                         let pct = document.getElementById(`pct${i}`);
                         if (bar) bar.style.width = b.target + '%';
                         let n = 0;
-                        let iv = setInterval(() => {
-                            n = Math.min(n + 3, b.target);
-                            if (pct) pct.textContent = n + '%';
-                            if (n >= b.target) clearInterval(iv);
-                        }, 30);
+                        let iv = setInterval(() => { n = Math.min(n + 3, b.target); if (pct) pct.textContent = n + '%'; if (n >= b.target) clearInterval(iv); }, 30);
                     }, 4000 + i * 400);
                 });
             }, 3500);
             
-            setTimeout(() => {
-                let status = document.getElementById('briefStatus');
-                if (status) status.style.opacity = '1';
-            }, 5500);
+            setTimeout(() => { let status = document.getElementById('briefStatus'); if (status) status.style.opacity = '1'; }, 5500);
             
             let startTime = Date.now();
-            setInterval(() => {
+            let briefInterval = setInterval(() => {
                 let elapsed = Date.now() - startTime;
                 let s = Math.floor(elapsed / 1000) % 60;
                 let m = Math.floor(elapsed / 60000) % 60;
@@ -894,8 +949,166 @@
                 if (timer) timer.textContent = `00:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
                 let prog = document.getElementById('briefProgress');
                 if (prog) prog.style.width = Math.min(elapsed / 8000 * 100, 100) + '%';
+                if (elapsed >= 8000) clearInterval(briefInterval);
             }, 200);
-        }, 100);
+        }
+
+        // АНІМАЦІЯ FIGMA
+        let figmaAnimationStarted = false;
+        document.getElementById('figmaContainer').innerHTML = `
+            <div class="anim-box">
+                <div class="anim-header"><div class="anim-badge"><div class="dot-pulse"></div><span>ПРОТОТИПУВАННЯ</span></div><div class="anim-timer" id="timerFigma">00:00:00</div></div>
+                <div class="divider"></div>
+                <div class="anim-title">🎨 Прототип та дизайн у Figma</div>
+                <div class="figma-canvas" id="figmaCanvas" style="position:relative; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:12px; height:100px; margin-bottom:10px; overflow:hidden;">
+                    <div class="figma-cursor" id="figmaCursor" style="position:absolute; left:50%; top:50%; transition:left 0.8s, top 0.8s;"><svg viewBox="0 0 16 16" width="16" height="16"><path d="M2 2l10 4-5 2-2 5-3-11z" fill="#fbbf24" stroke="#0a0a0a" stroke-width="0.5"/></svg></div>
+                </div>
+                <div class="section-label">ШАР: СТРУКТУРА МАКЕТУ</div>
+                <div class="figma-layers" id="figmaLayers"></div>
+                <div class="section-label">УЗГОДЖЕННЯ КОМПОНЕНТІВ</div>
+                <div id="figmaChecks"></div>
+                <div class="foot"><div class="ava-row"><div class="ava">FP</div><span class="ava-name">Дизайнер: fipokzec</span></div><div class="status-pill status-blue" id="figmaStatus"><span style="width:4px;height:4px;background:#60a5fa;border-radius:50%;animation:pulseAnim 1.2s infinite"></span>Макет узгоджено</div></div>
+                <div class="progress-bar"><div class="progress-fill" id="figmaProgress"></div></div>
+            </div>
+        `;
+        
+        function startFigmaAnimation() {
+            if (figmaAnimationStarted) return;
+            figmaAnimationStarted = true;
+            
+            let startTimerFn = (id) => { let start = Date.now(); return setInterval(() => { let e = Date.now()-start; let s=Math.floor(e/1000)%60, m=Math.floor(e/60000)%60; let el=document.getElementById(id); if(el) el.textContent=`00:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`; }, 200); };
+            let animProgress = (id, duration) => { let el=document.getElementById(id); let start=Date.now(); let iv=setInterval(()=>{ let pct=Math.min((Date.now()-start)/duration*100,100); if(el) el.style.width=pct+'%'; if(pct>=100) clearInterval(iv); },100); };
+            
+            startTimerFn('timerFigma');
+            animProgress('figmaProgress', 9000);
+            
+            const canvas = document.getElementById('figmaCanvas');
+            const cursor = document.getElementById('figmaCursor');
+            const frames = [{ style:'left:10px;top:10px;width:120px;height:80px;', delay:400 },{ style:'left:140px;top:10px;width:60px;height:80px;', delay:900 },{ style:'left:10px;top:30px;width:80px;height:8px;background:rgba(251,191,36,0.25);', delay:1400 },{ style:'left:10px;top:46px;width:55px;height:8px;background:rgba(127,119,221,0.2);', delay:1700 },{ style:'left:10px;top:62px;width:40px;height:14px;background:rgba(127,119,221,0.3);border-radius:7px;', delay:2000 }];
+            const cPositions = [{l:'15%',t:'15%'},{l:'55%',t:'20%'},{l:'30%',t:'60%'},{l:'70%',t:'50%'},{l:'20%',t:'75%'}];
+            frames.forEach((f,i)=>{ setTimeout(()=>{ let div=document.createElement('div'); div.className='figma-frame figma-block'; div.setAttribute('style',f.style); canvas.insertBefore(div,cursor); if(cPositions[i]){ cursor.style.left=cPositions[i].l; cursor.style.top=cPositions[i].t; } }, f.delay); });
+            
+            const layers = [{ icon:'▢', name:'Header / Navigation', col:'#c084fc' },{ icon:'▢', name:'Hero Section', col:'#38bdf8' },{ icon:'▢', name:'Services Grid', col:'#fbbf24' },{ icon:'◯', name:'CTA Button', col:'#4ade80' }];
+            const layersEl = document.getElementById('figmaLayers');
+            layers.forEach((l,i)=>{ let div=document.createElement('div'); div.className='layer-item'; div.innerHTML=`<span style="color:${l.col};font-size:12px">${l.icon}</span><span style="color:#999">${l.name}</span>`; layersEl.appendChild(div); setTimeout(()=>{ div.style.opacity='1'; div.style.transform='translateX(0)'; }, 2400+i*300); });
+            
+            const fChecks = ['Кольорова палітра узгоджена','Типографіка обрана','Компоненти задокументовані','Адаптивні брейкпоінти'];
+            const fcEl = document.getElementById('figmaChecks');
+            fChecks.forEach((c,i)=>{ let div=document.createElement('div'); div.className='check-row'; div.innerHTML=`<div class="check-box" id="fcb${i}"></div>${c}`; fcEl.appendChild(div); setTimeout(()=>{ div.style.opacity='1'; div.style.transform='translateX(0)'; setTimeout(()=>{ let box=document.getElementById(`fcb${i}`); if(box){ box.style.background='rgba(127,119,221,0.2)'; box.style.borderColor='#7F77DD'; box.innerHTML='✓'; box.style.color='#9f97ff'; div.style.color='#888'; } },350); }, 3800+i*400); });
+            
+            setTimeout(()=>{ let s=document.getElementById('figmaStatus'); if(s) s.style.opacity='1'; }, 7000);
+        }
+
+        // АНІМАЦІЯ КОДУ
+        let codeAnimationStarted = false;
+        document.getElementById('codeContainer').innerHTML = `
+            <div class="anim-box">
+                <div class="anim-header"><div class="anim-badge"><div class="dot-pulse" style="background:#38bdf8"></div><span style="color:#38bdf8">ВЕРСТКА ТА РОЗРОБКА</span></div><div class="anim-timer" id="timerCode">00:00:00</div></div>
+                <div class="divider" style="background:linear-gradient(90deg,transparent,#38bdf8,transparent)"></div>
+                <div class="anim-title">💻 Адаптивна верстка та код</div>
+                <div class="code-editor" id="codeEditor" style="min-height:90px;"></div>
+                <div class="section-label">АДАПТИВНІСТЬ</div>
+                <div class="device-row" id="deviceRow"><div class="device-card"><div class="device-icon">🖥</div><div class="device-name">Desktop</div><div class="device-status" id="devD" style="color:#555">—</div></div><div class="device-card"><div class="device-icon">📱</div><div class="device-name">Mobile</div><div class="device-status" id="devM" style="color:#555">—</div></div><div class="device-card"><div class="device-icon">📟</div><div class="device-name">Tablet</div><div class="device-status" id="devT" style="color:#555">—</div></div></div>
+                <div class="section-label">ПРОГРЕС ФУНКЦІЙ</div>
+                <div id="codeBars"></div>
+                <div class="foot"><div class="ava-row"><div class="ava" style="background:rgba(56,189,248,0.2);color:#38bdf8">FP</div><span class="ava-name">Розробник: fipokzec</span></div><div class="status-pill status-blue" id="codeStatus" style="color:#38bdf8;border-color:rgba(56,189,248,0.3);background:rgba(56,189,248,0.1)"><span style="width:4px;height:4px;background:#38bdf8;border-radius:50%;animation:pulseAnim 1.2s infinite"></span>Код готовий</div></div>
+                <div class="progress-bar" style="background:rgba(56,189,248,0.1)"><div class="progress-fill" id="codeProgress" style="background:linear-gradient(90deg,#0284c7,#38bdf8)"></div></div>
+            </div>
+        `;
+        
+        function startCodeAnimation() {
+            if (codeAnimationStarted) return;
+            codeAnimationStarted = true;
+            
+            let startTimerFn = (id) => { let start = Date.now(); return setInterval(() => { let e = Date.now()-start; let s=Math.floor(e/1000)%60, m=Math.floor(e/60000)%60; let el=document.getElementById(id); if(el) el.textContent=`00:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`; }, 200); };
+            let animProgress = (id, duration) => { let el=document.getElementById(id); let start=Date.now(); let iv=setInterval(()=>{ let pct=Math.min((Date.now()-start)/duration*100,100); if(el) el.style.width=pct+'%'; if(pct>=100) clearInterval(iv); },100); };
+            
+            startTimerFn('timerCode');
+            animProgress('codeProgress', 10000);
+            
+            const codeLines = [{ html:'<span class="c-gray">/* Верстка компонента */</span>', delay:300 },{ html:'<span class="c-purple">@media</span> <span class="c-yellow">(max-width: 768px)</span> {', delay:600 },{ html:'  <span class="c-blue">.hero-grid</span> {', delay:900 },{ html:'    <span class="c-green">flex-direction</span>: column;', delay:1100 },{ html:'    <span class="c-green">gap</span>: 24px;', delay:1300 },{ html:'  }', delay:1500 },{ html:'}', delay:1700 },{ html:'<span class="c-purple">const</span> <span class="c-blue">initAnimations</span> = () => {', delay:2200 },{ html:'  <span class="c-blue">gsap</span>.<span class="c-yellow">from</span>(<span class="c-green">\'.hero\'</span>, {', delay:2500 },{ html:'    <span class="c-green">opacity</span>: 0, <span class="c-green">y</span>: 30', delay:2700 },{ html:'  });', delay:2900 },{ html:'};', delay:3100 }];
+            const editor = document.getElementById('codeEditor');
+            codeLines.forEach(l=>{ setTimeout(()=>{ let span=document.createElement('span'); span.className='code-line'; span.innerHTML=l.html; editor.appendChild(span); }, l.delay); });
+            
+            const devices = [{ id:'devD', text:'✓ ОК', color:'#4ade80', delay:3800 },{ id:'devM', text:'✓ ОК', color:'#4ade80', delay:4400 },{ id:'devT', text:'✓ ОК', color:'#4ade80', delay:5000 }];
+            devices.forEach(d=>{ setTimeout(()=>{ let el=document.getElementById(d.id); if(el){ el.textContent=d.text; el.style.color=d.color; } }, d.delay); });
+            
+            const cbars = [{ name:'HTML / CSS верстка', target:100 },{ name:'JavaScript анімації', target:88 },{ name:'CMS інтеграція', target:72 }];
+            const cbarsEl = document.getElementById('codeBars');
+            cbars.forEach((b,i)=>{ let div=document.createElement('div'); div.className='bar-row'; div.innerHTML=`<div class="bar-top"><span class="bar-name">${b.name}</span><span class="bar-pct" id="cpct${i}">0%</span></div><div class="bar-track"><div class="bar-fill" id="cbar${i}"></div></div>`; cbarsEl.appendChild(div); setTimeout(()=>{ let bar=document.getElementById(`cbar${i}`); if(bar) bar.style.width=b.target+'%'; let n=0; let iv=setInterval(()=>{ n=Math.min(n+3,b.target); let p=document.getElementById(`cpct${i}`); if(p) p.textContent=n+'%'; if(n>=b.target) clearInterval(iv); },30); }, 5500+i*400); });
+            
+            setTimeout(()=>{ let s=document.getElementById('codeStatus'); if(s) s.style.opacity='1'; }, 8000);
+        }
+
+        // АНІМАЦІЯ ЗАПУСКУ
+        let launchAnimationStarted = false;
+        document.getElementById('launchContainer').innerHTML = `
+            <div class="anim-box">
+                <div class="anim-header"><div class="anim-badge"><div class="dot-pulse" style="background:#fbbf24"></div><span style="color:#fbbf24">ТЕСТУВАННЯ ТА ЗАПУСК</span></div><div class="anim-timer" id="timerLaunch">00:00:00</div></div>
+                <div class="divider" style="background:linear-gradient(90deg,transparent,#fbbf24,transparent)"></div>
+                <div class="anim-title">🚀 Тестування, SEO та деплой</div>
+                <div class="launch-score" id="launchScore"><div class="score-card"><div class="score-num" id="scorePerf">0</div><div class="score-label">Performance</div></div><div class="score-card"><div class="score-num" id="scoreSeo">0</div><div class="score-label">SEO</div></div></div>
+                <div class="section-label">ЛОГ ДЕПЛОЮ</div>
+                <div class="deploy-log" id="deployLog"></div>
+                <div class="section-label">ЧЕКЛИСТ ПЕРЕВІРКИ</div>
+                <div class="launch-checklist" id="launchList"></div>
+                <div class="foot"><div class="ava-row"><div class="ava" style="background:rgba(251,191,36,0.2);color:#fbbf24">FP</div><span class="ava-name">DevOps: fipokzec</span></div><div class="status-pill" id="launchStatus" style="background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.3);color:#fbbf24"><span style="width:4px;height:4px;background:#fbbf24;border-radius:50%;animation:pulseAnim 1.2s infinite"></span>Сайт запущено!</div></div>
+                <div class="progress-bar" style="background:rgba(251,191,36,0.1)"><div class="progress-fill" id="launchProgress" style="background:linear-gradient(90deg,#d97706,#fbbf24)"></div></div>
+            </div>
+        `;
+        
+        function startLaunchAnimation() {
+            if (launchAnimationStarted) return;
+            launchAnimationStarted = true;
+            
+            let startTimerFn = (id) => { let start = Date.now(); return setInterval(() => { let e = Date.now()-start; let s=Math.floor(e/1000)%60, m=Math.floor(e/60000)%60; let el=document.getElementById(id); if(el) el.textContent=`00:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`; }, 200); };
+            let animProgress = (id, duration) => { let el=document.getElementById(id); let start=Date.now(); let iv=setInterval(()=>{ let pct=Math.min((Date.now()-start)/duration*100,100); if(el) el.style.width=pct+'%'; if(pct>=100) clearInterval(iv); },100); };
+            
+            startTimerFn('timerLaunch');
+            animProgress('launchProgress', 9500);
+            
+            const logLines = [{ text:'$ npm run build', cl:'log-info', delay:400 },{ text:'✓ Оптимізація зображень...', cl:'log-ok', delay:900 },{ text:'✓ Мінімізація CSS/JS...', cl:'log-ok', delay:1400 },{ text:'⚡ Розмір бандлу: 142kb', cl:'log-warn', delay:1900 },{ text:'$ rsync → server:/var/www/', cl:'log-info', delay:2600 },{ text:'✓ Deploy successful!', cl:'log-ok', delay:3200 },{ text:'✓ SSL сертифікат активовано', cl:'log-ok', delay:3800 }];
+            const logEl = document.getElementById('deployLog');
+            logLines.forEach(l=>{ setTimeout(()=>{ let span=document.createElement('span'); span.className=`log-line ${l.cl}`; span.textContent=l.text; logEl.appendChild(span); }, l.delay); });
+            
+            let perfVal=0, seoVal=0;
+            setTimeout(()=>{ let iv1=setInterval(()=>{ perfVal=Math.min(perfVal+2,97); let el=document.getElementById('scorePerf'); if(el) el.textContent=perfVal; if(perfVal>=97) clearInterval(iv1); },25); },4200);
+            setTimeout(()=>{ let iv2=setInterval(()=>{ seoVal=Math.min(seoVal+2,94); let el=document.getElementById('scoreSeo'); if(el) el.textContent=seoVal; if(seoVal>=94) clearInterval(iv2); },28); },4800);
+            
+            const launchItems = [{ icon:'🔒', text:'HTTPS / SSL налаштовано' },{ icon:'⚡', text:'PageSpeed > 90 балів' },{ icon:'🔍', text:'Meta теги та sitemap.xml' },{ icon:'📱', text:'Mobile-first перевірено' },{ icon:'🛡️', text:'Захист від спаму (форми)' }];
+            const listEl = document.getElementById('launchList');
+            launchItems.forEach((item,i)=>{ let div=document.createElement('div'); div.className='launch-item'; div.innerHTML=`<span class="launch-icon">${item.icon}</span><span>${item.text}</span>`; listEl.appendChild(div); setTimeout(()=>{ div.style.opacity='1'; div.style.transform='translateX(0)'; div.style.color='#4ade80'; div.style.borderColor='rgba(74,222,128,0.15)'; div.style.background='rgba(74,222,128,0.04)'; }, 5500+i*350); });
+            
+            setTimeout(()=>{ let s=document.getElementById('launchStatus'); if(s) s.style.opacity='1'; }, 8200);
+        }
+
+        // СПОСТЕРЕЖЕННЯ ЗА СКРОЛОМ ДЛЯ ВСІХ ЕТАПІВ
+        function setupScrollAnimation() {
+            const elementsToAnimate = [
+                { element: document.querySelector('#briefContainer'), callback: startBriefAnimation },
+                { element: document.querySelector('#figmaContainer'), callback: startFigmaAnimation },
+                { element: document.querySelector('#codeContainer'), callback: startCodeAnimation },
+                { element: document.querySelector('#launchContainer'), callback: startLaunchAnimation },
+                { element: document.getElementById('step5') }
+            ];
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        const data = elementsToAnimate.find(e => e.element === entry.target);
+                        if (data && data.callback) {
+                            data.callback();
+                        }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
+            
+            elementsToAnimate.forEach(item => {
+                if (item.element) observer.observe(item.element);
+            });
+        }
         
         renderServices();
         renderReviews();
@@ -903,6 +1116,7 @@
         renderSocialLinks();
         setCurrentYear();
         setupMobileMenu();
+        setupScrollAnimation();
     </script>
 </body>
 </html>
