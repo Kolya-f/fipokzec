@@ -69,7 +69,7 @@
         </div>
     </section>
 
-    <!-- НОВА СЕКЦІЯ: ЕТАПИ СТВОРЕННЯ САЙТІВ (замість портфоліо) -->
+    <!-- СЕКЦІЯ: ЕТАПИ СТВОРЕННЯ САЙТІВ + АНІМАЦІЯ БРІФУ -->
     <section id="process" class="process-section">
         <div class="container">
             <div class="section-header">
@@ -108,6 +108,11 @@
                     <h3>Підтримка та навчання</h3>
                     <p>Навчаю працювати з адмін-панеллю, надаю техпідтримку.</p>
                 </div>
+            </div>
+
+            <!-- АНІМАЦІЯ БРІФУ (ВСТАВЛЕНА ПРЯМО ТУТ) -->
+            <div class="process-brief-embed" style="margin-top: 3rem;">
+                <div class="brief-animation-wrapper" id="briefAnimation"></div>
             </div>
         </div>
     </section>
@@ -189,5 +194,450 @@
     </footer>
 
     <script src="script.js"></script>
+    
+    <!-- HTML-код анімації бріфу вставлений напряму -->
+    <script>
+        // Вставляємо HTML анімації бріфу
+        document.getElementById('briefAnimation').innerHTML = `
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+                
+                @keyframes fadeUpBr { 
+                    from { opacity: 0; transform: translateY(20px); } 
+                    to { opacity: 1; transform: translateY(0); } 
+                }
+                @keyframes blinkBr { 
+                    0%, 100% { opacity: 1; } 
+                    50% { opacity: 0; } 
+                }
+                @keyframes scanlineBr { 
+                    0% { transform: translateY(-100%); } 
+                    100% { transform: translateY(100vh); } 
+                }
+                @keyframes glitch1Br { 
+                    0%, 95%, 100% { clip-path: none; transform: none; } 
+                    96% { clip-path: inset(20% 0 60% 0); transform: translate(-2px, 1px); } 
+                    97% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -1px); } 
+                }
+                @keyframes glitch2Br { 
+                    0%, 94%, 100% { opacity: 0; } 
+                    95%, 99% { opacity: 1; } 
+                }
+                @keyframes shimmerBr { 
+                    from { background-position: 200% center; } 
+                    to { background-position: -200% center; } 
+                }
+                @keyframes pulseGlowBr { 
+                    0%, 100% { box-shadow: 0 0 0 0 rgba(127, 119, 221, 0); } 
+                    50% { box-shadow: 0 0 20px 4px rgba(127, 119, 221, 0.25); } 
+                }
+                @keyframes checkPopBr { 
+                    0% { transform: scale(0) rotate(-20deg); opacity: 0; } 
+                    60% { transform: scale(1.3) rotate(5deg); } 
+                    100% { transform: scale(1) rotate(0); opacity: 1; } 
+                }
+                @keyframes lineInBr { 
+                    from { transform: scaleX(0); transform-origin: left; } 
+                    to { transform: scaleX(1); } 
+                }
+                @keyframes noiseShiftBr { 
+                    0% { background-position: 0 0; } 
+                    100% { background-position: 100px 100px; } 
+                }
+                
+                .brief-scene {
+                    background: #0a0a0f;
+                    border-radius: 20px;
+                    overflow: hidden;
+                    position: relative;
+                    min-height: 540px;
+                    box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.5);
+                    border: 1px solid rgba(127, 119, 221, 0.2);
+                }
+                .brief-noise {
+                    position: absolute; inset: 0; pointer-events: none; z-index: 1;
+                    opacity: 0.03;
+                    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+                    background-size: 200px 200px;
+                    animation: noiseShiftBr 0.15s steps(1) infinite;
+                }
+                .brief-scanline {
+                    position: absolute; left: 0; right: 0; height: 2px;
+                    background: linear-gradient(transparent, rgba(127, 119, 221, 0.08), transparent);
+                    z-index: 2; pointer-events: none;
+                    animation: scanlineBr 4s linear infinite;
+                }
+                .brief-glow-top {
+                    position: absolute; top: -60px; left: 50%; transform: translateX(-50%);
+                    width: 300px; height: 120px;
+                    background: radial-gradient(ellipse, rgba(83, 74, 183, 0.35) 0%, transparent 70%);
+                    pointer-events: none; z-index: 0;
+                }
+                .brief-glitch-layer {
+                    position: absolute; inset: 0; z-index: 4; pointer-events: none;
+                    animation: glitch2Br 8s linear infinite;
+                    opacity: 0;
+                }
+                .brief-glitch-layer::before {
+                    content: ''; position: absolute; inset: 0;
+                    background: linear-gradient(transparent 45%, rgba(127, 119, 221, 0.04) 45%, rgba(127, 119, 221, 0.04) 46%, transparent 46%);
+                    animation: glitch1Br 8s linear infinite;
+                }
+                .brief-content {
+                    position: relative; z-index: 3; padding: 1.75rem 1.75rem 1.5rem;
+                }
+                .brief-top-bar {
+                    display: flex; align-items: center; justify-content: space-between;
+                    margin-bottom: 1.5rem;
+                    animation: fadeUpBr 0.6s 0.1s both;
+                }
+                .brief-top-label {
+                    display: flex; align-items: center; gap: 8px;
+                    font-size: 10px; letter-spacing: 0.14em; color: #7F77DD;
+                    text-transform: uppercase; font-weight: 600;
+                }
+                .brief-dot-live {
+                    width: 7px; height: 7px; border-radius: 50%; background: #7F77DD;
+                    animation: blinkBr 1.2s infinite;
+                }
+                .brief-top-meta {
+                    font-size: 10px; color: #444; letter-spacing: 0.08em;
+                    font-family: monospace;
+                }
+                .brief-divider {
+                    height: 0.5px;
+                    background: linear-gradient(90deg, transparent, rgba(127, 119, 221, 0.5), transparent);
+                    margin-bottom: 1.25rem;
+                    animation: lineInBr 0.8s 0.4s both;
+                }
+                .brief-heading {
+                    margin-bottom: 1.25rem;
+                    animation: fadeUpBr 0.6s 0.3s both;
+                }
+                .brief-heading h2 {
+                    font-size: 20px; font-weight: 700; color: #f0f0ff;
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #f0f0ff 0%, #9f97ff 50%, #f0f0ff 100%);
+                    background-size: 200% auto;
+                    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+                    animation: shimmerBr 3s linear infinite;
+                }
+                .brief-heading p {
+                    font-size: 11px; color: #555; margin-top: 6px;
+                }
+                .brief-fields-grid {
+                    display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;
+                }
+                .brief-field {
+                    background: rgba(255,255,255,0.03);
+                    border: 0.5px solid rgba(127, 119, 221, 0.2);
+                    border-radius: 10px;
+                    padding: 10px 12px;
+                    position: relative; overflow: hidden;
+                    opacity: 0; transform: translateY(10px);
+                    transition: opacity 0.4s, transform 0.4s;
+                }
+                .brief-field.visible { opacity: 1; transform: none; }
+                .brief-field.active { border-color: rgba(127, 119, 221, 0.5); animation: pulseGlowBr 1.5s ease infinite; }
+                .brief-field-label {
+                    font-size: 9px; color: #534AB7; letter-spacing: 0.1em;
+                    text-transform: uppercase; margin-bottom: 5px; font-weight: 600;
+                }
+                .brief-field-val {
+                    font-size: 12px; color: #ccc; min-height: 18px;
+                }
+                .brief-field-val .cursor {
+                    display: inline-block; width: 1.5px; height: 12px;
+                    background: #7F77DD; vertical-align: middle;
+                    animation: blinkBr 0.6s infinite;
+                }
+                .brief-field-full { grid-column: 1/-1; }
+                .brief-corner {
+                    position: absolute; width: 8px; height: 8px;
+                }
+                .brief-corner.tl {
+                    top: 4px; left: 4px;
+                    border-top: 1px solid rgba(127, 119, 221, 0.5);
+                    border-left: 1px solid rgba(127, 119, 221, 0.5);
+                }
+                .brief-corner.br {
+                    bottom: 4px; right: 4px;
+                    border-bottom: 1px solid rgba(127, 119, 221, 0.5);
+                    border-right: 1px solid rgba(127, 119, 221, 0.5);
+                }
+                .brief-section-label {
+                    font-size: 9px; color: #444; letter-spacing: 0.12em;
+                    text-transform: uppercase; margin: 12px 0 8px; font-weight: 600;
+                }
+                .brief-checks {
+                    display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px;
+                }
+                .brief-check-item {
+                    display: flex; align-items: center; gap: 10px;
+                    font-size: 12px; color: #666;
+                    opacity: 0; transform: translateX(-10px);
+                    transition: opacity 0.35s, transform 0.35s;
+                }
+                .brief-check-item.visible { opacity: 1; transform: none; }
+                .brief-check-item.done { color: #888; }
+                .brief-check-box {
+                    width: 16px; height: 16px; border-radius: 4px;
+                    border: 0.5px solid rgba(127, 119, 221, 0.3);
+                    display: flex; align-items: center; justify-content: center;
+                    flex-shrink: 0;
+                }
+                .brief-check-box.checked {
+                    background: rgba(127, 119, 221, 0.2);
+                    border-color: #7F77DD;
+                    animation: checkPopBr 0.35s ease both;
+                }
+                .brief-check-box.checked::after {
+                    content: "✓";
+                    font-size: 10px;
+                    color: #9f97ff;
+                }
+                .brief-bars {
+                    display: flex; flex-direction: column; gap: 8px; margin-bottom: 1.25rem;
+                }
+                .brief-bar-meta {
+                    display: flex; justify-content: space-between; margin-bottom: 4px;
+                }
+                .brief-bar-name { font-size: 11px; color: #555; }
+                .brief-bar-pct { font-size: 11px; color: #7F77DD; font-family: monospace; }
+                .brief-bar-track {
+                    height: 3px; background: rgba(255,255,255,0.05);
+                    border-radius: 99px; overflow: hidden;
+                }
+                .brief-bar-fill {
+                    height: 100%; border-radius: 99px;
+                    background: linear-gradient(90deg, #534AB7, #9f97ff);
+                    width: 0; transition: width 1.1s cubic-bezier(0.4,0,0.2,1);
+                    position: relative;
+                }
+                .brief-bar-fill::after {
+                    content: ''; position: absolute; right: 0; top: -2px;
+                    width: 6px; height: 7px; border-radius: 50%;
+                    background: #c0baff;
+                    box-shadow: 0 0 6px 2px rgba(159, 151, 255, 0.6);
+                }
+                .brief-footer-bar {
+                    display: flex; align-items: center; justify-content: space-between;
+                    padding-top: 1rem;
+                    border-top: 0.5px solid rgba(255,255,255,0.05);
+                    opacity: 0; transition: opacity 0.5s;
+                }
+                .brief-footer-bar.show { opacity: 1; }
+                .brief-avatar {
+                    width: 28px; height: 28px; border-radius: 50%;
+                    background: rgba(127, 119, 221, 0.15);
+                    border: 0.5px solid rgba(127, 119, 221, 0.3);
+                    display: flex; align-items: center; justify-content: center;
+                    font-size: 10px; color: #7F77DD; font-weight: 700;
+                }
+                .brief-footer-name { font-size: 11px; color: #444; margin-left: 8px; }
+                .brief-status-tag {
+                    font-size: 10px; padding: 3px 12px; border-radius: 99px;
+                    background: rgba(58, 109, 17, 0.2);
+                    border: 0.5px solid rgba(99, 153, 34, 0.3);
+                    color: #7fc44a;
+                    display: flex; align-items: center; gap: 6px;
+                    opacity: 0; transition: opacity 0.5s 0.2s;
+                }
+                .brief-status-tag.show { opacity: 1; }
+                .brief-status-dot {
+                    width: 5px; height: 5px; border-radius: 50%;
+                    background: #7fc44a; animation: blinkBr 1.5s infinite;
+                }
+                .brief-progress-outer {
+                    position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+                    background: rgba(255,255,255,0.04);
+                }
+                .brief-progress-time {
+                    height: 100%;
+                    background: linear-gradient(90deg, #534AB7, #9f97ff);
+                    width: 0; transition: width 0.3s linear;
+                }
+                .brief-watermark {
+                    position: absolute; top: 12px; right: 16px;
+                    font-size: 8px; color: #2a2a3a;
+                    font-family: monospace; z-index: 5;
+                }
+            </style>
+
+            <div class="brief-scene">
+                <div class="brief-noise"></div>
+                <div class="brief-scanline"></div>
+                <div class="brief-glow-top"></div>
+                <div class="brief-glitch-layer"></div>
+                <div class="brief-watermark">BRIEF_001</div>
+
+                <div class="brief-content">
+                    <div class="brief-top-bar">
+                        <div class="brief-top-label">
+                            <span class="brief-dot-live"></span> Заповнення бріфу
+                        </div>
+                        <div class="brief-top-meta" id="briefTimer">00:00:00</div>
+                    </div>
+
+                    <div class="brief-divider"></div>
+
+                    <div class="brief-heading">
+                        <h2>Бриф на розробку сайту</h2>
+                        <p>Заповнюється разом із клієнтом · Етап 01/05</p>
+                    </div>
+
+                    <div class="brief-fields-grid">
+                        <div class="brief-field" id="bf1">
+                            <div class="brief-corner tl"></div><div class="brief-corner br"></div>
+                            <div class="brief-field-label">Назва проєкту</div>
+                            <div class="brief-field-val"><span id="bt1"></span><span class="cursor" id="bcr1"></span></div>
+                        </div>
+                        <div class="brief-field" id="bf2">
+                            <div class="brief-corner tl"></div><div class="brief-corner br"></div>
+                            <div class="brief-field-label">Тип сайту</div>
+                            <div class="brief-field-val"><span id="bt2"></span><span class="cursor" id="bcr2" style="display:none"></span></div>
+                        </div>
+                        <div class="brief-field brief-field-full" id="bf3">
+                            <div class="brief-corner tl"></div><div class="brief-corner br"></div>
+                            <div class="brief-field-label">Цільова аудиторія</div>
+                            <div class="brief-field-val"><span id="bt3"></span><span class="cursor" id="bcr3" style="display:none"></span></div>
+                        </div>
+                        <div class="brief-field brief-field-full" id="bf4">
+                            <div class="brief-corner tl"></div><div class="brief-corner br"></div>
+                            <div class="brief-field-label">Головна мета</div>
+                            <div class="brief-field-val"><span id="bt4"></span><span class="cursor" id="bcr4" style="display:none"></span></div>
+                        </div>
+                    </div>
+
+                    <div class="brief-section-label">Побажання до дизайну</div>
+                    <div class="brief-checks">
+                        <div class="brief-check-item" id="bch1"><div class="brief-check-box" id="bcb1"></div>Мінімалістичний стиль</div>
+                        <div class="brief-check-item" id="bch2"><div class="brief-check-box" id="bcb2"></div>Темна кольорова схема</div>
+                        <div class="brief-check-item" id="bch3"><div class="brief-check-box" id="bcb3"></div>Анімації та плавні переходи</div>
+                        <div class="brief-check-item" id="bch4"><div class="brief-check-box" id="bcb4"></div>Адаптивний дизайн</div>
+                    </div>
+
+                    <div class="brief-section-label">Пріоритет функцій</div>
+                    <div class="brief-bars">
+                        <div>
+                            <div class="brief-bar-meta"><span class="brief-bar-name">UX / Зручність</span><span class="brief-bar-pct" id="bp1l">0%</span></div>
+                            <div class="brief-bar-track"><div class="brief-bar-fill" id="bp1"></div></div>
+                        </div>
+                        <div>
+                            <div class="brief-bar-meta"><span class="brief-bar-name">Швидкість завантаження</span><span class="brief-bar-pct" id="bp2l">0%</span></div>
+                            <div class="brief-bar-track"><div class="brief-bar-fill" id="bp2"></div></div>
+                        </div>
+                        <div>
+                            <div class="brief-bar-meta"><span class="brief-bar-name">SEO-оптимізація</span><span class="brief-bar-pct" id="bp3l">0%</span></div>
+                            <div class="brief-bar-track"><div class="brief-bar-fill" id="bp3"></div></div>
+                        </div>
+                    </div>
+
+                    <div class="brief-footer-bar" id="bfooter">
+                        <div style="display:flex;align-items:center">
+                            <div class="brief-avatar">МД</div>
+                            <span class="brief-footer-name">Менеджер: Дмитро</span>
+                        </div>
+                        <div class="brief-status-tag" id="bstatus"><span class="brief-status-dot"></span>Бриф заповнено</div>
+                    </div>
+                </div>
+                <div class="brief-progress-outer"><div class="brief-progress-time" id="bprog"></div></div>
+            </div>
+
+            <script>
+                (function() {
+                    const TOTAL = 9000;
+                    let start = Date.now();
+                    
+                    function pad(n){ return String(n).padStart(2,'0'); }
+                    
+                    setInterval(() => {
+                        let elapsed = Date.now() - start;
+                        let s = Math.floor(elapsed/1000) % 60;
+                        let m = Math.floor(elapsed/60000) % 60;
+                        let timerEl = document.getElementById('briefTimer');
+                        if(timerEl) timerEl.textContent = '00:'+pad(m)+':'+pad(s);
+                        let pct = Math.min(elapsed/TOTAL*100, 100);
+                        let progEl = document.getElementById('bprog');
+                        if(progEl) progEl.style.width = pct+'%';
+                    }, 100);
+                    
+                    function show(id){ let el = document.getElementById(id); if(el) el.classList.add('visible'); }
+                    function activate(id){ let el = document.getElementById(id); if(el) el.classList.add('active'); }
+                    function deactivate(id){ let el = document.getElementById(id); if(el) el.classList.remove('active'); }
+                    
+                    function typeText(tid, cid, text, delay, speed, callback){
+                        let el = document.getElementById(tid);
+                        let cur = document.getElementById(cid);
+                        if(cur) cur.style.display = 'inline-block';
+                        let i = 0;
+                        setTimeout(() => {
+                            let iv = setInterval(() => {
+                                if(el) el.textContent += text[i++];
+                                if(i >= text.length){
+                                    clearInterval(iv);
+                                    if(cur) cur.style.display = 'none';
+                                    if(callback) callback();
+                                }
+                            }, speed);
+                        }, delay);
+                    }
+                    
+                    function animBar(bid, lid, target, delay){
+                        setTimeout(() => {
+                            let b = document.getElementById(bid);
+                            let l = document.getElementById(lid);
+                            if(b) b.style.width = target+'%';
+                            let n = 0;
+                            let iv = setInterval(() => {
+                                n = Math.min(n+2, target);
+                                if(l) l.textContent = n+'%';
+                                if(n >= target) clearInterval(iv);
+                            }, 22);
+                        }, delay);
+                    }
+                    
+                    function checkItem(cid, bid, delay){
+                        setTimeout(() => {
+                            let ci = document.getElementById(cid);
+                            let cb = document.getElementById(bid);
+                            if(ci) ci.classList.add('visible');
+                            setTimeout(() => {
+                                if(cb) cb.classList.add('checked');
+                                if(ci) ci.classList.add('done');
+                            }, 350);
+                        }, delay);
+                    }
+                    
+                    show('bf1'); activate('bf1');
+                    typeText('bt1','bcr1','Studio Koval — веб-агенція', 500, 52, () => {
+                        deactivate('bf1'); show('bf2'); activate('bf2');
+                        typeText('bt2','bcr2','Лендінг + портфоліо', 200, 60, () => {
+                            deactivate('bf2'); show('bf3'); activate('bf3');
+                            typeText('bt3','bcr3','Малий бізнес, фріланс 25–40 р., UA/EU', 200, 42, () => {
+                                deactivate('bf3'); show('bf4'); activate('bf4');
+                                typeText('bt4','bcr4','Залучати клієнтів через органічний пошук', 200, 40, () => {
+                                    deactivate('bf4');
+                                    checkItem('bch1','bcb1', 300);
+                                    checkItem('bch2','bcb2', 650);
+                                    checkItem('bch3','bcb3', 1000);
+                                    checkItem('bch4','bcb4', 1350);
+                                    animBar('bp1','bp1l',92, 1700);
+                                    animBar('bp2','bp2l',80, 2000);
+                                    animBar('bp3','bp3l',65, 2300);
+                                    setTimeout(() => {
+                                        let footer = document.getElementById('bfooter');
+                                        let status = document.getElementById('bstatus');
+                                        if(footer) footer.classList.add('show');
+                                        if(status) setTimeout(() => status.classList.add('show'), 300);
+                                    }, 3000);
+                                });
+                            });
+                        });
+                    });
+                })();
+            </script>
+        `;
+    </script>
 </body>
 </html>
