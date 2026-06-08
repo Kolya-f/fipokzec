@@ -14,7 +14,7 @@
                 <ul class="nav-links">
                     <li><a href="#home" class="nav-link">Головна</a></li>
                     <li><a href="#services" class="nav-link">Послуги</a></li>
-                    <li><a href="#portfolio" class="nav-link">Проєкти</a></li>
+                    <li><a href="#process" class="nav-link">Етапи</a></li>
                     <li><a href="#about" class="nav-link">Про мене</a></li>
                     <li><a href="#reviews" class="nav-link">Відгуки</a></li>
                     <li><a href="#faq" class="nav-link">FAQ</a></li>
@@ -38,7 +38,7 @@
                 </div>
                 <div class="hero-buttons">
                     <a href="#contacts" class="btn">Замовити сайт</a>
-                    <a href="#portfolio" class="btn btn-outline">Портфоліо</a>
+                    <a href="#process" class="btn btn-outline">Етапи роботи</a>
                 </div>
             </div>
             <div class="hero-image">
@@ -58,13 +58,136 @@
         </div>
     </section>
 
-    <section id="services" class="services-section"><div class="container"><div class="section-header"><span class="section-tag">Що я пропоную</span><h2 class="section-title">Мої послуги</h2><p class="section-desc">Повний цикл створення сайтів — від ідеї до запуску</p></div><div class="services-grid" id="servicesGrid"></div></div></section>
-    <section id="portfolio" class="portfolio-section"><div class="container"><div class="section-header"><span class="section-tag">Мої роботи</span><h2 class="section-title">Реальні проєкти</h2><p class="section-desc">Клікайте на картки — переходьте на живі сайти</p></div><div class="portfolio-filter"><button class="filter-btn active" data-filter="all">Всі</button><button class="filter-btn" data-filter="wordpress">WordPress</button><button class="filter-btn" data-filter="landing">Лендінги</button><button class="filter-btn" data-filter="ecommerce">Магазини</button></div><div class="portfolio-grid" id="portfolioGrid"></div></div></section>
-    <section id="about" class="about-section"><div class="container"><div class="about-grid"><div class="about-content"><span class="section-tag">Хто я</span><h2>Коля — веб-розробник з любов'ю до деталей</h2><p>За 2 роки у веб-розробці я створив понад 20 сайтів. Моя мета — не просто зробити красиву картинку, а створити інструмент, який реально приносить клієнтів.</p><div class="skills"><div class="skill"><span>HTML/CSS</span><div class="skill-bar"><div style="width: 95%"></div></div></div><div class="skill"><span>JavaScript</span><div class="skill-bar"><div style="width: 80%"></div></div></div><div class="skill"><span>WordPress</span><div class="skill-bar"><div style="width: 90%"></div></div></div><div class="skill"><span>Elementor</span><div class="skill-bar"><div style="width: 95%"></div></div></div></div><a href="#contacts" class="btn">Обговорити проєкт</a></div><div class="about-image"><div class="about-placeholder"><span>📸</span><p>Тут буде ваше фото</p></div></div></div></div></section>
-    <section id="reviews" class="reviews-section"><div class="container"><div class="section-header"><span class="section-tag">Що кажуть клієнти</span><h2 class="section-title">Відгуки</h2><p class="section-desc">Думка тих, з ким я вже попрацював</p></div><div class="reviews-grid" id="reviewsGrid"></div></div></section>
-    <section id="faq" class="faq-section"><div class="container"><div class="section-header"><span class="section-tag">FAQ</span><h2 class="section-title">Часті питання</h2><p class="section-desc">Відповіді на найпопулярніші запитання</p></div><div class="faq-grid" id="faqGrid"></div></div></section>
-    <section id="contacts" class="contacts-section"><div class="container"><div class="contacts-grid"><div class="contacts-info"><h2>📬 Зв'язатись зі мною</h2><p>Готові до співпраці? Просто напишіть – обговоримо ваш проєкт.</p><div class="contact-details"><div class="contact-item">📧 <a href="mailto:kolyaf.web@gmail.com">kolyaf.web@gmail.com</a></div><div class="contact-item">📞 +38 (099) 123-45-67</div><div class="contact-item">📍 Україна, Київ</div></div><div class="social-links" id="socialLinks"></div></div><div class="contact-form"><form id="contactForm"><input type="text" placeholder="Ваше ім'я" required><input type="email" placeholder="Ваш Email" required><input type="text" placeholder="Телефон"><textarea placeholder="Повідомлення" rows="5" required></textarea><button type="submit" class="btn">Відправити</button></form></div></div></div></section>
-    <footer><div class="container"><p id="footerText"></p></div></footer>
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Що я пропоную</span>
+                <h2 class="section-title">Мої послуги</h2>
+                <p class="section-desc">Повний цикл створення сайтів — від ідеї до запуску</p>
+            </div>
+            <div class="services-grid" id="servicesGrid"></div>
+        </div>
+    </section>
+
+    <!-- НОВА СЕКЦІЯ: ЕТАПИ СТВОРЕННЯ САЙТІВ (замість портфоліо) -->
+    <section id="process" class="process-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Як ми працюємо</span>
+                <h2 class="section-title">Етапи створення сайтів</h2>
+                <p class="section-desc">Прозорий процес розробки — від брифу до запуску</p>
+            </div>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">01</div>
+                    <div class="step-icon">📋</div>
+                    <h3>Бриф та аналіз</h3>
+                    <p>Обговорюємо завдання, цілі, цільову аудиторію та побажання до дизайну.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">02</div>
+                    <div class="step-icon">🎨</div>
+                    <h3>Прототип та дизайн</h3>
+                    <p>Створюю макет у Figma, узгоджую візуальну концепцію та структуру.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">03</div>
+                    <div class="step-icon">💻</div>
+                    <h3>Верстка та розробка</h3>
+                    <p>Адаптивна верстка, анімації, інтеграція з CMS або чистий код.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">04</div>
+                    <div class="step-icon">🚀</div>
+                    <h3>Тестування та запуск</h3>
+                    <p>Перевіряю швидкість, баги, SEO — публікую сайт на хостингу.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">05</div>
+                    <div class="step-icon">🛠️</div>
+                    <h3>Підтримка та навчання</h3>
+                    <p>Навчаю працювати з адмін-панеллю, надаю техпідтримку.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <span class="section-tag">Хто я</span>
+                    <h2>Коля — веб-розробник з любов'ю до деталей</h2>
+                    <p>За 2 роки у веб-розробці я створив понад 20 сайтів. Моя мета — не просто зробити красиву картинку, а створити інструмент, який реально приносить клієнтів.</p>
+                    <div class="skills">
+                        <div class="skill"><span>HTML/CSS</span><div class="skill-bar"><div style="width: 95%"></div></div></div>
+                        <div class="skill"><span>JavaScript</span><div class="skill-bar"><div style="width: 80%"></div></div></div>
+                        <div class="skill"><span>WordPress</span><div class="skill-bar"><div style="width: 90%"></div></div></div>
+                        <div class="skill"><span>Elementor</span><div class="skill-bar"><div style="width: 95%"></div></div></div>
+                    </div>
+                    <a href="#contacts" class="btn">Обговорити проєкт</a>
+                </div>
+                <div class="about-image">
+                    <div class="about-placeholder"><span>📸</span><p>Тут буде ваше фото</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" class="reviews-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Що кажуть клієнти</span>
+                <h2 class="section-title">Відгуки</h2>
+                <p class="section-desc">Думка тих, з ким я вже попрацював</p>
+            </div>
+            <div class="reviews-grid" id="reviewsGrid"></div>
+        </div>
+    </section>
+
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">FAQ</span>
+                <h2 class="section-title">Часті питання</h2>
+                <p class="section-desc">Відповіді на найпопулярніші запитання</p>
+            </div>
+            <div class="faq-grid" id="faqGrid"></div>
+        </div>
+    </section>
+
+    <section id="contacts" class="contacts-section">
+        <div class="container">
+            <div class="contacts-grid">
+                <div class="contacts-info">
+                    <h2>📬 Зв'язатись зі мною</h2>
+                    <p>Готові до співпраці? Просто напишіть – обговоримо ваш проєкт.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">📧 <a href="mailto:kolyaf.web@gmail.com">kolyaf.web@gmail.com</a></div>
+                        <div class="contact-item">📞 +38 (099) 123-45-67</div>
+                        <div class="contact-item">📍 Україна, Київ</div>
+                    </div>
+                    <div class="social-links" id="socialLinks"></div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <input type="text" placeholder="Ваше ім'я" required>
+                        <input type="email" placeholder="Ваш Email" required>
+                        <input type="text" placeholder="Телефон">
+                        <textarea placeholder="Повідомлення" rows="5" required></textarea>
+                        <button type="submit" class="btn">Відправити</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p id="footerText"></p>
+        </div>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
