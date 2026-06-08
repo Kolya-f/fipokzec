@@ -203,7 +203,60 @@ nav {
 }
 .section-desc { color: #94a3b8; max-width: 600px; margin: 0 auto; }
 
-.services-section, .portfolio-section, .about-section, .reviews-section, .faq-section, .contacts-section { padding: 80px 0; }
+.services-section, .process-section, .about-section, .reviews-section, .faq-section, .contacts-section { padding: 80px 0; }
+
+/* СТИЛІ ДЛЯ НОВОЇ СЕКЦІЇ ЕТАПІВ */
+.process-steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+.process-step {
+    background: rgba(20, 20, 35, 0.6);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 30px 24px;
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+.process-step:hover {
+    transform: translateY(-8px);
+    border-color: rgba(139, 92, 246, 0.5);
+    box-shadow: 0 10px 30px -10px rgba(139, 92, 246, 0.3);
+}
+.step-number {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2rem;
+    font-weight: 800;
+    opacity: 0.15;
+    color: #c084fc;
+}
+.step-icon {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+}
+.process-step h3 {
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, #e2e8f0, #c084fc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.process-step p {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
 
 /* 3D FLIP CARD СТИЛІ ДЛЯ ПОСЛУГ */
 .services-grid {
@@ -217,6 +270,7 @@ nav {
     width: 70%;
     perspective: 1500px;
     cursor: pointer;
+    opacity: 0;
 }
 .flip-card:nth-child(1) { width: 70%; margin-left: 0; margin-right: auto; }
 .flip-card:nth-child(2) { width: 65%; margin-left: auto; margin-right: 0; }
@@ -293,10 +347,11 @@ nav {
 }
 @media (max-width: 768px) {
     .flip-card { width: 90% !important; margin: 0 auto !important; }
+    .process-steps { flex-direction: column; }
+    .process-step { min-width: auto; }
 }
 
-/* ========== АФІГЕННИЙ ЕФЕКТ ДЛЯ ВІДЕО НА ТЕЛЕФОНІ ========== */
-
+/* Відео ефекти */
 .video-container {
     position: relative;
     width: 100%;
@@ -306,8 +361,6 @@ nav {
     width: 100%;
     border-radius: 16px;
 }
-
-/* Пульсуюча кнопка Play */
 .play-overlay {
     position: absolute;
     top: 0;
@@ -325,9 +378,7 @@ nav {
     transition: opacity 0.3s ease;
     pointer-events: none;
 }
-.flip-card-back:hover .play-overlay {
-    opacity: 1;
-}
+.flip-card-back:hover .play-overlay { opacity: 1; }
 .play-icon {
     width: 65px;
     height: 65px;
@@ -343,22 +394,11 @@ nav {
     animation: pulse 1.5s infinite;
 }
 @keyframes pulse {
-    0% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.7);
-    }
-    70% {
-        transform: scale(1.05);
-        box-shadow: 0 0 0 15px rgba(139, 92, 246, 0);
-    }
-    100% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
-    }
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.7); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(139, 92, 246, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(139, 92, 246, 0); }
 }
-/* Хвильова анімація навколо кнопки */
-.play-icon::before,
-.play-icon::after {
+.play-icon::before, .play-icon::after {
     content: '';
     position: absolute;
     width: 100%;
@@ -367,18 +407,10 @@ nav {
     background: rgba(139, 92, 246, 0.4);
     animation: ripple 1.5s infinite;
 }
-.play-icon::after {
-    animation-delay: 0.5s;
-}
+.play-icon::after { animation-delay: 0.5s; }
 @keyframes ripple {
-    0% {
-        transform: scale(1);
-        opacity: 0.6;
-    }
-    100% {
-        transform: scale(1.8);
-        opacity: 0;
-    }
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(1.8); opacity: 0; }
 }
 .play-overlay span {
     color: white;
@@ -388,10 +420,9 @@ nav {
     border-radius: 30px;
     margin-top: 15px;
     font-weight: 500;
-    letter-spacing: 1px;
 }
 
-/* Стилі для модального вікна (повний екран) */
+/* Модальне вікно */
 .fullscreen-modal {
     display: none;
     position: fixed;
@@ -405,9 +436,7 @@ nav {
     align-items: center;
     transition: background 0.4s ease;
 }
-.fullscreen-modal.active {
-    background: rgba(0, 0, 0, 0.95);
-}
+.fullscreen-modal.active { background: rgba(0, 0, 0, 0.95); }
 .fullscreen-modal .modal-content {
     position: relative;
     width: 90%;
@@ -416,10 +445,7 @@ nav {
     transform: scale(0.3);
     transition: all 0.5s cubic-bezier(0.34, 1.2, 0.64, 1);
 }
-.fullscreen-modal.active .modal-content {
-    opacity: 1;
-    transform: scale(1);
-}
+.fullscreen-modal.active .modal-content { opacity: 1; transform: scale(1); }
 .fullscreen-modal .video-wrapper {
     width: 100%;
     height: 100%;
@@ -433,11 +459,7 @@ nav {
     50% { box-shadow: 0 0 20px 5px rgba(139, 92, 246, 0.8); }
     100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.5); }
 }
-.fullscreen-modal iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-}
+.fullscreen-modal iframe { width: 100%; height: 100%; border: none; }
 .close-modal {
     position: absolute;
     top: -50px;
@@ -448,7 +470,6 @@ nav {
     transition: all 0.3s ease;
     z-index: 10000;
     opacity: 0;
-    transition: opacity 0.3s ease;
     background: rgba(0,0,0,0.5);
     width: 50px;
     height: 50px;
@@ -456,16 +477,9 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 300;
 }
-.fullscreen-modal.active .close-modal {
-    opacity: 1;
-}
-.close-modal:hover {
-    background: #fbbf24;
-    color: #0a0a0a;
-    transform: rotate(90deg);
-}
+.fullscreen-modal.active .close-modal { opacity: 1; }
+.close-modal:hover { background: #fbbf24; color: #0a0a0a; transform: rotate(90deg); }
 
 /* Сповіщення */
 .video-notification {
@@ -486,65 +500,13 @@ nav {
     box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     backdrop-filter: blur(8px);
 }
-.video-notification.show {
-    transform: translateX(-50%) translateY(0);
-    opacity: 1;
-}
+.video-notification.show { transform: translateX(-50%) translateY(0); opacity: 1; }
 @media (max-width: 768px) {
-    .video-notification {
-        font-size: 12px;
-        padding: 10px 20px;
-        white-space: nowrap;
-        bottom: 20px;
-    }
-    .play-icon {
-        width: 55px;
-        height: 55px;
-        font-size: 24px;
-    }
-    .close-modal {
-        top: -40px;
-        right: -10px;
-        width: 40px;
-        height: 40px;
-        font-size: 32px;
-    }
-    .fullscreen-modal .modal-content {
-        width: 95%;
-        height: 85%;
-    }
+    .video-notification { font-size: 12px; padding: 10px 20px; white-space: nowrap; bottom: 20px; }
+    .play-icon { width: 55px; height: 55px; font-size: 24px; }
+    .close-modal { top: -40px; right: -10px; width: 40px; height: 40px; font-size: 32px; }
+    .fullscreen-modal .modal-content { width: 95%; height: 85%; }
 }
-
-/* Портфоліо */
-.portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-}
-.portfolio-item {
-    background: rgba(20, 20, 35, 0.6);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 24px;
-    overflow: hidden;
-    transition: 0.3s;
-}
-.portfolio-item:hover { transform: translateY(-8px); border-color: rgba(251, 191, 36, 0.3); }
-.portfolio-content { padding: 24px; }
-.portfolio-content h3 { color: #e2e8f0; margin-bottom: 8px; }
-.portfolio-tech { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
-.portfolio-tech span { background: rgba(139, 92, 246, 0.2); padding: 4px 12px; border-radius: 40px; font-size: 0.7rem; color: #c084fc; }
-.portfolio-link { color: #fbbf24; text-decoration: none; }
-.portfolio-filter { display: flex; justify-content: center; gap: 16px; margin-bottom: 40px; flex-wrap: wrap; }
-.filter-btn {
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.2);
-    padding: 8px 20px;
-    border-radius: 40px;
-    color: #e2e8f0;
-    cursor: pointer;
-}
-.filter-btn.active, .filter-btn:hover { background: #fbbf24; border-color: #fbbf24; color: #0a0a0a; }
 
 /* Про мене */
 .about-grid {
@@ -606,10 +568,7 @@ nav {
 .faq-question { color: #fbbf24; font-weight: 700; margin-bottom: 12px; }
 .faq-answer { color: #94a3b8; }
 
-
-
-
-/* Кнопка для ручного відкриття відео */
+/* Кнопки для відео */
 .watch-video-btn {
     background: linear-gradient(135deg, #3b82f6, #8b5cf6);
     border: none;
@@ -628,33 +587,6 @@ nav {
     transform: scale(1.02);
     box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
 }
-
-
-
-/* Кнопка для ручного відкриття відео */
-.watch-video-btn {
-    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-    border: none;
-    padding: 10px 20px;
-    border-radius: 40px;
-    color: white;
-    font-size: 0.85rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 12px;
-    width: 100%;
-    text-align: center;
-}
-.watch-video-btn:hover {
-    transform: scale(1.02);
-    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
-}
-
-
-
-
-
 
 /* Контакти */
 .contacts-grid {
@@ -688,3 +620,23 @@ footer {
     .about-grid, .contacts-grid { grid-template-columns: 1fr; }
     .code-terminal { height: 300px; }
 }
+
+/* Анімації для карток послуг */
+.flip-card.slide-from-right { animation: slideFromRight 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards; }
+@keyframes slideFromRight { 0% { opacity: 0; transform: translateX(100px) rotate(5deg); } 100% { opacity: 1; transform: translateX(0) rotate(0deg); } }
+.flip-card.scale-up { animation: scaleUp 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards; }
+@keyframes scaleUp { 0% { opacity: 0; transform: scale(0.3) rotate(-5deg); } 80% { transform: scale(1.02); } 100% { opacity: 1; transform: scale(1) rotate(0deg); } }
+.flip-card.bounce { animation: bounce 0.8s ease forwards; }
+@keyframes bounce { 0% { opacity: 0; transform: translateY(100px) rotate(10deg); } 60% { transform: translateY(-15px) rotate(-2deg); } 80% { transform: translateY(5px) rotate(1deg); } 100% { opacity: 1; transform: translateY(0) rotate(0deg); } }
+.flip-card.wave { animation: wave 0.7s ease forwards; }
+@keyframes wave { 0% { opacity: 0; transform: translateX(-50px) rotate(-10deg); } 50% { transform: translateX(20px) rotate(5deg); } 100% { opacity: 1; transform: translateX(0) rotate(0deg); } }
+.flip-card.slide-from-left { animation: slideFromLeft 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards; }
+@keyframes slideFromLeft { 0% { opacity: 0; transform: translateX(-100px) rotate(-5deg); } 100% { opacity: 1; transform: translateX(0) rotate(0deg); } }
+.flip-card.drop { animation: drop 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards; }
+@keyframes drop { 0% { opacity: 0; transform: translateY(-80px) rotate(-8deg); } 70% { transform: translateY(10px) rotate(3deg); } 100% { opacity: 1; transform: translateY(0) rotate(0deg); } }
+.flip-card:nth-child(1) { animation-delay: 0s; }
+.flip-card:nth-child(2) { animation-delay: 0.1s; }
+.flip-card:nth-child(3) { animation-delay: 0.2s; }
+.flip-card:nth-child(4) { animation-delay: 0.3s; }
+.flip-card:nth-child(5) { animation-delay: 0.4s; }
+.flip-card:nth-child(6) { animation-delay: 0.5s; }
