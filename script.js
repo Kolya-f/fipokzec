@@ -104,7 +104,7 @@ function typeNextCharacter() {
     }
 }
 
-// ========== ОНОВЛЕНІ ПОСЛУГИ З ВІДЕО ТА УНІКАЛЬНИМИ ЕФЕКТАМИ ==========
+// Послуги з відео
 const services = [
     { 
         title: "Сайт-візитка", 
@@ -174,13 +174,6 @@ const services = [
     }
 ];
 
-const portfolioItems = [
-    { title: "Стоматологія SmileCare", imageBg: "linear-gradient(135deg, #1e3a8a, #3b82f6)", tech: ["WordPress"], link: "#", category: "wordpress" },
-    { title: "Beauty-бар LAVENDER", imageBg: "linear-gradient(135deg, #831843, #db2777)", tech: ["HTML/CSS", "JS"], link: "#", category: "landing" },
-    { title: "Інтернет-магазин квітів", imageBg: "linear-gradient(135deg, #065f46, #10b981)", tech: ["WooCommerce"], link: "#", category: "ecommerce" },
-    { title: "Фітнес-клуб Energy", imageBg: "linear-gradient(135deg, #92400e, #f59e0b)", tech: ["WordPress"], link: "#", category: "wordpress" }
-];
-
 const reviews = [
     { text: "Коля створив для нас сайт-візитку. Все зроблено якісно, швидко та за адекватною ціною.", author: "Ірина Петренко", position: "Власниця салону краси" },
     { text: "Дуже задоволений роботою! Інтернет-магазин працює ідеально.", author: "Олександр Коваль", position: "Підприємець" },
@@ -203,7 +196,6 @@ function renderServices() {
     const container = document.getElementById('servicesGrid');
     if (container) {
         container.innerHTML = services.map((s, index) => {
-            // Унікальний ефект для кожної картки
             const effectClass = `flip-card-effect-${index + 1} ${s.effect}`;
             return `
                 <div class="flip-card ${effectClass}" data-video-id="${s.videoId}" data-effect="${s.effect}">
@@ -227,53 +219,6 @@ function renderServices() {
         }).join('');
     }
 
-    // Автоматичне відкриття при наведенні (як було)
-    document.querySelectorAll('.flip-card[data-video-id]').forEach(card => {
-        const videoId = card.dataset.videoId;
-        let autoPlayTimeout = null;
-        let isVideoOpened = false;
-
-        const observer = new MutationObserver(() => {
-            if (card.matches(':hover') && !isVideoOpened) {
-                if (!autoPlayTimeout) {
-                    autoPlayTimeout = setTimeout(() => {
-                        if (card.matches(':hover')) {
-                            isVideoOpened = true;
-                            openFullscreenVideo(videoId);
-                        }
-                        autoPlayTimeout = null;
-                    }, 1000);
-                }
-            } else {
-                if (autoPlayTimeout) {
-                    clearTimeout(autoPlayTimeout);
-                    autoPlayTimeout = null;
-                }
-            }
-        });
-        observer.observe(card, { attributes: true });
-        
-        card.addEventListener('mouseenter', () => {
-            if (!isVideoOpened && !autoPlayTimeout) {
-                autoPlayTimeout = setTimeout(() => {
-                    if (card.matches(':hover')) {
-                        isVideoOpened = true;
-                        openFullscreenVideo(videoId);
-                    }
-                    autoPlayTimeout = null;
-                }, 1000);
-            }
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            if (autoPlayTimeout) {
-                clearTimeout(autoPlayTimeout);
-                autoPlayTimeout = null;
-            }
-        });
-    });
-
-    // Кнопки ручного відкриття
     document.querySelectorAll('.watch-video-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -337,22 +282,6 @@ function closeFullscreenVideo(modal) {
     }, 400);
 }
 
-function renderPortfolio(filter = "all") {
-    const container = document.getElementById('portfolioGrid');
-    if (!container) return;
-    const filtered = filter === "all" ? portfolioItems : portfolioItems.filter(i => i.category === filter);
-    container.innerHTML = filtered.map(i => `
-        <div class="portfolio-item">
-            <div class="portfolio-image" style="height:160px;background:${i.imageBg};display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:bold;color:white">${i.title.charAt(0)}</div>
-            <div class="portfolio-content">
-                <h3>${i.title}</h3>
-                <div class="portfolio-tech">${i.tech.map(t => `<span>${t}</span>`).join('')}</div>
-                <a href="${i.link}" class="portfolio-link">Переглянути →</a>
-            </div>
-        </div>
-    `).join('');
-}
-
 function renderReviews() {
     const container = document.getElementById('reviewsGrid');
     if (container) container.innerHTML = reviews.map(r => `<div class="review-card"><div class="review-text">“${r.text}”</div><div class="review-author">${r.author}</div><div class="review-position">${r.position}</div></div>`).join('');
@@ -371,16 +300,6 @@ function renderSocialLinks() {
 function setCurrentYear() {
     const footer = document.getElementById('footerText');
     if (footer) footer.innerHTML = `© ${new Date().getFullYear()} fipokzec.dev | Створення сайтів під ключ`;
-}
-
-function setupFilters() {
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            renderPortfolio(btn.dataset.filter);
-        });
-    });
 }
 
 function setupActiveMenu() {
@@ -419,117 +338,14 @@ function animateMenu() {
             item.style.transform = 'translateY(0)';
         }, delays[index] * 1000);
     });
-    setTimeout(() => {
-        menuItems.forEach((item, idx) => {
-            setTimeout(() => {
-                item.style.transition = 'all 0.3s ease';
-                item.style.background = 'linear-gradient(135deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3)';
-                item.style.backgroundSize = '400% 100%';
-                item.style.webkitBackgroundClip = 'text';
-                item.style.backgroundClip = 'text';
-                item.style.color = 'transparent';
-                item.style.animation = 'rainbowMove 2s linear forwards';
-                setTimeout(() => {
-                    item.style.background = '';
-                    item.style.webkitBackgroundClip = '';
-                    item.style.backgroundClip = '';
-                    item.style.color = '#e2e8f0';
-                    item.style.animation = '';
-                }, 2000);
-            }, idx * 100);
-        });
-    }, 1700);
 }
-
-const styleRainbow = document.createElement('style');
-styleRainbow.textContent = `@keyframes rainbowMove { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }`;
-document.head.appendChild(styleRainbow);
-
-// ========== ДОДАЄМО РІЗНІ ЕФЕКТИ ЗАВАНТАЖЕННЯ ДЛЯ КАРТОК ==========
-const effectStyles = document.createElement('style');
-effectStyles.textContent = `
-    /* Ефект 1: Виліт справа */
-    .flip-card.slide-from-right {
-        animation: slideFromRight 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
-    }
-    @keyframes slideFromRight {
-        0% { opacity: 0; transform: translateX(100px) rotate(5deg); }
-        100% { opacity: 1; transform: translateX(0) rotate(0deg); }
-    }
-    
-    /* Ефект 2: Збільшення */
-    .flip-card.scale-up {
-        animation: scaleUp 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
-    }
-    @keyframes scaleUp {
-        0% { opacity: 0; transform: scale(0.3) rotate(-5deg); }
-        80% { transform: scale(1.02); }
-        100% { opacity: 1; transform: scale(1) rotate(0deg); }
-    }
-    
-    /* Ефект 3: Підстрибування */
-    .flip-card.bounce {
-        animation: bounce 0.8s ease forwards;
-    }
-    @keyframes bounce {
-        0% { opacity: 0; transform: translateY(100px) rotate(10deg); }
-        60% { transform: translateY(-15px) rotate(-2deg); }
-        80% { transform: translateY(5px) rotate(1deg); }
-        100% { opacity: 1; transform: translateY(0) rotate(0deg); }
-    }
-    
-    /* Ефект 4: Хвиля */
-    .flip-card.wave {
-        animation: wave 0.7s ease forwards;
-    }
-    @keyframes wave {
-        0% { opacity: 0; transform: translateX(-50px) rotate(-10deg); }
-        50% { transform: translateX(20px) rotate(5deg); }
-        100% { opacity: 1; transform: translateX(0) rotate(0deg); }
-    }
-    
-    /* Ефект 5: Виліт зліва */
-    .flip-card.slide-from-left {
-        animation: slideFromLeft 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
-    }
-    @keyframes slideFromLeft {
-        0% { opacity: 0; transform: translateX(-100px) rotate(-5deg); }
-        100% { opacity: 1; transform: translateX(0) rotate(0deg); }
-    }
-    
-    /* Ефект 6: Падіння */
-    .flip-card.drop {
-        animation: drop 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
-    }
-    @keyframes drop {
-        0% { opacity: 0; transform: translateY(-80px) rotate(-8deg); }
-        70% { transform: translateY(10px) rotate(3deg); }
-        100% { opacity: 1; transform: translateY(0) rotate(0deg); }
-    }
-    
-    /* Затримки для кожної картки */
-    .flip-card:nth-child(1) { animation-delay: 0s; }
-    .flip-card:nth-child(2) { animation-delay: 0.1s; }
-    .flip-card:nth-child(3) { animation-delay: 0.2s; }
-    .flip-card:nth-child(4) { animation-delay: 0.3s; }
-    .flip-card:nth-child(5) { animation-delay: 0.4s; }
-    .flip-card:nth-child(6) { animation-delay: 0.5s; }
-    
-    /* Приховуємо картки до появи анімації */
-    .flip-card {
-        opacity: 0;
-    }
-`;
-document.head.appendChild(effectStyles);
 
 document.addEventListener('DOMContentLoaded', () => {
     renderServices(); 
-    renderPortfolio(); 
     renderReviews(); 
     renderFAQ(); 
     renderSocialLinks(); 
     setCurrentYear();
-    setupFilters(); 
     setupActiveMenu(); 
     setupMobileMenu();
     animateMenu();
