@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>fipokzec | Створення сайтів на замовлення</title>
     <style>
-        /* ВЕСЬ ТВІЙ CSS */
+        /* ВЕСЬ ТВІЙ CSS (базовий) */
         @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap');
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -216,45 +216,6 @@
             gap: 30px;
             margin-top: 20px;
         }
-        .process-step {
-            background: rgba(20, 20, 35, 0.6);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 24px;
-            padding: 30px 24px;
-            flex: 1;
-            min-width: 200px;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        .process-step.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .process-step:hover {
-            transform: translateY(-8px);
-            border-color: rgba(139, 92, 246, 0.5);
-            box-shadow: 0 10px 30px -10px rgba(139, 92, 246, 0.3);
-        }
-        .step-number {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 2rem;
-            font-weight: 800;
-            opacity: 0.15;
-            color: #c084fc;
-        }
-        .step-icon { font-size: 2.5rem; margin-bottom: 15px; }
-        .process-step h3 { font-size: 1.3rem; margin-bottom: 10px; color: #e2e8f0; }
-        .process-step p { color: #94a3b8; font-size: 0.85rem; line-height: 1.5; }
-
-        /* СПЕЦІАЛЬНИЙ СТИЛЬ ДЛЯ БЛОКІВ З АНІМАЦІЄЮ */
         .process-step-animation {
             background: transparent;
             border: none;
@@ -542,6 +503,52 @@
         .log-ok { color: #4ade80; }
         .log-warn { color: #fbbf24; }
         .log-info { color: #60a5fa; }
+
+        /* ПІДТРИМКА СТИЛІ */
+        .sw-wrap { font-family: 'Inter', system-ui, sans-serif; padding: 16px 0; width: 100%; }
+        .sw-box { background: linear-gradient(135deg,#0a0a0f,#0d0d14); border-radius: 24px; padding: 20px; border: 1px solid rgba(29,200,117,0.3); box-shadow: 0 20px 40px -15px rgba(0,0,0,0.5); }
+        .sw-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .sw-badge { display: flex; align-items: center; gap: 8px; font-size: 10px; color: #1dc875; }
+        .dot-g { width: 8px; height: 8px; background: #1dc875; border-radius: 50%; animation: pulseG 1.2s infinite; }
+        @keyframes pulseG { 0%,100%{opacity:1} 50%{opacity:0.3} }
+        .sw-timer { font-size: 10px; color: #555; font-family: monospace; }
+        .divider-g { height: 1px; background: linear-gradient(90deg,transparent,#1dc875,transparent); margin-bottom: 15px; }
+        .sw-title { font-size: 17px; margin-bottom: 14px; background: linear-gradient(135deg,#fff,#5eead4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .section-lbl { font-size: 8px; color: #444; margin: 10px 0 6px; letter-spacing: 0.5px; }
+        .chat-window { background: rgba(10,10,20,0.8); border: 1px solid rgba(29,200,117,0.15); border-radius: 14px; padding: 10px; margin-bottom: 10px; min-height: 110px; display: flex; flex-direction: column; gap: 6px; }
+        .msg { display: flex; gap: 8px; align-items: flex-end; opacity: 0; animation: fadeMsg 0.35s forwards; }
+        @keyframes fadeMsg { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+        .msg.from-client { flex-direction: row-reverse; }
+        .msg-ava { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; flex-shrink: 0; }
+        .ava-dev { background: rgba(29,200,117,0.2); color: #1dc875; }
+        .ava-client { background: rgba(127,119,221,0.2); color: #9f97ff; }
+        .msg-bubble { font-size: 10px; padding: 6px 10px; border-radius: 12px; max-width: 75%; line-height: 1.5; }
+        .bubble-dev { background: rgba(29,200,117,0.12); border: 1px solid rgba(29,200,117,0.2); color: #a7f3d0; border-bottom-left-radius: 4px; }
+        .bubble-client { background: rgba(127,119,221,0.12); border: 1px solid rgba(127,119,221,0.2); color: #c4b5fd; border-bottom-right-radius: 4px; }
+        .typing-bubble { background: rgba(29,200,117,0.08); border: 1px solid rgba(29,200,117,0.15); border-radius: 12px; border-bottom-left-radius: 4px; padding: 8px 12px; display: flex; gap: 4px; align-items: center; }
+        .typing-dot { width: 5px; height: 5px; background: #1dc875; border-radius: 50%; animation: typDot 1s infinite; }
+        .typing-dot:nth-child(2){animation-delay:.2s} .typing-dot:nth-child(3){animation-delay:.4s}
+        @keyframes typDot { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-5px)} }
+        .admin-screen { background: rgba(15,15,25,0.9); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; overflow: hidden; margin-bottom: 10px; }
+        .admin-bar { background: rgba(30,30,45,0.9); padding: 7px 12px; display: flex; align-items: center; gap: 8px; }
+        .admin-bar-dot { width: 7px; height: 7px; border-radius: 50%; }
+        .admin-bar-url { font-size: 9px; color: #555; margin-left: 6px; font-family: monospace; }
+        .admin-body { display: flex; height: 90px; }
+        .admin-sidebar { width: 80px; background: rgba(20,20,35,0.9); border-right: 1px solid rgba(255,255,255,0.05); padding: 8px 0; flex-shrink: 0; }
+        .admin-menu-item { font-size: 9px; color: #555; padding: 5px 10px; display: flex; align-items: center; gap: 5px; cursor: default; transition: all 0.3s; }
+        .admin-menu-item.active { color: #1dc875; background: rgba(29,200,117,0.1); }
+        .admin-content { flex: 1; padding: 10px; }
+        .admin-row { height: 10px; background: rgba(255,255,255,0.04); border-radius: 4px; margin-bottom: 6px; }
+        .admin-highlight { background: rgba(29,200,117,0.15); border: 1px solid rgba(29,200,117,0.3); border-radius: 6px; }
+        .admin-wrapper { position: relative; }
+        .resp-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 10px; }
+        .resp-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(29,200,117,0.15); border-radius: 10px; padding: 8px; text-align: center; }
+        .resp-num { font-size: 18px; font-weight: 700; background: linear-gradient(135deg,#1dc875,#5eead4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .resp-label { font-size: 9px; color: #555; }
+        .uptime-dots { display: flex; gap: 3px; margin-bottom: 10px; flex-wrap: wrap; }
+        .up-dot { width: 10px; height: 10px; border-radius: 3px; background: rgba(255,255,255,0.06); transition: background 0.3s; }
+        .up-dot.ok { background: #1dc875; }
+        .up-dot.warn { background: #fbbf24; }
     </style>
 </head>
 <body>
@@ -629,13 +636,8 @@
                 <!-- ЕТАП 4: АНІМАЦІЯ ЗАПУСКУ -->
                 <div class="process-step-animation" id="launchContainer"></div>
                 
-                <!-- ЕТАП 5: ПІДТРИМКА (звичайний текстовий блок) -->
-                <div class="process-step" id="step5">
-                    <div class="step-number">05</div>
-                    <div class="step-icon">🛠️</div>
-                    <h3>Підтримка та навчання</h3>
-                    <p>Навчаю працювати з адмін-панеллю, надаю техпідтримку 24/7.</p>
-                </div>
+                <!-- ЕТАП 5: АНІМАЦІЯ ПІДТРИМКИ -->
+                <div class="process-step-animation" id="supportContainer"></div>
             </div>
         </div>
     </section>
@@ -1082,14 +1084,191 @@
             setTimeout(()=>{ let s=document.getElementById('launchStatus'); if(s) s.style.opacity='1'; }, 8200);
         }
 
-        // СПОСТЕРЕЖЕННЯ ЗА СКРОЛОМ ДЛЯ ВСІХ ЕТАПІВ
+        // АНІМАЦІЯ ПІДТРИМКИ (5-й етап)
+        let supportAnimationStarted = false;
+        document.getElementById('supportContainer').innerHTML = `
+            <div class="sw-wrap" style="width:100%">
+                <div class="sw-box">
+                    <div class="sw-header">
+                        <div class="sw-badge"><div class="dot-g"></div><span>ПІДТРИМКА ТА НАВЧАННЯ</span></div>
+                        <div class="sw-timer" id="swTimer">00:00:00</div>
+                    </div>
+                    <div class="divider-g"></div>
+                    <div class="sw-title">🛠️ Адмін-панель та техпідтримка 24/7</div>
+                    
+                    <div class="section-lbl">ЧАТ ПІДТРИМКИ — ОНЛАЙН</div>
+                    <div class="chat-window" id="chatWin" style="min-height:110px"></div>
+                    
+                    <div class="section-lbl">НАВЧАННЯ: АДМІН-ПАНЕЛЬ</div>
+                    <div class="admin-wrapper">
+                        <div class="admin-screen" id="adminScreen">
+                            <div class="admin-bar">
+                                <div class="admin-bar-dot" style="background:#ff5f56"></div>
+                                <div class="admin-bar-dot" style="background:#ffbd2e"></div>
+                                <div class="admin-bar-dot" style="background:#27c93f"></div>
+                                <div class="admin-bar-url">site.com/wp-admin/</div>
+                            </div>
+                            <div class="admin-body">
+                                <div class="admin-sidebar">
+                                    <div class="admin-menu-item" id="mi0">📄 Сторінки</div>
+                                    <div class="admin-menu-item" id="mi1">📝 Записи</div>
+                                    <div class="admin-menu-item" id="mi2">🖼 Медіа</div>
+                                    <div class="admin-menu-item" id="mi3">⚙️ Налаш.</div>
+                                </div>
+                                <div class="admin-content" id="adminContent">
+                                    <div class="admin-row" style="width:80%"></div>
+                                    <div class="admin-row" style="width:60%"></div>
+                                    <div class="admin-row admin-highlight" id="adminHL" style="width:90%;height:14px;opacity:0"></div>
+                                    <div class="admin-row" style="width:45%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="section-lbl">АПТАЙМ ОСТАННІ 30 ДНІВ</div>
+                    <div class="uptime-dots" id="uptimeDots"></div>
+                    
+                    <div class="resp-grid">
+                        <div class="resp-card"><div class="resp-num" id="rTime">—</div><div class="resp-label">Час відповіді</div></div>
+                        <div class="resp-card"><div class="resp-num" id="rUptime">—</div><div class="resp-label">Аптайм</div></div>
+                        <div class="resp-card"><div class="resp-num" id="rTickets">—</div><div class="resp-label">Закрито тікетів</div></div>
+                    </div>
+                    
+                    <div class="section-lbl">НАВЧАННЯ КЛІЄНТА — ПРОГРЕС</div>
+                    <div id="swBars"></div>
+                    
+                    <div class="foot">
+                        <div class="ava-row"><div class="ava">FP</div><span class="ava-name">Підтримка: fipokzec 24/7</span></div>
+                        <div class="status-pill" id="swStatus"><span style="width:4px;height:4px;background:#1dc875;border-radius:50%;animation:pulseG 1.2s infinite"></span>Клієнт навчений ✓</div>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill" id="swProgress"></div></div>
+                </div>
+            </div>
+        `;
+        
+        function startSupportAnimation() {
+            if (supportAnimationStarted) return;
+            supportAnimationStarted = true;
+            
+            // Таймер
+            const startSw = Date.now();
+            setInterval(() => {
+                const e = Date.now()-startSw;
+                const s=Math.floor(e/1000)%60, m=Math.floor(e/60000)%60;
+                const el=document.getElementById('swTimer');
+                if(el) el.textContent=`00:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+            }, 200);
+            
+            // Прогрес бар
+            const progElSw = document.getElementById('swProgress');
+            const pStartSw = Date.now();
+            setInterval(() => {
+                const pct = Math.min((Date.now()-pStartSw)/10000*100,100);
+                if(progElSw) progElSw.style.width=pct+'%';
+            }, 100);
+            
+            // Чат
+            const msgs = [
+                { from:'client', text:'Привіт! Як додати новий пост?', delay:400 },
+                { from:'dev',    text:'Зараз покажу! Заходьте в Записи → Додати новий', delay:1800 },
+                { from:'client', text:'Знайшов, але де змінити зображення?', delay:3200 },
+                { from:'dev',    text:'Медіа → Завантажити — просто перетягніть файл 🖼', delay:4600 },
+                { from:'client', text:'Супер! Дякую, все зрозуміло 🙌', delay:6000 },
+            ];
+            const chatWin = document.getElementById('chatWin');
+            msgs.forEach(m => {
+                setTimeout(() => {
+                    const isClient = m.from === 'client';
+                    const div = document.createElement('div');
+                    div.className = `msg${isClient ? ' from-client' : ''}`;
+                    div.innerHTML = `<div class="msg-ava ${isClient ? 'ava-client' : 'ava-dev'}">${isClient ? 'КЛ' : 'FP'}</div><div class="msg-bubble ${isClient ? 'bubble-client' : 'bubble-dev'}">${m.text}</div>`;
+                    chatWin.appendChild(div);
+                    chatWin.scrollTop = chatWin.scrollHeight;
+                }, m.delay);
+                if (m.from === 'dev') {
+                    setTimeout(() => {
+                        const typing = document.createElement('div');
+                        typing.className = 'msg';
+                        typing.id = `typ${m.delay}`;
+                        typing.innerHTML = `<div class="msg-ava ava-dev">FP</div><div class="typing-bubble"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>`;
+                        chatWin.appendChild(typing);
+                        chatWin.scrollTop = chatWin.scrollHeight;
+                        setTimeout(() => { const t = document.getElementById(`typ${m.delay}`); if(t) t.remove(); }, 1300);
+                    }, m.delay - 1350);
+                }
+            });
+            
+            // Адмін-панель анімація
+            const menuItems = ['mi0','mi1','mi2','mi3'];
+            let curMenu = 0;
+            setInterval(() => {
+                menuItems.forEach((id,i) => {
+                    const el = document.getElementById(id);
+                    if(el) el.classList.toggle('active', i===curMenu);
+                });
+                curMenu = (curMenu+1)%4;
+                const hl = document.getElementById('adminHL');
+                if(hl) {
+                    hl.style.opacity='1';
+                    setTimeout(() => { if(hl) hl.style.opacity='0'; }, 800);
+                }
+            }, 1800);
+            
+            // Uptime dots
+            const dotsEl = document.getElementById('uptimeDots');
+            for(let i=0;i<30;i++) {
+                const d = document.createElement('div');
+                d.className = 'up-dot';
+                d.id = `ud${i}`;
+                dotsEl.appendChild(d);
+                setTimeout(() => {
+                    const roll = Math.random();
+                    d.classList.add(roll > 0.07 ? 'ok' : 'warn');
+                }, 500 + i*80);
+            }
+            
+            // Статистика
+            setTimeout(() => { let n=0; const iv=setInterval(()=>{ n=Math.min(n+1,15); const el=document.getElementById('rTime'); if(el) el.textContent=n+'хв'; if(n>=15) clearInterval(iv); },40); },3000);
+            setTimeout(() => { let n=0; const iv=setInterval(()=>{ n=Math.min(n+1,99); const el=document.getElementById('rUptime'); if(el) el.textContent=n+'%'; if(n>=99) clearInterval(iv); },25); },3600);
+            setTimeout(() => { let n=0; const iv=setInterval(()=>{ n=Math.min(n+1,47); const el=document.getElementById('rTickets'); if(el) el.textContent=n; if(n>=47) clearInterval(iv); },35); },4200);
+            
+            // Skill bars
+            const barsSw = [
+                { name:'Публікація матеріалів', target:100 },
+                { name:'Управління медіафайлами', target:95 },
+                { name:'Налаштування плагінів', target:80 },
+                { name:'Базове SEO у CMS', target:70 },
+            ];
+            const barsElSw = document.getElementById('swBars');
+            barsSw.forEach((b,i) => {
+                const div = document.createElement('div');
+                div.className = 'bar-row';
+                div.innerHTML = `<div class="bar-top"><span class="bar-name">${b.name}</span><span class="bar-pct" id="spct${i}">0%</span></div><div class="bar-track"><div class="bar-fill" id="sbar${i}"></div></div>`;
+                barsElSw.appendChild(div);
+                setTimeout(() => {
+                    const bar=document.getElementById(`sbar${i}`);
+                    if(bar) bar.style.width=b.target+'%';
+                    let n=0;
+                    const iv=setInterval(() => {
+                        n=Math.min(n+2,b.target);
+                        const p=document.getElementById(`spct${i}`);
+                        if(p) p.textContent=n+'%';
+                        if(n>=b.target) clearInterval(iv);
+                    }, 25);
+                }, 5000+i*400);
+            });
+            
+            setTimeout(() => { const s=document.getElementById('swStatus'); if(s) s.style.opacity='1'; }, 8500);
+        }
+
+        // СПОСТЕРЕЖЕННЯ ЗА СКРОЛОМ
         function setupScrollAnimation() {
             const elementsToAnimate = [
                 { element: document.querySelector('#briefContainer'), callback: startBriefAnimation },
                 { element: document.querySelector('#figmaContainer'), callback: startFigmaAnimation },
                 { element: document.querySelector('#codeContainer'), callback: startCodeAnimation },
                 { element: document.querySelector('#launchContainer'), callback: startLaunchAnimation },
-                { element: document.getElementById('step5') }
+                { element: document.querySelector('#supportContainer'), callback: startSupportAnimation }
             ];
             
             const observer = new IntersectionObserver((entries) => {
