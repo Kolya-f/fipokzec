@@ -69,7 +69,8 @@
         </div>
     </section>
 
-    <!-- СЕКЦІЯ: ЕТАПИ СТВОРЕННЯ САЙТІВ + АНІМАЦІЯ БРІФУ -->
+    <!-- СЕКЦІЯ: ЕТАПИ СТВОРЕННЯ САЙТІВ -->
+    <!-- ПЕРШИЙ ЕТАП (БРИФ) ЗАМІНЕНО НА АНІМАЦІЮ -->
     <section id="process" class="process-section">
         <div class="container">
             <div class="section-header">
@@ -77,42 +78,44 @@
                 <h2 class="section-title">Етапи створення сайтів</h2>
                 <p class="section-desc">Прозорий процес розробки — від брифу до запуску</p>
             </div>
+            
             <div class="process-steps">
-                <div class="process-step">
-                    <div class="step-number">01</div>
-                    <div class="step-icon">📋</div>
-                    <h3>Бриф та аналіз</h3>
-                    <p>Обговорюємо завдання, цілі, цільову аудиторію та побажання до дизайну.</p>
+                <!-- ЕТАП 1: Бриф - ТУТ ТЕПЕР АНІМАЦІЯ (замість текстового блоку) -->
+                <div class="process-step-brief" id="briefAnimationContainer">
+                    <div class="brief-animation-wrapper"></div>
                 </div>
+                
+                <!-- ЕТАП 2 -->
                 <div class="process-step">
                     <div class="step-number">02</div>
                     <div class="step-icon">🎨</div>
                     <h3>Прототип та дизайн</h3>
                     <p>Створюю макет у Figma, узгоджую візуальну концепцію та структуру.</p>
                 </div>
+                
+                <!-- ЕТАП 3 -->
                 <div class="process-step">
                     <div class="step-number">03</div>
                     <div class="step-icon">💻</div>
                     <h3>Верстка та розробка</h3>
                     <p>Адаптивна верстка, анімації, інтеграція з CMS або чистий код.</p>
                 </div>
+                
+                <!-- ЕТАП 4 -->
                 <div class="process-step">
                     <div class="step-number">04</div>
                     <div class="step-icon">🚀</div>
                     <h3>Тестування та запуск</h3>
                     <p>Перевіряю швидкість, баги, SEO — публікую сайт на хостингу.</p>
                 </div>
+                
+                <!-- ЕТАП 5 -->
                 <div class="process-step">
                     <div class="step-number">05</div>
                     <div class="step-icon">🛠️</div>
                     <h3>Підтримка та навчання</h3>
                     <p>Навчаю працювати з адмін-панеллю, надаю техпідтримку.</p>
                 </div>
-            </div>
-
-            <!-- АНІМАЦІЯ БРІФУ (ВСТАВЛЕНА ПРЯМО ТУТ) -->
-            <div class="process-brief-embed" style="margin-top: 3rem;">
-                <div class="brief-animation-wrapper" id="briefAnimation"></div>
             </div>
         </div>
     </section>
@@ -195,101 +198,84 @@
 
     <script src="script.js"></script>
     
-    <!-- HTML-код анімації бріфу вставлений напряму -->
+    <!-- АНІМАЦІЯ БРІФУ (вставляється замість першого етапу) -->
     <script>
-        // Вставляємо HTML анімації бріфу
-        document.getElementById('briefAnimation').innerHTML = `
+        document.querySelector('.brief-animation-wrapper').innerHTML = `
             <style>
-                @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-                
-                @keyframes fadeUpBr { 
-                    from { opacity: 0; transform: translateY(20px); } 
-                    to { opacity: 1; transform: translateY(0); } 
+                @keyframes fadeUpAnim {
+                    from { opacity: 0; transform: translateY(20px); }
+                    to { opacity: 1; transform: translateY(0); }
                 }
-                @keyframes blinkBr { 
-                    0%, 100% { opacity: 1; } 
-                    50% { opacity: 0; } 
+                @keyframes blinkAnim {
+                    0%, 100% { opacity: 1; }
+                    50% { opacity: 0; }
                 }
-                @keyframes scanlineBr { 
-                    0% { transform: translateY(-100%); } 
-                    100% { transform: translateY(100vh); } 
+                @keyframes scanlineAnim {
+                    0% { transform: translateY(-100%); }
+                    100% { transform: translateY(100vh); }
                 }
-                @keyframes glitch1Br { 
-                    0%, 95%, 100% { clip-path: none; transform: none; } 
-                    96% { clip-path: inset(20% 0 60% 0); transform: translate(-2px, 1px); } 
-                    97% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -1px); } 
+                @keyframes shimmerAnim {
+                    from { background-position: 200% center; }
+                    to { background-position: -200% center; }
                 }
-                @keyframes glitch2Br { 
-                    0%, 94%, 100% { opacity: 0; } 
-                    95%, 99% { opacity: 1; } 
+                @keyframes pulseGlowAnim {
+                    0%, 100% { box-shadow: 0 0 0 0 rgba(127, 119, 221, 0); }
+                    50% { box-shadow: 0 0 20px 4px rgba(127, 119, 221, 0.25); }
                 }
-                @keyframes shimmerBr { 
-                    from { background-position: 200% center; } 
-                    to { background-position: -200% center; } 
+                @keyframes checkPopAnim {
+                    0% { transform: scale(0) rotate(-20deg); opacity: 0; }
+                    60% { transform: scale(1.3) rotate(5deg); }
+                    100% { transform: scale(1) rotate(0); opacity: 1; }
                 }
-                @keyframes pulseGlowBr { 
-                    0%, 100% { box-shadow: 0 0 0 0 rgba(127, 119, 221, 0); } 
-                    50% { box-shadow: 0 0 20px 4px rgba(127, 119, 221, 0.25); } 
-                }
-                @keyframes checkPopBr { 
-                    0% { transform: scale(0) rotate(-20deg); opacity: 0; } 
-                    60% { transform: scale(1.3) rotate(5deg); } 
-                    100% { transform: scale(1) rotate(0); opacity: 1; } 
-                }
-                @keyframes lineInBr { 
-                    from { transform: scaleX(0); transform-origin: left; } 
-                    to { transform: scaleX(1); } 
-                }
-                @keyframes noiseShiftBr { 
-                    0% { background-position: 0 0; } 
-                    100% { background-position: 100px 100px; } 
+                @keyframes lineInAnim {
+                    from { transform: scaleX(0); transform-origin: left; }
+                    to { transform: scaleX(1); }
                 }
                 
+                .process-step-brief {
+                    background: transparent;
+                    width: 100%;
+                    margin-bottom: 30px;
+                }
                 .brief-scene {
                     background: #0a0a0f;
-                    border-radius: 20px;
+                    border-radius: 24px;
                     overflow: hidden;
                     position: relative;
-                    min-height: 540px;
+                    min-height: 520px;
                     box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.5);
-                    border: 1px solid rgba(127, 119, 221, 0.2);
+                    border: 1px solid rgba(127, 119, 221, 0.25);
                 }
                 .brief-noise {
                     position: absolute; inset: 0; pointer-events: none; z-index: 1;
-                    opacity: 0.03;
-                    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-                    background-size: 200px 200px;
-                    animation: noiseShiftBr 0.15s steps(1) infinite;
+                    opacity: 0.04;
+                    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+                    background-size: 150px 150px;
+                    animation: noiseShiftAnim 0.12s steps(1) infinite;
+                }
+                @keyframes noiseShiftAnim {
+                    0% { background-position: 0 0; }
+                    100% { background-position: 100px 100px; }
                 }
                 .brief-scanline {
                     position: absolute; left: 0; right: 0; height: 2px;
-                    background: linear-gradient(transparent, rgba(127, 119, 221, 0.08), transparent);
+                    background: linear-gradient(transparent, rgba(127, 119, 221, 0.12), transparent);
                     z-index: 2; pointer-events: none;
-                    animation: scanlineBr 4s linear infinite;
+                    animation: scanlineAnim 5s linear infinite;
                 }
                 .brief-glow-top {
                     position: absolute; top: -60px; left: 50%; transform: translateX(-50%);
-                    width: 300px; height: 120px;
-                    background: radial-gradient(ellipse, rgba(83, 74, 183, 0.35) 0%, transparent 70%);
+                    width: 280px; height: 120px;
+                    background: radial-gradient(ellipse, rgba(127, 119, 221, 0.4) 0%, transparent 70%);
                     pointer-events: none; z-index: 0;
                 }
-                .brief-glitch-layer {
-                    position: absolute; inset: 0; z-index: 4; pointer-events: none;
-                    animation: glitch2Br 8s linear infinite;
-                    opacity: 0;
-                }
-                .brief-glitch-layer::before {
-                    content: ''; position: absolute; inset: 0;
-                    background: linear-gradient(transparent 45%, rgba(127, 119, 221, 0.04) 45%, rgba(127, 119, 221, 0.04) 46%, transparent 46%);
-                    animation: glitch1Br 8s linear infinite;
-                }
                 .brief-content {
-                    position: relative; z-index: 3; padding: 1.75rem 1.75rem 1.5rem;
+                    position: relative; z-index: 3; padding: 1.5rem;
                 }
                 .brief-top-bar {
                     display: flex; align-items: center; justify-content: space-between;
-                    margin-bottom: 1.5rem;
-                    animation: fadeUpBr 0.6s 0.1s both;
+                    margin-bottom: 1.25rem;
+                    animation: fadeUpAnim 0.5s 0.1s both;
                 }
                 .brief-top-label {
                     display: flex; align-items: center; gap: 8px;
@@ -298,90 +284,90 @@
                 }
                 .brief-dot-live {
                     width: 7px; height: 7px; border-radius: 50%; background: #7F77DD;
-                    animation: blinkBr 1.2s infinite;
+                    animation: blinkAnim 1.2s infinite;
                 }
                 .brief-top-meta {
-                    font-size: 10px; color: #444; letter-spacing: 0.08em;
+                    font-size: 10px; color: #4a4a5a; letter-spacing: 0.08em;
                     font-family: monospace;
                 }
                 .brief-divider {
                     height: 0.5px;
                     background: linear-gradient(90deg, transparent, rgba(127, 119, 221, 0.5), transparent);
-                    margin-bottom: 1.25rem;
-                    animation: lineInBr 0.8s 0.4s both;
+                    margin-bottom: 1rem;
+                    animation: lineInAnim 0.7s 0.3s both;
                 }
                 .brief-heading {
-                    margin-bottom: 1.25rem;
-                    animation: fadeUpBr 0.6s 0.3s both;
+                    margin-bottom: 1rem;
+                    animation: fadeUpAnim 0.5s 0.2s both;
                 }
                 .brief-heading h2 {
-                    font-size: 20px; font-weight: 700; color: #f0f0ff;
+                    font-size: 18px; font-weight: 700; color: #f0f0ff;
                     letter-spacing: -0.02em;
                     background: linear-gradient(135deg, #f0f0ff 0%, #9f97ff 50%, #f0f0ff 100%);
                     background-size: 200% auto;
                     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-                    animation: shimmerBr 3s linear infinite;
+                    animation: shimmerAnim 3s linear infinite;
                 }
                 .brief-heading p {
-                    font-size: 11px; color: #555; margin-top: 6px;
+                    font-size: 10px; color: #555; margin-top: 4px;
                 }
                 .brief-fields-grid {
-                    display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;
+                    display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px;
                 }
                 .brief-field {
                     background: rgba(255,255,255,0.03);
                     border: 0.5px solid rgba(127, 119, 221, 0.2);
                     border-radius: 10px;
-                    padding: 10px 12px;
-                    position: relative; overflow: hidden;
+                    padding: 8px 10px;
+                    position: relative;
                     opacity: 0; transform: translateY(10px);
                     transition: opacity 0.4s, transform 0.4s;
                 }
                 .brief-field.visible { opacity: 1; transform: none; }
-                .brief-field.active { border-color: rgba(127, 119, 221, 0.5); animation: pulseGlowBr 1.5s ease infinite; }
+                .brief-field.active { border-color: rgba(127, 119, 221, 0.5); animation: pulseGlowAnim 1.5s ease infinite; }
                 .brief-field-label {
-                    font-size: 9px; color: #534AB7; letter-spacing: 0.1em;
-                    text-transform: uppercase; margin-bottom: 5px; font-weight: 600;
+                    font-size: 8px; color: #534AB7; letter-spacing: 0.1em;
+                    text-transform: uppercase; margin-bottom: 4px; font-weight: 600;
                 }
                 .brief-field-val {
-                    font-size: 12px; color: #ccc; min-height: 18px;
+                    font-size: 11px; color: #ccc; min-height: 16px;
                 }
                 .brief-field-val .cursor {
-                    display: inline-block; width: 1.5px; height: 12px;
+                    display: inline-block; width: 1.5px; height: 10px;
                     background: #7F77DD; vertical-align: middle;
-                    animation: blinkBr 0.6s infinite;
+                    animation: blinkAnim 0.6s infinite;
                 }
                 .brief-field-full { grid-column: 1/-1; }
                 .brief-corner {
-                    position: absolute; width: 8px; height: 8px;
+                    position: absolute; width: 6px; height: 6px;
                 }
                 .brief-corner.tl {
-                    top: 4px; left: 4px;
-                    border-top: 1px solid rgba(127, 119, 221, 0.5);
-                    border-left: 1px solid rgba(127, 119, 221, 0.5);
+                    top: 3px; left: 3px;
+                    border-top: 1px solid rgba(127, 119, 221, 0.4);
+                    border-left: 1px solid rgba(127, 119, 221, 0.4);
                 }
                 .brief-corner.br {
-                    bottom: 4px; right: 4px;
-                    border-bottom: 1px solid rgba(127, 119, 221, 0.5);
-                    border-right: 1px solid rgba(127, 119, 221, 0.5);
+                    bottom: 3px; right: 3px;
+                    border-bottom: 1px solid rgba(127, 119, 221, 0.4);
+                    border-right: 1px solid rgba(127, 119, 221, 0.4);
                 }
                 .brief-section-label {
-                    font-size: 9px; color: #444; letter-spacing: 0.12em;
-                    text-transform: uppercase; margin: 12px 0 8px; font-weight: 600;
+                    font-size: 8px; color: #444; letter-spacing: 0.12em;
+                    text-transform: uppercase; margin: 10px 0 6px; font-weight: 600;
                 }
                 .brief-checks {
-                    display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px;
+                    display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px;
                 }
                 .brief-check-item {
-                    display: flex; align-items: center; gap: 10px;
-                    font-size: 12px; color: #666;
-                    opacity: 0; transform: translateX(-10px);
+                    display: flex; align-items: center; gap: 8px;
+                    font-size: 11px; color: #666;
+                    opacity: 0; transform: translateX(-8px);
                     transition: opacity 0.35s, transform 0.35s;
                 }
                 .brief-check-item.visible { opacity: 1; transform: none; }
                 .brief-check-item.done { color: #888; }
                 .brief-check-box {
-                    width: 16px; height: 16px; border-radius: 4px;
+                    width: 14px; height: 14px; border-radius: 3px;
                     border: 0.5px solid rgba(127, 119, 221, 0.3);
                     display: flex; align-items: center; justify-content: center;
                     flex-shrink: 0;
@@ -389,64 +375,64 @@
                 .brief-check-box.checked {
                     background: rgba(127, 119, 221, 0.2);
                     border-color: #7F77DD;
-                    animation: checkPopBr 0.35s ease both;
+                    animation: checkPopAnim 0.35s ease both;
                 }
                 .brief-check-box.checked::after {
                     content: "✓";
-                    font-size: 10px;
+                    font-size: 9px;
                     color: #9f97ff;
                 }
                 .brief-bars {
-                    display: flex; flex-direction: column; gap: 8px; margin-bottom: 1.25rem;
+                    display: flex; flex-direction: column; gap: 6px; margin-bottom: 1rem;
                 }
                 .brief-bar-meta {
-                    display: flex; justify-content: space-between; margin-bottom: 4px;
+                    display: flex; justify-content: space-between; margin-bottom: 3px;
                 }
-                .brief-bar-name { font-size: 11px; color: #555; }
-                .brief-bar-pct { font-size: 11px; color: #7F77DD; font-family: monospace; }
+                .brief-bar-name { font-size: 10px; color: #555; }
+                .brief-bar-pct { font-size: 10px; color: #7F77DD; font-family: monospace; }
                 .brief-bar-track {
-                    height: 3px; background: rgba(255,255,255,0.05);
+                    height: 2px; background: rgba(255,255,255,0.05);
                     border-radius: 99px; overflow: hidden;
                 }
                 .brief-bar-fill {
                     height: 100%; border-radius: 99px;
                     background: linear-gradient(90deg, #534AB7, #9f97ff);
-                    width: 0; transition: width 1.1s cubic-bezier(0.4,0,0.2,1);
+                    width: 0; transition: width 1s cubic-bezier(0.4,0,0.2,1);
                     position: relative;
                 }
                 .brief-bar-fill::after {
                     content: ''; position: absolute; right: 0; top: -2px;
-                    width: 6px; height: 7px; border-radius: 50%;
+                    width: 5px; height: 6px; border-radius: 50%;
                     background: #c0baff;
-                    box-shadow: 0 0 6px 2px rgba(159, 151, 255, 0.6);
+                    box-shadow: 0 0 5px 1px rgba(159, 151, 255, 0.5);
                 }
                 .brief-footer-bar {
                     display: flex; align-items: center; justify-content: space-between;
-                    padding-top: 1rem;
+                    padding-top: 0.75rem;
                     border-top: 0.5px solid rgba(255,255,255,0.05);
                     opacity: 0; transition: opacity 0.5s;
                 }
                 .brief-footer-bar.show { opacity: 1; }
                 .brief-avatar {
-                    width: 28px; height: 28px; border-radius: 50%;
+                    width: 24px; height: 24px; border-radius: 50%;
                     background: rgba(127, 119, 221, 0.15);
                     border: 0.5px solid rgba(127, 119, 221, 0.3);
                     display: flex; align-items: center; justify-content: center;
-                    font-size: 10px; color: #7F77DD; font-weight: 700;
+                    font-size: 9px; color: #7F77DD; font-weight: 700;
                 }
-                .brief-footer-name { font-size: 11px; color: #444; margin-left: 8px; }
+                .brief-footer-name { font-size: 10px; color: #444; margin-left: 6px; }
                 .brief-status-tag {
-                    font-size: 10px; padding: 3px 12px; border-radius: 99px;
+                    font-size: 9px; padding: 2px 10px; border-radius: 99px;
                     background: rgba(58, 109, 17, 0.2);
                     border: 0.5px solid rgba(99, 153, 34, 0.3);
                     color: #7fc44a;
-                    display: flex; align-items: center; gap: 6px;
+                    display: flex; align-items: center; gap: 5px;
                     opacity: 0; transition: opacity 0.5s 0.2s;
                 }
                 .brief-status-tag.show { opacity: 1; }
                 .brief-status-dot {
-                    width: 5px; height: 5px; border-radius: 50%;
-                    background: #7fc44a; animation: blinkBr 1.5s infinite;
+                    width: 4px; height: 4px; border-radius: 50%;
+                    background: #7fc44a; animation: blinkAnim 1.5s infinite;
                 }
                 .brief-progress-outer {
                     position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
@@ -458,8 +444,8 @@
                     width: 0; transition: width 0.3s linear;
                 }
                 .brief-watermark {
-                    position: absolute; top: 12px; right: 16px;
-                    font-size: 8px; color: #2a2a3a;
+                    position: absolute; bottom: 8px; right: 12px;
+                    font-size: 7px; color: #2a2a3a;
                     font-family: monospace; z-index: 5;
                 }
             </style>
@@ -468,13 +454,12 @@
                 <div class="brief-noise"></div>
                 <div class="brief-scanline"></div>
                 <div class="brief-glow-top"></div>
-                <div class="brief-glitch-layer"></div>
-                <div class="brief-watermark">BRIEF_001</div>
+                <div class="brief-watermark">BRIEF | ЕТАП 01/05</div>
 
                 <div class="brief-content">
                     <div class="brief-top-bar">
                         <div class="brief-top-label">
-                            <span class="brief-dot-live"></span> Заповнення бріфу
+                            <span class="brief-dot-live"></span> Брифування
                         </div>
                         <div class="brief-top-meta" id="briefTimer">00:00:00</div>
                     </div>
@@ -482,7 +467,7 @@
                     <div class="brief-divider"></div>
 
                     <div class="brief-heading">
-                        <h2>Бриф на розробку сайту</h2>
+                        <h2>📋 Бриф на розробку сайту</h2>
                         <p>Заповнюється разом із клієнтом · Етап 01/05</p>
                     </div>
 
@@ -546,7 +531,7 @@
 
             <script>
                 (function() {
-                    const TOTAL = 9000;
+                    const TOTAL = 8500;
                     let start = Date.now();
                     
                     function pad(n){ return String(n).padStart(2,'0'); }
@@ -610,13 +595,13 @@
                     }
                     
                     show('bf1'); activate('bf1');
-                    typeText('bt1','bcr1','Studio Koval — веб-агенція', 500, 52, () => {
+                    typeText('bt1','bcr1','Fipokzec Web Studio', 500, 52, () => {
                         deactivate('bf1'); show('bf2'); activate('bf2');
-                        typeText('bt2','bcr2','Лендінг + портфоліо', 200, 60, () => {
+                        typeText('bt2','bcr2','Сайт-візитка + Портфоліо', 200, 58, () => {
                             deactivate('bf2'); show('bf3'); activate('bf3');
-                            typeText('bt3','bcr3','Малий бізнес, фріланс 25–40 р., UA/EU', 200, 42, () => {
+                            typeText('bt3','bcr3','Малий бізнес, фрілансери, 25–45 років, Україна/ЄС', 200, 40, () => {
                                 deactivate('bf3'); show('bf4'); activate('bf4');
-                                typeText('bt4','bcr4','Залучати клієнтів через органічний пошук', 200, 40, () => {
+                                typeText('bt4','bcr4','Залучення клієнтів через органічний пошук та рекомендації', 200, 42, () => {
                                     deactivate('bf4');
                                     checkItem('bch1','bcb1', 300);
                                     checkItem('bch2','bcb2', 650);
