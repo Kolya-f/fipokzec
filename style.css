@@ -165,6 +165,245 @@ nav {
 }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
+
+
+
+
+/* Стилі для анімованих навичок */
+.skills-animated {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 30px;
+}
+
+.skill-card {
+    background: rgba(20, 20, 35, 0.5);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateX(-30px);
+}
+
+.skill-card:nth-child(even) {
+    transform: translateX(30px);
+}
+
+.skill-card.visible {
+    animation: skillReveal 0.6s cubic-bezier(0.34, 1.2, 0.64, 1) forwards;
+}
+
+@keyframes skillReveal {
+    0% {
+        opacity: 0;
+        transform: translateX(var(--start-x, -30px)) scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+/* Індивідуальні ефекти для кожної картки */
+.skill-card[data-skill="HTML5"].visible { animation: slideFromLeft 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards; }
+.skill-card[data-skill="CSS3"].visible { animation: slideFromRight 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards; animation-delay: 0.05s; }
+.skill-card[data-skill="JavaScript"].visible { animation: scalePop 0.5s ease forwards; animation-delay: 0.1s; }
+.skill-card[data-skill="TypeScript"].visible { animation: dropIn 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards; animation-delay: 0.15s; }
+.skill-card[data-skill="React"].visible { animation: rotateIn 0.5s ease forwards; animation-delay: 0.2s; }
+.skill-card[data-skill="WordPress"].visible { animation: slideFromLeft 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards; animation-delay: 0.25s; }
+.skill-card[data-skill="Elementor"].visible { animation: slideFromRight 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards; animation-delay: 0.3s; }
+.skill-card[data-skill="PHP"].visible { animation: waveIn 0.5s ease forwards; animation-delay: 0.35s; }
+.skill-card[data-skill="Git"].visible { animation: bounceIn 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards; animation-delay: 0.4s; }
+.skill-card[data-skill="Figma"].visible { animation: glowReveal 0.5s ease forwards; animation-delay: 0.45s; }
+
+@keyframes slideFromLeft {
+    0% { opacity: 0; transform: translateX(-50px) rotate(-5deg); }
+    100% { opacity: 1; transform: translateX(0) rotate(0deg); }
+}
+@keyframes slideFromRight {
+    0% { opacity: 0; transform: translateX(50px) rotate(5deg); }
+    100% { opacity: 1; transform: translateX(0) rotate(0deg); }
+}
+@keyframes scalePop {
+    0% { opacity: 0; transform: scale(0.3); }
+    70% { transform: scale(1.05); }
+    100% { opacity: 1; transform: scale(1); }
+}
+@keyframes dropIn {
+    0% { opacity: 0; transform: translateY(-60px) rotate(-10deg); }
+    60% { transform: translateY(10px) rotate(3deg); }
+    100% { opacity: 1; transform: translateY(0) rotate(0deg); }
+}
+@keyframes rotateIn {
+    0% { opacity: 0; transform: rotateY(90deg); }
+    100% { opacity: 1; transform: rotateY(0deg); }
+}
+@keyframes waveIn {
+    0% { opacity: 0; transform: translateX(-30px) skewX(15deg); }
+    100% { opacity: 1; transform: translateX(0) skewX(0deg); }
+}
+@keyframes bounceIn {
+    0% { opacity: 0; transform: translateY(40px); }
+    60% { transform: translateY(-10px); }
+    80% { transform: translateY(5px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes glowReveal {
+    0% { opacity: 0; transform: scale(0.8); filter: blur(5px); }
+    100% { opacity: 1; transform: scale(1); filter: blur(0); }
+}
+
+.skill-icon {
+    font-size: 2rem;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(139, 92, 246, 0.15);
+    border-radius: 14px;
+    transition: all 0.3s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(139, 92, 246, 0.4);
+    box-shadow: 0 10px 25px -10px rgba(139, 92, 246, 0.3);
+}
+
+.skill-card:hover .skill-icon {
+    transform: scale(1.1) rotate(5deg);
+    background: rgba(139, 92, 246, 0.25);
+}
+
+.skill-info {
+    flex: 1;
+}
+
+.skill-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    margin-bottom: 6px;
+}
+
+.skill-bar-container {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.skill-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #8b5cf6, #c084fc, #fbbf24);
+    background-size: 200% 100%;
+    border-radius: 4px;
+    width: 0%;
+    transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: fillGradient 2s ease infinite;
+}
+
+@keyframes fillGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.skill-percent {
+    font-size: 0.7rem;
+    color: #c084fc;
+    margin-top: 4px;
+    text-align: right;
+    font-family: monospace;
+}
+
+/* Статистика коду */
+.code-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    background: rgba(20, 20, 35, 0.4);
+    backdrop-filter: blur(8px);
+    border-radius: 24px;
+    padding: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.stat-card {
+    text-align: center;
+    padding: 16px;
+    background: rgba(139, 92, 246, 0.05);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.stat-card.visible {
+    animation: statReveal 0.5s ease forwards;
+}
+
+.stat-card:nth-child(1).visible { animation-delay: 0.1s; }
+.stat-card:nth-child(2).visible { animation-delay: 0.2s; }
+.stat-card:nth-child(3).visible { animation-delay: 0.3s; }
+.stat-card:nth-child(4).visible { animation-delay: 0.4s; }
+
+@keyframes statReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    background: rgba(139, 92, 246, 0.12);
+}
+
+.stat-icon {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.stat-number {
+    font-size: 1.6rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #e2e8f0, #c084fc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    color: #94a3b8;
+    margin-top: 5px;
+}
+
+@media (max-width: 768px) {
+    .skills-animated {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    .skill-card:nth-child(even) {
+        transform: translateX(-30px);
+    }
+    .code-stats {
+        margin-top: 30px;
+    }
+}
+
+
+
+
+
 /* Кнопки */
 .btn {
     display: inline-block;
