@@ -388,19 +388,27 @@ function setupSkillsAnimation() {
     
     statCards.forEach(card => statsObserver.observe(card));
     
-    // Анімація чисел статистики
+    // Анімація чисел статистики (оновлені показники)
     const hoursCount = document.getElementById('hoursCount');
-    const coffeeCount = document.getElementById('coffeeCount');
+    const experienceCount = document.getElementById('experienceCount');
     const clientsCount = document.getElementById('clientsCount');
     const projectsCount = document.getElementById('projectsCount');
+    const countriesCount = document.getElementById('countriesCount');
     
-    if (hoursCount && coffeeCount && clientsCount) {
+    if (hoursCount && experienceCount && clientsCount) {
         const statsObserver2 = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
+                    // Години коду
                     animateNumber(hoursCount, 0, 1247, 2000);
-                    animateNumber(coffeeCount, 0, 486, 1800);
+                    // Роки досвіду
+                    animateNumber(experienceCount, 0, 2, 1500);
+                    // Кількість клієнтів
                     animateNumber(clientsCount, 0, 24, 1500);
+                    // Кількість країн (залишаємо 5+)
+                    if (countriesCount) {
+                        animateNumber(countriesCount, 0, 5, 1500, '+');
+                    }
                     statsObserver2.disconnect();
                 }
             });
@@ -409,17 +417,28 @@ function setupSkillsAnimation() {
         if (codeStats) statsObserver2.observe(codeStats);
     }
     
-    function animateNumber(element, start, end, duration) {
+    function animateNumber(element, start, end, duration, suffix = '') {
         let startTime = null;
         const step = (timestamp) => {
             if (!startTime) startTime = timestamp;
             const progress = Math.min((timestamp - startTime) / duration, 1);
-            const current = Math.floor(progress * (end - start) + start);
-            element.textContent = current + (element.id === 'hoursCount' ? '+' : '');
+            let current = Math.floor(progress * (end - start) + start);
+            // Якщо це останній кадр і є suffix
+            if (progress >= 1 && suffix === '+') {
+                element.textContent = end + suffix;
+            } else {
+                element.textContent = current + (element.id === 'hoursCount' ? '+' : '');
+            }
             if (progress < 1) {
                 requestAnimationFrame(step);
             } else {
-                element.textContent = end + (element.id === 'hoursCount' ? '+' : '');
+                if (suffix === '+') {
+                    element.textContent = end + suffix;
+                } else if (element.id === 'hoursCount') {
+                    element.textContent = end + '+';
+                } else {
+                    element.textContent = end;
+                }
             }
         };
         requestAnimationFrame(step);
