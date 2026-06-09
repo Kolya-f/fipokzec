@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>fipokzec | Створення сайтів на замовлення</title>
     <style>
-        /* ВЕСЬ ТВІЙ CSS (базовий) */
+        /* ========== БАЗОВІ СТИЛІ ========== */
         @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap');
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -43,6 +43,7 @@
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
+        /* ========== HEADER ========== */
         header {
             background: rgba(10, 10, 15, 0.85);
             backdrop-filter: blur(12px);
@@ -101,6 +102,7 @@
         .nav-links a:hover { color: #fbbf24; }
         .mobile-menu-btn { display: none; font-size: 1.8rem; cursor: pointer; }
 
+        /* ========== HERO ========== */
         .hero { padding: 80px 0 60px; }
         .hero-grid { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 40px; }
         .hero-text { flex: 1; }
@@ -124,6 +126,7 @@
         .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
         .hero-image { flex: 1; }
 
+        /* ========== ТЕРМІНАЛ ========== */
         .code-terminal {
             background: rgba(10, 10, 20, 0.95);
             backdrop-filter: blur(8px);
@@ -170,6 +173,7 @@
         }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
+        /* ========== КНОПКИ ========== */
         .btn {
             display: inline-block;
             background: linear-gradient(135deg, #3b82f6, #8b5cf6);
@@ -185,6 +189,7 @@
         .btn:hover { transform: scale(1.02); box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4); }
         .btn-outline { background: transparent; border: 1px solid #8b5cf6; color: #c084fc; }
 
+        /* ========== СЕКЦІЇ ========== */
         .section-header { text-align: center; margin-bottom: 48px; }
         .section-tag {
             display: inline-block;
@@ -208,7 +213,7 @@
 
         .services-section, .process-section, .about-section, .reviews-section, .faq-section, .contacts-section { padding: 80px 0; }
 
-        /* СТИЛІ ДЛЯ ЕТАПІВ */
+        /* ========== ЕТАПИ ========== */
         .process-steps {
             display: flex;
             flex-wrap: wrap;
@@ -236,7 +241,7 @@
             box-shadow: none;
         }
 
-        /* СТИЛІ ДЛЯ 3D FLIP CARD ПОСЛУГ */
+        /* ========== ПОСЛУГИ 3D FLIP CARD ========== */
         .services-grid {
             display: flex;
             flex-direction: column;
@@ -328,26 +333,136 @@
         }
         .watch-video-btn:hover { transform: scale(1.02); box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4); }
 
-        /* Інші секції */
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
-        .skills { margin: 30px 0; }
-        .skill { margin-bottom: 20px; }
-        .skill-bar { background: rgba(255,255,255,0.1); border-radius: 20px; height: 8px; overflow: hidden; }
-        .skill-bar div { background: linear-gradient(135deg, #fbbf24, #f59e0b); height: 100%; }
-        .about-placeholder { background: rgba(20,20,35,0.6); border-radius: 24px; height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 4rem; }
+        /* ========== ПРО МЕНЕ (АНІМОВАНІ НАВИЧКИ) ========== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .skills-animated {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 30px;
+        }
+        .skill-card {
+            background: rgba(20, 20, 35, 0.5);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+        .skill-card:nth-child(even) { transform: translateX(30px); }
+        .skill-card.visible { animation: skillReveal 0.6s cubic-bezier(0.34, 1.2, 0.64, 1) forwards; }
+        @keyframes skillReveal {
+            0% { opacity: 0; transform: translateX(var(--start-x, -30px)) scale(0.9); }
+            100% { opacity: 1; transform: translateX(0) scale(1); }
+        }
+        .skill-card[data-skill="HTML5"].visible { animation: slideFromLeft 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards; }
+        .skill-card[data-skill="CSS3"].visible { animation: slideFromRight 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards; animation-delay: 0.05s; }
+        .skill-card[data-skill="JavaScript"].visible { animation: scalePop 0.5s ease forwards; animation-delay: 0.1s; }
+        .skill-card[data-skill="TypeScript"].visible { animation: dropIn 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards; animation-delay: 0.15s; }
+        .skill-card[data-skill="React"].visible { animation: rotateIn 0.5s ease forwards; animation-delay: 0.2s; }
+        .skill-card[data-skill="WordPress"].visible { animation: slideFromLeft 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards; animation-delay: 0.25s; }
+        .skill-card[data-skill="Elementor"].visible { animation: slideFromRight 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards; animation-delay: 0.3s; }
+        .skill-card[data-skill="PHP"].visible { animation: waveIn 0.5s ease forwards; animation-delay: 0.35s; }
+        .skill-card[data-skill="Git"].visible { animation: bounceIn 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards; animation-delay: 0.4s; }
+        .skill-card[data-skill="Figma"].visible { animation: glowReveal 0.5s ease forwards; animation-delay: 0.45s; }
+        @keyframes slideFromLeft { 0% { opacity: 0; transform: translateX(-50px) rotate(-5deg); } 100% { opacity: 1; transform: translateX(0) rotate(0deg); } }
+        @keyframes slideFromRight { 0% { opacity: 0; transform: translateX(50px) rotate(5deg); } 100% { opacity: 1; transform: translateX(0) rotate(0deg); } }
+        @keyframes scalePop { 0% { opacity: 0; transform: scale(0.3); } 70% { transform: scale(1.05); } 100% { opacity: 1; transform: scale(1); } }
+        @keyframes dropIn { 0% { opacity: 0; transform: translateY(-60px) rotate(-10deg); } 60% { transform: translateY(10px) rotate(3deg); } 100% { opacity: 1; transform: translateY(0) rotate(0deg); } }
+        @keyframes rotateIn { 0% { opacity: 0; transform: rotateY(90deg); } 100% { opacity: 1; transform: rotateY(0deg); } }
+        @keyframes waveIn { 0% { opacity: 0; transform: translateX(-30px) skewX(15deg); } 100% { opacity: 1; transform: translateX(0) skewX(0deg); } }
+        @keyframes bounceIn { 0% { opacity: 0; transform: translateY(40px); } 60% { transform: translateY(-10px); } 80% { transform: translateY(5px); } 100% { opacity: 1; transform: translateY(0); } }
+        @keyframes glowReveal { 0% { opacity: 0; transform: scale(0.8); filter: blur(5px); } 100% { opacity: 1; transform: scale(1); filter: blur(0); } }
+        .skill-icon { font-size: 2rem; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(139, 92, 246, 0.15); border-radius: 14px; transition: all 0.3s ease; }
+        .skill-card:hover { transform: translateY(-4px); border-color: rgba(139, 92, 246, 0.4); box-shadow: 0 10px 25px -10px rgba(139, 92, 246, 0.3); }
+        .skill-card:hover .skill-icon { transform: scale(1.1) rotate(5deg); background: rgba(139, 92, 246, 0.25); }
+        .skill-info { flex: 1; }
+        .skill-name { font-size: 0.9rem; font-weight: 600; color: #e2e8f0; margin-bottom: 6px; }
+        .skill-bar-container { height: 4px; background: rgba(255, 255, 255, 0.1); border-radius: 4px; overflow: hidden; }
+        .skill-bar-fill { height: 100%; background: linear-gradient(90deg, #8b5cf6, #c084fc, #fbbf24); background-size: 200% 100%; border-radius: 4px; width: 0%; transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1); animation: fillGradient 2s ease infinite; }
+        @keyframes fillGradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .skill-percent { font-size: 0.7rem; color: #c084fc; margin-top: 4px; text-align: right; font-family: monospace; }
 
-        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .review-card { background: rgba(20, 20, 35, 0.6); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 24px; padding: 28px; }
+        /* Статистика коду */
+        .code-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            background: rgba(20, 20, 35, 0.4);
+            backdrop-filter: blur(8px);
+            border-radius: 24px;
+            padding: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .stat-card {
+            text-align: center;
+            padding: 16px;
+            background: rgba(139, 92, 246, 0.05);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .stat-card.visible { animation: statReveal 0.5s ease forwards; }
+        .stat-card:nth-child(1).visible { animation-delay: 0.1s; }
+        .stat-card:nth-child(2).visible { animation-delay: 0.2s; }
+        .stat-card:nth-child(3).visible { animation-delay: 0.3s; }
+        .stat-card:nth-child(4).visible { animation-delay: 0.4s; }
+        @keyframes statReveal { to { opacity: 1; transform: translateY(0); } }
+        .stat-card:hover { transform: translateY(-5px); background: rgba(139, 92, 246, 0.12); }
+        .stat-icon { font-size: 2rem; margin-bottom: 8px; }
+        .stat-number { font-size: 1.6rem; font-weight: 800; background: linear-gradient(135deg, #e2e8f0, #c084fc); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .stat-label { font-size: 0.7rem; color: #94a3b8; margin-top: 5px; }
+
+        /* ========== ВІДГУКИ ========== */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .review-card {
+            background: rgba(20, 20, 35, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 28px;
+        }
         .review-text { font-style: italic; color: #e2e8f0; margin-bottom: 16px; }
         .review-author { color: #fbbf24; font-weight: 600; margin-top: 12px; }
         .review-position { color: #94a3b8; font-size: 0.8rem; }
 
-        .faq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 24px; }
-        .faq-item { background: rgba(20, 20, 35, 0.6); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 24px; }
+        /* ========== FAQ ========== */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+        }
+        .faq-item {
+            background: rgba(20, 20, 35, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 24px;
+        }
         .faq-question { color: #fbbf24; font-weight: 700; margin-bottom: 12px; }
         .faq-answer { color: #94a3b8; }
 
-        .contacts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+        /* ========== КОНТАКТИ ========== */
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
         .contact-item { margin: 16px 0; color: #94a3b8; }
         .contact-item a { color: #c084fc; text-decoration: none; }
         .social-links { display: flex; gap: 24px; margin-top: 24px; }
@@ -361,20 +476,14 @@
             border-radius: 16px;
             color: white;
         }
-        footer { text-align: center; padding: 40px 0; color: #64748b; border-top: 1px solid rgba(255,255,255,0.05); }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .mobile-menu-btn { display: block; }
-            .hero-text h1 { font-size: 2rem; }
-            .about-grid, .contacts-grid { grid-template-columns: 1fr; }
-            .code-terminal { height: 300px; }
-            .flip-card { width: 90% !important; margin: 0 auto !important; }
-            .process-steps { flex-direction: column; }
-            .process-step-animation { min-width: auto; }
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #64748b;
+            border-top: 1px solid rgba(255,255,255,0.05);
         }
 
-        /* Модальне вікно для відео */
+        /* ========== МОДАЛЬНЕ ВІКНО ========== */
         .fullscreen-modal {
             display: none;
             position: fixed;
@@ -426,129 +535,149 @@
         .fullscreen-modal.active .close-modal { opacity: 1; }
         .close-modal:hover { background: #fbbf24; color: #0a0a0a; transform: rotate(90deg); }
 
-        /* pulse анімація */
+        /* ========== АНІМАЦІЇ ========== */
         @keyframes pulseAnim {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.3; }
         }
-        
-        /* СТИЛІ ДЛЯ АНІМАЦІЙ ЕТАПІВ */
-        .anim-wrap { font-family: 'Inter', system-ui, sans-serif; display: flex; flex-direction: column; gap: 24px; padding: 16px 0; width: 100%; }
-        .anim-box { background: linear-gradient(135deg,#0a0a0f,#0d0d14); border-radius: 24px; padding: 20px; border: 1px solid rgba(127,119,221,0.3); box-shadow: 0 20px 40px -15px rgba(0,0,0,0.5); width: 100%; }
-        .anim-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-        .anim-badge { display: flex; align-items: center; gap: 8px; font-size: 10px; color: #7F77DD; }
-        .dot-pulse { width: 8px; height: 8px; background: #7F77DD; border-radius: 50%; animation: pulseAnim 1.2s infinite; }
-        .anim-timer { font-size: 10px; color: #555; font-family: monospace; }
-        .divider { height: 1px; background: linear-gradient(90deg,transparent,#7F77DD,transparent); margin-bottom: 15px; }
-        .anim-title { font-size: 17px; margin-bottom: 14px; background: linear-gradient(135deg,#fff,#9f97ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .progress-bar { height: 2px; background: rgba(255,255,255,0.05); border-radius: 99px; margin-top: 12px; }
-        .progress-fill { height: 100%; background: linear-gradient(90deg,#534AB7,#9f97ff); border-radius: 99px; width: 0%; transition: width 0.3s; }
-        .status-pill { font-size: 9px; padding: 2px 10px; border-radius: 99px; display: flex; align-items: center; gap: 5px; opacity: 0; transition: opacity 0.5s; }
-        .status-green { background: rgba(58,109,17,0.2); border: 1px solid rgba(99,153,34,0.3); color: #7fc44a; }
-        .status-blue { background: rgba(59,130,246,0.15); border: 1px solid rgba(99,152,246,0.3); color: #60a5fa; }
-        .status-amber { background: rgba(251,191,36,0.15); border: 1px solid rgba(251,191,36,0.3); color: #fbbf24; }
-        .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
-        .mini-field { background: rgba(255,255,255,0.03); border: 1px solid rgba(127,119,221,0.2); border-radius: 10px; padding: 8px; }
-        .field-label { font-size: 8px; color: #534AB7; margin-bottom: 3px; }
-        .field-val { font-size: 11px; color: #ccc; min-height: 14px; }
-        .section-label { font-size: 8px; color: #444; margin: 10px 0 6px; }
-        .check-row { display: flex; align-items: center; gap: 8px; font-size: 11px; color: #666; margin-bottom: 5px; opacity: 0; transform: translateX(-5px); transition: all 0.35s; }
-        .check-box { width: 14px; height: 14px; border: 1px solid rgba(127,119,221,0.3); border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 9px; flex-shrink: 0; }
-        .bar-row { margin-bottom: 8px; }
-        .bar-top { display: flex; justify-content: space-between; margin-bottom: 3px; }
-        .bar-name { font-size: 10px; color: #555; }
-        .bar-pct { font-size: 10px; color: #7F77DD; }
-        .bar-track { height: 2px; background: rgba(255,255,255,0.05); border-radius: 99px; }
-        .bar-fill { height: 100%; background: linear-gradient(90deg,#534AB7,#9f97ff); border-radius: 99px; width: 0%; transition: width 1.2s cubic-bezier(0.4,0,0.2,1); }
-        .foot { margin-top: 14px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center; }
-        .ava { width: 22px; height: 22px; background: rgba(127,119,221,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; color: #9f97ff; }
-        .ava-row { display: flex; align-items: center; gap: 6px; }
-        .ava-name { font-size: 10px; color: #555; }
+        @keyframes pulseG {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
 
-        /* FIGMA specific */
-        .figma-canvas { position: relative; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; height: 100px; margin-bottom: 10px; overflow: hidden; }
-        .figma-frame { position: absolute; border: 1px solid rgba(127,119,221,0.5); border-radius: 6px; background: rgba(127,119,221,0.05); }
-        .figma-block { position: absolute; border-radius: 3px; }
-        .figma-cursor { position: absolute; width: 16px; height: 16px; pointer-events: none; transition: left 0.8s cubic-bezier(0.4,0,0.2,1), top 0.8s cubic-bezier(0.4,0,0.2,1); }
-        .figma-cursor svg { width: 16px; height: 16px; }
-        .figma-layers { display: flex; flex-direction: column; gap: 4px; }
-        .layer-item { display: flex; align-items: center; gap: 8px; font-size: 10px; padding: 4px 8px; border-radius: 6px; opacity: 0; transition: all 0.4s; }
-        .layer-icon { font-size: 10px; }
+        /* Анімації для карток послуг */
+        .flip-card.slide-from-right { animation: slideFromRight 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards; }
+        @keyframes slideFromRight { 0% { opacity: 0; transform: translateX(100px) rotate(5deg); } 100% { opacity: 1; transform: translateX(0) rotate(0deg); } }
+        .flip-card.scale-up { animation: scaleUp 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards; }
+        @keyframes scaleUp { 0% { opacity: 0; transform: scale(0.3) rotate(-5deg); } 80% { transform: scale(1.02); } 100% { opacity: 1; transform: scale(1) rotate(0deg); } }
+        .flip-card.bounce { animation: bounce 0.8s ease forwards; }
+        @keyframes bounce { 0% { opacity: 0; transform: translateY(100px) rotate(10deg); } 60% { transform: translateY(-15px) rotate(-2deg); } 80% { transform: translateY(5px) rotate(1deg); } 100% { opacity: 1; transform: translateY(0) rotate(0deg); } }
+        .flip-card.wave { animation: wave 0.7s ease forwards; }
+        @keyframes wave { 0% { opacity: 0; transform: translateX(-50px) rotate(-10deg); } 50% { transform: translateX(20px) rotate(5deg); } 100% { opacity: 1; transform: translateX(0) rotate(0deg); } }
+        .flip-card.slide-from-left { animation: slideFromLeftCard 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards; }
+        @keyframes slideFromLeftCard { 0% { opacity: 0; transform: translateX(-100px) rotate(-5deg); } 100% { opacity: 1; transform: translateX(0) rotate(0deg); } }
+        .flip-card.drop { animation: drop 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards; }
+        @keyframes drop { 0% { opacity: 0; transform: translateY(-80px) rotate(-8deg); } 70% { transform: translateY(10px) rotate(3deg); } 100% { opacity: 1; transform: translateY(0) rotate(0deg); } }
 
-        /* CODE specific */
-        .code-editor { background: rgba(10,10,20,0.8); border-radius: 12px; padding: 12px; font-family: 'Courier New', monospace; font-size: 10px; line-height: 1.6; color: #e2e8f0; margin-bottom: 10px; min-height: 90px; border: 1px solid rgba(255,255,255,0.06); }
-        .code-line { white-space: pre; display: block; opacity: 0; animation: fadeCodeLine 0.2s forwards; }
-        @keyframes fadeCodeLine { to { opacity: 1; } }
-        .c-purple { color: #c084fc; }
-        .c-yellow { color: #fbbf24; }
-        .c-blue { color: #38bdf8; }
-        .c-green { color: #4ade80; }
-        .c-gray { color: #94a3b8; }
-        .device-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 10px; }
-        .device-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(127,119,221,0.15); border-radius: 8px; padding: 8px; text-align: center; }
-        .device-icon { font-size: 18px; margin-bottom: 3px; }
-        .device-name { font-size: 9px; color: #555; }
-        .device-status { font-size: 9px; margin-top: 2px; }
+        /* Стилі для етапів (FIGMA, CODE, LAUNCH, SUPPORT) */
+        .anim-box { background: linear-gradient(135deg,#0a0a0f,#0d0d14); border-radius:24px; padding:20px; border:1px solid rgba(127,119,221,0.3); box-shadow:0 20px 40px -15px rgba(0,0,0,0.5); width:100%; }
+        .anim-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+        .anim-timer { font-size:10px; color:#555; font-family:monospace; }
+        .divider { height:1px; background:linear-gradient(90deg,transparent,#7F77DD,transparent); margin-bottom:15px; }
+        .anim-title { font-size:17px; margin-bottom:14px; background:linear-gradient(135deg,#fff,#9f97ff); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .progress-bar { height:2px; background:rgba(255,255,255,0.05); border-radius:99px; margin-top:12px; }
+        .progress-fill { height:100%; background:linear-gradient(90deg,#534AB7,#9f97ff); border-radius:99px; width:0%; transition:width 0.3s; }
+        .status-pill { font-size:9px; padding:2px 10px; border-radius:99px; display:flex; align-items:center; gap:5px; opacity:0; transition:opacity 0.5s; }
+        .status-blue { background:rgba(59,130,246,0.15); border:1px solid rgba(99,152,246,0.3); color:#60a5fa; }
+        .section-label { font-size:8px; color:#444; margin:10px 0 6px; letter-spacing:0.5px; }
+        .check-row { display:flex; align-items:center; gap:8px; font-size:11px; color:#666; margin-bottom:5px; opacity:0; transform:translateX(-5px); transition:all 0.35s; }
+        .check-box { width:14px; height:14px; border:1px solid rgba(127,119,221,0.3); border-radius:3px; display:flex; align-items:center; justify-content:center; font-size:9px; flex-shrink:0; }
+        .bar-row { margin-bottom:8px; }
+        .bar-top { display:flex; justify-content:space-between; margin-bottom:3px; }
+        .bar-name { font-size:10px; color:#555; }
+        .bar-pct { font-size:10px; color:#7F77DD; }
+        .bar-track { height:2px; background:rgba(255,255,255,0.05); border-radius:99px; }
+        .bar-fill { height:100%; background:linear-gradient(90deg,#534AB7,#9f97ff); border-radius:99px; width:0%; transition:width 1.2s cubic-bezier(0.4,0,0.2,1); }
+        .foot { margin-top:14px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.05); display:flex; justify-content:space-between; align-items:center; }
+        .ava { width:22px; height:22px; background:rgba(127,119,221,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:9px; color:#9f97ff; }
+        .ava-row { display:flex; align-items:center; gap:6px; }
+        .ava-name { font-size:10px; color:#555; }
 
-        /* LAUNCH specific */
-        .launch-checklist { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
-        .launch-item { display: flex; align-items: center; gap: 8px; font-size: 11px; color: #666; padding: 5px 8px; border-radius: 8px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); opacity: 0; transition: all 0.4s; }
-        .launch-icon { font-size: 12px; flex-shrink: 0; }
-        .launch-score { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 10px; }
-        .score-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(127,119,221,0.15); border-radius: 10px; padding: 8px; text-align: center; }
-        .score-num { font-size: 20px; font-weight: 700; background: linear-gradient(135deg,#fbbf24,#f59e0b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .score-label { font-size: 9px; color: #555; }
-        .deploy-log { background: rgba(10,10,20,0.8); border-radius: 10px; padding: 10px; font-family: 'Courier New', monospace; font-size: 9px; color: #94a3b8; min-height: 60px; margin-bottom: 10px; border: 1px solid rgba(255,255,255,0.05); }
-        .log-line { display: block; margin-bottom: 2px; opacity: 0; animation: fadeCodeLine 0.2s forwards; }
-        .log-ok { color: #4ade80; }
-        .log-warn { color: #fbbf24; }
-        .log-info { color: #60a5fa; }
+        /* FIGMA специфічні стилі */
+        .figma-canvas { position:relative; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:12px; height:100px; margin-bottom:10px; overflow:hidden; }
+        .figma-frame { position:absolute; border:1px solid rgba(127,119,221,0.5); border-radius:6px; background:rgba(127,119,221,0.05); }
+        .figma-block { position:absolute; border-radius:3px; }
+        .figma-cursor { position:absolute; width:16px; height:16px; pointer-events:none; transition:left 0.8s cubic-bezier(0.4,0,0.2,1), top 0.8s cubic-bezier(0.4,0,0.2,1); }
+        .figma-cursor svg { width:16px; height:16px; }
+        .figma-layers { display:flex; flex-direction:column; gap:4px; }
+        .layer-item { display:flex; align-items:center; gap:8px; font-size:10px; padding:4px 8px; border-radius:6px; opacity:0; transition:all 0.4s; }
 
-        /* ПІДТРИМКА СТИЛІ */
-        .sw-wrap { font-family: 'Inter', system-ui, sans-serif; padding: 16px 0; width: 100%; }
-        .sw-box { background: linear-gradient(135deg,#0a0a0f,#0d0d14); border-radius: 24px; padding: 20px; border: 1px solid rgba(29,200,117,0.3); box-shadow: 0 20px 40px -15px rgba(0,0,0,0.5); }
-        .sw-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-        .sw-badge { display: flex; align-items: center; gap: 8px; font-size: 10px; color: #1dc875; }
-        .dot-g { width: 8px; height: 8px; background: #1dc875; border-radius: 50%; animation: pulseG 1.2s infinite; }
-        @keyframes pulseG { 0%,100%{opacity:1} 50%{opacity:0.3} }
-        .sw-timer { font-size: 10px; color: #555; font-family: monospace; }
-        .divider-g { height: 1px; background: linear-gradient(90deg,transparent,#1dc875,transparent); margin-bottom: 15px; }
-        .sw-title { font-size: 17px; margin-bottom: 14px; background: linear-gradient(135deg,#fff,#5eead4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .section-lbl { font-size: 8px; color: #444; margin: 10px 0 6px; letter-spacing: 0.5px; }
-        .chat-window { background: rgba(10,10,20,0.8); border: 1px solid rgba(29,200,117,0.15); border-radius: 14px; padding: 10px; margin-bottom: 10px; min-height: 110px; display: flex; flex-direction: column; gap: 6px; }
-        .msg { display: flex; gap: 8px; align-items: flex-end; opacity: 0; animation: fadeMsg 0.35s forwards; }
+        /* CODE специфічні стилі */
+        .code-editor { background:rgba(10,10,20,0.8); border-radius:12px; padding:12px; font-family:'Courier New', monospace; font-size:10px; line-height:1.6; color:#e2e8f0; margin-bottom:10px; min-height:90px; border:1px solid rgba(255,255,255,0.06); }
+        .code-line { white-space:pre; display:block; opacity:0; animation:fadeCodeLine 0.2s forwards; }
+        @keyframes fadeCodeLine { to { opacity:1; } }
+        .c-purple { color:#c084fc; }
+        .c-yellow { color:#fbbf24; }
+        .c-blue { color:#38bdf8; }
+        .c-green { color:#4ade80; }
+        .c-gray { color:#94a3b8; }
+        .device-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px; margin-bottom:10px; }
+        .device-card { background:rgba(255,255,255,0.03); border:1px solid rgba(127,119,221,0.15); border-radius:8px; padding:8px; text-align:center; }
+        .device-icon { font-size:18px; margin-bottom:3px; }
+        .device-name { font-size:9px; color:#555; }
+        .device-status { font-size:9px; margin-top:2px; }
+
+        /* LAUNCH специфічні стилі */
+        .launch-checklist { display:flex; flex-direction:column; gap:5px; margin-bottom:10px; }
+        .launch-item { display:flex; align-items:center; gap:8px; font-size:11px; color:#666; padding:5px 8px; border-radius:8px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.04); opacity:0; transition:all 0.4s; }
+        .launch-icon { font-size:12px; flex-shrink:0; }
+        .launch-score { display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:10px; }
+        .score-card { background:rgba(255,255,255,0.03); border:1px solid rgba(127,119,221,0.15); border-radius:10px; padding:8px; text-align:center; }
+        .score-num { font-size:20px; font-weight:700; background:linear-gradient(135deg,#fbbf24,#f59e0b); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .score-label { font-size:9px; color:#555; }
+        .deploy-log { background:rgba(10,10,20,0.8); border-radius:10px; padding:10px; font-family:'Courier New', monospace; font-size:9px; color:#94a3b8; min-height:60px; margin-bottom:10px; border:1px solid rgba(255,255,255,0.05); }
+        .log-line { display:block; margin-bottom:2px; opacity:0; animation:fadeCodeLine 0.2s forwards; }
+        .log-ok { color:#4ade80; }
+        .log-warn { color:#fbbf24; }
+        .log-info { color:#60a5fa; }
+
+        /* ПІДТРИМКА стилі */
+        .sw-wrap { font-family:'Inter', system-ui, sans-serif; padding:16px 0; width:100%; }
+        .sw-box { background:linear-gradient(135deg,#0a0a0f,#0d0d14); border-radius:24px; padding:20px; border:1px solid rgba(29,200,117,0.3); box-shadow:0 20px 40px -15px rgba(0,0,0,0.5); }
+        .sw-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+        .sw-badge { display:flex; align-items:center; gap:8px; font-size:10px; color:#1dc875; }
+        .dot-g { width:8px; height:8px; background:#1dc875; border-radius:50%; animation:pulseG 1.2s infinite; }
+        .sw-timer { font-size:10px; color:#555; font-family:monospace; }
+        .divider-g { height:1px; background:linear-gradient(90deg,transparent,#1dc875,transparent); margin-bottom:15px; }
+        .sw-title { font-size:17px; margin-bottom:14px; background:linear-gradient(135deg,#fff,#5eead4); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .chat-window { background:rgba(10,10,20,0.8); border:1px solid rgba(29,200,117,0.15); border-radius:14px; padding:10px; margin-bottom:10px; min-height:110px; display:flex; flex-direction:column; gap:6px; }
+        .msg { display:flex; gap:8px; align-items:flex-end; opacity:0; animation:fadeMsg 0.35s forwards; }
         @keyframes fadeMsg { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
-        .msg.from-client { flex-direction: row-reverse; }
-        .msg-ava { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; flex-shrink: 0; }
-        .ava-dev { background: rgba(29,200,117,0.2); color: #1dc875; }
-        .ava-client { background: rgba(127,119,221,0.2); color: #9f97ff; }
-        .msg-bubble { font-size: 10px; padding: 6px 10px; border-radius: 12px; max-width: 75%; line-height: 1.5; }
-        .bubble-dev { background: rgba(29,200,117,0.12); border: 1px solid rgba(29,200,117,0.2); color: #a7f3d0; border-bottom-left-radius: 4px; }
-        .bubble-client { background: rgba(127,119,221,0.12); border: 1px solid rgba(127,119,221,0.2); color: #c4b5fd; border-bottom-right-radius: 4px; }
-        .typing-bubble { background: rgba(29,200,117,0.08); border: 1px solid rgba(29,200,117,0.15); border-radius: 12px; border-bottom-left-radius: 4px; padding: 8px 12px; display: flex; gap: 4px; align-items: center; }
-        .typing-dot { width: 5px; height: 5px; background: #1dc875; border-radius: 50%; animation: typDot 1s infinite; }
+        .msg.from-client { flex-direction:row-reverse; }
+        .msg-ava { width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:9px; flex-shrink:0; }
+        .ava-dev { background:rgba(29,200,117,0.2); color:#1dc875; }
+        .ava-client { background:rgba(127,119,221,0.2); color:#9f97ff; }
+        .msg-bubble { font-size:10px; padding:6px 10px; border-radius:12px; max-width:75%; line-height:1.5; }
+        .bubble-dev { background:rgba(29,200,117,0.12); border:1px solid rgba(29,200,117,0.2); color:#a7f3d0; border-bottom-left-radius:4px; }
+        .bubble-client { background:rgba(127,119,221,0.12); border:1px solid rgba(127,119,221,0.2); color:#c4b5fd; border-bottom-right-radius:4px; }
+        .typing-bubble { background:rgba(29,200,117,0.08); border:1px solid rgba(29,200,117,0.15); border-radius:12px; border-bottom-left-radius:4px; padding:8px 12px; display:flex; gap:4px; align-items:center; }
+        .typing-dot { width:5px; height:5px; background:#1dc875; border-radius:50%; animation:typDot 1s infinite; }
         .typing-dot:nth-child(2){animation-delay:.2s} .typing-dot:nth-child(3){animation-delay:.4s}
         @keyframes typDot { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-5px)} }
-        .admin-screen { background: rgba(15,15,25,0.9); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; overflow: hidden; margin-bottom: 10px; }
-        .admin-bar { background: rgba(30,30,45,0.9); padding: 7px 12px; display: flex; align-items: center; gap: 8px; }
-        .admin-bar-dot { width: 7px; height: 7px; border-radius: 50%; }
-        .admin-bar-url { font-size: 9px; color: #555; margin-left: 6px; font-family: monospace; }
-        .admin-body { display: flex; height: 90px; }
-        .admin-sidebar { width: 80px; background: rgba(20,20,35,0.9); border-right: 1px solid rgba(255,255,255,0.05); padding: 8px 0; flex-shrink: 0; }
-        .admin-menu-item { font-size: 9px; color: #555; padding: 5px 10px; display: flex; align-items: center; gap: 5px; cursor: default; transition: all 0.3s; }
-        .admin-menu-item.active { color: #1dc875; background: rgba(29,200,117,0.1); }
-        .admin-content { flex: 1; padding: 10px; }
-        .admin-row { height: 10px; background: rgba(255,255,255,0.04); border-radius: 4px; margin-bottom: 6px; }
-        .admin-highlight { background: rgba(29,200,117,0.15); border: 1px solid rgba(29,200,117,0.3); border-radius: 6px; }
-        .admin-wrapper { position: relative; }
-        .resp-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 10px; }
-        .resp-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(29,200,117,0.15); border-radius: 10px; padding: 8px; text-align: center; }
-        .resp-num { font-size: 18px; font-weight: 700; background: linear-gradient(135deg,#1dc875,#5eead4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .resp-label { font-size: 9px; color: #555; }
-        .uptime-dots { display: flex; gap: 3px; margin-bottom: 10px; flex-wrap: wrap; }
-        .up-dot { width: 10px; height: 10px; border-radius: 3px; background: rgba(255,255,255,0.06); transition: background 0.3s; }
-        .up-dot.ok { background: #1dc875; }
-        .up-dot.warn { background: #fbbf24; }
+        .admin-screen { background:rgba(15,15,25,0.9); border:1px solid rgba(255,255,255,0.07); border-radius:12px; overflow:hidden; margin-bottom:10px; }
+        .admin-bar { background:rgba(30,30,45,0.9); padding:7px 12px; display:flex; align-items:center; gap:8px; }
+        .admin-bar-dot { width:7px; height:7px; border-radius:50%; }
+        .admin-bar-url { font-size:9px; color:#555; margin-left:6px; font-family:monospace; }
+        .admin-body { display:flex; height:90px; }
+        .admin-sidebar { width:80px; background:rgba(20,20,35,0.9); border-right:1px solid rgba(255,255,255,0.05); padding:8px 0; flex-shrink:0; }
+        .admin-menu-item { font-size:9px; color:#555; padding:5px 10px; display:flex; align-items:center; gap:5px; cursor:default; transition:all 0.3s; }
+        .admin-menu-item.active { color:#1dc875; background:rgba(29,200,117,0.1); }
+        .admin-content { flex:1; padding:10px; }
+        .admin-row { height:10px; background:rgba(255,255,255,0.04); border-radius:4px; margin-bottom:6px; }
+        .admin-highlight { background:rgba(29,200,117,0.15); border:1px solid rgba(29,200,117,0.3); border-radius:6px; }
+        .resp-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px; margin-bottom:10px; }
+        .resp-card { background:rgba(255,255,255,0.03); border:1px solid rgba(29,200,117,0.15); border-radius:10px; padding:8px; text-align:center; }
+        .resp-num { font-size:18px; font-weight:700; background:linear-gradient(135deg,#1dc875,#5eead4); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .resp-label { font-size:9px; color:#555; }
+        .uptime-dots { display:flex; gap:3px; margin-bottom:10px; flex-wrap:wrap; }
+        .up-dot { width:10px; height:10px; border-radius:3px; background:rgba(255,255,255,0.06); transition:background 0.3s; }
+        .up-dot.ok { background:#1dc875; }
+        .up-dot.warn { background:#fbbf24; }
+
+        /* ========== АДАПТИВ ========== */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            .hero-text h1 { font-size: 2rem; }
+            .about-grid, .contacts-grid { grid-template-columns: 1fr; }
+            .code-terminal { height: 300px; }
+            .flip-card { width: 90% !important; margin: 0 auto !important; }
+            .process-steps { flex-direction: column; }
+            .process-step-animation { min-width: auto; }
+            .skills-animated { grid-template-columns: 1fr; gap: 12px; }
+            .skill-card:nth-child(even) { transform: translateX(-30px); }
+            .code-stats { margin-top: 30px; }
+        }
     </style>
 </head>
 <body>
@@ -614,7 +743,7 @@
         </div>
     </section>
 
-    <!-- СЕКЦІЯ ЕТАПІВ - ВСІ 5 ЕТАПІВ З АНІМАЦІЄЮ ПРИ СКРОЛІ -->
+    <!-- СЕКЦІЯ ЕТАПІВ -->
     <section id="process" class="process-section">
         <div class="container">
             <div class="section-header">
@@ -622,27 +751,18 @@
                 <h2 class="section-title">Етапи створення сайтів</h2>
                 <p class="section-desc">Прозорий процес розробки — від брифу до запуску</p>
             </div>
-            
             <div class="process-steps">
-                <!-- ЕТАП 1: АНІМАЦІЯ БРІФУ -->
                 <div class="process-step-animation" id="briefContainer"></div>
-                
-                <!-- ЕТАП 2: АНІМАЦІЯ FIGMA -->
                 <div class="process-step-animation" id="figmaContainer"></div>
-                
-                <!-- ЕТАП 3: АНІМАЦІЯ КОДУ -->
                 <div class="process-step-animation" id="codeContainer"></div>
-                
-                <!-- ЕТАП 4: АНІМАЦІЯ ЗАПУСКУ -->
                 <div class="process-step-animation" id="launchContainer"></div>
-                
-                <!-- ЕТАП 5: АНІМАЦІЯ ПІДТРИМКИ -->
                 <div class="process-step-animation" id="supportContainer"></div>
             </div>
         </div>
     </section>
 
-        <section id="about" class="about-section">
+    <!-- СЕКЦІЯ ПРО МЕНЕ -->
+    <section id="about" class="about-section">
         <div class="container">
             <div class="about-grid">
                 <div class="about-content">
@@ -734,26 +854,10 @@
                 </div>
                 <div class="about-image">
                     <div class="code-stats" id="codeStats">
-                        <div class="stat-card">
-                            <div class="stat-icon">💻</div>
-                            <div class="stat-number" id="projectsCount">20+</div>
-                            <div class="stat-label">Завершених проєктів</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon">⏱️</div>
-                            <div class="stat-number" id="hoursCount">0</div>
-                            <div class="stat-label">Годин коду</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon">☕</div>
-                            <div class="stat-number" id="coffeeCount">0</div>
-                            <div class="stat-label">Чашок кави</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon">🚀</div>
-                            <div class="stat-number" id="clientsCount">0</div>
-                            <div class="stat-label">Щасливих клієнтів</div>
-                        </div>
+                        <div class="stat-card"><div class="stat-icon">💻</div><div class="stat-number" id="projectsCount">20+</div><div class="stat-label">Завершених проєктів</div></div>
+                        <div class="stat-card"><div class="stat-icon">⏱️</div><div class="stat-number" id="hoursCount">0</div><div class="stat-label">Годин коду</div></div>
+                        <div class="stat-card"><div class="stat-icon">☕</div><div class="stat-number" id="coffeeCount">0</div><div class="stat-label">Чашок кави</div></div>
+                        <div class="stat-card"><div class="stat-icon">🚀</div><div class="stat-number" id="clientsCount">0</div><div class="stat-label">Щасливих клієнтів</div></div>
                     </div>
                 </div>
             </div>
@@ -911,10 +1015,42 @@
             if (footer) footer.innerHTML = `© ${new Date().getFullYear()} fipokzec.dev | Створення сайтів під ключ`;
         }
 
+        function setupActiveMenu() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    if (scrollY >= section.offsetTop - 100) current = section.getAttribute('id');
+                });
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) link.classList.add('active');
+                });
+            });
+        }
+
         function setupMobileMenu() {
             const btn = document.querySelector('.mobile-menu-btn');
             const nav = document.querySelector('.nav-links');
             if (btn && nav) btn.addEventListener('click', () => nav.classList.toggle('show'));
+            const style = document.createElement('style');
+            style.textContent = `.nav-links.show { display: flex !important; flex-direction: column; position: absolute; top: 80px; left: 0; right: 0; background: rgba(10,10,15,0.95); backdrop-filter: blur(12px); padding: 20px; text-align: center; } @media (max-width: 768px) { .nav-links { display: none; } }`;
+            document.head.appendChild(style);
+        }
+
+        function animateMenu() {
+            const menuItems = document.querySelectorAll('.nav-link');
+            const delays = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6];
+            menuItems.forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(-15px)';
+                item.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, delays[index] * 1000);
+            });
         }
 
         // КОД ТЕРМІНАЛУ
@@ -1180,7 +1316,7 @@
             setTimeout(()=>{ let s=document.getElementById('launchStatus'); if(s) s.style.opacity='1'; }, 8200);
         }
 
-        // АНІМАЦІЯ ПІДТРИМКИ (5-й етап)
+        // АНІМАЦІЯ ПІДТРИМКИ
         let supportAnimationStarted = false;
         document.getElementById('supportContainer').innerHTML = `
             <div class="sw-wrap" style="width:100%">
@@ -1191,10 +1327,8 @@
                     </div>
                     <div class="divider-g"></div>
                     <div class="sw-title">🛠️ Адмін-панель та техпідтримка 24/7</div>
-                    
                     <div class="section-lbl">ЧАТ ПІДТРИМКИ — ОНЛАЙН</div>
                     <div class="chat-window" id="chatWin" style="min-height:110px"></div>
-                    
                     <div class="section-lbl">НАВЧАННЯ: АДМІН-ПАНЕЛЬ</div>
                     <div class="admin-wrapper">
                         <div class="admin-screen" id="adminScreen">
@@ -1220,19 +1354,15 @@
                             </div>
                         </div>
                     </div>
-                    
                     <div class="section-lbl">АПТАЙМ ОСТАННІ 30 ДНІВ</div>
                     <div class="uptime-dots" id="uptimeDots"></div>
-                    
                     <div class="resp-grid">
                         <div class="resp-card"><div class="resp-num" id="rTime">—</div><div class="resp-label">Час відповіді</div></div>
                         <div class="resp-card"><div class="resp-num" id="rUptime">—</div><div class="resp-label">Аптайм</div></div>
                         <div class="resp-card"><div class="resp-num" id="rTickets">—</div><div class="resp-label">Закрито тікетів</div></div>
                     </div>
-                    
                     <div class="section-lbl">НАВЧАННЯ КЛІЄНТА — ПРОГРЕС</div>
                     <div id="swBars"></div>
-                    
                     <div class="foot">
                         <div class="ava-row"><div class="ava">FP</div><span class="ava-name">Підтримка: fipokzec 24/7</span></div>
                         <div class="status-pill" id="swStatus"><span style="width:4px;height:4px;background:#1dc875;border-radius:50%;animation:pulseG 1.2s infinite"></span>Клієнт навчений ✓</div>
@@ -1246,7 +1376,6 @@
             if (supportAnimationStarted) return;
             supportAnimationStarted = true;
             
-            // Таймер
             const startSw = Date.now();
             setInterval(() => {
                 const e = Date.now()-startSw;
@@ -1255,7 +1384,6 @@
                 if(el) el.textContent=`00:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
             }, 200);
             
-            // Прогрес бар
             const progElSw = document.getElementById('swProgress');
             const pStartSw = Date.now();
             setInterval(() => {
@@ -1263,7 +1391,6 @@
                 if(progElSw) progElSw.style.width=pct+'%';
             }, 100);
             
-            // Чат
             const msgs = [
                 { from:'client', text:'Привіт! Як додати новий пост?', delay:400 },
                 { from:'dev',    text:'Зараз покажу! Заходьте в Записи → Додати новий', delay:1800 },
@@ -1294,7 +1421,6 @@
                 }
             });
             
-            // Адмін-панель анімація
             const menuItems = ['mi0','mi1','mi2','mi3'];
             let curMenu = 0;
             setInterval(() => {
@@ -1310,7 +1436,6 @@
                 }
             }, 1800);
             
-            // Uptime dots
             const dotsEl = document.getElementById('uptimeDots');
             for(let i=0;i<30;i++) {
                 const d = document.createElement('div');
@@ -1323,12 +1448,10 @@
                 }, 500 + i*80);
             }
             
-            // Статистика
             setTimeout(() => { let n=0; const iv=setInterval(()=>{ n=Math.min(n+1,15); const el=document.getElementById('rTime'); if(el) el.textContent=n+'хв'; if(n>=15) clearInterval(iv); },40); },3000);
             setTimeout(() => { let n=0; const iv=setInterval(()=>{ n=Math.min(n+1,99); const el=document.getElementById('rUptime'); if(el) el.textContent=n+'%'; if(n>=99) clearInterval(iv); },25); },3600);
             setTimeout(() => { let n=0; const iv=setInterval(()=>{ n=Math.min(n+1,47); const el=document.getElementById('rTickets'); if(el) el.textContent=n; if(n>=47) clearInterval(iv); },35); },4200);
             
-            // Skill bars
             const barsSw = [
                 { name:'Публікація матеріалів', target:100 },
                 { name:'Управління медіафайлами', target:95 },
@@ -1357,7 +1480,83 @@
             setTimeout(() => { const s=document.getElementById('swStatus'); if(s) s.style.opacity='1'; }, 8500);
         }
 
-        // СПОСТЕРЕЖЕННЯ ЗА СКРОЛОМ
+        // АНІМАЦІЯ НАВИЧОК
+        function setupSkillsAnimation() {
+            const skillCards = document.querySelectorAll('.skill-card');
+            const statCards = document.querySelectorAll('.stat-card');
+            
+            const skillsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const card = entry.target;
+                        card.classList.add('visible');
+                        const level = parseInt(card.getAttribute('data-level'));
+                        const fillBar = card.querySelector('.skill-bar-fill');
+                        const percentSpan = card.querySelector('.skill-percent');
+                        if (fillBar && percentSpan) {
+                            let current = 0;
+                            const interval = setInterval(() => {
+                                if (current >= level) {
+                                    clearInterval(interval);
+                                } else {
+                                    current++;
+                                    fillBar.style.width = current + '%';
+                                    percentSpan.textContent = current + '%';
+                                }
+                            }, 15);
+                        }
+                        skillsObserver.unobserve(card);
+                    }
+                });
+            }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
+            skillCards.forEach(card => skillsObserver.observe(card));
+            
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        statsObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
+            statCards.forEach(card => statsObserver.observe(card));
+            
+            const hoursCount = document.getElementById('hoursCount');
+            const coffeeCount = document.getElementById('coffeeCount');
+            const clientsCount = document.getElementById('clientsCount');
+            if (hoursCount && coffeeCount && clientsCount) {
+                const statsObserver2 = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            animateNumber(hoursCount, 0, 1247, 2000);
+                            animateNumber(coffeeCount, 0, 486, 1800);
+                            animateNumber(clientsCount, 0, 24, 1500);
+                            statsObserver2.disconnect();
+                        }
+                    });
+                }, { threshold: 0.5 });
+                const codeStats = document.querySelector('.code-stats');
+                if (codeStats) statsObserver2.observe(codeStats);
+            }
+            
+            function animateNumber(element, start, end, duration) {
+                let startTime = null;
+                const step = (timestamp) => {
+                    if (!startTime) startTime = timestamp;
+                    const progress = Math.min((timestamp - startTime) / duration, 1);
+                    const current = Math.floor(progress * (end - start) + start);
+                    element.textContent = current + (element.id === 'hoursCount' ? '+' : '');
+                    if (progress < 1) {
+                        requestAnimationFrame(step);
+                    } else {
+                        element.textContent = end + (element.id === 'hoursCount' ? '+' : '');
+                    }
+                };
+                requestAnimationFrame(step);
+            }
+        }
+
+        // СПОСТЕРЕЖЕННЯ ЗА СКРОЛОМ ДЛЯ ЕТАПІВ
         function setupScrollAnimation() {
             const elementsToAnimate = [
                 { element: document.querySelector('#briefContainer'), callback: startBriefAnimation },
@@ -1366,7 +1565,6 @@
                 { element: document.querySelector('#launchContainer'), callback: startLaunchAnimation },
                 { element: document.querySelector('#supportContainer'), callback: startSupportAnimation }
             ];
-            
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -1379,19 +1577,26 @@
                     }
                 });
             }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
-            
             elementsToAnimate.forEach(item => {
                 if (item.element) observer.observe(item.element);
             });
         }
-        
-        renderServices();
-        renderReviews();
-        renderFAQ();
-        renderSocialLinks();
-        setCurrentYear();
-        setupMobileMenu();
-        setupScrollAnimation();
+
+        // ГОЛОВНИЙ ЗАПУСК
+        document.addEventListener('DOMContentLoaded', () => {
+            renderServices();
+            renderReviews();
+            renderFAQ();
+            renderSocialLinks();
+            setCurrentYear();
+            setupActiveMenu();
+            setupMobileMenu();
+            animateMenu();
+            setTimeout(() => { startTyping(); }, 1000);
+            setTimeout(() => { setupSkillsAnimation(); }, 500);
+            setupScrollAnimation();
+            console.log('Сайт fipokzec.dev успішно завантажено!');
+        });
     </script>
 </body>
 </html>
