@@ -228,6 +228,109 @@ function renderServices() {
     });
 }
 
+
+    // Анімація навичок та статистики
+    function setupSkillsAnimation() {
+        const skillCards = document.querySelectorAll('.skill-card');
+        const statCards = document.querySelectorAll('.stat-card');
+        
+        // Анімація появи карток навичок
+        const skillsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const card = entry.target;
+                    card.classList.add('visible');
+                    
+                    // Анімація заповнення прогрес-бару
+                    const level = parseInt(card.getAttribute('data-level'));
+                    const fillBar = card.querySelector('.skill-bar-fill');
+                    const percentSpan = card.querySelector('.skill-percent');
+                    
+                    if (fillBar && percentSpan) {
+                        let current = 0;
+                        const interval = setInterval(() => {
+                            if (current >= level) {
+                                clearInterval(interval);
+                            } else {
+                                current++;
+                                fillBar.style.width = current + '%';
+                                percentSpan.textContent = current + '%';
+                            }
+                        }, 15);
+                    }
+                    skillsObserver.unobserve(card);
+                }
+            });
+        }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
+        
+        skillCards.forEach(card => skillsObserver.observe(card));
+        
+        // Анімація появи статистики
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
+        
+        statCards.forEach(card => statsObserver.observe(card));
+        
+        // Анімація чисел статистики
+        const hoursCount = document.getElementById('hoursCount');
+        const coffeeCount = document.getElementById('coffeeCount');
+        const clientsCount = document.getElementById('clientsCount');
+        const projectsCount = document.getElementById('projectsCount');
+        
+        if (hoursCount && coffeeCount && clientsCount) {
+            const statsObserver2 = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Години коду (приблизно 500 годин на рік * 2 роки)
+                        animateNumber(hoursCount, 0, 1247, 2000);
+                        // Чашки кави (приблизно 2 на день)
+                        animateNumber(coffeeCount, 0, 486, 1800);
+                        // Клієнти
+                        animateNumber(clientsCount, 0, 24, 1500);
+                        statsObserver2.disconnect();
+                    }
+                });
+            }, { threshold: 0.5 });
+            statsObserver2.observe(document.querySelector('.code-stats'));
+        }
+        
+        function animateNumber(element, start, end, duration) {
+            let startTime = null;
+            const step = (timestamp) => {
+                if (!startTime) startTime = timestamp;
+                const progress = Math.min((timestamp - startTime) / duration, 1);
+                const current = Math.floor(progress * (end - start) + start);
+                element.textContent = current + (element.id === 'hoursCount' ? '+' : '');
+                if (progress < 1) {
+                    requestAnimationFrame(step);
+                } else {
+                    element.textContent = end + (element.id === 'hoursCount' ? '+' : '');
+                }
+            };
+            requestAnimationFrame(step);
+        }
+    }
+    
+    // Запускаємо анімацію навичок при завантаженні
+    setTimeout(() => {
+        setupSkillsAnimation();
+    }, 500);
+
+
+
+
+
+
+
+
+
+
 function openFullscreenVideo(videoId) {
     let modal = document.querySelector('.fullscreen-modal');
     if (!modal) {
