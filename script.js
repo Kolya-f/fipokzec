@@ -267,6 +267,64 @@ function setupSkillsAnimation() {
     }
 }
 
+// ========== СЛАЙДЕР ЛОКАЦІЇ В КОНТАКТАХ ==========
+function initLocationSlider() {
+    const slides = document.querySelectorAll('.location-slide');
+    const dotsContainer = document.getElementById('locationDots');
+    if (!slides.length || !dotsContainer) return;
+    
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+    let autoPlayInterval;
+    
+    // Створення точок
+    slides.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.classList.add('location-dot');
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(index));
+        dotsContainer.appendChild(dot);
+    });
+    
+    const dots = document.querySelectorAll('.location-dot');
+    
+    function goToSlide(index) {
+        slides[currentIndex].classList.remove('active');
+        if (dots[currentIndex]) dots[currentIndex].classList.remove('active');
+        
+        currentIndex = (index + totalSlides) % totalSlides;
+        
+        slides[currentIndex].classList.add('active');
+        if (dots[currentIndex]) dots[currentIndex].classList.add('active');
+    }
+    
+    function nextSlide() {
+        goToSlide(currentIndex + 1);
+    }
+    
+    function startAutoPlay() {
+        if (autoPlayInterval) clearInterval(autoPlayInterval);
+        autoPlayInterval = setInterval(nextSlide, 4000);
+    }
+    
+    function stopAutoPlay() {
+        if (autoPlayInterval) {
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = null;
+        }
+    }
+    
+    // Запуск автопрокрутки
+    startAutoPlay();
+    
+    // Пауза при наведенні
+    const sliderContainer = document.querySelector('.contact-map');
+    if (sliderContainer) {
+        sliderContainer.addEventListener('mouseenter', stopAutoPlay);
+        sliderContainer.addEventListener('mouseleave', startAutoPlay);
+    }
+}
+
 // АНІМАЦІЯ БРІФУ
 let briefAnimationStarted = false;
 document.getElementById('briefContainer').innerHTML = `<div style="background:linear-gradient(135deg,#0a0a0f,#0d0d14); border-radius:24px; padding:20px; border:1px solid rgba(127,119,221,0.3); box-shadow:0 20px 40px -15px rgba(0,0,0,0.5);"><div style="display:flex; justify-content:space-between; margin-bottom:15px;"><div style="display:flex; align-items:center; gap:8px;"><span style="width:8px; height:8px; background:#7F77DD; border-radius:50%; animation:pulseAnim 1.2s infinite;"></span><span style="font-size:10px; color:#7F77DD;">БРИФУВАННЯ</span></div><div style="font-size:10px; color:#555;" id="briefTimerAnim">00:00:00</div></div><div style="height:1px; background:linear-gradient(90deg,transparent,#7F77DD,transparent); margin-bottom:15px;"></div><div style="font-size:17px; margin-bottom:14px; background:linear-gradient(135deg,#fff,#9f97ff); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">📋 Бриф на розробку сайту</div><div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px;"><div style="background:rgba(255,255,255,0.03); border:1px solid rgba(127,119,221,0.2); border-radius:10px; padding:8px;"><div style="font-size:8px; color:#534AB7;">НАЗВА ПРОЄКТУ</div><div style="font-size:11px; color:#ccc;" id="briefField1"></div></div><div style="background:rgba(255,255,255,0.03); border:1px solid rgba(127,119,221,0.2); border-radius:10px; padding:8px;"><div style="font-size:8px; color:#534AB7;">ТИП САЙТУ</div><div style="font-size:11px; color:#ccc;" id="briefField2"></div></div><div style="grid-column:1/-1; background:rgba(255,255,255,0.03); border:1px solid rgba(127,119,221,0.2); border-radius:10px; padding:8px;"><div style="font-size:8px; color:#534AB7;">ЦІЛЬОВА АУДИТОРІЯ</div><div style="font-size:11px; color:#ccc;" id="briefField3"></div></div><div style="grid-column:1/-1; background:rgba(255,255,255,0.03); border:1px solid rgba(127,119,221,0.2); border-radius:10px; padding:8px;"><div style="font-size:8px; color:#534AB7;">ГОЛОВНА МЕТА</div><div style="font-size:11px; color:#ccc;" id="briefField4"></div></div></div><div style="font-size:8px; color:#444; margin:10px 0 6px;">ПОБАЖАННЯ ДО ДИЗАЙНУ</div><div id="briefChecks" style="margin-bottom:12px;"></div><div style="font-size:8px; color:#444; margin:10px 0 6px;">ПРІОРИТЕТ ФУНКЦІЙ</div><div id="briefBars"></div><div style="margin-top:15px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.05); display:flex; justify-content:space-between; align-items:center;"><div style="display:flex; align-items:center; gap:6px;"><div style="width:22px; height:22px; background:rgba(127,119,221,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:9px;">FP</div><span style="font-size:10px; color:#555;">Менеджер: fipokzec</span></div><div id="briefStatus" style="font-size:9px; padding:2px 10px; border-radius:99px; background:rgba(58,109,17,0.2); border:1px solid rgba(99,153,34,0.3); color:#7fc44a; display:flex; align-items:center; gap:5px; opacity:0;"><span style="width:4px; height:4px; background:#7fc44a; border-radius:50%; animation:pulseAnim 1.2s infinite;"></span>Бриф заповнено</div></div><div style="position:relative; margin-top:12px;"><div style="height:2px; background:rgba(255,255,255,0.05); border-radius:99px;"><div id="briefProgress" style="width:0%; height:100%; background:linear-gradient(90deg,#534AB7,#9f97ff); border-radius:99px;"></div></div></div></div>`;
@@ -421,72 +479,6 @@ function startSupportAnimation() {
     setTimeout(() => { const s=document.getElementById('swStatus'); if(s) s.style.opacity='1'; }, 8500);
 }
 
-// ========== СЛАЙДЕР ФАКТІВ ПРО ДНІПРО ==========
-function initFactsSlider() {
-    const slides = document.querySelectorAll('.slide');
-    const dotsContainer = document.getElementById('sliderDots');
-    if (!slides.length || !dotsContainer) return;
-    
-    let currentIndex = 0;
-    const totalSlides = slides.length;
-    let autoPlayInterval;
-    
-    // Створення точок
-    slides.forEach((_, index) => {
-        const dot = document.createElement('div');
-        dot.classList.add('slider-dot');
-        if (index === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => goToSlide(index));
-        dotsContainer.appendChild(dot);
-    });
-    
-    const dots = document.querySelectorAll('.slider-dot');
-    
-    function goToSlide(index) {
-        slides[currentIndex].classList.remove('active');
-        dots[currentIndex].classList.remove('active');
-        
-        currentIndex = (index + totalSlides) % totalSlides;
-        
-        slides[currentIndex].classList.add('active');
-        dots[currentIndex].classList.add('active');
-    }
-    
-    function nextSlide() {
-        goToSlide(currentIndex + 1);
-    }
-    
-    function startAutoPlay() {
-        if (autoPlayInterval) clearInterval(autoPlayInterval);
-        autoPlayInterval = setInterval(nextSlide, 5000);
-    }
-    
-    function stopAutoPlay() {
-        if (autoPlayInterval) {
-            clearInterval(autoPlayInterval);
-            autoPlayInterval = null;
-        }
-    }
-    
-    // Запуск автопрокрутки
-    startAutoPlay();
-    
-    // Пауза при наведенні
-    const slider = document.querySelector('.facts-slider');
-    if (slider) {
-        slider.addEventListener('mouseenter', stopAutoPlay);
-        slider.addEventListener('mouseleave', startAutoPlay);
-    }
-}
-
-// Виклик слайдера після завантаження сторінки
-setTimeout(() => {
-    initFactsSlider();
-}, 500);
-
-
-
-
 function setupScrollAnimation() {
     const elementsToAnimate = [
         { element: document.querySelector('#briefContainer'), callback: startBriefAnimation },
@@ -520,5 +512,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => { startTypingLoop(); }, 1000);
     setTimeout(() => { setupSkillsAnimation(); }, 500);
     setupScrollAnimation();
+    setTimeout(() => { initLocationSlider(); }, 500);
     console.log('Сайт fipokzec.dev успішно завантажено!');
 });
