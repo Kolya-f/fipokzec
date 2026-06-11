@@ -198,7 +198,7 @@ nav {
 }
 .section-desc { color: #94a3b8; max-width: 600px; margin: 0 auto; }
 
-.services-section, .process-section, .about-section, .reviews-section, .faq-section, .contacts-section, .facts-slider-section { padding: 80px 0; }
+.services-section, .process-section, .about-section, .reviews-section, .faq-section, .contacts-section { padding: 80px 0; }
 
 .process-steps {
     display: flex;
@@ -313,120 +313,6 @@ nav {
     text-align: center;
 }
 .watch-video-btn:hover { transform: scale(1.02); box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4); }
-
-/* ========== СЛАЙДЕР ФАКТІВ ========== */
-.facts-slider-section {
-    padding: 60px 0;
-    background: linear-gradient(135deg, rgba(10,10,20,0.5), rgba(20,20,40,0.3));
-}
-
-.facts-slider {
-    max-width: 800px;
-    margin: 0 auto;
-    position: relative;
-    overflow: hidden;
-    border-radius: 32px;
-    background: linear-gradient(135deg, rgba(20,20,35,0.7), rgba(15,15,25,0.8));
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(139,92,246,0.3);
-    padding: 40px 30px;
-    min-height: 280px;
-}
-
-.slider-container {
-    position: relative;
-    min-height: 200px;
-}
-
-.slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    opacity: 0;
-    transform: translateX(50px);
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    text-align: center;
-    visibility: hidden;
-}
-
-.slide.active {
-    opacity: 1;
-    transform: translateX(0);
-    visibility: visible;
-    position: relative;
-}
-
-.slide-icon {
-    font-size: 3.5rem;
-    margin-bottom: 20px;
-    animation: floatIcon 3s ease-in-out infinite;
-}
-
-@keyframes floatIcon {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-}
-
-.slide h3 {
-    font-size: 1.5rem;
-    background: linear-gradient(135deg, #fff, #c084fc);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    margin-bottom: 15px;
-}
-
-.slide p {
-    color: #94a3b8;
-    font-size: 1rem;
-    line-height: 1.6;
-    max-width: 500px;
-    margin: 0 auto;
-}
-
-.slider-dots {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 40px;
-}
-
-.slider-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.2);
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.slider-dot.active {
-    background: #c084fc;
-    width: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(192,132,252,0.5);
-}
-
-.slider-dot:hover {
-    background: rgba(192,132,252,0.6);
-    transform: scale(1.2);
-}
-
-@media (max-width: 768px) {
-    .facts-slider {
-        padding: 30px 20px;
-    }
-    .slide h3 {
-        font-size: 1.2rem;
-    }
-    .slide p {
-        font-size: 0.85rem;
-    }
-    .slide-icon {
-        font-size: 2.5rem;
-    }
-}
 
 /* ========== ПРО МЕНЕ ========== */
 .about-grid {
@@ -551,7 +437,7 @@ nav {
 .faq-question { color: #fbbf24; font-weight: 700; margin-bottom: 12px; }
 .faq-answer { color: #94a3b8; }
 
-/* ========== НОВІ СТИЛІ ДЛЯ КОНТАКТІВ ========== */
+/* ========== КОНТАКТИ ========== */
 .contacts-grid-new {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
@@ -589,6 +475,11 @@ nav {
     margin-bottom: 15px;
     display: inline-block;
     animation: floatIcon 3s ease-in-out infinite;
+}
+
+@keyframes floatIcon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
 }
 
 .contact-header h3 {
@@ -663,7 +554,6 @@ nav {
     color: #c084fc;
 }
 
-/* Кнопки контактів */
 .contact-buttons {
     display: flex;
     gap: 12px;
@@ -737,6 +627,59 @@ nav {
     border-color: rgba(139, 92, 246, 0.4);
 }
 
+/* ========== СЛАЙДЕР ЛОКАЦІЇ ========== */
+.location-slider {
+    position: relative;
+    min-height: 220px;
+}
+
+.location-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    opacity: 0;
+    transform: translateX(30px);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    visibility: hidden;
+}
+
+.location-slide.active {
+    opacity: 1;
+    transform: translateX(0);
+    visibility: visible;
+    position: relative;
+}
+
+.location-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 30px;
+}
+
+.location-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.location-dot.active {
+    background: #c084fc;
+    width: 24px;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(192,132,252,0.5);
+}
+
+.location-dot:hover {
+    background: rgba(192,132,252,0.6);
+    transform: scale(1.2);
+}
+
 .contact-map {
     height: 100%;
 }
@@ -749,6 +692,7 @@ nav {
     border: 1px solid rgba(139, 92, 246, 0.3);
     height: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
@@ -759,56 +703,22 @@ nav {
     box-shadow: 0 25px 45px -15px rgba(139, 92, 246, 0.2);
 }
 
-.map-placeholder {
-    text-align: center;
-    position: relative;
-}
-
 .map-pin {
-    font-size: 4rem;
-    margin-bottom: 20px;
-    animation: pulsePin 2s ease-in-out infinite;
-}
-
-@keyframes pulsePin {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.1); opacity: 0.8; }
+    font-size: 3rem;
+    margin-bottom: 15px;
+    display: inline-block;
 }
 
 .map-text h4 {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     color: #e2e8f0;
     margin-bottom: 8px;
 }
 
 .map-text p {
     color: #94a3b8;
-    font-size: 0.9rem;
-}
-
-.map-decoration {
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-}
-
-.dot {
-    width: 8px;
-    height: 8px;
-    background: #c084fc;
-    border-radius: 50%;
-    opacity: 0.5;
-    animation: dotPulse 1.5s ease-in-out infinite;
-}
-
-.dot-1 { animation-delay: 0s; }
-.dot-2 { animation-delay: 0.3s; }
-.dot-3 { animation-delay: 0.6s; }
-
-@keyframes dotPulse {
-    0%, 100% { opacity: 0.2; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.5); }
+    font-size: 0.85rem;
+    line-height: 1.4;
 }
 
 footer {
@@ -1005,4 +915,8 @@ footer {
     .contact-item-new:hover { transform: translateX(0); }
     .social-links-new { gap: 10px; }
     .social-link { padding: 6px 14px; font-size: 0.8rem; }
+    .location-slider { min-height: 260px; }
+    .map-pin { font-size: 2.5rem; }
+    .map-text h4 { font-size: 1.1rem; }
+    .map-text p { font-size: 0.75rem; }
 }
