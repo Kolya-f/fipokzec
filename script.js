@@ -400,12 +400,12 @@ function setupSkillsAnimation() {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     // Години коду
-                    animateNumber(hoursCount, 0, 1247, 2000);
+                    animateNumber(hoursCount, 0, 1247, 2000, '+');
                     // Роки досвіду
                     animateNumber(experienceCount, 0, 2, 1500);
                     // Кількість клієнтів
                     animateNumber(clientsCount, 0, 24, 1500);
-                    // Кількість країн (залишаємо 5+)
+                    // Кількість країн
                     if (countriesCount) {
                         animateNumber(countriesCount, 0, 5, 1500, '+');
                     }
@@ -423,22 +423,15 @@ function setupSkillsAnimation() {
             if (!startTime) startTime = timestamp;
             const progress = Math.min((timestamp - startTime) / duration, 1);
             let current = Math.floor(progress * (end - start) + start);
-            // Якщо це останній кадр і є suffix
-            if (progress >= 1 && suffix === '+') {
+            if (progress >= 1) {
                 element.textContent = end + suffix;
             } else {
-                element.textContent = current + (element.id === 'hoursCount' ? '+' : '');
+                element.textContent = current + (suffix === '+' ? '' : '');
             }
             if (progress < 1) {
                 requestAnimationFrame(step);
             } else {
-                if (suffix === '+') {
-                    element.textContent = end + suffix;
-                } else if (element.id === 'hoursCount') {
-                    element.textContent = end + '+';
-                } else {
-                    element.textContent = end;
-                }
+                element.textContent = end + suffix;
             }
         };
         requestAnimationFrame(step);
