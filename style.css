@@ -198,7 +198,7 @@ nav {
 }
 .section-desc { color: #94a3b8; max-width: 600px; margin: 0 auto; }
 
-.services-section, .process-section, .about-section, .reviews-section, .faq-section, .contacts-section { padding: 80px 0; }
+.services-section, .process-section, .about-section, .reviews-section, .faq-section, .contacts-section, .facts-slider-section { padding: 80px 0; }
 
 .process-steps {
     display: flex;
@@ -314,10 +314,6 @@ nav {
 }
 .watch-video-btn:hover { transform: scale(1.02); box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4); }
 
-
-
-
-
 /* ========== СЛАЙДЕР ФАКТІВ ========== */
 .facts-slider-section {
     padding: 60px 0;
@@ -365,6 +361,11 @@ nav {
     font-size: 3.5rem;
     margin-bottom: 20px;
     animation: floatIcon 3s ease-in-out infinite;
+}
+
+@keyframes floatIcon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
 }
 
 .slide h3 {
@@ -427,61 +428,7 @@ nav {
     }
 }
 
-/* Кнопка Viber */
-.btn-viber {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 14px 20px;
-    border-radius: 40px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    font-size: 1rem;
-    background: linear-gradient(135deg, #7360f2, #5e4ae3);
-    color: white;
-    border: none;
-    box-shadow: 0 4px 15px rgba(115, 96, 242, 0.3);
-}
-
-.btn-viber:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(115, 96, 242, 0.4);
-}
-
-.contact-buttons {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 30px;
-    flex-wrap: wrap;
-}
-
-.contact-buttons .btn-call,
-.contact-buttons .btn-message,
-.contact-buttons .btn-viber {
-    min-width: 110px;
-}
-
-@media (max-width: 768px) {
-    .contact-buttons {
-        flex-direction: column;
-    }
-    .contact-buttons .btn-call,
-    .contact-buttons .btn-message,
-    .contact-buttons .btn-viber {
-        width: 100%;
-    }
-}
-
-
-
-
-
-
-
-
+/* ========== ПРО МЕНЕ ========== */
 .about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -644,11 +591,6 @@ nav {
     animation: floatIcon 3s ease-in-out infinite;
 }
 
-@keyframes floatIcon {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-}
-
 .contact-header h3 {
     font-size: 1.6rem;
     background: linear-gradient(135deg, #fff, #c084fc);
@@ -721,13 +663,15 @@ nav {
     color: #c084fc;
 }
 
+/* Кнопки контактів */
 .contact-buttons {
     display: flex;
-    gap: 16px;
+    gap: 12px;
     margin-bottom: 30px;
+    flex-wrap: wrap;
 }
 
-.btn-call, .btn-message {
+.btn-call, .btn-message, .btn-viber {
     flex: 1;
     display: flex;
     align-items: center;
@@ -738,36 +682,34 @@ nav {
     font-weight: 600;
     text-decoration: none;
     transition: all 0.3s ease;
-    font-size: 1rem;
+    font-size: 0.95rem;
 }
 
 .btn-call {
     background: linear-gradient(135deg, #10b981, #059669);
     color: white;
-    border: none;
     box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
-}
-
-.btn-call:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
 }
 
 .btn-message {
     background: linear-gradient(135deg, #3b82f6, #2563eb);
     color: white;
-    border: none;
     box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
 }
 
-.btn-message:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+.btn-viber {
+    background: linear-gradient(135deg, #7360f2, #5e4ae3);
+    color: white;
+    box-shadow: 0 4px 15px rgba(115, 96, 242, 0.3);
 }
 
-.btn-call span, .btn-message span {
-    font-size: 1.2rem;
+.btn-call:hover, .btn-message:hover, .btn-viber:hover {
+    transform: translateY(-3px);
 }
+
+.btn-call:hover { box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4); }
+.btn-message:hover { box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4); }
+.btn-viber:hover { box-shadow: 0 8px 25px rgba(115, 96, 242, 0.4); }
 
 .social-links-new {
     display: flex;
