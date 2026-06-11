@@ -35,7 +35,6 @@ body::after {
 
 .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
-/* Header */
 header {
     background: rgba(10, 10, 15, 0.85);
     backdrop-filter: blur(12px);
@@ -94,7 +93,6 @@ nav {
 .nav-links a:hover { color: #fbbf24; }
 .mobile-menu-btn { display: none; font-size: 1.8rem; cursor: pointer; }
 
-/* Hero */
 .hero { padding: 80px 0 60px; }
 .hero-grid { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 40px; }
 .hero-text { flex: 1; }
@@ -118,7 +116,6 @@ nav {
 .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
 .hero-image { flex: 1; }
 
-/* Термінал */
 .code-terminal {
     background: rgba(10, 10, 20, 0.95);
     backdrop-filter: blur(8px);
@@ -165,7 +162,6 @@ nav {
 }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-/* Кнопки */
 .btn {
     display: inline-block;
     background: linear-gradient(135deg, #3b82f6, #8b5cf6);
@@ -181,7 +177,6 @@ nav {
 .btn:hover { transform: scale(1.02); box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4); }
 .btn-outline { background: transparent; border: 1px solid #8b5cf6; color: #c084fc; }
 
-/* Секції */
 .section-header { text-align: center; margin-bottom: 48px; }
 .section-tag {
     display: inline-block;
@@ -205,7 +200,6 @@ nav {
 
 .services-section, .process-section, .about-section, .reviews-section, .faq-section, .contacts-section { padding: 80px 0; }
 
-/* СТИЛІ ДЛЯ ЕТАПІВ */
 .process-steps {
     display: flex;
     flex-wrap: wrap;
@@ -228,12 +222,7 @@ nav {
     opacity: 1;
     transform: translateY(0);
 }
-.process-step-animation:hover {
-    transform: none;
-    box-shadow: none;
-}
 
-/* 3D FLIP CARD СТИЛІ ДЛЯ ПОСЛУГ */
 .services-grid {
     display: flex;
     flex-direction: column;
@@ -325,7 +314,12 @@ nav {
 }
 .watch-video-btn:hover { transform: scale(1.02); box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4); }
 
-/* СТИЛІ ДЛЯ АНІМОВАНИХ НАВИЧОК */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
 .skills-animated {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -379,7 +373,6 @@ nav {
 @keyframes fillGradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 .skill-percent { font-size: 0.7rem; color: #c084fc; margin-top: 4px; text-align: right; font-family: monospace; }
 
-/* Статистика коду */
 .code-stats {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -410,15 +403,6 @@ nav {
 .stat-number { font-size: 1.6rem; font-weight: 800; background: linear-gradient(135deg, #e2e8f0, #c084fc); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .stat-label { font-size: 0.7rem; color: #94a3b8; margin-top: 5px; }
 
-/* Про мене (загальне) */
-.about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    align-items: center;
-}
-
-/* Відгуки */
 .reviews-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -434,8 +418,9 @@ nav {
 .review-text { font-style: italic; color: #e2e8f0; margin-bottom: 16px; }
 .review-author { color: #fbbf24; font-weight: 600; margin-top: 12px; }
 .review-position { color: #94a3b8; font-size: 0.8rem; }
+.review-stars { margin-bottom: 12px; font-size: 14px; letter-spacing: 2px; }
+.review-date { font-size: 0.7rem; color: #555; margin-top: 8px; }
 
-/* FAQ */
 .faq-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -451,7 +436,6 @@ nav {
 .faq-question { color: #fbbf24; font-weight: 700; margin-bottom: 12px; }
 .faq-answer { color: #94a3b8; }
 
-/* Контакти */
 .contacts-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -477,7 +461,6 @@ footer {
     border-top: 1px solid rgba(255,255,255,0.05);
 }
 
-/* Модальне вікно */
 .fullscreen-modal {
     display: none;
     position: fixed;
@@ -529,7 +512,6 @@ footer {
 .fullscreen-modal.active .close-modal { opacity: 1; }
 .close-modal:hover { background: #fbbf24; color: #0a0a0a; transform: rotate(90deg); }
 
-/* Анімація pulse */
 @keyframes pulseAnim {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.3; }
@@ -539,7 +521,6 @@ footer {
     50% { opacity: 0.3; }
 }
 
-/* Анімації для карток послуг */
 .flip-card.slide-from-right { animation: slideFromRight 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards; }
 @keyframes slideFromRight { 0% { opacity: 0; transform: translateX(100px) rotate(5deg); } 100% { opacity: 1; transform: translateX(0) rotate(0deg); } }
 .flip-card.scale-up { animation: scaleUp 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards; }
@@ -553,7 +534,6 @@ footer {
 .flip-card.drop { animation: drop 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards; }
 @keyframes drop { 0% { opacity: 0; transform: translateY(-80px) rotate(-8deg); } 70% { transform: translateY(10px) rotate(3deg); } 100% { opacity: 1; transform: translateY(0) rotate(0deg); } }
 
-/* Стилі для етапів (FIGMA, CODE, LAUNCH, SUPPORT) */
 .anim-box { background: linear-gradient(135deg,#0a0a0f,#0d0d14); border-radius:24px; padding:20px; border:1px solid rgba(127,119,221,0.3); box-shadow:0 20px 40px -15px rgba(0,0,0,0.5); width:100%; }
 .anim-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
 .anim-timer { font-size:10px; color:#555; font-family:monospace; }
@@ -577,15 +557,12 @@ footer {
 .ava-row { display:flex; align-items:center; gap:6px; }
 .ava-name { font-size:10px; color:#555; }
 
-/* FIGMA специфічні стилі */
 .figma-canvas { position:relative; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:12px; height:100px; margin-bottom:10px; overflow:hidden; }
 .figma-frame { position:absolute; border:1px solid rgba(127,119,221,0.5); border-radius:6px; background:rgba(127,119,221,0.05); }
-.figma-block { position:absolute; border-radius:3px; }
-.figma-cursor { position:absolute; width:16px; height:16px; pointer-events:none; transition:left 0.8s cubic-bezier(0.4,0,0.2,1), top 0.8s cubic-bezier(0.4,0,0.2,1); }
+.figma-cursor { position:absolute; width:16px; height:16px; pointer-events:none; transition:left 0.8s, top 0.8s; }
 .figma-layers { display:flex; flex-direction:column; gap:4px; }
 .layer-item { display:flex; align-items:center; gap:8px; font-size:10px; padding:4px 8px; border-radius:6px; opacity:0; transition:all 0.4s; }
 
-/* CODE специфічні стилі */
 .code-editor { background:rgba(10,10,20,0.8); border-radius:12px; padding:12px; font-family:'Courier New', monospace; font-size:10px; line-height:1.6; color:#e2e8f0; margin-bottom:10px; min-height:90px; border:1px solid rgba(255,255,255,0.06); }
 .code-line { white-space:pre; display:block; opacity:0; animation:fadeCodeLine 0.2s forwards; }
 @keyframes fadeCodeLine { to { opacity:1; } }
@@ -600,7 +577,6 @@ footer {
 .device-name { font-size:9px; color:#555; }
 .device-status { font-size:9px; margin-top:2px; }
 
-/* LAUNCH специфічні стилі */
 .launch-checklist { display:flex; flex-direction:column; gap:5px; margin-bottom:10px; }
 .launch-item { display:flex; align-items:center; gap:8px; font-size:11px; color:#666; padding:5px 8px; border-radius:8px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.04); opacity:0; transition:all 0.4s; }
 .launch-icon { font-size:12px; flex-shrink:0; }
@@ -614,7 +590,6 @@ footer {
 .log-warn { color:#fbbf24; }
 .log-info { color:#60a5fa; }
 
-/* ПІДТРИМКА стилі */
 .sw-wrap { font-family:'Inter', system-ui, sans-serif; padding:16px 0; width:100%; }
 .sw-box { background:linear-gradient(135deg,#0a0a0f,#0d0d14); border-radius:24px; padding:20px; border:1px solid rgba(29,200,117,0.3); box-shadow:0 20px 40px -15px rgba(0,0,0,0.5); }
 .sw-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
@@ -657,7 +632,6 @@ footer {
 .up-dot.ok { background:#1dc875; }
 .up-dot.warn { background:#fbbf24; }
 
-/* Адаптив */
 @media (max-width: 768px) {
     .nav-links { display: none; }
     .mobile-menu-btn { display: block; }
