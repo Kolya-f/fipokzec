@@ -440,6 +440,8 @@
         .review-text { font-style: italic; color: #e2e8f0; margin-bottom: 16px; }
         .review-author { color: #fbbf24; font-weight: 600; margin-top: 12px; }
         .review-position { color: #94a3b8; font-size: 0.8rem; }
+        .review-stars { margin-bottom: 12px; font-size: 14px; letter-spacing: 2px; }
+        .review-date { font-size: 0.7rem; color: #555; margin-top: 8px; }
 
         /* ========== FAQ ========== */
         .faq-grid {
@@ -918,8 +920,171 @@
         </div>
     </footer>
 
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
     <script>
-        // ДАНІ ДЛЯ ПОСЛУГ
+        // ========== FIREBASE КОНФІГУРАЦІЯ ==========
+        const firebaseConfig = {
+            apiKey: "AIzaSyAmzG0nez-WW03BktOEPHj8WLVOJ2a2R1M",
+            authDomain: "fipokzec-reviews.firebaseapp.com",
+            projectId: "fipokzec-reviews",
+            storageBucket: "fipokzec-reviews.firebasestorage.app",
+            messagingSenderId: "103768554550",
+            appId: "1:103768554550:web:32375ba73049333b71ac97",
+            measurementId: "G-9BB6HR48ME"
+        };
+        
+        // Ініціалізація Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        console.log("✅ Firebase підключено!");
+        
+        // ========== ФУНКЦІЇ ДЛЯ ВІДГУКІВ ==========
+        
+        async function loadReviewsFromFirebase() {
+            try {
+                const snapshot = await db.collection("reviews").orderBy("createdAt", "desc").get();
+                const reviews = [];
+                snapshot.forEach((doc) => {
+                    reviews.push({ id: doc.id, ...doc.data() });
+                });
+                console.log("📥 Завантажено відгуків:", reviews.length);
+                return reviews;
+            } catch (error) {
+                console.error("❌ Помилка завантаження:", error);
+                return [];
+            }
+        }
+        
+        async function displayReviews() {
+            const reviewsGrid = document.getElementById('reviewsGrid');
+            if (!reviewsGrid) return;
+            
+            reviewsGrid.innerHTML = '<div class="review-card" style="text-align:center; grid-column:1/-1;">📡 Завантаження відгуків...</div>';
+            
+            const reviews = await loadReviewsFromFirebase();
+            
+            if (reviews.length === 0) {
+                reviewsGrid.innerHTML = '<div class="review-card" style="text-align:center; grid-column:1/-1;">✨ Поки що немає відгуків. Будьте першим!</div>';
+                return;
+            }
+            
+            reviewsGrid.innerHTML = reviews.map(r => `
+                <div class="review-card">
+                    <div class="review-stars">${'⭐'.repeat(r.rating || 5)}</div>
+                    <div class="review-text">“${escapeHtml(r.text)}”</div>
+                    <div class="review-author">${escapeHtml(r.author)}</div>
+                    <div class="review-date">${formatDate(r.createdAt)}</div>
+                </div>
+            `).join('');
+        }
+        
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        function formatDate(dateString) {
+            if (!dateString) return 'щойно';
+            try {
+                return new Date(dateString).toLocaleDateString('uk-UA');
+            } catch {
+                return 'нещодавно';
+            }
+        }
+        
+        // Додаємо форму для відгуків
+        function addReviewForm() {
+            const reviewsSection = document.getElementById('reviews');
+            if (!reviewsSection) return;
+            if (document.getElementById('reviewFormContainer')) return;
+            
+            const formHTML = `
+                <div id="reviewFormContainer" style="max-width: 600px; margin: 40px auto 0; background: rgba(20,20,35,0.6); backdrop-filter: blur(8px); border-radius: 24px; padding: 28px; border: 1px solid rgba(255,255,255,0.08);">
+                    <h3 style="margin-bottom: 20px; text-align: center; background: linear-gradient(135deg, #e2e8f0, #c084fc); -webkit-background-clip: text; background-clip: text; color: transparent;">✍️ Написати відгук</h3>
+                    <form id="submitReviewForm">
+                        <input type="text" id="reviewName" placeholder="Ваше ім'я" required style="width:100%; padding:12px; margin-bottom:12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:12px; color:white;">
+                        <textarea id="reviewText" placeholder="Ваш відгук..." rows="3" required style="width:100%; padding:12px; margin-bottom:12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:12px; color:white;"></textarea>
+                        <div style="display:flex; gap:10px; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+                            <div>
+                                <span style="color:#ccc;">Оцінка:</span>
+                                <span class="rating-star" data-rating="1" style="cursor:pointer; font-size:24px; color:#fbbf24;">★</span>
+                                <span class="rating-star" data-rating="2" style="cursor:pointer; font-size:24px; color:#fbbf24;">★</span>
+                                <span class="rating-star" data-rating="3" style="cursor:pointer; font-size:24px; color:#fbbf24;">★</span>
+                                <span class="rating-star" data-rating="4" style="cursor:pointer; font-size:24px; color:#fbbf24;">★</span>
+                                <span class="rating-star" data-rating="5" style="cursor:pointer; font-size:24px; color:#fbbf24;">★</span>
+                            </div>
+                            <input type="hidden" id="reviewRating" value="5">
+                            <button type="submit" class="btn">📨 Надіслати відгук</button>
+                        </div>
+                    </form>
+                    <div id="reviewFormMessage" style="margin-top:15px; font-size:12px; text-align:center;"></div>
+                </div>
+            `;
+            
+            reviewsSection.insertAdjacentHTML('beforeend', formHTML);
+            
+            // Зірки для оцінки
+            const stars = document.querySelectorAll('.rating-star');
+            const ratingInput = document.getElementById('reviewRating');
+            
+            stars.forEach(star => {
+                star.addEventListener('click', () => {
+                    const rating = parseInt(star.dataset.rating);
+                    ratingInput.value = rating;
+                    stars.forEach((s, i) => {
+                        s.style.color = i < rating ? '#fbbf24' : '#444';
+                    });
+                });
+            });
+            
+            // Обробка форми
+            const form = document.getElementById('submitReviewForm');
+            const messageDiv = document.getElementById('reviewFormMessage');
+            
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const name = document.getElementById('reviewName').value.trim();
+                const text = document.getElementById('reviewText').value.trim();
+                const rating = parseInt(ratingInput.value);
+                
+                if (!name || !text) {
+                    messageDiv.innerHTML = '<span style="color:#ff5f56;">❌ Будь ласка, заповніть всі поля!</span>';
+                    setTimeout(() => messageDiv.innerHTML = '', 3000);
+                    return;
+                }
+                
+                messageDiv.innerHTML = '<span style="color:#60a5fa;">📡 Відправка...</span>';
+                
+                try {
+                    await db.collection("reviews").add({
+                        author: name,
+                        text: text,
+                        rating: rating,
+                        createdAt: new Date().toISOString(),
+                        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                    
+                    messageDiv.innerHTML = '<span style="color:#4ade80;">✅ Дякуємо за ваш відгук!</span>';
+                    document.getElementById('reviewName').value = '';
+                    document.getElementById('reviewText').value = '';
+                    ratingInput.value = 5;
+                    stars.forEach((s, i) => { s.style.color = i < 5 ? '#fbbf24' : '#444'; });
+                    displayReviews();
+                    setTimeout(() => messageDiv.innerHTML = '', 3000);
+                } catch (error) {
+                    console.error("❌ Помилка:", error);
+                    messageDiv.innerHTML = '<span style="color:#ff5f56;">❌ Помилка при відправці. Спробуйте пізніше.</span>';
+                    setTimeout(() => messageDiv.innerHTML = '', 3000);
+                }
+            });
+        }
+        
+        // ========== ДАНІ ДЛЯ ПОСЛУГ ==========
         const services = [
             { title: "Сайт-візитка", description: "3-5 сторінок, форма зв'язку, адаптивний дизайн.", features: ["Адаптивний дизайн", "Форма зв'язку", "SEO-оптимізація"], price: "5 000 грн", videoId: "MuHXReJ6Ics", poster: "https://img.youtube.com/vi/MuHXReJ6Ics/hqdefault.jpg", projectName: "Сучасний сайт-візитка" },
             { title: "Лендінг", description: "Односторінковий сайт для запуску продукту.", features: ["Анімації", "Форма захоплення", "Інтеграція з CRM"], price: "6 000 грн", videoId: "T9JMvOT_Ktc", poster: "https://img.youtube.com/vi/T9JMvOT_Ktc/hqdefault.jpg", projectName: "Продаючий лендінг" },
@@ -929,7 +1094,7 @@
             { title: "Оновлення дизайну", description: "Рестайлінг, сучасний вигляд.", features: ["Новий дизайн", "Адаптація", "Покращення навігації"], price: "2 000 грн", videoId: "fVffOI0uHLQ", poster: "https://img.youtube.com/vi/fVffOI0uHLQ/hqdefault.jpg", projectName: "Сучасний редизайн" }
         ];
 
-        const reviews = [
+        const reviewsStatic = [
             { text: "fipokzec створив для нас сайт-візитку. Все зроблено якісно.", author: "Ірина Петренко", position: "Власниця салону краси" },
             { text: "Дуже задоволений роботою! Інтернет-магазин працює ідеально.", author: "Олександр Коваль", position: "Підприємець" },
             { text: "Професійний підхід, увага до деталей.", author: "Марія Шевченко", position: "Маркетолог" }
@@ -993,11 +1158,6 @@
             iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
             modal.style.display = 'flex';
             setTimeout(() => modal.classList.add('active'), 10);
-        }
-
-        function renderReviews() {
-            const container = document.getElementById('reviewsGrid');
-            if (container) container.innerHTML = reviews.map(r => `<div class="review-card"><div class="review-text">“${r.text}”</div><div class="review-author">${r.author}</div><div class="review-position">${r.position}</div></div>`).join('');
         }
 
         function renderFAQ() {
@@ -1522,15 +1682,18 @@
             statCards.forEach(card => statsObserver.observe(card));
             
             const hoursCount = document.getElementById('hoursCount');
-            const coffeeCount = document.getElementById('coffeeCount');
+            const experienceCount = document.getElementById('experienceCount');
             const clientsCount = document.getElementById('clientsCount');
-            if (hoursCount && coffeeCount && clientsCount) {
+            const countriesCount = document.getElementById('countriesCount');
+            
+            if (hoursCount && experienceCount) {
                 const statsObserver2 = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
                             animateNumber(hoursCount, 0, 1247, 2000);
-                            animateNumber(coffeeCount, 0, 486, 1800);
-                            animateNumber(clientsCount, 0, 24, 1500);
+                            animateNumber(experienceCount, 0, 2, 1500);
+                            if (clientsCount) animateNumber(clientsCount, 0, 24, 1500);
+                            if (countriesCount) animateNumber(countriesCount, 0, 5, 1500);
                             statsObserver2.disconnect();
                         }
                     });
@@ -1585,7 +1748,8 @@
         // ГОЛОВНИЙ ЗАПУСК
         document.addEventListener('DOMContentLoaded', () => {
             renderServices();
-            renderReviews();
+            displayReviews();
+            addReviewForm();
             renderFAQ();
             renderSocialLinks();
             setCurrentYear();
@@ -1595,7 +1759,7 @@
             setTimeout(() => { startTyping(); }, 1000);
             setTimeout(() => { setupSkillsAnimation(); }, 500);
             setupScrollAnimation();
-            console.log('Сайт fipokzec.dev успішно завантажено!');
+            console.log('✅ Сайт fipokzec.dev успішно завантажено! Firebase готовий!');
         });
     </script>
 </body>
