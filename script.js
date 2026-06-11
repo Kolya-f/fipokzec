@@ -48,10 +48,23 @@ const services = [
     { title: "Оновлення дизайну", description: "Рестайлінг, сучасний вигляд.", features: ["Новий дизайн", "Адаптація", "Покращення навігації"], price: "2 000 грн", videoId: "fVffOI0uHLQ", poster: "https://img.youtube.com/vi/fVffOI0uHLQ/hqdefault.jpg", projectName: "Сучасний редизайн" }
 ];
 
+// ========== ОНОВЛЕНИЙ FAQ З БІЛЬШЕ КІЛЬКІСТЮ ПИТАНЬ ==========
 const faqItems = [
     { question: "Скільки часу займає створення сайту?", answer: "Сайт-візитка — 5-7 днів, лендінг — 7-10 днів, магазин — 14-21 день." },
-    { question: "Чи можна буде самостійно редагувати сайт?", answer: "Так, я навчаю клієнтів працювати з адмін-панеллю." },
-    { question: "Яка гарантія на роботу?", answer: "Надаю гарантію 3 місяці на всі види робіт." }
+    { question: "Чи можна буде самостійно редагувати сайт?", answer: "Так, я навчаю клієнтів працювати з адмін-панеллю. Після здачі проєкту ви отримуєте відео-інструкцію та консультацію." },
+    { question: "Яка гарантія на роботу?", answer: "Надаю гарантію 3 місяці на всі види робіт. Якщо щось піде не так — виправлю безкоштовно." },
+    { question: "Чи допомагаєте з наповненням сайту?", answer: "Так, можу допомогти з наповненням (тексти, фото, товари). Вартість обговорюється окремо." },
+    { question: "Чи робите SEO-оптимізацію?", answer: "Так, базову SEO-оптимізацію роблю за замовчуванням: налаштовую мета-теги, заголовки, alt для зображень." },
+    { question: "Який домен і хостинг оберете?", answer: "Рекомендую надійні українські хостинги: name.com, hostpro.ua, cityhost.ua. Допоможу з вибором та налаштуванням." },
+    { question: "Чи робите техпідтримку після запуску?", answer: "Так, пропоную пакети техпідтримки: від щомісячних оновлень до повного адміністрування сайту." },
+    { question: "Як відбувається оплата?", answer: "Працюю за передоплатою 50% на початку роботи, 50% після завершення. Можливий розстрочення на етапи." },
+    { question: "Чи можна побачити приклади ваших робіт?", answer: "Звісно! Всі мої роботи ви можете переглянути в секції «Портфоліо» вище." },
+    { question: "З якими CMS ви працюєте?", answer: "Працюю з WordPress (Elementor, ACF, WooCommerce), а також роблю сайти на чистому HTML/CSS/JS." },
+    { question: "Чи робите інтеграцію з кредитними картками та платіжними системами?", answer: "Так, налаштовую LiqPay, WayForPay, Fondy та інші платіжні системи." },
+    { question: "Чи можна буде змінити дизайн після запуску?", answer: "Так, після запуску ви можете замовити послугу «Оновлення дизайну» або дрібні правки за окрему плату." },
+    { question: "Чи робите копіювання сайтів з інших CMS?", answer: "Так, переношу сайти з Tilda, Webflow, Wix, а також з інших систем на WordPress або чистий код." },
+    { question: "Чи допомагаєте з налаштуванням Google Analytics?", answer: "Так, підключаю Google Analytics, Google Search Console, налаштовую цілі та події." },
+    { question: "Як швидко ви відповідаєте на повідомлення?", answer: "Зазвичай відповідаю протягом 1-2 годин у робочий час (10:00-20:00). У вихідні — трохи довше, але завжди на зв'язку." }
 ];
 
 const socialLinks = [
@@ -102,7 +115,11 @@ function openFullscreenVideo(videoId) {
     setTimeout(() => modal.classList.add('active'), 10);
 }
 
-function renderFAQ() { const container = document.getElementById('faqGrid'); if (container) container.innerHTML = faqItems.map(f => `<div class="faq-item"><div class="faq-question">❓ ${f.question}</div><div class="faq-answer">${f.answer}</div></div>`).join(''); }
+function renderFAQ() { 
+    const container = document.getElementById('faqGrid'); 
+    if (container) container.innerHTML = faqItems.map(f => `<div class="faq-item"><div class="faq-question">❓ ${f.question}</div><div class="faq-answer">${f.answer}</div></div>`).join(''); 
+}
+
 function renderSocialLinks() { const container = document.getElementById('socialLinks'); if (container) container.innerHTML = socialLinks.map(l => `<a href="${l.url}" target="_blank">${l.name}</a>`).join(''); }
 function setCurrentYear() { const footer = document.getElementById('footerText'); if (footer) footer.innerHTML = `© ${new Date().getFullYear()} fipokzec.dev | Створення сайтів під ключ`; }
 
