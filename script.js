@@ -421,6 +421,72 @@ function startSupportAnimation() {
     setTimeout(() => { const s=document.getElementById('swStatus'); if(s) s.style.opacity='1'; }, 8500);
 }
 
+// ========== СЛАЙДЕР ФАКТІВ ПРО ДНІПРО ==========
+function initFactsSlider() {
+    const slides = document.querySelectorAll('.slide');
+    const dotsContainer = document.getElementById('sliderDots');
+    if (!slides.length || !dotsContainer) return;
+    
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+    let autoPlayInterval;
+    
+    // Створення точок
+    slides.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.classList.add('slider-dot');
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(index));
+        dotsContainer.appendChild(dot);
+    });
+    
+    const dots = document.querySelectorAll('.slider-dot');
+    
+    function goToSlide(index) {
+        slides[currentIndex].classList.remove('active');
+        dots[currentIndex].classList.remove('active');
+        
+        currentIndex = (index + totalSlides) % totalSlides;
+        
+        slides[currentIndex].classList.add('active');
+        dots[currentIndex].classList.add('active');
+    }
+    
+    function nextSlide() {
+        goToSlide(currentIndex + 1);
+    }
+    
+    function startAutoPlay() {
+        if (autoPlayInterval) clearInterval(autoPlayInterval);
+        autoPlayInterval = setInterval(nextSlide, 5000);
+    }
+    
+    function stopAutoPlay() {
+        if (autoPlayInterval) {
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = null;
+        }
+    }
+    
+    // Запуск автопрокрутки
+    startAutoPlay();
+    
+    // Пауза при наведенні
+    const slider = document.querySelector('.facts-slider');
+    if (slider) {
+        slider.addEventListener('mouseenter', stopAutoPlay);
+        slider.addEventListener('mouseleave', startAutoPlay);
+    }
+}
+
+// Виклик слайдера після завантаження сторінки
+setTimeout(() => {
+    initFactsSlider();
+}, 500);
+
+
+
+
 function setupScrollAnimation() {
     const elementsToAnimate = [
         { element: document.querySelector('#briefContainer'), callback: startBriefAnimation },
