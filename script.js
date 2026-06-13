@@ -447,60 +447,105 @@ function addReviewForm() {
     });
 }
 
-// АНІМАЦІЯ НАВИЧОК
+// АНІМАЦІЯ НАВИЧОК (оновлена)
 function setupSkillsAnimation() {
-    const skillCards = document.querySelectorAll('.skill-card');
-    const statCards = document.querySelectorAll('.stat-card');
+    const skillItems = document.querySelectorAll('.skill-item');
+    const statItems = document.querySelectorAll('.stat-item');
+    
+    // Анімація навичок
     const skillsObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const card = entry.target;
-                card.classList.add('visible');
-                const level = parseInt(card.getAttribute('data-level'));
-                const fillBar = card.querySelector('.skill-bar-fill');
-                const percentSpan = card.querySelector('.skill-percent');
-                if (fillBar && percentSpan) {
+                const item = entry.target;
+                item.classList.add('visible');
+                
+                const level = parseInt(item.getAttribute('data-level'));
+                const progressBar = item.querySelector('.skill-progress');
+                const levelSpan = item.querySelector('.skill-level');
+                
+                if (progressBar && levelSpan) {
                     let current = 0;
-                    const interval = setInterval(() => { if (current >= level) clearInterval(interval); else { current++; fillBar.style.width = current + '%'; percentSpan.textContent = current + '%'; } }, 15);
+                    const interval = setInterval(() => {
+                        if (current >= level) {
+                            clearInterval(interval);
+                        } else {
+                            current += Math.ceil(level / 30);
+                            if (current > level) current = level;
+                            progressBar.style.width = current + '%';
+                            levelSpan.textContent = current + '%';
+                        }
+                    }, 20);
                 }
-                skillsObserver.unobserve(card);
+                skillsObserver.unobserve(item);
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    skillItems.forEach(item => skillsObserver.observe(item));
+    
+    // Анімація статистики
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                statsObserver.unobserve(entry.target);
             }
         });
     }, { threshold: 0.2 });
-    skillCards.forEach(card => skillsObserver.observe(card));
-    const statsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); statsObserver.unobserve(entry.target); } });
-    }, { threshold: 0.2 });
-    statCards.forEach(card => statsObserver.observe(card));
-    const hoursCount = document.getElementById('hoursCount'), experienceCount = document.getElementById('experienceCount'), clientsCount = document.getElementById('clientsCount'), countriesCount = document.getElementById('countriesCount');
+    
+    statItems.forEach(item => statsObserver.observe(item));
+    
+    // Анімація чисел
+    const hoursCount = document.getElementById('hoursCount');
+    const experienceCount = document.getElementById('experienceCount');
+    const countriesCount = document.getElementById('countriesCount');
+    const projectsCount = document.getElementById('projectsCount');
+    
     if (hoursCount && experienceCount) {
-        const statsObserver2 = new IntersectionObserver((entries) => {
+        const numbersObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    animateNumber(hoursCount, 0, 1247, 2000);
-                    animateNumber(experienceCount, 0, 2, 1500);
-                    if (clientsCount) animateNumber(clientsCount, 0, 24, 1500);
-                    if (countriesCount) animateNumber(countriesCount, 0, 5, 1500);
-                    statsObserver2.disconnect();
+                    animateNumber(hoursCount, 1247, 2000);
+                    animateNumber(experienceCount, 2, 1500);
+                    animateNumber(countriesCount, 5, 1500);
+                    if (projectsCount) animateNumber(projectsCount, 20, 1500, false);
+                    numbersObserver.disconnect();
                 }
             });
         }, { threshold: 0.5 });
-        const codeStats = document.querySelector('.code-stats');
-        if (codeStats) statsObserver2.observe(codeStats);
+        
+        const statsGrid = document.querySelector('.stats-grid');
+        if (statsGrid) numbersObserver.observe(statsGrid);
     }
-    function animateNumber(element, start, end, duration) {
+    
+    function animateNumber(element, end, duration, showPlus = true) {
+        let start = 0;
         let startTime = null;
+        
         const step = (timestamp) => {
             if (!startTime) startTime = timestamp;
             const progress = Math.min((timestamp - startTime) / duration, 1);
-            const current = Math.floor(progress * (end - start) + start);
-            element.textContent = current + (element.id === 'hoursCount' ? '+' : '');
-            if (progress < 1) requestAnimationFrame(step);
-            else element.textContent = end + (element.id === 'hoursCount' ? '+' : '');
+            const current = Math.floor(progress * end);
+            element.textContent = current;
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            } else {
+                element.textContent = end;
+                if (showPlus && element.id !== 'experienceCount') {
+                    const parent = element.parentElement;
+                    let plusSpan = parent.querySelector('.stat-plus');
+                    if (plusSpan) plusSpan.style.opacity = '1';
+                }
+            }
         };
         requestAnimationFrame(step);
     }
 }
+
+
+
+
+
 
 /// ===== СЛАЙДЕР ФОНОВИХ ЗОБРАЖЕНЬ НА ВСЮ СЕКЦІЮ =====
 function initFullBackgroundSlider() {
