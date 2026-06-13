@@ -502,63 +502,74 @@ function setupSkillsAnimation() {
     }
 }
 
-// ========== СЛАЙДЕР ЛОКАЦІЇ В КОНТАКТАХ ==========
-function initLocationSlider() {
-    const slides = document.querySelectorAll('.location-slide');
-    const dotsContainer = document.getElementById('locationDots');
+/// ===== СЛАЙДЕР ФОНОВИХ ЗОБРАЖЕНЬ НА ВСЮ СЕКЦІЮ =====
+function initFullBackgroundSlider() {
+    const slides = document.querySelectorAll('#contactsBgSlider .bg-slide-full');
+    const dotsContainer = document.getElementById('sliderDotsFull');
     if (!slides.length || !dotsContainer) return;
-    
+
     let currentIndex = 0;
     const totalSlides = slides.length;
-    let autoPlayInterval;
-    
-    // Створення точок
+    let intervalId;
+
+    // Створюємо точки
+    dotsContainer.innerHTML = '';
     slides.forEach((_, index) => {
         const dot = document.createElement('div');
-        dot.classList.add('location-dot');
+        dot.classList.add('slider-dot-full');
         if (index === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => goToSlide(index));
+        dot.addEventListener('click', () => {
+            stopAutoSlide();
+            goToSlide(index);
+            startAutoSlide();
+        });
         dotsContainer.appendChild(dot);
     });
-    
-    const dots = document.querySelectorAll('.location-dot');
-    
+    const dots = document.querySelectorAll('.slider-dot-full');
+
     function goToSlide(index) {
         slides[currentIndex].classList.remove('active');
         if (dots[currentIndex]) dots[currentIndex].classList.remove('active');
-        
+
         currentIndex = (index + totalSlides) % totalSlides;
-        
+
         slides[currentIndex].classList.add('active');
         if (dots[currentIndex]) dots[currentIndex].classList.add('active');
     }
-    
+
     function nextSlide() {
         goToSlide(currentIndex + 1);
     }
-    
-    function startAutoPlay() {
-        if (autoPlayInterval) clearInterval(autoPlayInterval);
-        autoPlayInterval = setInterval(nextSlide, 4000);
+
+    function startAutoSlide() {
+        if (intervalId) clearInterval(intervalId);
+        intervalId = setInterval(nextSlide, 2000); // Зміна кожні 2 секунди
     }
-    
-    function stopAutoPlay() {
-        if (autoPlayInterval) {
-            clearInterval(autoPlayInterval);
-            autoPlayInterval = null;
+
+    function stopAutoSlide() {
+        if (intervalId) {
+            clearInterval(intervalId);
+            intervalId = null;
         }
     }
-    
-    // Запуск автопрокрутки
-    startAutoPlay();
-    
-    // Пауза при наведенні
-    const sliderContainer = document.querySelector('.contact-map');
+
+    startAutoSlide();
+
+    const sliderContainer = document.getElementById('contactsBgSlider');
     if (sliderContainer) {
-        sliderContainer.addEventListener('mouseenter', stopAutoPlay);
-        sliderContainer.addEventListener('mouseleave', startAutoPlay);
+        sliderContainer.addEventListener('mouseenter', stopAutoSlide);
+        sliderContainer.addEventListener('mouseleave', startAutoSlide);
     }
 }
+
+
+
+
+
+
+
+
+
 
 // АНІМАЦІЯ БРІФУ
 let briefAnimationStarted = false;
@@ -743,6 +754,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setCurrentYear();
     setupActiveMenu();
     setupMobileMenu();
+    initFullBackgroundSlider();
     animateMenu();
     setTimeout(() => { startTypingLoop(); }, 1000);
     setTimeout(() => { setupSkillsAnimation(); }, 500);
