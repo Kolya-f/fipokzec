@@ -47,6 +47,279 @@ header {
 
 
 
+/* ===== СЕКЦІЯ ПРО МЕНЕ ===== */
+.about-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #0a0a0f 0%, #0f0f1a 100%);
+}
+
+.about-grid-new {
+    display: grid;
+    grid-template-columns: 1fr 0.8fr;
+    gap: 60px;
+    align-items: start;
+}
+
+/* ===== ЛІВА ЧАСТИНА: НАВИЧКИ ===== */
+.skills-container {
+    background: rgba(20, 20, 35, 0.4);
+    backdrop-filter: blur(10px);
+    border-radius: 32px;
+    padding: 40px;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    transition: all 0.3s ease;
+}
+
+.skills-container:hover {
+    border-color: rgba(139, 92, 246, 0.5);
+    box-shadow: 0 20px 40px -20px rgba(139, 92, 246, 0.2);
+}
+
+.skills-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.skill-item {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skill-item.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.skill-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.skill-name {
+    color: #e2e8f0;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+.skill-level {
+    color: #c084fc;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.skill-bar {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.skill-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #7F77DD, #c084fc);
+    border-radius: 4px;
+    width: 0%;
+    transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.skill-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 4px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 2px;
+}
+
+.btn-discuss {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 14px 28px;
+    background: linear-gradient(135deg, #7F77DD, #9f97ff);
+    border: none;
+    border-radius: 40px;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-discuss::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-discuss:hover::before {
+    left: 100%;
+}
+
+.btn-discuss:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(127, 119, 221, 0.4);
+}
+
+/* ===== ПРАВА ЧАСТИНА: СТАТИСТИКА ===== */
+.stats-container {
+    background: linear-gradient(135deg, rgba(20, 20, 35, 0.6), rgba(15, 15, 25, 0.8));
+    backdrop-filter: blur(10px);
+    border-radius: 32px;
+    padding: 40px;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.stats-container:hover {
+    border-color: rgba(139, 92, 246, 0.5);
+    transform: translateY(-5px);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    height: 100%;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 24px;
+    transition: all 0.3s ease;
+    position: relative;
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+.stat-item.visible {
+    opacity: 1;
+    transform: scale(1);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.stat-item:hover {
+    background: rgba(139, 92, 246, 0.1);
+    transform: translateY(-5px);
+}
+
+.stat-number {
+    font-size: 48px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #e2e8f0, #c084fc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    line-height: 1;
+    margin-bottom: 8px;
+    display: inline-block;
+}
+
+.stat-label {
+    color: #94a3b8;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stat-plus {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 20px;
+    color: #c084fc;
+    font-weight: 600;
+}
+
+/* Анімація появи */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Адаптивність */
+@media (max-width: 968px) {
+    .about-grid-new {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .skills-container,
+    .stats-container {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-section {
+        padding: 60px 0;
+    }
+    
+    .skills-grid {
+        gap: 18px;
+    }
+    
+    .stats-grid {
+        gap: 20px;
+    }
+    
+    .stat-item {
+        padding: 15px;
+    }
+    
+    .stat-number {
+        font-size: 36px;
+    }
+    
+    .stat-label {
+        font-size: 11px;
+    }
+    
+    .stat-plus {
+        font-size: 16px;
+        top: 10px;
+        right: 12px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* ===== НОВИЙ СЛАЙДЕР ДЛЯ ФОНОВИХ ФОТО ===== */
