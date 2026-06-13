@@ -627,10 +627,20 @@ nav {
     border-color: rgba(139, 92, 246, 0.4);
 }
 
-/* ========== СЛАЙДЕР ЛОКАЦІЇ ========== */
+
+
+
+
+
+
+
+
+/* ========== НОВИЙ СЛАЙДЕР ЛОКАЦІЇ З ФОТОГРАФІЯМИ ========== */
 .location-slider {
     position: relative;
-    min-height: 220px;
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
 }
 
 .location-slide {
@@ -638,64 +648,125 @@ nav {
     top: 0;
     left: 0;
     width: 100%;
-    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 30px;
     opacity: 0;
-    transform: translateX(30px);
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: scale(0.98);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     visibility: hidden;
+    border-radius: 24px;
+    background-size: cover;
+    background-position: center;
 }
 
 .location-slide.active {
     opacity: 1;
-    transform: translateX(0);
+    transform: scale(1);
     visibility: visible;
     position: relative;
 }
 
+/* Затемнення для кращої читабельності тексту */
+.location-slide::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60%;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    border-radius: 24px;
+    pointer-events: none;
+}
+
+.location-slide .map-pin {
+    font-size: 48px;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+    position: relative;
+    z-index: 2;
+    text-align: left;
+}
+
+.location-slide .map-text {
+    position: relative;
+    z-index: 2;
+    text-align: left;
+}
+
+.location-slide .map-text h4 {
+    font-size: 24px;
+    color: white;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.location-slide .map-text p {
+    color: rgba(255,255,255,0.9);
+    font-size: 14px;
+    line-height: 1.5;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    max-width: 85%;
+}
+
+/* Стилі для точок навігації */
 .location-dots {
     display: flex;
     justify-content: center;
-    gap: 8px;
-    margin-top: 30px;
+    gap: 12px;
+    margin-top: 20px;
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    z-index: 10;
 }
 
 .location-dot {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.4);
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .location-dot.active {
     background: #c084fc;
-    width: 24px;
+    width: 28px;
     border-radius: 10px;
-    box-shadow: 0 0 8px rgba(192,132,252,0.5);
+    box-shadow: 0 0 12px rgba(192,132,252,0.6);
 }
 
 .location-dot:hover {
-    background: rgba(192,132,252,0.6);
+    background: rgba(192,132,252,0.8);
     transform: scale(1.2);
 }
 
+/* Стилі контейнера карти */
 .contact-map {
     height: 100%;
+    min-height: 380px;
 }
 
 .map-glow {
-    background: linear-gradient(135deg, rgba(20, 20, 35, 0.7), rgba(15, 15, 25, 0.8));
-    backdrop-filter: blur(12px);
+    background: rgba(10, 10, 15, 0.4);
+    backdrop-filter: blur(4px);
     border-radius: 32px;
-    padding: 32px;
+    padding: 0;
     border: 1px solid rgba(139, 92, 246, 0.3);
     height: 100%;
+    min-height: 380px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
+    overflow: hidden;
+    position: relative;
 }
 
 .map-glow:hover {
@@ -703,24 +774,68 @@ nav {
     box-shadow: 0 25px 45px -15px rgba(139, 92, 246, 0.2);
 }
 
-.map-pin {
-    font-size: 3rem;
-    margin-bottom: 15px;
-    display: inline-block;
+/* Адаптивність для мобільних пристроїв */
+@media (max-width: 768px) {
+    .location-slider {
+        min-height: 280px;
+    }
+    
+    .location-slide {
+        padding: 20px;
+    }
+    
+    .location-slide .map-pin {
+        font-size: 36px;
+        margin-bottom: 10px;
+    }
+    
+    .location-slide .map-text h4 {
+        font-size: 18px;
+    }
+    
+    .location-slide .map-text p {
+        font-size: 11px;
+        max-width: 100%;
+    }
+    
+    .location-dots {
+        gap: 8px;
+        bottom: 15px;
+    }
+    
+    .location-dot {
+        width: 7px;
+        height: 7px;
+    }
+    
+    .location-dot.active {
+        width: 20px;
+    }
+    
+    .contact-map,
+    .map-glow {
+        min-height: 320px;
+    }
 }
 
-.map-text h4 {
-    font-size: 1.3rem;
-    color: #e2e8f0;
-    margin-bottom: 8px;
+/* Анімація пульсації для активної точки */
+@keyframes pulseDot {
+    0% {
+        box-shadow: 0 0 0 0 rgba(192,132,252,0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 8px rgba(192,132,252,0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(192,132,252,0);
+    }
 }
 
-.map-text p {
-    color: #94a3b8;
-    font-size: 0.85rem;
-    line-height: 1.4;
+.location-dot.active {
+    animation: pulseDot 1.5s infinite;
 }
 
+/* Інші стилі (залишаємо без змін) */
 footer {
     text-align: center;
     padding: 40px 0;
@@ -741,7 +856,11 @@ footer {
     align-items: center;
     transition: background 0.4s ease;
 }
-.fullscreen-modal.active { background: rgba(0, 0, 0, 0.95); }
+
+.fullscreen-modal.active { 
+    background: rgba(0, 0, 0, 0.95); 
+}
+
 .fullscreen-modal .modal-content {
     position: relative;
     width: 90%;
@@ -750,7 +869,12 @@ footer {
     transform: scale(0.3);
     transition: all 0.5s cubic-bezier(0.34, 1.2, 0.64, 1);
 }
-.fullscreen-modal.active .modal-content { opacity: 1; transform: scale(1); }
+
+.fullscreen-modal.active .modal-content { 
+    opacity: 1; 
+    transform: scale(1); 
+}
+
 .fullscreen-modal .video-wrapper {
     width: 100%;
     height: 100%;
@@ -758,7 +882,13 @@ footer {
     overflow: hidden;
     box-shadow: 0 0 60px rgba(139, 92, 246, 0.5);
 }
-.fullscreen-modal iframe { width: 100%; height: 100%; border: none; }
+
+.fullscreen-modal iframe { 
+    width: 100%; 
+    height: 100%; 
+    border: none; 
+}
+
 .close-modal {
     position: absolute;
     top: -50px;
@@ -775,9 +905,28 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.3s ease;
 }
-.fullscreen-modal.active .close-modal { opacity: 1; }
-.close-modal:hover { background: #fbbf24; color: #0a0a0a; transform: rotate(90deg); }
+
+.fullscreen-modal.active .close-modal { 
+    opacity: 1; 
+}
+
+.close-modal:hover { 
+    background: #fbbf24; 
+    color: #0a0a0a; 
+    transform: rotate(90deg); 
+}
+
+
+
+
+
+
+
+
+
+
 
 @keyframes pulseAnim {
     0%, 100% { opacity: 1; }
