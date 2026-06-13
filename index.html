@@ -140,7 +140,7 @@
         </div>
     </section>
 
- <section id="contacts" class="contacts-section">
+<section id="contacts" class="contacts-section">
     <div class="container">
         <div class="section-header">
             <span class="section-tag">Зв'язок</span>
@@ -148,12 +148,12 @@
             <p class="section-desc">Маєте ідею або питання? Зв'яжіться зі мною — я на зв'язку 24/7</p>
         </div>
         <div class="contacts-grid-new">
+            <!-- Ліва частина: Контактна інформація -->
             <div class="contacts-info-new">
                 <div class="contact-card-glow">
                     <div class="contact-header">
-                        <div class="contact-icon-big">💬</div>
-                        <h3>Контактна інформація</h3>
-                        <p>Оберіть зручний спосіб зв'язку</p>
+                        <h3>fipokzec.dev</h3>
+                        <p>Веб-розробка на замовлення</p>
                     </div>
                     <div class="contact-details-new">
                         <div class="contact-item-new">
@@ -211,59 +211,25 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Права частина: Слайдер з фоновими фото -->
             <div class="contact-map">
-                <div class="map-glow">
-                    <div class="location-slider" id="locationSlider">
-                        <!-- Слайд 1: Дніпро, Україна -->
-                        <div class="location-slide active" style="background-image: linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Dnipro_City_2021.jpg/1280px-Dnipro_City_2021.jpg'); background-size: cover; background-position: center;">
-                            <div class="map-pin">📍</div>
-                            <div class="map-text">
-                                <h4>Дніпро, Україна</h4>
-                                <p>Працюю віддалено та по всій Україні</p>
-                            </div>
-                        </div>
-                        <!-- Слайд 2: Місто ракет -->
-                        <div class="location-slide" style="background-image: linear-gradient(0deg, rgba(0,0,0,0.65), rgba(0,0,0,0.4)), url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Zenit-3SL_rocket_on_Odyssey_platform.jpg/800px-Zenit-3SL_rocket_on_Odyssey_platform.jpg'); background-size: cover; background-position: center 30%;">
+                <div class="map-glow" id="dynamicBgSlider">
+                    <div class="bg-slide active" style="background-image: url('https://raw.githubusercontent.com/Kolya-f/fipokzec/main/1');"></div>
+                    <div class="bg-slide" style="background-image: url('https://raw.githubusercontent.com/Kolya-f/fipokzec/main/2');"></div>
+                    <div class="bg-slide" style="background-image: url('https://raw.githubusercontent.com/Kolya-f/fipokzec/main/3');"></div>
+                    <div class="bg-slide" style="background-image: url('https://raw.githubusercontent.com/Kolya-f/fipokzec/main/4');"></div>
+                    <div class="bg-slide" style="background-image: url('https://raw.githubusercontent.com/Kolya-f/fipokzec/main/5');"></div>
+                    <div class="slider-overlay">
+                        <div class="slider-content">
                             <div class="map-pin">🚀</div>
                             <div class="map-text">
-                                <h4>Місто ракет</h4>
-                                <p>Дніпро — космічна столиця України, тут виробляють ракети-носії "Зеніт"</p>
-                            </div>
-                        </div>
-                        <!-- Слайд 3: Найдовша річка (оновлене фото) -->
-                        <div class="location-slide" style="background-image: linear-gradient(0deg, rgba(0,0,0,0.65), rgba(0,0,0,0.4)), url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Dnipro_River_in_Dnipro.jpg/1280px-Dnipro_River_in_Dnipro.jpg'); background-size: cover; background-position: center 30%;">
-                            <div class="map-pin">🌊</div>
-                            <div class="map-text">
-                                <h4>Найдовша річка</h4>
-                                <p>Дніпро — третя за довжиною річка в Європі (2201 км)</p>
-                            </div>
-                        </div>
-                        <!-- Слайд 4: Колесо огляду -->
-                        <div class="location-slide" style="background-image: linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Ferris_wheel_in_Dnipro.jpg/1024px-Ferris_wheel_in_Dnipro.jpg'); background-size: cover; background-position: center;">
-                            <div class="map-pin">🎡</div>
-                            <div class="map-text">
-                                <h4>Колесо огляду 60 м</h4>
-                                <p>У парку Шевченка знаходиться одне з найвищих коліс огляду в Україні</p>
-                            </div>
-                        </div>
-                        <!-- Слайд 5: Монастирський острів -->
-                        <div class="location-slide" style="background-image: linear-gradient(0deg, rgba(0,0,0,0.65), rgba(0,0,0,0.4)), url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Monastyrskyi_Island.jpg/800px-Monastyrskyi_Island.jpg'); background-size: cover; background-position: center;">
-                            <div class="map-pin">🏝️</div>
-                            <div class="map-text">
-                                <h4>Монастирський острів</h4>
-                                <p>Унікальний острів у центрі Дніпра, пов'язаний із заснуванням міста</p>
-                            </div>
-                        </div>
-                        <!-- Слайд 6: КБ "Південне" -->
-                        <div class="location-slide" style="background-image: linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Pivdenne_Design_Office_-_2017-08-17.jpg/1280px-Pivdenne_Design_Office_-_2017-08-17.jpg'); background-size: cover; background-position: center;">
-                            <div class="map-pin">🏭</div>
-                            <div class="map-text">
-                                <h4>КБ "Південне"</h4>
-                                <p>Провідне підприємство ракетно-космічної галузі України</p>
+                                <h4>Креативний підхід</h4>
+                                <p>Кожен проєкт — унікальний</p>
                             </div>
                         </div>
                     </div>
-                    <div class="location-dots" id="locationDots"></div>
+                    <div class="slider-dots" id="dynamicDots"></div>
                 </div>
             </div>
         </div>
