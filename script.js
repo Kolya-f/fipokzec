@@ -545,6 +545,171 @@ function setupSkillsAnimation() {
 
 
 
+// ===== АНІМАЦІЯ СЕКЦІЇ "МІЙ СТЕК" =====
+function initAboutSection() {
+    const canvas = document.getElementById('aboutCanvas');
+    const root = document.getElementById('aboutRoot');
+    if (!canvas || !root) return;
+    
+    const ctx = canvas.getContext('2d');
+    
+    function resize() {
+        canvas.width = root.offsetWidth;
+        canvas.height = root.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+    
+    // Частинки для фону
+    const particles = [];
+    const colors = ['#7c3aed', '#6d28d9', '#3b82f6', '#0ea5e9', '#8b5cf6', '#a78bfa'];
+    
+    for (let i = 0; i < 60; i++) {
+        particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            r: Math.random() * 1.8 + 0.3,
+            vx: (Math.random() - 0.5) * 0.25,
+            vy: (Math.random() - 0.5) * 0.25,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            alpha: Math.random() * 0.5 + 0.15
+        });
+    }
+    
+    // Плаваючі орби
+    const orbs = [
+        { x: 0.15, y: 0.25, r: 180, color: 'rgba(124,58,237,0.13)' },
+        { x: 0.85, y: 0.1, r: 220, color: 'rgba(59,130,246,0.10)' },
+        { x: 0.5, y: 0.8, r: 200, color: 'rgba(139,92,246,0.09)' },
+        { x: 0.9, y: 0.7, r: 160, color: 'rgba(16,185,129,0.07)' }
+    ];
+    
+    let t = 0;
+    
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Малюємо орби
+        orbs.forEach((o, i) => {
+            const ox = o.x * canvas.width + Math.sin(t * 0.4 + i) * 20;
+            const oy = o.y * canvas.height + Math.cos(t * 0.3 + i) * 15;
+            const grad = ctx.createRadialGradient(ox, oy, 0, ox, oy, o.r);
+            grad.addColorStop(0, o.color);
+            grad.addColorStop(1, 'transparent');
+            ctx.fillStyle = grad;
+            ctx.beginPath();
+            ctx.arc(ox, oy, o.r, 0, Math.PI * 2);
+            ctx.fill();
+        });
+        
+        // Малюємо частинки
+        particles.forEach(p => {
+            p.x += p.vx;
+            p.y += p.vy;
+            if (p.x < 0) p.x = canvas.width;
+            if (p.x > canvas.width) p.x = 0;
+            if (p.y < 0) p.y = canvas.height;
+            if (p.y > canvas.height) p.y = 0;
+            
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = p.color;
+            ctx.globalAlpha = p.alpha * (0.7 + 0.3 * Math.sin(t + p.x));
+            ctx.fill();
+            ctx.globalAlpha = 1;
+        });
+        
+        // Лінії між частинками
+        particles.forEach((p, i) => {
+            for (let j = i + 1; j < particles.length; j++) {
+                const q = particles[j];
+                const dx = p.x - q.x;
+                const dy = p.y - q.y;
+                const d = Math.sqrt(dx * dx + dy * dy);
+                if (d < 90) {
+                    ctx.beginPath();
+                    ctx.moveTo(p.x, p.y);
+                    ctx.lineTo(q.x, q.y);
+                    ctx.strokeStyle = 'rgba(139,92,246,' + (0.08 * (1 - d / 90)) + ')';
+                    ctx.lineWidth = 0.5;
+                    ctx.stroke();
+                }
+            }
+        });
+        
+        t += 0.008;
+        requestAnimationFrame(draw);
+    }
+    draw();
+    
+    // Анімація появи карток
+    const cards = document.querySelectorAll('#skillsCard, #statsCard');
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('visible');
+                
+                // Анімація прогрес-барів
+                const bars = e.target.querySelectorAll('.bar[data-w]');
+                setTimeout(() => {
+                    bars.forEach(b => {
+                        b.style.width = b.dataset.w + '%';
+                    });
+                }, 200);
+                
+                // Анімація лічильників
+                animateCounters(e.target);
+                io.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.15 });
+    cards.forEach(c => io.observe(c));
+    
+    function animateCounters(card) {
+        card.querySelectorAll('.stat-num[data-count]').forEach(el => {
+            const target = +el.dataset.count;
+            const sup = el.querySelector('sup');
+            const supText = sup ? sup.outerHTML : '';
+            let cur = 0;
+            const step = Math.ceil(target / 40);
+            const id = setInterval(() => {
+                cur = Math.min(cur + step, target);
+                el.innerHTML = cur + supText;
+                if (cur >= target) clearInterval(id);
+            }, 25);
+        });
+    }
+    
+    // Запускаємо анімацію при завантаженні
+    setTimeout(() => {
+        const skillsCard = document.getElementById('skillsCard');
+        if (skillsCard) {
+            skillsCard.classList.add('visible');
+            skillsCard.querySelectorAll('.bar[data-w]').forEach(b => {
+                b.style.width = b.dataset.w + '%';
+            });
+        }
+        
+        const statsCard = document.getElementById('statsCard');
+        setTimeout(() => {
+            if (statsCard) {
+                statsCard.classList.add('visible');
+                animateCounters(statsCard);
+            }
+        }, 200);
+    }, 100);
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 /// ===== СЛАЙДЕР ФОНОВИХ ЗОБРАЖЕНЬ НА ВСЮ СЕКЦІЮ =====
@@ -799,6 +964,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setCurrentYear();
     setupActiveMenu();
     setupMobileMenu();
+    initAboutSection();
     initFullBackgroundSlider();
     animateMenu();
     setTimeout(() => { startTypingLoop(); }, 1000);
