@@ -86,133 +86,182 @@
         </div>
     </section>
 
-   <section id="about" class="about-section">
-    <div class="container">
-        <div class="section-header">
-            <span class="section-tag">Технології</span>
-            <h2 class="section-title">Мій <span class="highlight">стек</span></h2>
-            <p class="section-desc">Інструменти, які я використовую для створення сучасних веб-рішень</p>
-        </div>
-        
-        <div class="about-grid-new">
-            <!-- Ліва частина: Навички -->
-            <div class="skills-container">
-                <div class="skills-grid" id="skillsAnimated">
-                    <div class="skill-item" data-skill="HTML5" data-level="95">
-                        <div class="skill-info">
-                            <div class="skill-name">HTML5</div>
-                            <div class="skill-level">95%</div>
+  <section id="about" class="about-section">
+    <div class="about-root" id="aboutRoot">
+        <canvas id="aboutCanvas"></canvas>
+
+        <div class="about-content">
+            <div class="hero-title">
+                <h1>Мій <em>стек</em></h1>
+            </div>
+            <p class="hero-sub">Інструменти, якими я будую веб — від пікселя до продакшну</p>
+
+            <div class="about-grid">
+                <div class="about-card" id="skillsCard">
+                    <p class="sec-label">
+                        <span class="dot-pulse"></span>
+                        Навички
+                    </p>
+
+                    <div class="skills-list">
+                        <div class="skill-row">
+                            <div class="skill-hd">
+                                <div class="skill-icon-name">
+                                    <div class="tech-icon" style="background:#e34f26;color:#fff;">H5</div>
+                                    <span class="skill-name">HTML5</span>
+                                </div>
+                                <span class="skill-pct">95%</span>
+                            </div>
+                            <div class="track"><div class="bar" data-w="95" style="background:linear-gradient(90deg,#e34f26,#f97316);"></div></div>
                         </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 0%;"></div>
+
+                        <div class="skill-row">
+                            <div class="skill-hd">
+                                <div class="skill-icon-name">
+                                    <div class="tech-icon" style="background:#264de4;color:#fff;">C3</div>
+                                    <span class="skill-name">CSS3</span>
+                                </div>
+                                <span class="skill-pct">92%</span>
+                            </div>
+                            <div class="track"><div class="bar" data-w="92" style="background:linear-gradient(90deg,#264de4,#60a5fa);"></div></div>
                         </div>
-                    </div>
-                    <div class="skill-item" data-skill="CSS3" data-level="92">
-                        <div class="skill-info">
-                            <div class="skill-name">CSS3</div>
-                            <div class="skill-level">92%</div>
+
+                        <div class="skill-row">
+                            <div class="skill-hd">
+                                <div class="skill-icon-name">
+                                    <div class="tech-icon" style="background:#f7df1e;color:#000;">JS</div>
+                                    <span class="skill-name">JavaScript</span>
+                                </div>
+                                <span class="skill-pct">88%</span>
+                            </div>
+                            <div class="track"><div class="bar" data-w="88" style="background:linear-gradient(90deg,#ca8a04,#f7df1e);"></div></div>
                         </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 0%;"></div>
+
+                        <div class="skill-row">
+                            <div class="skill-hd">
+                                <div class="skill-icon-name">
+                                    <div class="tech-icon" style="background:#3178c6;color:#fff;">TS</div>
+                                    <span class="skill-name">TypeScript</span>
+                                </div>
+                                <span class="skill-pct">75%</span>
+                            </div>
+                            <div class="track"><div class="bar" data-w="75" style="background:linear-gradient(90deg,#3178c6,#60a5fa);"></div></div>
                         </div>
-                    </div>
-                    <div class="skill-item" data-skill="JavaScript" data-level="88">
-                        <div class="skill-info">
-                            <div class="skill-name">JavaScript</div>
-                            <div class="skill-level">88%</div>
+
+                        <div class="skill-row">
+                            <div class="skill-hd">
+                                <div class="skill-icon-name">
+                                    <div class="tech-icon" style="background:#61dafb;color:#000;">⚛</div>
+                                    <span class="skill-name">React</span>
+                                </div>
+                                <span class="skill-pct">82%</span>
+                            </div>
+                            <div class="track"><div class="bar" data-w="82" style="background:linear-gradient(90deg,#0891b2,#61dafb);"></div></div>
                         </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 0%;"></div>
+
+                        <div class="skill-row">
+                            <div class="skill-hd">
+                                <div class="skill-icon-name">
+                                    <div class="tech-icon" style="background:#21759b;color:#fff;">WP</div>
+                                    <span class="skill-name">WordPress</span>
+                                </div>
+                                <span class="skill-pct">90%</span>
+                            </div>
+                            <div class="track"><div class="bar" data-w="90" style="background:linear-gradient(90deg,#21759b,#00b9eb);"></div></div>
                         </div>
-                    </div>
-                    <div class="skill-item" data-skill="TypeScript" data-level="75">
-                        <div class="skill-info">
-                            <div class="skill-name">TypeScript</div>
-                            <div class="skill-level">75%</div>
+
+                        <div class="skill-row">
+                            <div class="skill-hd">
+                                <div class="skill-icon-name">
+                                    <div class="tech-icon" style="background:#8892be;color:#fff;">EL</div>
+                                    <span class="skill-name">Elementor</span>
+                                </div>
+                                <span class="skill-pct">88%</span>
+                            </div>
+                            <div class="track"><div class="bar" data-w="88" style="background:linear-gradient(90deg,#8892be,#a78bfa);"></div></div>
                         </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 0%;"></div>
+
+                        <div class="skill-row">
+                            <div class="skill-hd">
+                                <div class="skill-icon-name">
+                                    <div class="tech-icon" style="background:#8892be;color:#fff;">PHP</div>
+                                    <span class="skill-name">PHP</span>
+                                </div>
+                                <span class="skill-pct">70%</span>
+                            </div>
+                            <div class="track"><div class="bar" data-w="70" style="background:linear-gradient(90deg,#6366f1,#8892be);"></div></div>
                         </div>
-                    </div>
-                    <div class="skill-item" data-skill="React" data-level="82">
-                        <div class="skill-info">
-                            <div class="skill-name">React</div>
-                            <div class="skill-level">82%</div>
+
+                        <div class="skill-row">
+                            <div class="skill-hd">
+                                <div class="skill-icon-name">
+                                    <div class="tech-icon" style="background:#f05032;color:#fff;">Git</div>
+                                    <span class="skill-name">Git</span>
+                                </div>
+                                <span class="skill-pct">85%</span>
+                            </div>
+                            <div class="track"><div class="bar" data-w="85" style="background:linear-gradient(90deg,#f05032,#fb923c);"></div></div>
                         </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 0%;"></div>
+
+                        <div class="skill-row" style="margin-bottom:0;">
+                            <div class="skill-hd">
+                                <div class="skill-icon-name">
+                                    <div class="tech-icon" style="background:#f24e1e;color:#fff;">Fg</div>
+                                    <span class="skill-name">Figma</span>
+                                </div>
+                                <span class="skill-pct">78%</span>
+                            </div>
+                            <div class="track"><div class="bar" data-w="78" style="background:linear-gradient(90deg,#f24e1e,#ff7262);"></div></div>
                         </div>
-                    </div>
-                    <div class="skill-item" data-skill="WordPress" data-level="90">
-                        <div class="skill-info">
-                            <div class="skill-name">WordPress</div>
-                            <div class="skill-level">90%</div>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 0%;"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item" data-skill="Elementor" data-level="88">
-                        <div class="skill-info">
-                            <div class="skill-name">Elementor</div>
-                            <div class="skill-level">88%</div>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 0%;"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item" data-skill="PHP" data-level="70">
-                        <div class="skill-info">
-                            <div class="skill-name">PHP</div>
-                            <div class="skill-level">70%</div>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 0%;"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item" data-skill="Git" data-level="85">
-                        <div class="skill-info">
-                            <div class="skill-name">Git</div>
-                            <div class="skill-level">85%</div>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 0%;"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item" data-skill="Figma" data-level="78">
-                        <div class="skill-info">
-                            <div class="skill-name">Figma</div>
-                            <div class="skill-level">78%</div>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 0%;"></div>
-                        </div>
+
+                        <button class="cta-btn" onclick="window.location.href='#contacts'">Обговорити проєкт →</button>
                     </div>
                 </div>
-                <a href="#contacts" class="btn-discuss">Обговорити проєкт</a>
-            </div>
 
-            <!-- Права частина: Статистика -->
-            <div class="stats-container">
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <div class="stat-number" id="projectsCount">20</div>
-                        <div class="stat-label">проєктів</div>
-                        <div class="stat-plus">+</div>
+                <div class="about-card" id="statsCard">
+                    <p class="sec-label">
+                        <span class="dot-pulse" style="background:#3b82f6;"></span>
+                        Результати
+                    </p>
+                    
+                    <div class="stats-new-grid">
+                        <div class="stat-new">
+                            <div class="stat-num" data-count="20">0<sup>+</sup></div>
+                            <div class="stat-lbl">Проєктів</div>
+                        </div>
+                        <div class="stat-new">
+                            <div class="stat-num" data-count="1247">0<sup>+</sup></div>
+                            <div class="stat-lbl">Годин коду</div>
+                        </div>
+                        <div class="stat-new">
+                            <div class="stat-num" data-count="2">0</div>
+                            <div class="stat-lbl">Роки досвіду</div>
+                        </div>
+                        <div class="stat-new">
+                            <div class="stat-num" data-count="5">0<sup>+</sup></div>
+                            <div class="stat-lbl">Країн клієнтів</div>
+                        </div>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number" id="hoursCount">0</div>
-                        <div class="stat-label">годин коду</div>
-                        <div class="stat-plus">+</div>
+
+                    <div class="avail-card">
+                        <div class="green-dot"></div>
+                        <div class="avail-text">
+                            <p>Доступний для проєктів</p>
+                            <span>Full-stack · Лендінги · Корпоративні сайти</span>
+                        </div>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number" id="experienceCount">0</div>
-                        <div class="stat-label">років досвіду</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number" id="countriesCount">0</div>
-                        <div class="stat-label">країн клієнтів</div>
-                        <div class="stat-plus">+</div>
+
+                    <div class="tags-area">
+                        <p class="tags-title">Також працюю з</p>
+                        <div class="tags">
+                            <span class="tag"><span class="tag-dot" style="background:#818cf8;"></span>GSAP</span>
+                            <span class="tag"><span class="tag-dot" style="background:#60a5fa;"></span>REST API</span>
+                            <span class="tag"><span class="tag-dot" style="background:#34d399;"></span>Tailwind</span>
+                            <span class="tag"><span class="tag-dot" style="background:#fbbf24;"></span>Vite</span>
+                            <span class="tag"><span class="tag-dot" style="background:#f87171;"></span>Webpack</span>
+                            <span class="tag"><span class="tag-dot" style="background:#a78bfa;"></span>Sass</span>
+                            <span class="tag"><span class="tag-dot" style="background:#f472b6;"></span>Framer</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -220,6 +269,14 @@
     </div>
 </section>
 
+
+
+
+
+
+
+
+    
     <section id="reviews" class="reviews-section">
         <div class="container">
             <div class="section-header">
