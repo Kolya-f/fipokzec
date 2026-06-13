@@ -43,6 +43,154 @@ header {
     top: 0;
     z-index: 100;
 }
+
+
+
+
+
+
+/* ===== НОВИЙ СЛАЙДЕР ДЛЯ ФОНОВИХ ФОТО ===== */
+#dynamicBgSlider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 450px;
+    border-radius: 32px;
+    overflow: hidden;
+    box-shadow: 0 25px 45px -15px rgba(0,0,0,0.3);
+}
+
+.bg-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+    z-index: 1;
+}
+
+.bg-slide.active {
+    opacity: 1;
+    z-index: 2;
+}
+
+/* Затемнення поверх слайдера */
+.slider-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(90deg, rgba(10,10,20,0.85) 0%, rgba(10,10,20,0.6) 100%);
+    backdrop-filter: blur(8px);
+    padding: 30px;
+    z-index: 5;
+    border-top: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.slider-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.slider-content .map-pin {
+    font-size: 48px;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+}
+
+.slider-content .map-text h4 {
+    font-size: 1.4rem;
+    color: white;
+    margin-bottom: 5px;
+}
+
+.slider-content .map-text p {
+    color: #cbd5e1;
+    font-size: 0.9rem;
+}
+
+/* Точки навігації */
+.slider-dots {
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.slider-dot {
+    width: 30px;
+    height: 4px;
+    background: rgba(255,255,255,0.4);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.slider-dot.active {
+    background: #c084fc;
+    width: 50px;
+    box-shadow: 0 0 8px rgba(192,132,252,0.6);
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+    .slider-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    .slider-content .map-pin {
+        font-size: 36px;
+    }
+    .slider-content .map-text h4 {
+        font-size: 1.1rem;
+    }
+    .slider-content .map-text p {
+        font-size: 0.75rem;
+    }
+    .slider-dots {
+        bottom: 15px;
+        right: 20px;
+    }
+    .slider-dot {
+        width: 20px;
+    }
+    .slider-dot.active {
+        width: 35px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 nav {
     display: flex;
     justify-content: space-between;
