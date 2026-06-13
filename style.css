@@ -598,21 +598,91 @@ nav {
 
 
 
-/* Стилі для оновленої секції контактів */
-.contacts-grid-new {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    align-items: stretch;
+/* ===== СЕКЦІЯ КОНТАКТІВ З ФОНОМ НА ВСЮ ШИРИНУ ===== */
+.contacts-section {
+    position: relative;
+    overflow: hidden;
 }
 
-/* Ліва картка */
+/* Слайдер фонових зображень */
+.contacts-bg-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.bg-slide-full {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+}
+
+.bg-slide-full.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+/* Затемнення поверх фото для кращої читабельності */
+.bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 10, 20, 0.75);
+    z-index: 2;
+}
+
+/* Точки навігації слайдера */
+.slider-dots-full {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    z-index: 10;
+}
+
+.slider-dot-full {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.slider-dot-full.active {
+    background: #c084fc;
+    width: 28px;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(192, 132, 252, 0.6);
+}
+
+/* Контент поверх фону */
+.contacts-section .container {
+    position: relative;
+    z-index: 3;
+}
+
+/* Ліва картка - напівпрозора */
 .contact-card {
-    background: rgba(20, 20, 35, 0.6);
-    backdrop-filter: blur(10px);
+    background: rgba(20, 20, 35, 0.7);
+    backdrop-filter: blur(12px);
     border-radius: 32px;
     padding: 40px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
     height: 100%;
 }
@@ -658,7 +728,7 @@ nav {
 .btn-outline-light {
     padding: 10px 20px;
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 40px;
     color: white;
     text-decoration: none;
@@ -674,9 +744,9 @@ nav {
 .social-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 24px;
     padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .social-row a {
@@ -690,90 +760,35 @@ nav {
     color: #c084fc;
 }
 
-/* Правий слайдер */
-.contact-map {
-    height: 100%;
-}
-
-.map-glow {
-    position: relative;
-    height: 100%;
-    min-height: 450px;
-    border-radius: 32px;
-    overflow: hidden;
-    box-shadow: 0 25px 45px -15px rgba(0, 0, 0, 0.3);
-}
-
-.bg-slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    opacity: 0;
-    transition: opacity 1.2s ease-in-out;
-    z-index: 1;
-}
-
-.bg-slide.active {
-    opacity: 1;
-    z-index: 2;
-}
-
-.slider-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(90deg, rgba(10, 10, 20, 0.85) 0%, rgba(10, 10, 20, 0.6) 100%);
+/* Права картка з інформацією */
+.info-card {
+    background: rgba(20, 20, 35, 0.5);
     backdrop-filter: blur(8px);
-    padding: 30px;
-    z-index: 5;
-    border-top: 1px solid rgba(139, 92, 246, 0.3);
-}
-
-.slider-text h4 {
-    font-size: 1.3rem;
-    color: white;
-    margin-bottom: 8px;
-}
-
-.slider-text p {
-    color: #cbd5e1;
-    font-size: 0.9rem;
-}
-
-.slider-dots {
-    position: absolute;
-    bottom: 20px;
-    right: 30px;
+    border-radius: 32px;
+    padding: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    height: 100%;
     display: flex;
-    gap: 10px;
-    z-index: 10;
+    align-items: flex-end;
 }
 
-.slider-dot {
-    width: 30px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.4);
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+.info-text h4 {
+    font-size: 1.5rem;
+    color: white;
+    margin-bottom: 12px;
 }
 
-.slider-dot.active {
-    background: #c084fc;
-    width: 50px;
-    box-shadow: 0 0 8px rgba(192, 132, 252, 0.6);
+.info-text p {
+    color: #cbd5e1;
+    font-size: 1rem;
+    line-height: 1.5;
 }
 
 /* Адаптивність */
 @media (max-width: 768px) {
     .contacts-grid-new {
         grid-template-columns: 1fr;
-        gap: 30px;
+        gap: 24px;
     }
     
     .contact-card {
@@ -784,42 +799,30 @@ nav {
         font-size: 24px;
     }
     
-    .button-group {
-        gap: 10px;
+    .info-card {
+        padding: 28px;
     }
     
-    .btn-outline-light {
-        padding: 8px 16px;
-        font-size: 13px;
+    .info-text h4 {
+        font-size: 1.2rem;
     }
     
-    .social-row {
-        gap: 15px;
+    .info-text p {
+        font-size: 0.85rem;
     }
     
-    .slider-overlay {
-        padding: 20px;
+    .slider-dots-full {
+        bottom: 20px;
+        gap: 8px;
     }
     
-    .slider-text h4 {
-        font-size: 1rem;
+    .slider-dot-full {
+        width: 7px;
+        height: 7px;
     }
     
-    .slider-text p {
-        font-size: 0.75rem;
-    }
-    
-    .slider-dots {
-        bottom: 15px;
-        right: 20px;
-    }
-    
-    .slider-dot {
+    .slider-dot-full.active {
         width: 20px;
-    }
-    
-    .slider-dot.active {
-        width: 35px;
     }
 }
 
