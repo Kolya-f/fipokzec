@@ -304,8 +304,8 @@ const faqItems = [
 function renderServices() {
     const container = document.getElementById('servicesGrid');
     if (container) {
-        container.innerHTML = services.map(s => `
-            <div class="flip-card" data-video-id="${s.videoId}">
+        container.innerHTML = services.map((s, index) => `
+            <div class="flip-card" data-video-id="${s.videoId}" data-card-index="${index}">
                 <div class="flip-card-inner">
                     <div class="flip-card-front">
                         <h3>${s.title}</h3>
@@ -323,9 +323,87 @@ function renderServices() {
             </div>
         `).join('');
     }
+    
+    // Ініціалізація автоматичного обертання карток (кожні 8 секунд)
+    initFlipCardsAutoRotate();
+    
     document.querySelectorAll('.watch-video-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => { e.stopPropagation(); openFullscreenVideo(btn.dataset.videoId); });
+        btn.addEventListener('click', (e) => { 
+            e.stopPropagation(); 
+            openFullscreenVideo(btn.dataset.videoId); 
+        });
     });
+}
+
+// Глобальні змінні для анімації карток
+let autoRotateIntervals = [];
+let isHovering = false;
+let globalRotateTimeout = null;
+
+function initFlipCardsAutoRotate() {
+    // Зупиняємо всі попередні інтервали
+    autoRotateIntervals.forEach(interval => clearInterval(interval));
+    autoRotateIntervals = [];
+    
+    const cards = document.querySelectorAll('.flip-card');
+    const ROTATION_TIME = 8000; // 8 секунд на повний цикл
+    const ROTATION_DELAY = 2000; // Початкова затримка перед першим обертанням
+    
+    // Функція для обертання однієї картки
+    function rotateCard(card, duration, startDelay = 0) {
+        setTimeout(() => {
+            if (!isHovering) {
+                card.classList.add('auto-rotate');
+            }
+        }, startDelay);
+    }
+    
+    // Запускаємо обертання для кожної картки з невеликою затримкою для кожної
+    cards.forEach((card, index) => {
+        // Очищаємо попередній клас
+        card.classList.remove('auto-rotate');
+        
+        // Додаємо обробники подій для зупинки анімації при наведенні
+        card.addEventListener('mouseenter', () => {
+            card.classList.remove('auto-rotate');
+            isHovering = true;
+            
+            // Скидаємо глобальний таймер, щоб картки не почали крутитися одразу після відведення миші
+            if (globalRotateTimeout) {
+                clearTimeout(globalRotateTimeout);
+                globalRotateTimeout = null;
+            }
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            isHovering = false;
+            // Затримка перед відновленням обертання (2 секунди)
+            globalRotateTimeout = setTimeout(() => {
+                if (!isHovering) {
+                    cards.forEach(c => {
+                        c.classList.add('auto-rotate');
+                    });
+                }
+                globalRotateTimeout = null;
+            }, 2000);
+        });
+        
+        // Запускаємо обертання з різними затримками для кожної картки
+        const startDelay = index * 500; // 0.5 секунди між картками
+        rotateCard(card, ROTATION_TIME, startDelay);
+    });
+    
+    // Глобальне оновлення класів для всіх карток (синхронізація)
+    const globalInterval = setInterval(() => {
+        if (!isHovering) {
+            const cardsList = document.querySelectorAll('.flip-card');
+            cardsList.forEach(card => {
+                card.classList.add('auto-rotate');
+            });
+        }
+    }, ROTATION_TIME);
+    
+    autoRotateIntervals.push(globalInterval);
 }
 
 function openFullscreenVideo(videoId) {
@@ -923,7 +1001,7 @@ function startLaunchAnimation() {
 
 // АНІМАЦІЯ ПІДТРИМКИ
 let supportAnimationStarted = false;
-document.getElementById('supportContainer').innerHTML = `<div class="sw-wrap" style="width:100%"><div class="sw-box" style="background:linear-gradient(135deg,#0a0a0f,#0d0d14); border-radius:24px; padding:20px; border:1px solid rgba(29,200,117,0.3); box-shadow:0 20px 40px -15px rgba(0,0,0,0.5);"><div class="sw-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;"><div class="sw-badge" style="display:flex; align-items:center; gap:8px;"><div class="dot-g" style="width:8px; height:8px; background:#1dc875; border-radius:50%; animation:pulseG 1.2s infinite;"></div><span style="font-size:10px; color:#1dc875;">ПІДТРИМКА ТА НАВЧАННЯ</span></div><div class="sw-timer" id="swTimer" style="font-size:10px; color:#555;">00:00:00</div></div><div class="divider-g" style="height:1px; background:linear-gradient(90deg,transparent,#1dc875,transparent); margin-bottom:15px;"></div><div class="sw-title" style="font-size:17px; margin-bottom:14px; background:linear-gradient(135deg,#fff,#5eead4); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">🛠️ Адмін-панель та техпідтримка 24/7</div><div class="section-lbl" style="font-size:8px; color:#444; margin:10px 0 6px;">ЧАТ ПІДТРИМКИ — ОНЛАЙН</div><div class="chat-window" id="chatWin" style="background:rgba(10,10,20,0.8); border:1px solid rgba(29,200,117,0.15); border-radius:14px; padding:10px; margin-bottom:10px; min-height:110px;"></div><div class="section-lbl" style="font-size:8px; color:#444; margin:10px 0 6px;">НАВЧАННЯ: АДМІН-ПАНЕЛЬ</div><div class="admin-wrapper"><div class="admin-screen" id="adminScreen" style="background:rgba(15,15,25,0.9); border:1px solid rgba(255,255,255,0.07); border-radius:12px; overflow:hidden; margin-bottom:10px;"><div class="admin-bar" style="background:rgba(30,30,45,0.9); padding:7px 12px; display:flex; align-items:center; gap:8px;"><div class="admin-bar-dot" style="width:7px; height:7px; border-radius:50%; background:#ff5f56;"></div><div class="admin-bar-dot" style="width:7px; height:7px; border-radius:50%; background:#ffbd2e;"></div><div class="admin-bar-dot" style="width:7px; height:7px; border-radius:50%; background:#27c93f;"></div><div class="admin-bar-url" style="font-size:9px; color:#555; margin-left:6px; font-family:monospace;">site.com/wp-admin/</div></div><div class="admin-body" style="display:flex; height:90px;"><div class="admin-sidebar" style="width:80px; background:rgba(20,20,35,0.9); border-right:1px solid rgba(255,255,255,0.05); padding:8px 0;"><div class="admin-menu-item" id="mi0" style="font-size:9px; color:#555; padding:5px 10px; display:flex; align-items:center; gap:5px;">📄 Сторінки</div><div class="admin-menu-item" id="mi1">📝 Записи</div><div class="admin-menu-item" id="mi2">🖼 Медіа</div><div class="admin-menu-item" id="mi3">⚙️ Налаш.</div></div><div class="admin-content" id="adminContent" style="flex:1; padding:10px;"><div class="admin-row" style="height:10px; background:rgba(255,255,255,0.04); border-radius:4px; margin-bottom:6px; width:80%"></div><div class="admin-row" style="width:60%"></div><div class="admin-row admin-highlight" id="adminHL" style="width:90%;height:14px;background:rgba(29,200,117,0.15);border:1px solid rgba(29,200,117,0.3);border-radius:6px;opacity:0"></div><div class="admin-row" style="width:45%"></div></div></div></div></div><div class="section-lbl" style="font-size:8px; color:#444; margin:10px 0 6px;">АПТАЙМ ОСТАННІ 30 ДНІВ</div><div class="uptime-dots" id="uptimeDots" style="display:flex; gap:3px; margin-bottom:10px; flex-wrap:wrap;"></div><div class="resp-grid" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px; margin-bottom:10px;"><div class="resp-card" style="background:rgba(255,255,255,0.03); border:1px solid rgba(29,200,117,0.15); border-radius:10px; padding:8px; text-align:center;"><div class="resp-num" id="rTime" style="font-size:18px; font-weight:700; background:linear-gradient(135deg,#1dc875,#5eead4); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">—</div><div class="resp-label" style="font-size:9px; color:#555;">Час відповіді</div></div><div class="resp-card"><div class="resp-num" id="rUptime">—</div><div class="resp-label">Аптайм</div></div><div class="resp-card"><div class="resp-num" id="rTickets">—</div><div class="resp-label">Закрито тікетів</div></div></div><div class="section-lbl" style="font-size:8px; color:#444; margin:10px 0 6px;">НАВЧАННЯ КЛІЄНТА — ПРОГРЕС</div><div id="swBars"></div><div class="foot" style="margin-top:14px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.05); display:flex; justify-content:space-between; align-items:center;"><div class="ava-row" style="display:flex; align-items:center; gap:6px;"><div class="ava" style="width:22px; height:22px; background:rgba(29,200,117,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:9px; color:#1dc875;">FP</div><span class="ava-name" style="font-size:10px; color:#555;">Підтримка: fipokzec 24/7</span></div><div class="status-pill" id="swStatus" style="font-size:9px; padding:2px 10px; border-radius:99px; background:rgba(29,200,117,0.1); border:1px solid rgba(29,200,117,0.3); color:#1dc875; display:flex; align-items:center; gap:5px; opacity:0;"><span style="width:4px;height:4px;background:#1dc875;border-radius:50%;animation:pulseG 1.2s infinite"></span>Клієнт навчений ✓</div></div><div class="progress-bar" style="height:2px; background:rgba(29,200,117,0.1); border-radius:99px; margin-top:12px;"><div class="progress-fill" id="swProgress" style="height:100%; background:linear-gradient(90deg,#0d6b46,#1dc875); border-radius:99px; width:0%; transition:width 0.3s;"></div></div></div></div>`;
+document.getElementById('supportContainer').innerHTML = `<div class="sw-wrap" style="width:100%"><div class="sw-box" style="background:linear-gradient(135deg,#0a0a0f,#0d0d14); border-radius:24px; padding:20px; border:1px solid rgba(29,200,117,0.3); box-shadow:0 20px 40px -15px rgba(0,0,0,0.5);"><div class="sw-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;"><div class="sw-badge" style="display:flex; align-items:center; gap:8px;"><div class="dot-g" style="width:8px; height:8px; background:#1dc875; border-radius:50%; animation:pulseG 1.2s infinite;"></div><span style="font-size:10px; color:#1dc875;">ПІДТРИМКА ТА НАВЧАННЯ</span></div><div class="sw-timer" id="swTimer" style="font-size:10px; color:#555;">00:00:00</div></div><div class="divider-g" style="height:1px; background:linear-gradient(90deg,transparent,#1dc875,transparent); margin-bottom:15px;"></div><div class="sw-title" style="font-size:17px; margin-bottom:14px; background:linear-gradient(135deg,#fff,#5eead4); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">🛠️ Адмін-панель та техпідтримка 24/7</div><div class="section-lbl" style="font-size:8px; color:#444; margin:10px 0 6px;">ЧАТ ПІДТРИМКИ — ОНЛАЙН</div><div class="chat-window" id="chatWin" style="background:rgba(10,10,20,0.8); border:1px solid rgba(29,200,117,0.15); border-radius:14px; padding:10px; margin-bottom:10px; min-height:110px;"></div><div class="section-lbl" style="font-size:8px; color:#444; margin:10px 0 6px;">НАВЧАННЯ: АДМІН-ПАНЕЛЬ</div><div class="admin-wrapper"><div class="admin-screen" id="adminScreen" style="background:rgba(15,15,25,0.9); border:1px solid rgba(255,255,255,0.07); border-radius:12px; overflow:hidden; margin-bottom:10px;"><div class="admin-bar" style="background:rgba(30,30,45,0.9); padding:7px 12px; display:flex; align-items:center; gap:8px;"><div class="admin-bar-dot" style="width:7px; height:7px; border-radius:50%; background:#ff5f56;"></div><div class="admin-bar-dot" style="width:7px; height:7px; border-radius:50%; background:#ffbd2e;"></div><div class="admin-bar-dot" style="width:7px; height:7px; border-radius:50%; background:#27c93f;"></div><div class="admin-bar-url" style="font-size:9px; color:#555; margin-left:6px; font-family:monospace;">site.com/wp-admin/</div></div><div class="admin-body" style="display:flex; height:90px;"><div class="admin-sidebar" style="width:80px; background:rgba(20,20,35,0.9); border-right:1px solid rgba(255,255,255,0.05); padding:8px 0;"><div class="admin-menu-item" id="mi0" style="font-size:9px; color:#555; padding:5px 10px; display:flex; align-items:center; gap:5px;">📄 Сторінки</div><div class="admin-menu-item" id="mi1">📝 Записи</div><div class="admin-menu-item" id="mi2">🖼 Медіа</div><div class="admin-menu-item" id="mi3">⚙️ Налаш.</div></div><div class="admin-content" id="adminContent" style="flex:1; padding:10px;"><div class="admin-row" style="height:10px; background:rgba(255,255,255,0.04); border-radius:4px; margin-bottom:6px; width:80%"></div><div class="admin-row" style="width:60%"></div><div class="admin-row admin-highlight" id="adminHL" style="width:90%;height:14px;background:rgba(29,200,117,0.15);border:1px solid rgba(29,200,117,0.3);border-radius:6px;opacity:0"></div><div class="admin-row" style="width:45%"></div></div></div></div></div><div class="section-lbl" style="font-size:8px; color:#444; margin:10px 0 6px;">АПТАЙМ ОСТАННІ 30 ДНІВ</div><div class="uptime-dots" id="uptimeDots" style="display:flex; gap:3px; margin-bottom:10px; flex-wrap:wrap;"></div><div class="resp-grid" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px; margin-bottom:10px;"><div class="resp-card" style="background:rgba(255,255,255,0.03); border:1px solid rgba(29,200,117,0.15); border-radius:10px; padding:8px; text-align:center;"><div class="resp-num" id="rTime" style="font-size:18px; font-weight:700; background:linear-gradient(135deg,#1dc875,#5eead4); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">—</div><div class="resp-label" style="font-size:9px; color:#555;">Час відповіді</div></div><div class="resp-card"><div class="resp-num" id="rUptime">—</div><div class="resp-label">Аптайм</div></div><div class="resp-card"><div class="resp-num" id="rTickets">—</div><div class="resp-label">Закрито тікетів</div></div></div><div class="section-lbl" style="font-size:8px; color:#444; margin:10px 0 6px;">НАВЧАННЯ КЛІЄНТА — ПРОГРЕС</div><div id="swBars"></div><div class="foot" style="margin-top:14px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.05); display:flex; justify-content:space-between; align-items:center;"><div class="ava-row" style="display:flex; align-items:center; gap:6px;"><div class="ava" style="width:22px; height:22px; background:rgba(29,200,117,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:9px; color:#1dc875;">FP</div><span class="ava-name" style="font-size:10px; color:#555;">Підтримка: fipokzec 24/7</span></div><div class="status-pill" id="swStatus" style="font-size:9px; padding:2px 10px; border-radius:99px; background:rgba(29,200,117,0.1); border:1px solid rgba(29,200,117,0.3); color:#1dc875; display:flex; align-items:center; gap:5px; opacity:0;"><span style="width:4px;height:4px;background:#1dc875;border-radius:50%;animation:pulseG 1.2s infinite"></span>Клієнт навчений ✓</div></div><div class="progress-bar" style="height:2px; background:rgba(29,200,117,0.1); border-radius:99px; margin-top:12px;"><div class="progress-fill" id="swProgress" style="height:100%; background:linear-gradient(90deg,#0d6b46,#1dc875); border-radius:99px; width:0%; transition:width 0.3s;"></div></div></div>`;
 
 function startSupportAnimation() {
     if (supportAnimationStarted) return;
