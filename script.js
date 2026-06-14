@@ -452,7 +452,6 @@ function setupSkillsAnimation() {
     const skillItems = document.querySelectorAll('.skill-item');
     const statItems = document.querySelectorAll('.stat-item');
     
-    // Анімація навичок
     const skillsObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -483,7 +482,6 @@ function setupSkillsAnimation() {
     
     skillItems.forEach(item => skillsObserver.observe(item));
     
-    // Анімація статистики
     const statsObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -495,7 +493,6 @@ function setupSkillsAnimation() {
     
     statItems.forEach(item => statsObserver.observe(item));
     
-    // Анімація чисел
     const hoursCount = document.getElementById('hoursCount');
     const experienceCount = document.getElementById('experienceCount');
     const countriesCount = document.getElementById('countriesCount');
@@ -542,9 +539,6 @@ function setupSkillsAnimation() {
     }
 }
 
-
-
-
 // ===== АНІМАЦІЯ СЕКЦІЇ "МІЙ СТЕК" =====
 function initAboutSection() {
     const canvas = document.getElementById('aboutCanvas');
@@ -560,7 +554,6 @@ function initAboutSection() {
     resize();
     window.addEventListener('resize', resize);
     
-    // Частинки для фону
     const particles = [];
     const colors = ['#7c3aed', '#6d28d9', '#3b82f6', '#0ea5e9', '#8b5cf6', '#a78bfa'];
     
@@ -576,7 +569,6 @@ function initAboutSection() {
         });
     }
     
-    // Плаваючі орби
     const orbs = [
         { x: 0.15, y: 0.25, r: 180, color: 'rgba(124,58,237,0.13)' },
         { x: 0.85, y: 0.1, r: 220, color: 'rgba(59,130,246,0.10)' },
@@ -589,7 +581,6 @@ function initAboutSection() {
     function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         
-        // Малюємо орби
         orbs.forEach((o, i) => {
             const ox = o.x * canvas.width + Math.sin(t * 0.4 + i) * 20;
             const oy = o.y * canvas.height + Math.cos(t * 0.3 + i) * 15;
@@ -602,7 +593,6 @@ function initAboutSection() {
             ctx.fill();
         });
         
-        // Малюємо частинки
         particles.forEach(p => {
             p.x += p.vx;
             p.y += p.vy;
@@ -619,7 +609,6 @@ function initAboutSection() {
             ctx.globalAlpha = 1;
         });
         
-        // Лінії між частинками
         particles.forEach((p, i) => {
             for (let j = i + 1; j < particles.length; j++) {
                 const q = particles[j];
@@ -642,14 +631,12 @@ function initAboutSection() {
     }
     draw();
     
-    // Анімація появи карток
     const cards = document.querySelectorAll('#skillsCard, #statsCard');
     const io = new IntersectionObserver((entries) => {
         entries.forEach(e => {
             if (e.isIntersecting) {
                 e.target.classList.add('visible');
                 
-                // Анімація прогрес-барів
                 const bars = e.target.querySelectorAll('.bar[data-w]');
                 setTimeout(() => {
                     bars.forEach(b => {
@@ -657,7 +644,6 @@ function initAboutSection() {
                     });
                 }, 200);
                 
-                // Анімація лічильників
                 animateCounters(e.target);
                 io.unobserve(e.target);
             }
@@ -680,7 +666,6 @@ function initAboutSection() {
         });
     }
     
-    // Запускаємо анімацію при завантаженні
     setTimeout(() => {
         const skillsCard = document.getElementById('skillsCard');
         if (skillsCard) {
@@ -700,33 +685,20 @@ function initAboutSection() {
     }, 100);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-/// ===== СЛАЙДЕР ФОНОВИХ ЗОБРАЖЕНЬ НА ВСЮ СЕКЦІЮ =====
+// ===== СЛАЙДЕР ФОНОВИХ ЗОБРАЖЕНЬ =====
 function initFullBackgroundSlider() {
-    const slides = document.querySelectorAll('#contactsBgSlider .bg-slide-full');
-    const dotsContainer = document.getElementById('sliderDotsFull');
+    const slides = document.querySelectorAll('#dynamicBgSlider .bg-slide');
+    const dotsContainer = document.getElementById('dynamicDots');
     if (!slides.length || !dotsContainer) return;
 
     let currentIndex = 0;
     const totalSlides = slides.length;
     let intervalId;
 
-    // Створюємо точки
     dotsContainer.innerHTML = '';
     slides.forEach((_, index) => {
         const dot = document.createElement('div');
-        dot.classList.add('slider-dot-full');
+        dot.classList.add('slider-dot');
         if (index === 0) dot.classList.add('active');
         dot.addEventListener('click', () => {
             stopAutoSlide();
@@ -735,7 +707,7 @@ function initFullBackgroundSlider() {
         });
         dotsContainer.appendChild(dot);
     });
-    const dots = document.querySelectorAll('.slider-dot-full');
+    const dots = document.querySelectorAll('.slider-dot');
 
     function goToSlide(index) {
         slides[currentIndex].classList.remove('active');
@@ -753,7 +725,7 @@ function initFullBackgroundSlider() {
 
     function startAutoSlide() {
         if (intervalId) clearInterval(intervalId);
-        intervalId = setInterval(nextSlide, 2000); // Зміна кожні 2 секунди
+        intervalId = setInterval(nextSlide, 2000);
     }
 
     function stopAutoSlide() {
@@ -765,21 +737,67 @@ function initFullBackgroundSlider() {
 
     startAutoSlide();
 
-    const sliderContainer = document.getElementById('contactsBgSlider');
+    const sliderContainer = document.getElementById('dynamicBgSlider');
     if (sliderContainer) {
         sliderContainer.addEventListener('mouseenter', stopAutoSlide);
         sliderContainer.addEventListener('mouseleave', startAutoSlide);
     }
 }
 
-
-
-
-
-
-
-
-
+// ===== СЛАЙДЕР ЛОКАЦІЇ В КОНТАКТАХ =====
+function initLocationSlider() {
+    const slides = document.querySelectorAll('.location-slide');
+    const dotsContainer = document.getElementById('locationDots');
+    if (!slides.length || !dotsContainer) return;
+    
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+    let autoPlayInterval;
+    
+    slides.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.classList.add('location-dot');
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(index));
+        dotsContainer.appendChild(dot);
+    });
+    
+    const dots = document.querySelectorAll('.location-dot');
+    
+    function goToSlide(index) {
+        slides[currentIndex].classList.remove('active');
+        if (dots[currentIndex]) dots[currentIndex].classList.remove('active');
+        
+        currentIndex = (index + totalSlides) % totalSlides;
+        
+        slides[currentIndex].classList.add('active');
+        if (dots[currentIndex]) dots[currentIndex].classList.add('active');
+    }
+    
+    function nextSlide() {
+        goToSlide(currentIndex + 1);
+    }
+    
+    function startAutoPlay() {
+        if (autoPlayInterval) clearInterval(autoPlayInterval);
+        autoPlayInterval = setInterval(nextSlide, 4000);
+    }
+    
+    function stopAutoPlay() {
+        if (autoPlayInterval) {
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = null;
+        }
+    }
+    
+    startAutoPlay();
+    
+    const sliderContainer = document.querySelector('.contact-map');
+    if (sliderContainer) {
+        sliderContainer.addEventListener('mouseenter', stopAutoPlay);
+        sliderContainer.addEventListener('mouseleave', startAutoPlay);
+    }
+}
 
 // АНІМАЦІЯ БРІФУ
 let briefAnimationStarted = false;
@@ -964,12 +982,12 @@ document.addEventListener('DOMContentLoaded', () => {
     setCurrentYear();
     setupActiveMenu();
     setupMobileMenu();
-    initAboutSection();
-    initFullBackgroundSlider();
     animateMenu();
     setTimeout(() => { startTypingLoop(); }, 1000);
     setTimeout(() => { setupSkillsAnimation(); }, 500);
     setupScrollAnimation();
+    initAboutSection();
+    initFullBackgroundSlider();
     setTimeout(() => { initLocationSlider(); }, 500);
     console.log('Сайт fipokzec.dev успішно завантажено!');
 });
