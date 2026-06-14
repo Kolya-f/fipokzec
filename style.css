@@ -107,160 +107,242 @@ nav {
 
 .mobile-menu-btn { display: none; font-size: 1.8rem; cursor: pointer; }
 
-/* ===== HERO SECTION (оновлена) ===== */
-.hero {
-    padding: 100px 0 80px;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    background: linear-gradient(135deg, #0a0a0f 0%, #0d0d14 100%);
-}
 
-.hero-grid {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 60px;
-}
 
+
+
+
+
+/* ===== АНІМАЦІЯ ПОЯВИ ТЕКСТУ З ГРАДІЄНТОМ ===== */
 .hero-text {
-    flex: 1;
+    animation: textGlowReveal 1.2s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
 }
 
-.hero-badge {
+@keyframes textGlowReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+        filter: blur(10px);
+    }
+    30% {
+        opacity: 0.5;
+        filter: blur(3px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+/* Градієнтна анімація для всього тексту при завантаженні */
+.hero-text * {
+    animation: gradientWave 1.5s ease forwards;
+}
+
+@keyframes gradientWave {
+    0% {
+        background: linear-gradient(90deg, #e2e8f0, #e2e8f0);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+    50% {
+        background: linear-gradient(90deg, #a78bfa, #60a5fa, #34d399, #fbbf24, #a78bfa);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        background-size: 200% auto;
+        animation: gradientShift 0.8s ease infinite;
+    }
+    100% {
+        background: linear-gradient(90deg, #e2e8f0, #e2e8f0);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+/* Підсвітка ключових слів жовтим градієнтом */
+.glow-word {
     display: inline-block;
-    background: rgba(139, 92, 246, 0.2);
-    border: 1px solid rgba(139, 92, 246, 0.3);
-    padding: 8px 18px;
-    border-radius: 40px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: #c084fc;
-    margin-bottom: 24px;
-    letter-spacing: 0.5px;
-}
-
-.hero-text h1 {
-    font-size: 3.2rem;
-    font-weight: 800;
-    line-height: 1.2;
-    margin-bottom: 24px;
-}
-
-.highlight {
-    background: linear-gradient(135deg, #a855f7, #3b82f6);
+    font-weight: 700;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b, #fbbf24);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    background-size: 200% auto;
+    animation: wordGlow 0.6s ease forwards, gradientShift 3s ease infinite;
+    position: relative;
 }
 
+.glow-word::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(90deg, #fbbf24, #f59e0b);
+    animation: underlineGlow 0.8s ease forwards 0.5s;
+}
+
+@keyframes wordGlow {
+    0% {
+        opacity: 0;
+        text-shadow: 0 0 0px rgba(251, 191, 36, 0);
+        transform: scale(0.95);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(251, 191, 36, 0.6);
+        transform: scale(1.02);
+    }
+    100% {
+        opacity: 1;
+        text-shadow: 0 0 0px rgba(251, 191, 36, 0);
+        transform: scale(1);
+    }
+}
+
+@keyframes underlineGlow {
+    0% {
+        width: 0%;
+        opacity: 0;
+    }
+    100% {
+        width: 100%;
+        opacity: 1;
+    }
+}
+
+/* Анімація для заголовка h1 */
+.hero-text h1 {
+    animation: titleReveal 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+}
+
+@keyframes titleReveal {
+    0% {
+        opacity: 0;
+        transform: translateX(-30px);
+        filter: blur(5px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+        filter: blur(0);
+    }
+}
+
+/* Анімація для бейджа */
+.hero-badge {
+    animation: badgePulse 0.8s ease forwards;
+}
+
+@keyframes badgePulse {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+        box-shadow: 0 0 0px rgba(139, 92, 246, 0);
+    }
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 0 0px rgba(139, 92, 246, 0);
+    }
+}
+
+/* Анімація для параграфів з затримкою */
 .hero-text > p {
-    font-size: 1.1rem;
-    color: #94a3b8;
-    margin-bottom: 32px;
-    max-width: 550px;
-    line-height: 1.6;
+    animation: fadeSlideUp 0.6s ease forwards 0.2s;
+    opacity: 0;
+    transform: translateY(20px);
 }
 
-.hero-description {
-    margin-bottom: 40px;
+@keyframes fadeSlideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
+/* Анімація для опису (3 абзаци) */
 .hero-description p {
-    font-size: 0.95rem;
-    color: #94a3b8;
-    line-height: 1.7;
-    margin-bottom: 16px;
+    animation: fadeSlideUp 0.6s ease forwards;
 }
 
-.hero-description p:last-child {
-    margin-bottom: 0;
-}
+.hero-description p:nth-child(1) { animation-delay: 0.3s; }
+.hero-description p:nth-child(2) { animation-delay: 0.5s; }
+.hero-description p:nth-child(3) { animation-delay: 0.7s; }
 
+/* Анімація для кнопок */
 .hero-buttons {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
+    animation: buttonsReveal 0.6s ease forwards 0.9s;
+    opacity: 0;
+    transform: translateY(20px);
 }
 
-.hero-image {
-    flex: 1;
+@keyframes buttonsReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.code-terminal {
-    background: rgba(10, 10, 20, 0.95);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 16px;
-    overflow: hidden;
-    font-family: 'Courier New', monospace;
-    font-size: 0.75rem;
-    box-shadow: 0 20px 35px -10px rgba(0,0,0,0.4);
-    height: 360px;
-    display: flex;
-    flex-direction: column;
-}
-
-.terminal-header {
-    background: rgba(30, 30, 45, 0.9);
-    padding: 10px 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-shrink: 0;
-}
-
-.terminal-dot { width: 12px; height: 12px; border-radius: 50%; }
-.red { background: #ff5f56; }
-.yellow { background: #ffbd2e; }
-.green { background: #27c93f; }
-
-.terminal-title { color: #94a3b8; font-size: 0.7rem; margin-left: 8px; }
-
-.terminal-body {
-    padding: 16px;
-    color: #e2e8f0;
-    overflow-y: auto;
-    flex: 1;
-    white-space: pre-wrap;
-    word-break: break-word;
-    cursor: text;
-}
-
-.terminal-body::-webkit-scrollbar { width: 6px; }
-.terminal-body::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 3px; }
-.terminal-body::-webkit-scrollbar-thumb { background: rgba(139, 92, 246, 0.5); border-radius: 3px; }
-
-.cursor-blink {
-    display: inline-block;
-    animation: blink 0.8s step-end infinite;
-    color: #fbbf24;
-    font-weight: bold;
-}
-
-@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-
+/* Ефект пульсації для кнопок при наведенні */
 .btn {
-    display: inline-block;
-    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-    color: white;
-    padding: 12px 28px;
-    border-radius: 40px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: 0.2s;
-    border: none;
-    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-.btn:hover { transform: scale(1.02); box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4); }
-
-.btn-outline {
-    background: transparent;
-    border: 1px solid #8b5cf6;
-    color: #c084fc;
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
 }
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Додатковий ефект для ключових слів при наведенні */
+.glow-word:hover {
+    animation: wordHoverGlow 0.4s ease forwards;
+    cursor: default;
+}
+
+@keyframes wordHoverGlow {
+    0% {
+        text-shadow: 0 0 0px rgba(251, 191, 36, 0);
+    }
+    100% {
+        text-shadow: 0 0 15px rgba(251, 191, 36, 0.8);
+    }
+}
+
+
+
+
+
+
+
 
 /* ===== ЗАГАЛЬНІ СТИЛІ ДЛЯ СЕКЦІЙ ===== */
 .section-header { text-align: center; margin-bottom: 48px; }
