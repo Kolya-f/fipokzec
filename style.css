@@ -134,6 +134,91 @@ nav {
     }
 }
 
+/* Градієнтна анімація для всього тексту при завантаженні */
+.hero-text * {
+    animation: gradientWave 1.5s ease forwards;
+}
+
+@keyframes gradientWave {
+    0% {
+        background: linear-gradient(90deg, #e2e8f0, #e2e8f0);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+    50% {
+        background: linear-gradient(90deg, #a78bfa, #60a5fa, #34d399, #fbbf24, #a78bfa);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        background-size: 200% auto;
+        animation: gradientShift 0.8s ease infinite;
+    }
+    100% {
+        background: linear-gradient(90deg, #e2e8f0, #e2e8f0);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+/* Підсвітка ключових слів жовтим градієнтом */
+.glow-word {
+    display: inline-block;
+    font-weight: 700;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b, #fbbf24);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-size: 200% auto;
+    animation: wordGlow 0.6s ease forwards, gradientShift 3s ease infinite;
+    position: relative;
+}
+
+.glow-word::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(90deg, #fbbf24, #f59e0b);
+    animation: underlineGlow 0.8s ease forwards 0.5s;
+}
+
+@keyframes wordGlow {
+    0% {
+        opacity: 0;
+        text-shadow: 0 0 0px rgba(251, 191, 36, 0);
+        transform: scale(0.95);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(251, 191, 36, 0.6);
+        transform: scale(1.02);
+    }
+    100% {
+        opacity: 1;
+        text-shadow: 0 0 0px rgba(251, 191, 36, 0);
+        transform: scale(1);
+    }
+}
+
+@keyframes underlineGlow {
+    0% {
+        width: 0%;
+        opacity: 0;
+    }
+    100% {
+        width: 100%;
+        opacity: 1;
+    }
+}
+
 /* Анімація для заголовка h1 */
 .hero-text h1 {
     animation: titleReveal 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
@@ -211,127 +296,6 @@ nav {
     }
 }
 
-/* ===== АНІМАЦІЯ ДЛЯ ВИДІЛЕНИХ СЛІВ (спочатку градієнт, потім жовтий) ===== */
-
-/* Анімація для всіх виділених слів */
-.glow-word {
-    display: inline-block;
-    font-weight: 700;
-    position: relative;
-    animation: gradientFirstThenYellow 3s ease forwards;
-}
-
-@keyframes gradientFirstThenYellow {
-    /* 0-40%: градієнтна райдуга */
-    0% {
-        background: linear-gradient(90deg, #a78bfa, #60a5fa, #34d399, #fbbf24, #a78bfa);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        background-size: 200% auto;
-        text-shadow: none;
-    }
-    10% {
-        background: linear-gradient(90deg, #fbbf24, #a78bfa, #60a5fa, #34d399, #fbbf24);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        background-size: 200% auto;
-    }
-    20% {
-        background: linear-gradient(90deg, #34d399, #fbbf24, #a78bfa, #60a5fa, #34d399);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        background-size: 200% auto;
-    }
-    30% {
-        background: linear-gradient(90deg, #60a5fa, #34d399, #fbbf24, #a78bfa, #60a5fa);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        background-size: 200% auto;
-    }
-    /* 40-100%: плавний перехід до жовтого градієнту */
-    40% {
-        background: linear-gradient(90deg, #fbbf24, #f59e0b, #fbbf24);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        background-size: 200% auto;
-    }
-    60% {
-        background: linear-gradient(135deg, #fbbf24, #f59e0b);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        background-size: 200% auto;
-    }
-    100% {
-        background: linear-gradient(135deg, #fbbf24, #f59e0b, #fbbf24);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        background-size: 200% auto;
-        text-shadow: 0 0 8px rgba(251, 191, 36, 0.3);
-    }
-}
-
-/* Підкреслення для виділених слів (з'являється після градієнту) */
-.glow-word::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0%;
-    height: 2px;
-    background: linear-gradient(90deg, #fbbf24, #f59e0b);
-    animation: underlineAppear 0.6s ease forwards 2.5s;
-}
-
-@keyframes underlineAppear {
-    from {
-        width: 0%;
-        opacity: 0;
-    }
-    to {
-        width: 100%;
-        opacity: 1;
-    }
-}
-
-/* Легка пульсація жовтого світіння після появи */
-@keyframes gentlePulse {
-    0% {
-        text-shadow: 0 0 0px rgba(251, 191, 36, 0);
-    }
-    50% {
-        text-shadow: 0 0 6px rgba(251, 191, 36, 0.5);
-    }
-    100% {
-        text-shadow: 0 0 0px rgba(251, 191, 36, 0);
-    }
-}
-
-.glow-word {
-    animation: gradientFirstThenYellow 3s ease forwards, gentlePulse 4s ease-in-out 3s infinite;
-}
-
-/* Ефект для ключових слів при наведенні */
-.glow-word:hover {
-    animation: wordHoverGlow 0.4s ease forwards;
-    cursor: default;
-}
-
-@keyframes wordHoverGlow {
-    0% {
-        text-shadow: 0 0 0px rgba(251, 191, 36, 0);
-    }
-    100% {
-        text-shadow: 0 0 15px rgba(251, 191, 36, 0.8);
-    }
-}
-
 /* Ефект пульсації для кнопок при наведенні */
 .btn {
     transition: all 0.3s ease;
@@ -357,6 +321,20 @@ nav {
     height: 300px;
 }
 
+/* Додатковий ефект для ключових слів при наведенні */
+.glow-word:hover {
+    animation: wordHoverGlow 0.4s ease forwards;
+    cursor: default;
+}
+
+@keyframes wordHoverGlow {
+    0% {
+        text-shadow: 0 0 0px rgba(251, 191, 36, 0);
+    }
+    100% {
+        text-shadow: 0 0 15px rgba(251, 191, 36, 0.8);
+    }
+}
 
 
 
