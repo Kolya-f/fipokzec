@@ -219,6 +219,27 @@ nav {
 }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
+/* ===== ВИДІЛЕНІ СЛОВА - РАЙДУЖНИЙ ПЕРЕЛИВ ===== */
+.glow-word {
+    display: inline-block;
+    font-weight: 700;
+    background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-size: 400% auto;
+    animation: slowRainbowFlow 6s linear infinite;
+    position: relative;
+}
+@keyframes slowRainbowFlow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 400% 50%; }
+}
+.glow-word:hover {
+    animation: slowRainbowFlow 2s linear infinite;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+    cursor: default;
+}
 /* ===== КНОПКИ ===== */
 .btn {
     display: inline-block;
